@@ -1580,6 +1580,242 @@ footer,.footer{
 }
 </style>
 
+
+<style>
+/* ===== V1.1.2 HARD FIX: 헤더 첫 글자와 데이터 첫 숫자 X축 완전 일치 ===== */
+
+/* 상층: 각 열의 헤더와 데이터가 동일한 padding / 동일한 left 정렬 */
+.roster table.rosterUpperCompact th:nth-child(2),
+.roster table.rosterUpperCompact td:nth-child(2),
+.roster table.rosterUpperCompact th:nth-child(3),
+.roster table.rosterUpperCompact td:nth-child(3),
+.roster table.rosterUpperCompact th:nth-child(4),
+.roster table.rosterUpperCompact td:nth-child(4),
+.roster table.rosterUpperCompact th:nth-child(5),
+.roster table.rosterUpperCompact td:nth-child(5){
+  text-align:left!important;
+  padding-left:12px!important;
+  padding-right:10px!important;
+  justify-content:flex-start!important;
+}
+
+/* 일반·균열: 모든 비-sticky 열도 동일 원칙 */
+.roster table.rosterFieldCompact th:nth-child(2),
+.roster table.rosterFieldCompact td:nth-child(2),
+.roster table.rosterFieldCompact th:nth-child(3),
+.roster table.rosterFieldCompact td:nth-child(3),
+.roster table.rosterFieldCompact th:nth-child(4),
+.roster table.rosterFieldCompact td:nth-child(4),
+.roster table.rosterFieldCompact th:nth-child(5),
+.roster table.rosterFieldCompact td:nth-child(5),
+.roster table.rosterFieldCompact th:nth-child(6),
+.roster table.rosterFieldCompact td:nth-child(6),
+.roster table.rosterFieldCompact th:nth-child(7),
+.roster table.rosterFieldCompact td:nth-child(7){
+  text-align:left!important;
+  padding-left:12px!important;
+  padding-right:10px!important;
+  justify-content:flex-start!important;
+}
+
+/* 지역→종합 내부 span은 셀 왼쪽 시작점 그대로 사용 */
+.roster table.rosterUpperCompact td:nth-child(4) .bonus-total,
+.roster table.rosterUpperCompact td:nth-child(5) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(4) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(5) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(6) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(7) .bonus-total{
+  display:flex!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  text-align:left!important;
+}
+
+/* 닉네임은 기존 sticky 유지 */
+.roster table.rosterUpperCompact th:first-child,
+.roster table.rosterUpperCompact td:first-child,
+.roster table.rosterFieldCompact th:first-child,
+.roster table.rosterFieldCompact td:first-child{
+  text-align:left!important;
+}
+
+/* 열 폭은 현재 만족한 배치 유지 */
+</style>
+
+
+<style>
+/* =========================================================
+   V1.1.2 FINAL ROSTER LAYOUT
+   First-image standard: clean, stable, readable.
+   ========================================================= */
+
+/* Remove sticky behavior / masks completely */
+.roster table th:first-child,
+.roster table td:first-child{
+  position:static!important;
+  left:auto!important;
+  z-index:auto!important;
+  box-shadow:none!important;
+}
+.roster table th:first-child::after,
+.roster table td:first-child::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Common table geometry */
+.roster .table-wrap{
+  overflow-y:hidden!important;
+  border-radius:14px!important;
+  scroll-snap-type:none!important;
+  scroll-padding-left:0!important;
+}
+.roster table{
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  font-variant-numeric:tabular-nums!important;
+}
+.roster th,
+.roster td{
+  text-align:left!important;
+  vertical-align:middle!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  box-sizing:border-box!important;
+}
+
+/* IMPORTANT:
+   header and data use the exact same padding in every column */
+.rosterUpperCompact th,
+.rosterUpperCompact td,
+.rosterFieldCompact th,
+.rosterFieldCompact td{
+  padding-left:8px!important;
+  padding-right:6px!important;
+}
+
+/* ========== UPPER ==========
+   Fit all five columns on screen.
+   nickname | base | server | zone1 | zone2
+*/
+.roster .table-wrap-rosterUpperCompact{
+  overflow-x:hidden!important;
+}
+.roster table.rosterUpperCompact{
+  width:100%!important;
+  min-width:0!important;
+  table-layout:fixed!important;
+}
+.roster table.rosterUpperCompact th:nth-child(1),
+.roster table.rosterUpperCompact td:nth-child(1){width:21%!important}
+.roster table.rosterUpperCompact th:nth-child(2),
+.roster table.rosterUpperCompact td:nth-child(2){width:14%!important}
+.roster table.rosterUpperCompact th:nth-child(3),
+.roster table.rosterUpperCompact td:nth-child(3){width:11%!important}
+.roster table.rosterUpperCompact th:nth-child(4),
+.roster table.rosterUpperCompact td:nth-child(4){width:27%!important}
+.roster table.rosterUpperCompact th:nth-child(5),
+.roster table.rosterUpperCompact td:nth-child(5){width:27%!important}
+
+/* Upper text sizing */
+.roster table.rosterUpperCompact th{
+  font-size:12.5px!important;
+  font-weight:950!important;
+}
+.roster table.rosterUpperCompact td{
+  font-size:12.5px!important;
+  font-weight:750!important;
+}
+.roster table.rosterUpperCompact td:first-child{
+  font-weight:900!important;
+}
+
+/* ========== GENERAL / RIFT ==========
+   Keep columns roomy. Clean horizontal scroll, no sticky overlay.
+*/
+.roster .table-wrap-rosterFieldCompact{
+  overflow-x:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.roster table.rosterFieldCompact{
+  width:860px!important;
+  min-width:860px!important;
+  table-layout:fixed!important;
+}
+.roster table.rosterFieldCompact th:nth-child(1),
+.roster table.rosterFieldCompact td:nth-child(1){width:94px!important}
+.roster table.rosterFieldCompact th:nth-child(2),
+.roster table.rosterFieldCompact td:nth-child(2){width:78px!important}
+.roster table.rosterFieldCompact th:nth-child(3),
+.roster table.rosterFieldCompact td:nth-child(3){width:62px!important}
+.roster table.rosterFieldCompact th:nth-child(4),
+.roster table.rosterFieldCompact td:nth-child(4),
+.roster table.rosterFieldCompact th:nth-child(5),
+.roster table.rosterFieldCompact td:nth-child(5),
+.roster table.rosterFieldCompact th:nth-child(6),
+.roster table.rosterFieldCompact td:nth-child(6),
+.roster table.rosterFieldCompact th:nth-child(7),
+.roster table.rosterFieldCompact td:nth-child(7){
+  width:156px!important;
+}
+
+/* Exact header/data start alignment for all aggregate columns */
+.roster table.rosterUpperCompact th:nth-child(4),
+.roster table.rosterUpperCompact td:nth-child(4),
+.roster table.rosterUpperCompact th:nth-child(5),
+.roster table.rosterUpperCompact td:nth-child(5),
+.roster table.rosterFieldCompact th:nth-child(4),
+.roster table.rosterFieldCompact td:nth-child(4),
+.roster table.rosterFieldCompact th:nth-child(5),
+.roster table.rosterFieldCompact td:nth-child(5),
+.roster table.rosterFieldCompact th:nth-child(6),
+.roster table.rosterFieldCompact td:nth-child(6),
+.roster table.rosterFieldCompact th:nth-child(7),
+.roster table.rosterFieldCompact td:nth-child(7){
+  text-align:left!important;
+  padding-left:8px!important;
+}
+
+/* The "region -> total" content starts exactly where the header starts */
+.roster table.rosterUpperCompact td:nth-child(4) .bonus-total,
+.roster table.rosterUpperCompact td:nth-child(5) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(4) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(5) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(6) .bonus-total,
+.roster table.rosterFieldCompact td:nth-child(7) .bonus-total{
+  display:flex!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  text-align:left!important;
+}
+.roster .bonus-total .arrow{
+  padding:0 4px!important;
+}
+
+/* Clean alternating rows, no sticky tint artifacts */
+.roster table tr:nth-child(odd) td{background:#fff!important}
+.roster table tr:nth-child(even) td{background:#f6faff!important}
+.roster table thead th{background:#dceeff!important}
+
+/* Slightly smaller on narrow phones, but preserve the same structure */
+@media(max-width:390px){
+  .roster table.rosterUpperCompact th,
+  .roster table.rosterUpperCompact td{
+    font-size:11.8px!important;
+    padding-left:6px!important;
+    padding-right:4px!important;
+  }
+  .roster .bonus-total .arrow{padding:0 3px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
