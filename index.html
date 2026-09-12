@@ -1499,6 +1499,87 @@ footer,.footer{
 }
 </style>
 
+
+<style>
+/* ===== V1.1.2 exact column start alignment ===== */
+/* 핵심 규칙: 각 th와 같은 열 td는 완전히 동일한 좌측 padding 사용 */
+
+:root{
+  --roster-cell-pad-x: 14px;
+  --roster-sticky-pad-left: 10px;
+  --roster-sticky-pad-right: 8px;
+}
+
+/* 모든 비-sticky 열: 헤더와 데이터 좌측 시작점 동일 */
+.rosterUpperCompact th:nth-child(n+2),
+.rosterUpperCompact td:nth-child(n+2),
+.rosterFieldCompact th:nth-child(n+2),
+.rosterFieldCompact td:nth-child(n+2){
+  padding-left:var(--roster-cell-pad-x)!important;
+  padding-right:10px!important;
+  text-align:left!important;
+}
+
+/* 닉네임은 별도 compact sticky */
+.rosterUpperCompact th:first-child,
+.rosterUpperCompact td:first-child,
+.rosterFieldCompact th:first-child,
+.rosterFieldCompact td:first-child{
+  padding-left:var(--roster-sticky-pad-left)!important;
+  padding-right:var(--roster-sticky-pad-right)!important;
+  text-align:left!important;
+}
+
+/* bonus-total 자체가 th 시작점과 정확히 맞도록 */
+.rosterUpperCompact td:nth-child(4) .bonus-total,
+.rosterUpperCompact td:nth-child(5) .bonus-total,
+.rosterFieldCompact td:nth-child(n+4) .bonus-total{
+  display:flex!important;
+  width:100%!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  margin:0!important;
+  padding:0!important;
+  text-align:left!important;
+}
+
+/* 헤더도 flex/center 규칙이 먹지 않도록 완전 좌측 */
+.rosterUpperCompact th:nth-child(4),
+.rosterUpperCompact th:nth-child(5),
+.rosterFieldCompact th:nth-child(n+4){
+  text-align:left!important;
+}
+
+/* 기본/서버 역시 th/td 시작점 동일 */
+.rosterUpperCompact th:nth-child(2),
+.rosterUpperCompact td:nth-child(2),
+.rosterUpperCompact th:nth-child(3),
+.rosterUpperCompact td:nth-child(3),
+.rosterFieldCompact th:nth-child(2),
+.rosterFieldCompact td:nth-child(2),
+.rosterFieldCompact th:nth-child(3),
+.rosterFieldCompact td:nth-child(3){
+  padding-left:var(--roster-cell-pad-x)!important;
+}
+
+/* 기존 중앙정렬 가능성 제거 */
+.rosterUpperCompact th,
+.rosterUpperCompact td,
+.rosterFieldCompact th,
+.rosterFieldCompact td{
+  justify-content:flex-start!important;
+}
+
+/* mobile도 같은 시작점 유지 */
+@media(max-width:520px){
+  :root{
+    --roster-cell-pad-x: 12px;
+    --roster-sticky-pad-left: 9px;
+    --roster-sticky-pad-right: 7px;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
