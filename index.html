@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="apple-touch-icon" href="./dosaljang-profile-20260912.png" />
+  <link rel="apple-touch-icon" href="./dosaljang-profile-v112-final.png" />
   <title>도살장 격전지 상층 계산기 V 1.1.2</title>
 
   <style>
@@ -167,13 +167,13 @@
 
 <meta property="og:title" content="도살장 격전지 상층 계산기 V1.1.2">
 <meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta property="og:image" content="https://seungbeomcat.github.io/jeongyukjeom/dosaljang-preview-20260912-v112-final.png">
-<meta property="og:url" content="https://seungbeomcat.github.io/jeongyukjeom/">
+<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-final2.png">
+<meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 상층 계산기 V1.1.2">
 <meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta name="twitter:image" content="https://seungbeomcat.github.io/jeongyukjeom/dosaljang-preview-20260912-v112-final.png">
+<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-final2.png">
 
 
 <style>
@@ -634,27 +634,195 @@ textarea::placeholder,input::placeholder{color:#738aad!important;opacity:1!impor
 }
 </style>
 
+
+<style>
+/* ===== V1.1.2 FINAL UI PASS ===== */
+html,body{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(126,200,255,.20),transparent 35%),
+    linear-gradient(180deg,#f9fdff 0%,#eef8ff 55%,#e7f4ff 100%)!important;
+  color:#17365f!important;
+}
+.v112-hero-final{
+  text-align:center!important;
+  padding:16px 12px 12px!important;
+  margin:0 auto!important;
+}
+.v112-logo-final{
+  width:78px!important;height:78px!important;
+  margin:0 auto 8px!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+  background:#ffffff!important;
+  border:1.5px solid #7ec7ff!important;
+  box-shadow:0 6px 18px rgba(30,112,196,.15)!important;
+}
+.v112-logo-final img{
+  width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;
+}
+.v112-title-final{
+  color:#0d3475!important;
+  font-size:clamp(27px,6vw,41px)!important;
+  font-weight:950!important;
+  letter-spacing:-.045em!important;
+  line-height:1.12!important;
+  margin:0!important;
+}
+.v112-version-final{
+  color:#1b579f!important;
+  font-size:14.5px!important;
+  font-weight:900!important;
+  margin-top:6px!important;
+}
+/* Completely hide all legacy header/logo remnants */
+.logo-wrap,.app-header,.app-header-avatar,.app-header-copy,.header-guild-pill,
+.v112-hero,.v112-profile,.v112-title,.v112-version,
+header>img,header .logo,.hero>img,.hero .logo{
+  display:none!important;
+}
+/* Main cards */
+.card,section.card,.panel,.result-card,.share-card{
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid #afd3fb!important;
+  box-shadow:0 10px 26px rgba(54,124,202,.10)!important;
+}
+label,.label,.field-title,.card-title,.section-title,.headline{
+  color:#103b7d!important;
+  font-weight:950!important;
+}
+.examples{
+  color:#315983!important;
+  font-weight:750!important;
+}
+.examples b{
+  color:#0c5aba!important;
+  font-weight:950!important;
+}
+textarea,input{
+  background:#fff!important;
+  color:#17365f!important;
+  border:1.5px solid #97c9ff!important;
+}
+textarea::placeholder,input::placeholder{
+  color:#7d91b2!important;
+  opacity:1!important;
+}
+#calcBtn,.primary,.calc-btn{
+  background:linear-gradient(180deg,#3198ff,#1468f3)!important;
+  color:#fff!important;
+  border:none!important;
+  font-weight:950!important;
+}
+#verifyBtn,#resetBtn,.secondary,.ghost{
+  background:#f6faff!important;
+  color:#173d7c!important;
+  border:1px solid #a9d1ff!important;
+  font-weight:900!important;
+}
+/* Roster card */
+.guild-meta{
+  color:#426b9b!important;
+  font-weight:900!important;
+  letter-spacing:.13em!important;
+}
+.guild-summary-title{
+  color:#103a7d!important;
+  font-weight:950!important;
+}
+.roster-hint{
+  background:#edf6ff!important;
+  color:#0b5fc7!important;
+  border-color:#9cc8ff!important;
+  font-weight:900!important;
+}
+.roster-note{
+  color:#31577f!important;
+  background:#f0f7ff!important;
+  border:1px solid #c5e0ff!important;
+  font-weight:800!important;
+}
+.roster-tab{
+  background:#f8fbff!important;
+  color:#31557f!important;
+  border:1px solid #b6d6ff!important;
+  font-weight:900!important;
+}
+.roster-tab.active{
+  background:linear-gradient(180deg,#3195ff,#176eea)!important;
+  color:#fff!important;
+  border-color:#176eea!important;
+}
+/* Compact tables */
+.roster table{table-layout:fixed!important;width:100%!important}
+.roster table th:first-child,.roster table td:first-child{
+  width:20%!important;min-width:72px!important;max-width:100px!important;white-space:nowrap!important;
+}
+.roster table th:not(:first-child),.roster table td:not(:first-child){
+  text-align:right!important;
+}
+.rosterUpperCompact th:nth-child(2),.rosterUpperCompact td:nth-child(2){width:18%!important}
+.rosterUpperCompact th:nth-child(3),.rosterUpperCompact td:nth-child(3){width:13%!important}
+.rosterUpperCompact th:nth-child(4),.rosterUpperCompact td:nth-child(4),
+.rosterUpperCompact th:nth-child(5),.rosterUpperCompact td:nth-child(5){width:24.5%!important}
+.rosterFieldCompact{min-width:690px!important}
+.rosterFieldCompact th:first-child,.rosterFieldCompact td:first-child{width:17%!important}
+.rosterFieldCompact th:nth-child(2),.rosterFieldCompact td:nth-child(2){width:13%!important}
+.rosterFieldCompact th:nth-child(3),.rosterFieldCompact td:nth-child(3){width:10%!important}
+.rosterFieldCompact th:nth-child(n+4),.rosterFieldCompact td:nth-child(n+4){width:15%!important}
+table{background:#fff!important;border:1px solid #bfdcff!important}
+th{
+  background:#dceeff!important;
+  color:#103d7d!important;
+  font-weight:950!important;
+  border-color:#b8d7fb!important;
+}
+td{
+  color:#223f69!important;
+  font-weight:700!important;
+  border-color:#dcecff!important;
+}
+td:first-child{
+  color:#102f61!important;
+  font-weight:900!important;
+}
+tr:nth-child(even) td{background:#f8fbff!important}
+.bonus-total{
+  color:#0f4f9d!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+}
+.bonus-total .arrow{
+  color:#527bad!important;
+  opacity:1!important;
+  padding:0 2px!important;
+}
+footer,.footer{
+  color:#657fa6!important;
+  font-weight:700!important;
+}
+@media(max-width:520px){
+  .v112-hero-final{padding:12px 10px 10px!important}
+  .v112-logo-final{width:72px!important;height:72px!important;margin-bottom:7px!important}
+  .v112-title-final{font-size:27px!important}
+  .v112-version-final{font-size:13.5px!important}
+  .roster table th,.roster table td{
+    padding-left:7px!important;padding-right:7px!important;font-size:12.2px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
-  <header class="hero">
-    <h1>도살장 격전지 상층 계산기</h1>
-    <div class="version">V1.1.2 · 2026-09-12 최신</div>
-  </header>
-
-  
-
-<h1 class="v112-title">도살장 격전지 상층 계산기</h1>
-  <div class="v112-version">V 1.1.2 · 2026-09-12 최신</div>
-</div>
-
-
-<div class="v112-hero">
-  <div class="v112-profile">
-    <img src="./dosaljang-profile-20260912.png" alt="도살장 길드 프로필">
   </div>
-  <h1 class="v112-title">도살장 격전지 상층 계산기</h1>
-  <div class="v112-version">V 1.1.2 · 2026-09-12 최신</div>
+
+
+<div class="v112-hero-final">
+  <div class="v112-logo-final">
+    <img src="./dosaljang-profile-v112-final.png" alt="도살장 길드 프로필">
+  </div>
+  <div class="v112-title-final">도살장 격전지 상층 계산기</div>
+  <div class="v112-version-final">V 1.1.2 · 2026-09-12 최신</div>
 </div>
 
 <section class="card">
@@ -710,8 +878,8 @@ textarea::placeholder,input::placeholder{color:#738aad!important;opacity:1!impor
     </div>
     <div class="share-card" id="shareCard">
       <div class="share-brand">
-        <img src="./dosaljang-profile-20260912.png" alt="도살장" class="share-logo" />
-        <div><div class="share-brand-title">도살장 격전지 상층 계산기</div><div class="share-brand-version">V1.1.2 · 2026-09-12 최신</div></div>
+        <img src="./dosaljang-profile-v112-final.png" alt="도살장" class="share-logo" />
+        <div><div class="share-brand-title">도살장 격전지 상층 계산기</div></div>
       </div>
       <div class="share-result">
         <div id="shareHeadline" class="headline"></div>
@@ -731,14 +899,14 @@ const SERVER = 6;
 const MEMBERS = {
   "돗돔":       {base:171.9, z1r:0, z2r:5, field:{wolf:7,pirate:6,cat:6,food:6}},
   "매콤갈비":   {base:142.5, z1r:5, z2r:5, field:{wolf:8,pirate:8,cat:8,food:8}},
-  "사마엘":     {base:103.5, z1r:0, z2r:5, field:{wolf:13,pirate:7,cat:7,food:7}},
+  "사마엘":     {base:99.5,  z1r:0, z2r:5, field:{wolf:13,pirate:7,cat:7,food:7}},
   "혀녕":       {base:86.4,  z1r:0, z2r:5, field:{wolf:0,pirate:0,cat:0,food:0}},
   "XIGN":       {base:78,    z1r:0, z2r:5, field:{wolf:0,pirate:0,cat:0,food:0}},
   "뱅수띠":     {base:64,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
   "진니":       {base:57.5,  z1r:0, z2r:5, field:{wolf:7,pirate:6,cat:6,food:6}},
   "토시살":     {base:57,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "승부왕":     {base:44.4,  z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
+  "승부왕":     {base:47.4,  z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
   "데이다라":   {base:40,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
   "바포메트":   {base:35.5,  z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
   "옥돔":       {base:34.5,  z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
@@ -1131,7 +1299,7 @@ function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
 
   document.getElementById("rosterUpper").innerHTML=
-    `<div class="roster-note">상층 전용 · 각 칸은 지역격추 → 최종 종합격추</div>`+
+    `<div class="roster-note">상층 전용 · 지역격추 → 최종 종합격추</div>`+
     table(
       ["닉네임","기본","서버","1구역 종합","2구역 종합"],
       ordered.map(([n,m])=>[
@@ -1143,7 +1311,7 @@ function renderRoster(){
     );
 
   document.getElementById("rosterField").innerHTML=
-    `<div class="roster-note">일반·균열 공용 · 각 칸은 지역격추 → 최종 종합격추</div>`+
+    `<div class="roster-note">일반·균열 공용 · 지역격추 → 최종 종합격추</div>`+
     table(
       ["닉네임","기본","서버","늑대","해적","고양이","음식"],
       ordered.map(([n,m])=>[

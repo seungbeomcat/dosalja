@@ -1,5 +1,5 @@
-const CACHE="dosaljang-v112-20260912b";
-const STATIC_ASSETS=["./dosaljang-profile-20260912.png","./dosaljang-preview-20260912-v112-final.png","./manifest.webmanifest"];
+const CACHE="dosaljang-v112-20260912c";
+const STATIC_ASSETS=["./dosaljang-profile-v112-final.png","./dosaljang-preview-20260912-v112-final2.png","./manifest.webmanifest"];
 self.addEventListener("install",e=>{
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(c=>c.addAll(STATIC_ASSETS)).catch(()=>{}));
