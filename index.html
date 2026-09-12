@@ -1949,6 +1949,275 @@ textarea{
 }
 </style>
 
+
+<style>
+/* =========================================================
+   V1.1.2 FINAL-FINAL MOBILE POLISH
+   ========================================================= */
+
+/* ---------- INPUT BOX ----------
+   Keep placeholder/first line balanced, but reduce wasted vertical space.
+*/
+#inputText{
+  min-height:104px!important;
+  height:104px!important;
+  padding:34px 16px 14px!important;
+  line-height:1.45!important;
+  resize:none!important;
+  overflow-y:auto!important;
+}
+#inputText::placeholder{
+  color:#7d91b2!important;
+  opacity:1!important;
+}
+
+/* ---------- UPPER ROSTER ----------
+   Goal: all 5 columns visible, no clipped %, no clipped aggregate values.
+   Allocate more width to base + zone1 + zone2.
+*/
+.roster .table-wrap-rosterUpperCompact{
+  overflow-x:hidden!important;
+}
+.roster table.rosterUpperCompact{
+  width:100%!important;
+  min-width:0!important;
+  table-layout:fixed!important;
+}
+
+/* Carefully balanced mobile-friendly proportions */
+.roster table.rosterUpperCompact th:nth-child(1),
+.roster table.rosterUpperCompact td:nth-child(1){
+  width:15.5%!important;
+}
+.roster table.rosterUpperCompact th:nth-child(2),
+.roster table.rosterUpperCompact td:nth-child(2){
+  width:15%!important;
+}
+.roster table.rosterUpperCompact th:nth-child(3),
+.roster table.rosterUpperCompact td:nth-child(3){
+  width:9.5%!important;
+}
+.roster table.rosterUpperCompact th:nth-child(4),
+.roster table.rosterUpperCompact td:nth-child(4){
+  width:30%!important;
+}
+.roster table.rosterUpperCompact th:nth-child(5),
+.roster table.rosterUpperCompact td:nth-child(5){
+  width:30%!important;
+}
+
+/* Compact padding without touching the general/rift table */
+.roster table.rosterUpperCompact th,
+.roster table.rosterUpperCompact td{
+  padding-left:5px!important;
+  padding-right:3px!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  box-sizing:border-box!important;
+  font-size:11.4px!important;
+  letter-spacing:-0.18px!important;
+}
+
+/* Nickname stays readable while giving space back to numeric columns */
+.roster table.rosterUpperCompact th:first-child,
+.roster table.rosterUpperCompact td:first-child{
+  padding-left:7px!important;
+  padding-right:2px!important;
+  font-size:11.5px!important;
+}
+
+/* Base/server: tighter numeric typography */
+.roster table.rosterUpperCompact th:nth-child(2),
+.roster table.rosterUpperCompact td:nth-child(2),
+.roster table.rosterUpperCompact th:nth-child(3),
+.roster table.rosterUpperCompact td:nth-child(3){
+  font-variant-numeric:tabular-nums!important;
+  letter-spacing:-0.22px!important;
+}
+
+/* Zone aggregate cells: preserve header/data same X start */
+.roster table.rosterUpperCompact th:nth-child(4),
+.roster table.rosterUpperCompact td:nth-child(4),
+.roster table.rosterUpperCompact th:nth-child(5),
+.roster table.rosterUpperCompact td:nth-child(5){
+  padding-left:5px!important;
+  padding-right:2px!important;
+  text-align:left!important;
+}
+
+.roster table.rosterUpperCompact td:nth-child(4) .bonus-total,
+.roster table.rosterUpperCompact td:nth-child(5) .bonus-total{
+  display:flex!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  letter-spacing:-0.25px!important;
+}
+.roster table.rosterUpperCompact .bonus-total .arrow{
+  padding:0 2px!important;
+  flex:0 0 auto!important;
+}
+
+/* Header remains slightly bolder */
+.roster table.rosterUpperCompact thead th{
+  font-weight:950!important;
+}
+
+/* Extra narrow iPhone safeguard */
+@media(max-width:390px){
+  #inputText{
+    min-height:100px!important;
+    height:100px!important;
+    padding:32px 14px 12px!important;
+  }
+
+  .roster table.rosterUpperCompact th,
+  .roster table.rosterUpperCompact td{
+    font-size:10.8px!important;
+    padding-left:4px!important;
+    padding-right:2px!important;
+    letter-spacing:-0.28px!important;
+  }
+
+  .roster table.rosterUpperCompact th:first-child,
+  .roster table.rosterUpperCompact td:first-child{
+    font-size:10.9px!important;
+    padding-left:6px!important;
+  }
+
+  .roster table.rosterUpperCompact th:nth-child(1),
+  .roster table.rosterUpperCompact td:nth-child(1){width:15%!important}
+  .roster table.rosterUpperCompact th:nth-child(2),
+  .roster table.rosterUpperCompact td:nth-child(2){width:15.5%!important}
+  .roster table.rosterUpperCompact th:nth-child(3),
+  .roster table.rosterUpperCompact td:nth-child(3){width:9%!important}
+  .roster table.rosterUpperCompact th:nth-child(4),
+  .roster table.rosterUpperCompact td:nth-child(4),
+  .roster table.rosterUpperCompact th:nth-child(5),
+  .roster table.rosterUpperCompact td:nth-child(5){width:30.25%!important}
+}
+</style>
+
+
+<style>
+/* ===== V1.1.2 STRUCTURAL FIX ===== */
+
+/* INPUT: true vertical center using an overlay, not padding tricks */
+#input{
+  min-height:104px!important;
+  height:104px!important;
+  padding:16px 16px!important;
+  line-height:1.45!important;
+  resize:none!important;
+  overflow-y:auto!important;
+}
+#input::placeholder{color:transparent!important}
+#input + .input-placeholder-overlay{
+  position:absolute!important;
+  left:18px!important;
+  right:18px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  color:#7d91b2!important;
+  font:inherit!important;
+  font-weight:700!important;
+  pointer-events:none!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* UPPER TABLE: stop squeezing. Use clean horizontal scroll like General/Rift. */
+.roster .table-wrap-rosterUpperCompact{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.roster table.rosterUpperCompact{
+  width:760px!important;
+  min-width:760px!important;
+  table-layout:fixed!important;
+}
+.roster table.rosterUpperCompact th,
+.roster table.rosterUpperCompact td{
+  font-size:12.5px!important;
+  padding-left:10px!important;
+  padding-right:10px!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  letter-spacing:0!important;
+  box-sizing:border-box!important;
+}
+.roster table.rosterUpperCompact th:nth-child(1),
+.roster table.rosterUpperCompact td:nth-child(1){width:92px!important}
+.roster table.rosterUpperCompact th:nth-child(2),
+.roster table.rosterUpperCompact td:nth-child(2){width:98px!important}
+.roster table.rosterUpperCompact th:nth-child(3),
+.roster table.rosterUpperCompact td:nth-child(3){width:68px!important}
+.roster table.rosterUpperCompact th:nth-child(4),
+.roster table.rosterUpperCompact td:nth-child(4),
+.roster table.rosterUpperCompact th:nth-child(5),
+.roster table.rosterUpperCompact td:nth-child(5){
+  width:251px!important;
+  padding-left:12px!important;
+  padding-right:12px!important;
+}
+.roster table.rosterUpperCompact td:nth-child(4) .bonus-total,
+.roster table.rosterUpperCompact td:nth-child(5) .bonus-total{
+  display:flex!important;
+  width:100%!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  margin:0!important;
+  padding:0!important;
+  white-space:nowrap!important;
+}
+/* General/Rift table intentionally unchanged */
+</style>
+
+
+<style>
+/* ===== V1.1.2 compact input final polish ===== */
+#input{
+  min-height:82px!important;
+  height:82px!important;
+  padding:12px 16px!important;
+  line-height:1.4!important;
+  resize:none!important;
+  overflow-y:auto!important;
+}
+#input + .input-placeholder-overlay{
+  left:18px!important;
+  right:18px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  font-size:inherit!important;
+  line-height:1.2!important;
+}
+
+/* narrow iPhone */
+@media(max-width:520px){
+  #input{
+    min-height:78px!important;
+    height:78px!important;
+    padding:10px 14px!important;
+  }
+  #input + .input-placeholder-overlay{
+    left:16px!important;
+    right:16px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -1965,7 +2234,7 @@ textarea{
 
 <section class="card">
     <div class="label">계산 입력</div>
-    <textarea id="input" spellcheck="false" placeholder="예) 바나냥 / 토시살 매콤갈비 옥돔"></textarea>
+    <textarea id="input" spellcheck="false" placeholder="" aria-label="계산 입력"></textarea><span class="input-placeholder-overlay" id="inputPlaceholderOverlay">예) 바나냥 / 토시살 매콤갈비 옥돔</span>
     <div class="examples">
       <div><b>1구역(유령)</b> : 보스 남은 체력 / 참여자 닉네임</div>
       <div><b>2구역</b> : 보스명 / 참여자 닉네임</div>
@@ -2482,5 +2751,35 @@ if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260912e").then(reg=>reg.update()).catch(()=>{}));
 }
 </script>
+
+<script>
+(function(){
+  function initInputOverlay(){
+    const ta = document.getElementById('input');
+    const ph = document.getElementById('inputPlaceholderOverlay');
+    if(!ta || !ph) return;
+    const parent = ta.parentElement;
+    if(parent) parent.style.position='relative';
+
+    function sync(){
+      ph.style.display = ta.value.trim() ? 'none' : 'block';
+      if(parent){
+        ph.style.top = (ta.offsetTop + ta.offsetHeight/2) + 'px';
+      }
+    }
+    ta.addEventListener('input', sync);
+    ta.addEventListener('focus', sync);
+    ta.addEventListener('blur', sync);
+    window.addEventListener('resize', sync);
+    sync();
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', initInputOverlay);
+  }else{
+    initInputOverlay();
+  }
+})();
+</script>
+
 </body>
 </html>
