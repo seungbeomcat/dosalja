@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="apple-touch-icon" href="./dosaljang-profile-v112-clean.png" />
-  <title>도살장 격전지 상층 계산기 V 1.1.2</title>
+  <title>도살장 격전지 계산기 V 1.1.2</title>
 
   <style>
     :root{
@@ -165,13 +165,13 @@
     @media(max-width:360px){.share-result th,.share-result td{font-size:10.5px}.share-result .headline{font-size:18px}}
   </style>
 
-<meta property="og:title" content="도살장 격전지 상층 계산기 V1.1.2">
+<meta property="og:title" content="도살장 격전지 계산기 V1.1.2">
 <meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-ui-final.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 상층 계산기 V1.1.2">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.1.2">
 <meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-ui-final.png">
 
@@ -1816,6 +1816,139 @@ footer,.footer{
 }
 </style>
 
+
+<style>
+/* ===== V1.1.2 FINAL 4-POINT POLISH ===== */
+
+/* 상층 표: 닉네임 더 축소, 기본/서버 compact, 종합 2열 확대 */
+.roster table.rosterUpperCompact{
+  width:100%!important;
+  table-layout:fixed!important;
+}
+.roster table.rosterUpperCompact th:nth-child(1),
+.roster table.rosterUpperCompact td:nth-child(1){
+  width:17%!important;
+  padding-left:7px!important;
+  padding-right:4px!important;
+}
+.roster table.rosterUpperCompact th:nth-child(2),
+.roster table.rosterUpperCompact td:nth-child(2){
+  width:13%!important;
+  padding-left:6px!important;
+  padding-right:4px!important;
+}
+.roster table.rosterUpperCompact th:nth-child(3),
+.roster table.rosterUpperCompact td:nth-child(3){
+  width:9%!important;
+  padding-left:5px!important;
+  padding-right:3px!important;
+}
+.roster table.rosterUpperCompact th:nth-child(4),
+.roster table.rosterUpperCompact td:nth-child(4),
+.roster table.rosterUpperCompact th:nth-child(5),
+.roster table.rosterUpperCompact td:nth-child(5){
+  width:30.5%!important;
+  padding-left:7px!important;
+  padding-right:4px!important;
+  text-align:left!important;
+}
+.roster table.rosterUpperCompact td:nth-child(4) .bonus-total,
+.roster table.rosterUpperCompact td:nth-child(5) .bonus-total{
+  display:flex!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+/* 조금 더 작은 화면에서 두 자리 지역격추까지 안전 */
+@media(max-width:390px){
+  .roster table.rosterUpperCompact th,
+  .roster table.rosterUpperCompact td{
+    font-size:11.5px!important;
+  }
+  .roster table.rosterUpperCompact th:nth-child(1),
+  .roster table.rosterUpperCompact td:nth-child(1){width:16.5%!important}
+  .roster table.rosterUpperCompact th:nth-child(2),
+  .roster table.rosterUpperCompact td:nth-child(2){width:12.5%!important}
+  .roster table.rosterUpperCompact th:nth-child(3),
+  .roster table.rosterUpperCompact td:nth-child(3){width:8.5%!important}
+  .roster table.rosterUpperCompact th:nth-child(4),
+  .roster table.rosterUpperCompact td:nth-child(4),
+  .roster table.rosterUpperCompact th:nth-child(5),
+  .roster table.rosterUpperCompact td:nth-child(5){width:31.25%!important}
+}
+
+/* 결과표 본문 배경색 완전 통일 */
+.result .table-wrap tbody td,
+.share-result .table-wrap tbody td,
+.result table tbody td,
+.share-result table tbody td{
+  background:#ffffff!important;
+}
+.result .table-wrap tbody tr:nth-child(even) td,
+.share-result .table-wrap tbody tr:nth-child(even) td,
+.result table tbody tr:nth-child(even) td,
+.share-result table tbody tr:nth-child(even) td{
+  background:#ffffff!important;
+}
+/* 기존 계산분배/실전목표 전용 배경 제거 */
+.result .z2-main td:nth-child(4),
+.result .z2-main td:nth-child(5),
+.share-result .z2-main td:nth-child(4),
+.share-result .z2-main td:nth-child(5){
+  background:#ffffff!important;
+}
+/* 헤더만 하늘색 유지 */
+.result table thead th,
+.share-result table thead th{
+  background:#dceeff!important;
+}
+/* 강조는 글자만 */
+.result .z2-main td:nth-child(4),
+.result .z2-main td:nth-child(5),
+.share-result .z2-main td:nth-child(4),
+.share-result .z2-main td:nth-child(5){
+  color:#123e7b!important;
+  font-weight:800!important;
+}
+</style>
+
+
+<style>
+/* ===== V1.1.2 input-box final polish ===== */
+#inputText,
+textarea#inputText,
+textarea{
+  box-sizing:border-box!important;
+}
+
+/* Main calculator textarea: placeholder and first line sit visually centered */
+#inputText{
+  min-height:126px!important;
+  height:126px!important;
+  padding:44px 18px 18px!important;
+  line-height:1.45!important;
+  resize:none!important;
+  overflow-y:auto!important;
+}
+#inputText::placeholder{
+  color:#7d91b2!important;
+  opacity:1!important;
+}
+
+/* iPhone narrow width: slightly tighter but still centered-looking */
+@media(max-width:520px){
+  #inputText{
+    min-height:124px!important;
+    height:124px!important;
+    padding:42px 16px 16px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -1826,13 +1959,13 @@ footer,.footer{
   <div class="v112-logo-final">
     <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
   </div>
-  <div class="v112-title-final">도살장 격전지 상층 계산기</div>
+  <div class="v112-title-final">도살장 격전지 계산기</div>
   <div class="v112-version-final">V 1.1.2 · 2026-09-12 최신</div>
 </div>
 
 <section class="card">
     <div class="label">계산 입력</div>
-    <textarea id="input" spellcheck="false" placeholder="예) 루나 / 돗돔 사마엘 진니"></textarea>
+    <textarea id="input" spellcheck="false" placeholder="예) 바나냥 / 토시살 매콤갈비 옥돔"></textarea>
     <div class="examples">
       <div><b>1구역(유령)</b> : 보스 남은 체력 / 참여자 닉네임</div>
       <div><b>2구역</b> : 보스명 / 참여자 닉네임</div>
@@ -1884,7 +2017,7 @@ footer,.footer{
     <div class="share-card" id="shareCard">
       <div class="share-brand">
         <img src="./dosaljang-profile-v112-clean.png" alt="도살장" class="share-logo" />
-        <div><div class="share-brand-title">도살장 격전지 상층 계산기</div></div>
+        <div><div class="share-brand-title">도살장 격전지 계산기</div></div>
       </div>
       <div class="share-result">
         <div id="shareHeadline" class="headline"></div>
@@ -2309,7 +2442,7 @@ function renderRoster(){
     table(
       ["닉네임","기본","서버","1구역 종합","2구역 종합"],
       ordered.map(([n,m])=>[
-        n,pct(m.base),"+6%",
+        n,pct(m.base),"6%",
         regionCombined(m.z1r,z1Total(n)),
         regionCombined(m.z2r,z2Total(n))
       ]),
@@ -2321,7 +2454,7 @@ function renderRoster(){
     table(
       ["닉네임","기본","서버","늑대(종합)","해적(종합)","고양이(종합)","음식(종합)"],
       ordered.map(([n,m])=>[
-        n,pct(m.base),"+6%",
+        n,pct(m.base),"6%",
         regionCombined(m.field.wolf,fieldTotal(n,"wolf")),
         regionCombined(m.field.pirate,fieldTotal(n,"pirate")),
         regionCombined(m.field.cat,fieldTotal(n,"cat")),
