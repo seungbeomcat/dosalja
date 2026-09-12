@@ -167,13 +167,13 @@
 
 <meta property="og:title" content="도살장 격전지 상층 계산기 V1.1.2">
 <meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-clean.png">
+<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-ui-final.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 상층 계산기 V1.1.2">
 <meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-clean.png">
+<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-ui-final.png">
 
 
 <style>
@@ -843,6 +843,274 @@ footer,.footer{
 }
 </style>
 
+
+<style>
+/* =========================================================
+   V 1.1.2 — 2026-09-12 최종 개선
+   ========================================================= */
+
+/* ---------- 계산 완료 / 오류 상태 : 밝은 배경에서도 확실한 대비 ---------- */
+.status{
+  border-radius:12px!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  line-height:1.45!important;
+}
+.status.ok{
+  background:#e9f8ef!important;
+  border:1px solid #89c99d!important;
+  color:#155d35!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.65)!important;
+}
+.status.err{
+  background:#fff0f0!important;
+  border:1px solid #e9a0a0!important;
+  color:#9b2929!important;
+}
+
+/* ---------- '참여자는 반드시...' 등 결과 안내문 대비 강화 ---------- */
+.note{
+  background:#fff4dd!important;
+  color:#6b4300!important;
+  border:1px solid #efc46f!important;
+  border-left:5px solid #d99922!important;
+  border-radius:11px!important;
+  padding:10px 12px!important;
+  font-weight:850!important;
+  line-height:1.5!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8)!important;
+}
+.share-result .note{
+  background:#fff4dd!important;
+  color:#6b4300!important;
+  border-color:#efc46f!important;
+}
+
+/* ---------- 모든 결과표: 외곽 라운드와 내부 셀의 충돌 제거 ---------- */
+.table-wrap{
+  border:1px solid #b8d5f4!important;
+  border-radius:14px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  box-shadow:0 3px 10px rgba(37,91,151,.05)!important;
+}
+.table-wrap table{
+  border:0!important;
+  border-radius:0!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  background:#fff!important;
+}
+.table-wrap th,
+.table-wrap td{
+  border-left:0!important;
+  border-right:0!important;
+}
+.table-wrap thead th{
+  border-top:0!important;
+}
+.table-wrap tbody tr:last-child td{
+  border-bottom:0!important;
+}
+.table-wrap th:first-child,
+.table-wrap td:first-child{
+  border-left:0!important;
+}
+.table-wrap th:last-child,
+.table-wrap td:last-child{
+  border-right:0!important;
+}
+
+/* ---------- 길드원 상세표 공통 ---------- */
+.roster .table-wrap{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.roster table{
+  table-layout:fixed!important;
+}
+.roster th,
+.roster td{
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow-wrap:normal!important;
+  padding-left:10px!important;
+  padding-right:10px!important;
+}
+.roster td:first-child,
+.roster th:first-child{
+  padding-left:12px!important;
+}
+
+/* ---------- 상층 표
+   닉네임 최소폭 / 기본·서버 즉시 좌측 / 종합 칸 충분한 폭 ---------- */
+.rosterUpperCompact{
+  width:100%!important;
+  min-width:650px!important;
+}
+.rosterUpperCompact th:nth-child(1),
+.rosterUpperCompact td:nth-child(1){
+  width:86px!important;
+  min-width:86px!important;
+  max-width:86px!important;
+}
+.rosterUpperCompact th:nth-child(2),
+.rosterUpperCompact td:nth-child(2){
+  width:82px!important;
+}
+.rosterUpperCompact th:nth-child(3),
+.rosterUpperCompact td:nth-child(3){
+  width:64px!important;
+}
+.rosterUpperCompact th:nth-child(4),
+.rosterUpperCompact td:nth-child(4),
+.rosterUpperCompact th:nth-child(5),
+.rosterUpperCompact td:nth-child(5){
+  width:205px!important;
+}
+
+/* 0%, 5% 등 지역격추가 각 칸의 왼쪽에서 시작하도록 */
+.rosterUpperCompact .bonus-total,
+.rosterFieldCompact .bonus-total{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  min-width:0!important;
+}
+.rosterUpperCompact td:nth-child(4),
+.rosterUpperCompact td:nth-child(5){
+  text-align:left!important;
+}
+
+/* ---------- 일반·균열 표
+   앞 3열은 압축, 지역 4열은 넓게 ---------- */
+.rosterFieldCompact{
+  width:930px!important;
+  min-width:930px!important;
+}
+.rosterFieldCompact th:nth-child(1),
+.rosterFieldCompact td:nth-child(1){
+  width:86px!important;
+  min-width:86px!important;
+  max-width:86px!important;
+}
+.rosterFieldCompact th:nth-child(2),
+.rosterFieldCompact td:nth-child(2){
+  width:82px!important;
+}
+.rosterFieldCompact th:nth-child(3),
+.rosterFieldCompact td:nth-child(3){
+  width:64px!important;
+}
+.rosterFieldCompact th:nth-child(4),
+.rosterFieldCompact td:nth-child(4),
+.rosterFieldCompact th:nth-child(5),
+.rosterFieldCompact td:nth-child(5),
+.rosterFieldCompact th:nth-child(6),
+.rosterFieldCompact td:nth-child(6),
+.rosterFieldCompact th:nth-child(7),
+.rosterFieldCompact td:nth-child(7){
+  width:174px!important;
+}
+.rosterFieldCompact td:nth-child(n+4),
+.rosterFieldCompact th:nth-child(n+4){
+  text-align:left!important;
+}
+
+/* ---------- 지역→종합 표현 ---------- */
+.bonus-total{
+  color:#104f9d!important;
+  font-weight:900!important;
+  letter-spacing:-.05px!important;
+}
+.bonus-total .arrow{
+  color:#527ba8!important;
+  opacity:1!important;
+  padding:0 5px!important;
+}
+
+/* ---------- 상세표 상단 설명도 선명하게 ---------- */
+.roster-note{
+  color:#234f80!important;
+  background:#edf6ff!important;
+  border:1px solid #bedbfa!important;
+  font-weight:850!important;
+}
+.guild-summary-title{
+  color:#0f397a!important;
+  font-weight:950!important;
+}
+.guild-meta{
+  color:#42688f!important;
+  font-weight:900!important;
+}
+
+/* ---------- 결과표 텍스트 대비 ---------- */
+.result .headline{
+  color:#0e3978!important;
+  font-weight:950!important;
+}
+.result .section-title{
+  color:#123e7b!important;
+  font-weight:950!important;
+}
+.result th,
+.share-result th{
+  background:#dceeff!important;
+  color:#103d7d!important;
+  font-weight:950!important;
+}
+.result td,
+.share-result td{
+  color:#203d66!important;
+  font-weight:700!important;
+}
+.z2-main td:nth-child(4),
+.z2-main td:nth-child(5){
+  color:#123e7b!important;
+  background:#f4f9ff!important;
+}
+
+/* ---------- 공유용 결과표도 같은 라운딩 ---------- */
+.share-result .table-wrap{
+  border-radius:14px!important;
+  overflow:hidden!important;
+  border:1px solid #b8d5f4!important;
+}
+
+/* ---------- 모바일에서 열 폭은 유지하되 스크롤은 부드럽게 ---------- */
+@media(max-width:520px){
+  .roster th,.roster td{
+    font-size:12.2px!important;
+    padding-left:9px!important;
+    padding-right:9px!important;
+  }
+  .rosterUpperCompact th:nth-child(1),
+  .rosterUpperCompact td:nth-child(1),
+  .rosterFieldCompact th:nth-child(1),
+  .rosterFieldCompact td:nth-child(1){
+    width:80px!important;
+    min-width:80px!important;
+    max-width:80px!important;
+  }
+  .rosterUpperCompact th:nth-child(2),
+  .rosterUpperCompact td:nth-child(2),
+  .rosterFieldCompact th:nth-child(2),
+  .rosterFieldCompact td:nth-child(2){
+    width:76px!important;
+  }
+  .rosterUpperCompact th:nth-child(3),
+  .rosterUpperCompact td:nth-child(3),
+  .rosterFieldCompact th:nth-child(3),
+  .rosterFieldCompact td:nth-child(3){
+    width:58px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -899,7 +1167,7 @@ footer,.footer{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V1.1.2 고정 공식 · lightblue-v112</div>
+  <div class="footer">도살장 길드 전용 · V 1.1.2 · 2026-09-12</div>
 </div>
 
 
@@ -1192,7 +1460,8 @@ function validateResult(r){
 }
 
 function table(headers,rows,klass=""){
-  return `<div class="table-wrap"><table class="${klass}"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead>
+  const wrapClass = klass ? `table-wrap table-wrap-${klass}` : "table-wrap";
+  return `<div class="${wrapClass}"><table class="${klass}"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead>
   <tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
 
@@ -1345,7 +1614,7 @@ function renderRoster(){
   document.getElementById("rosterField").innerHTML=
     `<div class="roster-note">일반·균열 공용 · 지역격추 → 최종 종합격추</div>`+
     table(
-      ["닉네임","기본","서버","늑대","해적","고양이","음식"],
+      ["닉네임","기본","서버","늑대(종합)","해적(종합)","고양이(종합)","음식(종합)"],
       ordered.map(([n,m])=>[
         n,pct(m.base),"+6%",
         regionCombined(m.field.wolf,fieldTotal(n,"wolf")),
@@ -1372,7 +1641,7 @@ rosterDetails.addEventListener("toggle",()=>{
 });
 
 if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260912f").then(reg=>reg.update()).catch(()=>{}));
+  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260912e").then(reg=>reg.update()).catch(()=>{}));
 }
 </script>
 </body>
