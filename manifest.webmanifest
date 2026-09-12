@@ -1,0 +1,16 @@
+{
+  "name": "도살장 격전지 상층 계산기 V 1.1.2",
+  "short_name": "도살장 계산기",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#eef8ff",
+  "theme_color": "#1677ff",
+  "icons": [
+    {
+      "src": "./dosaljang-profile-20260912.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
