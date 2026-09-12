@@ -1284,6 +1284,221 @@ footer,.footer{
 }
 </style>
 
+
+<style>
+/* ===== V1.1.2 roster layout polish — sticky nickname + clean scroll ===== */
+
+/* 스크롤 컨테이너 */
+.roster .table-wrap{
+  position:relative!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  scroll-behavior:smooth!important;
+  scrollbar-gutter:stable!important;
+}
+
+/* 표 공통 숫자 안정성 */
+.roster table{
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  font-variant-numeric:tabular-nums!important;
+}
+.roster th,.roster td{
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+}
+
+/* 닉네임 sticky 고정 */
+.roster table th:first-child,
+.roster table td:first-child{
+  position:sticky!important;
+  left:0!important;
+  z-index:8!important;
+  width:84px!important;
+  min-width:84px!important;
+  max-width:84px!important;
+  padding-left:10px!important;
+  padding-right:8px!important;
+  background:#fbfdff!important;
+  box-shadow:1px 0 0 #bfd8f5!important;
+}
+.roster table thead th:first-child{
+  z-index:10!important;
+  background:#dceeff!important;
+}
+.roster table tr:nth-child(even) td:first-child{
+  background:#f5f9ff!important;
+}
+
+/* sticky 열 오른쪽 차단/여백 레이어:
+   스크롤 중 잘린 숫자 조각이 닉네임 경계에 달라붙지 않도록 */
+.roster table th:first-child::after,
+.roster table td:first-child::after{
+  content:""!important;
+  position:absolute!important;
+  top:0!important;
+  right:-22px!important;
+  width:22px!important;
+  height:100%!important;
+  pointer-events:none!important;
+  background:linear-gradient(90deg,
+    rgba(251,253,255,1) 0%,
+    rgba(251,253,255,.98) 55%,
+    rgba(251,253,255,.82) 78%,
+    rgba(251,253,255,0) 100%)!important;
+}
+.roster table thead th:first-child::after{
+  background:linear-gradient(90deg,
+    rgba(220,238,255,1) 0%,
+    rgba(220,238,255,.98) 55%,
+    rgba(220,238,255,.84) 78%,
+    rgba(220,238,255,0) 100%)!important;
+}
+.roster table tr:nth-child(even) td:first-child::after{
+  background:linear-gradient(90deg,
+    rgba(245,249,255,1) 0%,
+    rgba(245,249,255,.98) 55%,
+    rgba(245,249,255,.82) 78%,
+    rgba(245,249,255,0) 100%)!important;
+}
+
+/* 상층: compact 앞열 + 넓은 종합열 */
+.rosterUpperCompact{
+  width:720px!important;
+  min-width:720px!important;
+  table-layout:fixed!important;
+}
+.rosterUpperCompact th:nth-child(2),
+.rosterUpperCompact td:nth-child(2){width:88px!important}
+.rosterUpperCompact th:nth-child(3),
+.rosterUpperCompact td:nth-child(3){width:64px!important}
+.rosterUpperCompact th:nth-child(4),
+.rosterUpperCompact td:nth-child(4),
+.rosterUpperCompact th:nth-child(5),
+.rosterUpperCompact td:nth-child(5){
+  width:242px!important;
+  padding-left:16px!important;
+  padding-right:14px!important;
+}
+
+/* 일반·균열: compact 앞열 + 4개 지역 칸 넓게 */
+.rosterFieldCompact{
+  width:1040px!important;
+  min-width:1040px!important;
+  table-layout:fixed!important;
+}
+.rosterFieldCompact th:nth-child(2),
+.rosterFieldCompact td:nth-child(2){width:88px!important}
+.rosterFieldCompact th:nth-child(3),
+.rosterFieldCompact td:nth-child(3){width:64px!important}
+.rosterFieldCompact th:nth-child(4),
+.rosterFieldCompact td:nth-child(4),
+.rosterFieldCompact th:nth-child(5),
+.rosterFieldCompact td:nth-child(5),
+.rosterFieldCompact th:nth-child(6),
+.rosterFieldCompact td:nth-child(6),
+.rosterFieldCompact th:nth-child(7),
+.rosterFieldCompact td:nth-child(7){
+  width:201px!important;
+  padding-left:16px!important;
+  padding-right:14px!important;
+}
+
+/* 기본/서버는 앞쪽에 밀착 */
+.rosterUpperCompact th:nth-child(2),
+.rosterUpperCompact td:nth-child(2),
+.rosterUpperCompact th:nth-child(3),
+.rosterUpperCompact td:nth-child(3),
+.rosterFieldCompact th:nth-child(2),
+.rosterFieldCompact td:nth-child(2),
+.rosterFieldCompact th:nth-child(3),
+.rosterFieldCompact td:nth-child(3){
+  padding-left:10px!important;
+  padding-right:8px!important;
+}
+
+/* 지역격추 → 종합격추 : 시작값 기준으로 확실한 좌측 정렬 */
+.roster .bonus-total{
+  display:flex!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+.roster .bonus-total .arrow{
+  flex:0 0 auto!important;
+  padding:0 6px!important;
+}
+
+/* 헤더도 같은 열 시작점에 맞춰 좌측 정렬 */
+.rosterUpperCompact th:nth-child(n+2),
+.rosterFieldCompact th:nth-child(n+2){
+  text-align:left!important;
+}
+
+/* 부드러운 스크롤 위치 유도 */
+.rosterUpperCompact th:nth-child(n+2),
+.rosterFieldCompact th:nth-child(n+2){
+  scroll-snap-align:start!important;
+}
+.roster .table-wrap{
+  scroll-snap-type:x proximity!important;
+  scroll-padding-left:106px!important;
+}
+
+/* 스크롤바가 표 안을 가리지 않도록 하단 여백 */
+.roster .table-wrap{
+  padding-bottom:2px!important;
+}
+
+/* 모바일 폭 최적화 */
+@media(max-width:520px){
+  .roster table th:first-child,
+  .roster table td:first-child{
+    width:80px!important;
+    min-width:80px!important;
+    max-width:80px!important;
+  }
+  .rosterUpperCompact{
+    width:690px!important;
+    min-width:690px!important;
+  }
+  .rosterUpperCompact th:nth-child(2),
+  .rosterUpperCompact td:nth-child(2){width:82px!important}
+  .rosterUpperCompact th:nth-child(3),
+  .rosterUpperCompact td:nth-child(3){width:60px!important}
+  .rosterUpperCompact th:nth-child(4),
+  .rosterUpperCompact td:nth-child(4),
+  .rosterUpperCompact th:nth-child(5),
+  .rosterUpperCompact td:nth-child(5){width:234px!important}
+
+  .rosterFieldCompact{
+    width:1000px!important;
+    min-width:1000px!important;
+  }
+  .rosterFieldCompact th:nth-child(2),
+  .rosterFieldCompact td:nth-child(2){width:82px!important}
+  .rosterFieldCompact th:nth-child(3),
+  .rosterFieldCompact td:nth-child(3){width:60px!important}
+  .rosterFieldCompact th:nth-child(4),
+  .rosterFieldCompact td:nth-child(4),
+  .rosterFieldCompact th:nth-child(5),
+  .rosterFieldCompact td:nth-child(5),
+  .rosterFieldCompact th:nth-child(6),
+  .rosterFieldCompact td:nth-child(6),
+  .rosterFieldCompact th:nth-child(7),
+  .rosterFieldCompact td:nth-child(7){width:194px!important}
+
+  .roster .table-wrap{scroll-padding-left:102px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
