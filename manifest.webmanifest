@@ -7,7 +7,7 @@
   "theme_color": "#1677ff",
   "icons": [
     {
-      "src": "./dosaljang-profile-v112-final.png",
+      "src": "./dosaljang-profile-v112-clean.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"
