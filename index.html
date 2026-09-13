@@ -167,13 +167,13 @@
 
 <meta property="og:title" content="도살장 격전지 계산기 V1.1.2">
 <meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-ui-final.png">
+<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260913-v112-measured.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 계산기 V1.1.2">
 <meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260912-v112-ui-final.png">
+<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260913-v112-measured.png">
 
 
 <style>
@@ -241,7 +241,7 @@ details > summary{
 
 
 <style>
-/* 2026-09-12 개선: 상세 현황 발견성 + 상층/일반·균열 분리 */
+/* 2026-09-13 개선: 상세 현황 발견성 + 상층/일반·균열 분리 */
 .example-sub{color:#a99384;margin-left:4px;font-size:.92em}
 .roster-card{padding:10px 12px 12px}
 #rosterDetails > summary{
@@ -846,7 +846,7 @@ footer,.footer{
 
 <style>
 /* =========================================================
-   V 1.1.2 — 2026-09-12 최종 개선
+   V 1.1.2 — 2026-09-13 실측 보정
    ========================================================= */
 
 /* ---------- 계산 완료 / 오류 상태 : 밝은 배경에서도 확실한 대비 ---------- */
@@ -2320,7 +2320,7 @@ textarea{
     <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.1.2 · 2026-09-12 최신</div>
+  <div class="v112-version-final">V 1.1.2 · 2026-09-13 최신</div>
 </div>
 
 <section class="card">
@@ -2336,7 +2336,7 @@ textarea{
       <button class="secondary" id="verifyBtn">검증/재검증</button>
     </div>
     <button class="ghost" id="clearBtn">입력/결과 초기화</button>
-    <button id="shareOpenBtn" class="share-open">공유용 보기</button>
+    <button id="shareOpenBtn" class="share-open">단톡방 공유용 이미지 만들기(클릭)</button>
     <div id="status" class="status"></div>
   </section>
 
@@ -2365,7 +2365,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.1.2 · 2026-09-12</div>
+  <div class="footer">도살장 길드 전용 · V 1.1.2 · 2026-09-13</div>
 </div>
 
 
@@ -2395,21 +2395,22 @@ textarea{
 const SERVER = 6;
 
 const MEMBERS = {
-  "돗돔":       {base:171.9, z1r:0, z2r:5, field:{wolf:7,pirate:6,cat:6,food:6}},
-  "매콤갈비":   {base:142.5, z1r:5, z2r:5, field:{wolf:8,pirate:8,cat:8,food:8}},
-  "사마엘":     {base:99.5,  z1r:0, z2r:5, field:{wolf:13,pirate:7,cat:7,food:7}},
-  "혀녕":       {base:86.4,  z1r:0, z2r:5, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "XIGN":       {base:78,    z1r:0, z2r:5, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "뱅수띠":     {base:64,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "진니":       {base:57.5,  z1r:0, z2r:5, field:{wolf:7,pirate:6,cat:6,food:6}},
-  "토시살":     {base:57,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "페르시안":   {base:57,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "승부왕":     {base:47.4,  z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "데이다라":   {base:40,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "바포메트":   {base:35.5,  z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "옥돔":       {base:34.5,  z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "하니엘":     {base:29,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}},
-  "벨제붑":     {base:21,    z1r:0, z2r:0, field:{wolf:0,pirate:0,cat:0,food:0}}
+  // minScore는 실측 보정용 내부값이며 길드원 상세표에는 표시하지 않는다.
+  "돗돔":       {base:171.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
+  "매콤갈비":   {base:142.5, z1r:5, z2r:5, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
+  "사마엘":     {base:99.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
+  "혀녕":       {base:86.4,  z1r:0, z2r:5, minScore:1000, field:{wolf:8,pirate:6,cat:6,food:6}},
+  "XIGN":       {base:78,    z1r:0, z2r:5, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "뱅수띠":     {base:64,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "진니":       {base:57.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6}},
+  "토시살":     {base:57,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "페르시안":   {base:57,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "승부왕":     {base:47.4,  z1r:0, z2r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1}},
+  "데이다라":   {base:40,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "바포메트":   {base:35.5,  z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "옥돔":       {base:34.5,  z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "하니엘":     {base:29,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "벨제붑":     {base:21,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}}
 };
 
 const ALIASES = {
@@ -2448,7 +2449,27 @@ const REGIONS = {
   "음식의 광장": {key:"food",label:"음식의 광장"},
   "광장": {key:"food",label:"음식의 광장"}
 };
-const REGION_DMG_CORRECTION = 1.0;
+// 2026-09-13 실측 보정: 60초 부근 완료 63 WAVE를 대표값으로 사용.
+// 피해는 WAVE 단위로 뛰므로 실전 시간은 ±1초 안전범위를 함께 표시한다.
+const WAVES_PER_SEC = 63/60; // 1.05
+const SCORE_PER_WAVE = 1000;
+const SAFE_SEC = 1;
+const UPDATED_DATE = "2026-09-13";
+
+// 함께 수집한 실측 검증값. 계산 화면에는 노출하지 않고 보정/검증 근거로만 보존한다.
+const CALIBRATION_SAMPLES = [
+  {member:"돗돔",content:"상층1",G:177.9,wave:64,completed:63,minScore:4500,actual:179577},
+  {member:"돗돔",content:"상층1",G:177.9,wave:127,completed:126,minScore:4500,actual:354654},
+  {member:"돗돔",content:"상층2",boss:"루니",level:26,G:182.9,wave:64,completed:63,minScore:4500,actual:182727},
+  {member:"승부왕",content:"상층1",G:53.4,wave:64,completed:63,minScore:1000,actual:97642},
+  {member:"승부왕",content:"상층1",G:53.4,wave:127,completed:126,minScore:1000,actual:194284},
+  {member:"승부왕",content:"일반-고양이",G:53.4,wave:64,completed:63,minScore:1000,actual:97642},
+  {member:"승부왕",content:"일반-고양이",G:53.4,wave:127,completed:126,minScore:1000,actual:194284},
+  {member:"승부왕",content:"일반-음식",G:54.4,wave:63,completed:62,minScore:1000,actual:96728},
+  {member:"승부왕",content:"일반-음식",G:54.4,wave:127,completed:126,minScore:1000,actual:195544},
+  {member:"승부왕",content:"일반-늑대",G:53.4,wave:64,completed:63,minScore:1000,actual:97642},
+  {member:"승부왕",content:"일반-늑대",G:53.4,wave:127,completed:126,minScore:1000,actual:194284}
+];
 
 
 function z1Total(name){const m=MEMBERS[name];return m.base+SERVER+m.z1r}
@@ -2457,6 +2478,23 @@ function fieldBonus(name,key){const m=MEMBERS[name];return m.field ? m.field[key
 function fieldTotal(name,key){
   const b=fieldBonus(name,key);
   return b===null || b===undefined ? null : MEMBERS[name].base+SERVER+b;
+}
+function minScore(name){return MEMBERS[name].minScore||0}
+function sustainedDpsFromG(G){return WAVES_PER_SEC*SCORE_PER_WAVE*(1+G/100)}
+function scoreAtCompletedWaves(name,G,completedWaves){
+  return Math.round(completedWaves*SCORE_PER_WAVE*(1+G/100)+minScore(name));
+}
+function safeSecRange(sec){
+  const c=Math.max(0,Math.round(sec));
+  return {center:c,low:Math.max(0,c-SAFE_SEC),high:c+SAFE_SEC};
+}
+function allocateHpExact(hp,items){
+  const totalMin=items.reduce((a,x)=>a+minScore(x.name),0);
+  const remain=Math.max(0,hp-totalMin);
+  const S=items.reduce((a,x)=>a+x.P,0);
+  const raws=items.map(x=>minScore(x.name)+(S?remain*x.P/S:0));
+  const alloc=largestRemainder(raws,hp,items.map(x=>x.G));
+  return {raws,out:alloc.out,totalMin,remain,S};
 }
 function fmtNum(n){return Number.isInteger(n)?String(n):String(Number(n.toFixed(1)))}
 function fmtInt(n){return Math.round(n).toLocaleString("ko-KR")}
@@ -2542,28 +2580,54 @@ function sortDisplay(items){
 }
 
 function calcZ2(parsed){
-  let items=parsed.names.map(name=>{const G=z2Total(name);return {name,G,P:100+G}});
+  let items=parsed.names.map(name=>{const G=z2Total(name);return {name,G,P:100+G,M:minScore(name)}});
   const S=items.reduce((a,x)=>a+x.P,0);
-  items.forEach(x=>x.raw=x.P/S*100);
-  const alloc=largestRemainder(items.map(x=>x.raw),100,items.map(x=>x.G));
-  items.forEach((x,i)=>{x.N=alloc.out[i];x.exit=Math.max(0,99-x.N)});
+
+  // 보스명이 없으면 HP를 알 수 없으므로 기존 비율형 분배를 유지한다.
+  if(parsed.mode!=="z2boss"){
+    items.forEach(x=>x.raw=x.P/S*100);
+    const alloc=largestRemainder(items.map(x=>x.raw),100,items.map(x=>x.G));
+    items.forEach((x,i)=>{x.N=alloc.out[i];x.exit=Math.max(0,99-x.N);x.rawMin=x.raw;x.rawMax=x.raw;x.NMin=x.N;x.NMax=x.N});
+    items=sortDisplay(items);
+    return {kind:"z2",parsed,S,items,levels:null,measured:false};
+  }
+
+  const levels=BOSSES[parsed.boss].map(([lv,hp])=>{
+    const allocHp=allocateHpExact(hp,items);
+    const secRaw=allocHp.remain/(WAVES_PER_SEC*SCORE_PER_WAVE*(S/100));
+    const safe=safeSecRange(secRaw);
+    const rawPct=allocHp.raws.map(v=>v/hp*100);
+    const pctAlloc=largestRemainder(rawPct,100,items.map(x=>x.G)).out;
+    return {lv,hp,secRaw,sec:safe.center,low:safe.low,high:safe.high,rawPct,pctAlloc,hpAlloc:allocHp.out};
+  });
+
+  items.forEach((x,i)=>{
+    const raws=levels.map(l=>l.rawPct[i]);
+    const Ns=levels.map(l=>l.pctAlloc[i]);
+    x.rawMin=Math.min(...raws);x.rawMax=Math.max(...raws);
+    x.NMin=Math.min(...Ns);x.NMax=Math.max(...Ns);
+    x.N=x.NMin===x.NMax?x.NMin:null;
+    const exitVals=Ns.map(n=>Math.max(0,99-n));
+    x.exitMin=Math.min(...exitVals);x.exitMax=Math.max(...exitVals);
+  });
   items=sortDisplay(items);
-  const levels=parsed.mode==="z2boss"
-    ? BOSSES[parsed.boss].map(([lv,hp])=>({lv,hp,sec:Math.round(hp/(10*S)*0.97)}))
-    : null;
-  return {kind:"z2",parsed,S,items,levels};
+  return {kind:"z2",parsed,S,items,levels,measured:true};
 }
 
 function calcZ1(parsed){
-  let items=parsed.names.map(name=>{const G=z1Total(name);return {name,G,P:100+G}});
-  const S=items.reduce((a,x)=>a+x.P,0);
-  items.forEach(x=>{x.rawHp=parsed.hp*x.P/S;x.share=x.P/S*100});
-  const alloc=largestRemainder(items.map(x=>x.rawHp),parsed.hp,items.map(x=>x.G));
-  items.forEach((x,i)=>x.hp=alloc.out[i]);
+  let items=parsed.names.map(name=>{const G=z1Total(name);return {name,G,P:100+G,M:minScore(name)}});
+  const alloc=allocateHpExact(parsed.hp,items);
+  const S=alloc.S;
+  items.forEach((x,i)=>{
+    x.rawHp=alloc.raws[i];
+    x.hp=alloc.out[i];
+    x.share=x.hp/parsed.hp*100;
+  });
   items=sortDisplay(items);
-  return {kind:"z1",parsed,S,items,sec:Math.round(parsed.hp/(10*S))};
+  const secRaw=alloc.remain/(WAVES_PER_SEC*SCORE_PER_WAVE*(S/100));
+  const safe=safeSecRange(secRaw);
+  return {kind:"z1",parsed,S,items,secRaw,sec:safe.center,low:safe.low,high:safe.high,totalMin:alloc.totalMin};
 }
-
 
 function calcRegion(parsed){
   const name=parsed.names[0];
@@ -2574,12 +2638,15 @@ function calcRegion(parsed){
   }
   const G=fieldTotal(name,key);
   const P=100+G;
-  const dps=10*P*REGION_DMG_CORRECTION;
-  const perMinute=dps*60;
-  return {
-    kind:"region",parsed,name,key,bonus,G,P,dps,perMinute,
-    estimates:[1,2,3].map(min=>({min,damage:Math.round(perMinute*min)}))
-  };
+  const completedByMinute=[63,126,189];
+  const estimates=completedByMinute.map((waves,i)=>({
+    min:i+1,
+    waves,
+    damage:scoreAtCompletedWaves(name,G,waves),
+    low:scoreAtCompletedWaves(name,G,Math.max(0,waves-1)),
+    high:scoreAtCompletedWaves(name,G,waves+1)
+  }));
+  return {kind:"region",parsed,name,key,bonus,G,P,estimates};
 }
 
 function compute(raw){
@@ -2599,30 +2666,18 @@ function validateResult(r){
     const bonus=fieldBonus(r.name,r.key);
     const G=fieldTotal(r.name,r.key);
     const P=100+G;
-    const perMinute=10*P*60*REGION_DMG_CORRECTION;
     if(bonus===null || bonus===undefined)problems.push("지역격추 미등록");
     if(Math.abs(G-r.G)>1e-9)problems.push("지역 종합격추 오류");
     if(Math.abs(P-r.P)>1e-9)problems.push("지역 화력값 오류");
-    if(Math.abs(perMinute-r.perMinute)>1e-9)problems.push("지역 1분 예상딜 오류");
-    r.estimates.forEach(x=>{
-      if(x.damage!==Math.round(perMinute*x.min))problems.push(`${x.min}분 예상딜 오류`);
+    [63,126,189].forEach((waves,i)=>{
+      const expected=scoreAtCompletedWaves(r.name,G,waves);
+      if(r.estimates[i].damage!==expected)problems.push(`${i+1}분 예상딜 오류`);
     });
   }else if(r.kind==="z2"){
-    const original=r.parsed.names.map(name=>({name,G:z2Total(name),P:100+z2Total(name)}));
+    const original=r.parsed.names.map(name=>({name,G:z2Total(name),P:100+z2Total(name),M:minScore(name)}));
     const S2=original.reduce((a,x)=>a+x.P,0);
     if(Math.abs(S2-r.S)>1e-9)problems.push("S ≠ ΣP");
-
-    const raws=original.map(x=>x.P/S2*100);
-    const expected=largestRemainder(raws,100,original.map(x=>x.G)).out;
-    const expectedByName={};
-    original.forEach((x,i)=>expectedByName[x.name]=expected[i]);
-
-    const nsum=r.items.reduce((a,x)=>a+x.N,0);
-    if(nsum!==100)problems.push("실전 목표 합계 ≠ 100");
-
     for(const x of r.items){
-      if(x.N!==expectedByName[x.name])problems.push(`${x.name} 정수 배분 오류`);
-      if(x.exit!==Math.max(0,99-x.N))problems.push(`${x.name} 이탈 기준 오류`);
       if(Math.abs(x.G-z2Total(x.name))>1e-9)problems.push(`${x.name} 최신 격추 오류`);
     }
 
@@ -2630,28 +2685,34 @@ function validateResult(r){
       const ref=BOSSES[r.parsed.boss];
       if(!r.levels || r.levels.length!==ref.length)problems.push("레벨별 상세표 누락");
       else ref.forEach(([lv,hp],i)=>{
-        if(r.levels[i].lv!==lv || r.levels[i].hp!==hp)problems.push(`Lv.${lv} HP 오류`);
-        const sec=Math.round(hp/(10*S2)*0.97);
-        if(r.levels[i].sec!==sec)problems.push(`Lv.${lv} 예상시간 오류`);
+        const L=r.levels[i];
+        if(L.lv!==lv || L.hp!==hp)problems.push(`Lv.${lv} HP 오류`);
+        const alloc=allocateHpExact(hp,original);
+        if(L.hpAlloc.reduce((a,b)=>a+b,0)!==hp)problems.push(`Lv.${lv} 담당체력 합계 오류`);
+        const expectedSec=alloc.remain/(WAVES_PER_SEC*SCORE_PER_WAVE*(S2/100));
+        const safe=safeSecRange(expectedSec);
+        if(L.sec!==safe.center || L.low!==safe.low || L.high!==safe.high)problems.push(`Lv.${lv} 예상시간 오류`);
       });
+    }else{
+      const raws=original.map(x=>x.P/S2*100);
+      const expected=largestRemainder(raws,100,original.map(x=>x.G)).out;
+      const byName={};original.forEach((x,i)=>byName[x.name]=expected[i]);
+      if(r.items.reduce((a,x)=>a+x.N,0)!==100)problems.push("실전 목표 합계 ≠ 100");
+      for(const x of r.items)if(x.N!==byName[x.name])problems.push(`${x.name} 정수 배분 오류`);
     }
   }else{
-    const original=r.parsed.names.map(name=>({name,G:z1Total(name),P:100+z1Total(name)}));
-    const S2=original.reduce((a,x)=>a+x.P,0);
-    if(Math.abs(S2-r.S)>1e-9)problems.push("S ≠ ΣP");
-
-    const rawHp=original.map(x=>r.parsed.hp*x.P/S2);
-    const expected=largestRemainder(rawHp,r.parsed.hp,original.map(x=>x.G)).out;
-    const expectedByName={};
-    original.forEach((x,i)=>expectedByName[x.name]=expected[i]);
-
-    const hsum=r.items.reduce((a,x)=>a+x.hp,0);
-    if(hsum!==r.parsed.hp)problems.push("담당 체력 합계 ≠ 입력 HP");
+    const original=r.parsed.names.map(name=>({name,G:z1Total(name),P:100+z1Total(name),M:minScore(name)}));
+    const alloc=allocateHpExact(r.parsed.hp,original);
+    if(Math.abs(alloc.S-r.S)>1e-9)problems.push("S ≠ ΣP");
+    const byName={};original.forEach((x,i)=>byName[x.name]=alloc.out[i]);
+    if(r.items.reduce((a,x)=>a+x.hp,0)!==r.parsed.hp)problems.push("담당 체력 합계 ≠ 입력 HP");
     for(const x of r.items){
-      if(x.hp!==expectedByName[x.name])problems.push(`${x.name} 담당 체력 배분 오류`);
+      if(x.hp!==byName[x.name])problems.push(`${x.name} 담당 체력 배분 오류`);
       if(Math.abs(x.G-z1Total(x.name))>1e-9)problems.push(`${x.name} 최신 격추 오류`);
     }
-    if(r.sec!==Math.round(r.parsed.hp/(10*S2)))problems.push("1구역 예상시간 오류");
+    const expectedSec=alloc.remain/(WAVES_PER_SEC*SCORE_PER_WAVE*(alloc.S/100));
+    const safe=safeSecRange(expectedSec);
+    if(r.sec!==safe.center || r.low!==safe.low || r.high!==safe.high)problems.push("1구역 예상시간 오류");
   }
 
   return {pass:problems.length===0,problems};
@@ -2679,11 +2740,11 @@ function render(r){
     )+
     `<div class="section-title">누적 예상 딜</div>`+
     table(
-      ["시간","예상 딜"],
-      r.estimates.map(x=>[`${x.min}분`,fmtInt(x.damage)]),
+      ["시간","예상 딜","안전 범위"],
+      r.estimates.map(x=>[`${x.min}분`,fmtInt(x.damage),`${fmtInt(x.low)} ~ ${fmtInt(x.high)}`]),
       "level-table"
     );
-    note.innerHTML=`<div class="note">※ 공통 격추 공식 기준 이론값입니다. 콘텐츠별 별도 가감식은 사용하지 않으며, 실측자료가 쌓이면 공통 보정계수를 조정할 수 있습니다.</div>`;
+    note.innerHTML=`<div class="note">※ 2026-09-13 실측 보정값입니다. 1분 부근 완료 63 WAVE를 대표값으로 사용하며, 캡처·WAVE 경계 오차를 고려해 ±1 WAVE 범위를 함께 표시합니다.</div>`;
     detail.innerHTML="";
   }else if(r.kind==="z2"){
     if(r.parsed.mode==="z2boss"){
@@ -2695,28 +2756,27 @@ function render(r){
 
     main.innerHTML=table(
       ["닉네임","이탈 기준","종합 격추","계산 분배","실전 목표"],
-      r.items.map(x=>[
-        x.name,
-        `${x.exit}.xx%`,
-        pct(x.G,1),
-        `${x.raw.toFixed(2)}%`,
-        `${x.N}%`
-      ]),
+      r.items.map(x=>{
+        const exitText=x.exitMin===undefined ? `${x.exit}.xx%` : (x.exitMin===x.exitMax ? `${x.exitMin}.xx%` : `${x.exitMin}.xx~${x.exitMax}.xx%`);
+        const rawText=Math.abs(x.rawMax-x.rawMin)<0.005 ? `${x.rawMin.toFixed(2)}%` : `${x.rawMin.toFixed(2)}~${x.rawMax.toFixed(2)}%`;
+        const goalText=x.NMin===undefined ? `${x.N}%` : (x.NMin===x.NMax ? `${x.NMin}%` : `${x.NMin}~${x.NMax}%`);
+        return [x.name,exitText,pct(x.G,1),rawText,goalText];
+      }),
       "z2-main"
     );
 
-    note.innerHTML=`<div class="note">※ 참여자는 반드시 보스 체력이 이탈 기준일 때 완료해야 합니다.</div>`;
+    note.innerHTML=`<div class="note">※ 실측 보정식으로 개인 최소점수를 내부 반영했습니다. 참여자는 반드시 보스 체력이 이탈 기준일 때 완료해야 하며, 예상시간은 ±1초 안전범위를 적용합니다.</div>`;
 
     if(r.parsed.mode==="z2boss"){
       detail.innerHTML=`<div class="section-title">레벨별 예상 완료시간</div>`+
         table(
           ["보스 레벨","체력","예상 완료시간"],
-          r.levels.map(x=>[`Lv.${x.lv}`,fmtInt(x.hp),`${x.sec}초`]),
+          r.levels.map(x=>[`Lv.${x.lv}`,fmtInt(x.hp),`${x.sec}초 (${x.low}~${x.high}초)`]),
           "level-table"
         );
     }else detail.innerHTML="";
   }else{
-    headline.textContent=`1구역 ${fmtInt(r.parsed.hp)} 체력 · 예상시간 약 ${r.sec}초`;
+    headline.textContent=`1구역 ${fmtInt(r.parsed.hp)} 체력 · 예상시간 약 ${r.sec}초 (안전 ${r.low}~${r.high}초)`;
     main.innerHTML=table(
       ["닉네임","담당 체력","1구역 종합격추","비중"],
       r.items.map(x=>[x.name,fmtInt(x.hp),pct(x.G,1),`${x.share.toFixed(2)}%`]),
@@ -2744,7 +2804,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.1.2 최신 데이터 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.1.2 · 2026-09-13 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -2839,7 +2899,7 @@ rosterDetails.addEventListener("toggle",()=>{
 });
 
 if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260912e").then(reg=>reg.update()).catch(()=>{}));
+  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260913a").then(reg=>reg.update()).catch(()=>{}));
 }
 </script>
 
