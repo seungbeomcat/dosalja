@@ -21,3 +21,8 @@ GitHub Pages 전체 업로드 파일 / 2026-09-13 실측 보정본
 업로드 방법
 이 ZIP 안의 파일 6개를 GitHub 저장소 루트에 그대로 업로드/교체하세요.
 GitHub Pages 주소: https://seungbeomcat.github.io/dosalja/
+
+
+[2026-09-13 UI 추가 개선]
+- 상단 불필요 공백 제거 및 전체 콘텐츠 상향 배치
+- 계산 분배 표시를 정수부.xx% 형태로 단순화 (내부 정밀 계산은 기존과 동일)

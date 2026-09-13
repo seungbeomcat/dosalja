@@ -1,4 +1,4 @@
-const CACHE="dosaljang-v112-20260913a";
+const CACHE="dosaljang-v112-20260913b";
 const STATIC_ASSETS=["./dosaljang-profile-v112-clean.png","./dosaljang-preview-20260913-v112-measured.png","./manifest.webmanifest"];
 self.addEventListener("install",e=>{
   self.skipWaiting();

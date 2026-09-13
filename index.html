@@ -2309,12 +2309,22 @@ textarea{
 /* 일반·균열 표는 그대로 유지 */
 </style>
 
+
+<style>
+/* 2026-09-13 UI compact pass — display only, calculation logic unchanged */
+.wrap{padding-top:2px!important;}
+.v112-hero-final{padding-top:4px!important;padding-bottom:7px!important;}
+.v112-logo-final{margin-bottom:5px!important;}
+.v112-version-final{margin-top:4px!important;}
+@media(max-width:520px){
+  .wrap{padding-top:0!important;}
+  .v112-hero-final{padding:3px 10px 6px!important;}
+  .v112-logo-final{margin-bottom:5px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
-  </div>
-
-
 <div class="v112-hero-final">
   <div class="v112-logo-final">
     <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
@@ -2758,7 +2768,9 @@ function render(r){
       ["닉네임","이탈 기준","종합 격추","계산 분배","실전 목표"],
       r.items.map(x=>{
         const exitText=x.exitMin===undefined ? `${x.exit}.xx%` : (x.exitMin===x.exitMax ? `${x.exitMin}.xx%` : `${x.exitMin}.xx~${x.exitMax}.xx%`);
-        const rawText=Math.abs(x.rawMax-x.rawMin)<0.005 ? `${x.rawMin.toFixed(2)}%` : `${x.rawMin.toFixed(2)}~${x.rawMax.toFixed(2)}%`;
+        const rawFloorMin=Math.floor(x.rawMin+1e-9);
+        const rawFloorMax=Math.floor(x.rawMax+1e-9);
+        const rawText=rawFloorMin===rawFloorMax ? `${rawFloorMin}.xx%` : `${rawFloorMin}.xx~${rawFloorMax}.xx%`;
         const goalText=x.NMin===undefined ? `${x.N}%` : (x.NMin===x.NMax ? `${x.NMin}%` : `${x.NMin}~${x.NMax}%`);
         return [x.name,exitText,pct(x.G,1),rawText,goalText];
       }),
@@ -2899,7 +2911,7 @@ rosterDetails.addEventListener("toggle",()=>{
 });
 
 if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260913a").then(reg=>reg.update()).catch(()=>{}));
+  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260913b").then(reg=>reg.update()).catch(()=>{}));
 }
 </script>
 
