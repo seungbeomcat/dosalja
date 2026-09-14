@@ -167,13 +167,13 @@
 
 <meta property="og:title" content="도살장 격전지 계산기 V1.1.2">
 <meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260914-v112-measured.png">
+<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260915-v112-measured.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 계산기 V1.1.2">
 <meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260914-v112-measured.png">
+<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260915-v112-measured.png">
 
 
 <style>
@@ -241,7 +241,7 @@ details > summary{
 
 
 <style>
-/* 2026-09-14 개선: 상세 현황 발견성 + 상층/일반·균열 분리 */
+/* 2026-09-15 개선: 상세 현황 발견성 + 상층/일반·균열 분리 */
 .example-sub{color:#a99384;margin-left:4px;font-size:.92em}
 .roster-card{padding:10px 12px 12px}
 #rosterDetails > summary{
@@ -846,7 +846,7 @@ footer,.footer{
 
 <style>
 /* =========================================================
-   V 1.1.2 — 2026-09-14 실측 보정
+   V 1.1.2 — 2026-09-15 실측 보정
    ========================================================= */
 
 /* ---------- 계산 완료 / 오류 상태 : 밝은 배경에서도 확실한 대비 ---------- */
@@ -2311,7 +2311,7 @@ textarea{
 
 
 <style>
-/* 2026-09-14 UI compact pass — display only, calculation logic unchanged */
+/* 2026-09-15 UI compact pass — display only, calculation logic unchanged */
 .wrap{padding-top:2px!important;}
 .v112-hero-final{padding-top:4px!important;padding-bottom:7px!important;}
 .v112-logo-final{margin-bottom:5px!important;}
@@ -2330,7 +2330,7 @@ textarea{
     <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.1.2 · 2026-09-14 최신</div>
+  <div class="v112-version-final">V 1.1.2 · 2026-09-15 최신</div>
 </div>
 
 <section class="card">
@@ -2375,7 +2375,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.1.2 · 2026-09-14</div>
+  <div class="footer">도살장 길드 전용 · V 1.1.2 · 2026-09-15</div>
 </div>
 
 
@@ -2408,7 +2408,7 @@ const MEMBERS = {
   // minScore는 실측 보정용 내부값이며 길드원 상세표에는 표시하지 않는다.
   "돗돔":       {base:171.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
   "매콤갈비":   {base:142.5, z1r:5, z2r:5, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
-  "사마엘":     {base:101.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
+  "사마엘":     {base:103.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
   "혀녕":       {base:86.4,  z1r:0, z2r:5, minScore:1000, field:{wolf:8,pirate:6,cat:6,food:6}},
   "XIGN":       {base:78,    z1r:0, z2r:5, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
   "뱅수띠":     {base:64,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
@@ -2459,12 +2459,12 @@ const REGIONS = {
   "음식의 광장": {key:"food",label:"음식의 광장"},
   "광장": {key:"food",label:"음식의 광장"}
 };
-// 2026-09-14 실측 보정: 60초 부근 완료 63 WAVE를 대표값으로 사용.
+// 2026-09-15 실측 보정: 60초 부근 완료 63 WAVE를 대표값으로 사용.
 // 피해는 WAVE 단위로 뛰므로 실전 시간은 ±1초 안전범위를 함께 표시한다.
 const WAVES_PER_SEC = 63/60; // 1.05
 const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
-const UPDATED_DATE = "2026-09-14";
+const UPDATED_DATE = "2026-09-15";
 
 // 함께 수집한 실측 검증값. 계산 화면에는 노출하지 않고 보정/검증 근거로만 보존한다.
 const CALIBRATION_SAMPLES = [
@@ -2754,7 +2754,7 @@ function render(r){
       r.estimates.map(x=>[`${x.min}분`,fmtInt(x.damage),`${fmtInt(x.low)} ~ ${fmtInt(x.high)}`]),
       "level-table"
     );
-    note.innerHTML=`<div class="note">※ 2026-09-14 실측 보정값입니다. 1분 부근 완료 63 WAVE를 대표값으로 사용하며, 캡처·WAVE 경계 오차를 고려해 ±1 WAVE 범위를 함께 표시합니다.</div>`;
+    note.innerHTML=`<div class="note">※ 2026-09-15 실측 보정값입니다. 1분 부근 완료 63 WAVE를 대표값으로 사용하며, 캡처·WAVE 경계 오차를 고려해 ±1 WAVE 범위를 함께 표시합니다.</div>`;
     detail.innerHTML="";
   }else if(r.kind==="z2"){
     if(r.parsed.mode==="z2boss"){
@@ -2816,7 +2816,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.1.2 · 2026-09-14 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.1.2 · 2026-09-15 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
