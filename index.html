@@ -2777,7 +2777,7 @@ function render(r){
       "z2-main"
     );
 
-    note.innerHTML=`<div class="note">※ 실측 보정식으로 개인 최소점수를 내부 반영했습니다. 참여자는 반드시 보스 체력이 이탈 기준일 때 완료해야 하며, 예상시간은 ±1초 안전범위를 적용합니다.</div>`;
+    note.innerHTML=`<div class="note"><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>실측 보정식으로 개인 격전지 최소점수는 내부 반영하였습니다.</div>`;
 
     if(r.parsed.mode==="z2boss"){
       detail.innerHTML=`<div class="section-title">레벨별 예상 완료시간</div>`+
