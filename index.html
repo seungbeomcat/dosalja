@@ -2611,14 +2611,17 @@ function calcZ2(parsed){
     return {lv,hp,secRaw,sec:safe.center,low:safe.low,high:safe.high,rawPct,pctAlloc,hpAlloc:allocHp.out};
   });
 
+  // 작전 분배값은 보스 레벨별 HP에 따라 흔들리는 범위값이 아니라
+  // 참여자 화력비(P/S)를 기준으로 한 하나의 실전 목표로 고정한다.
+  // 개인 최소점수는 예상 완료시간 계산에만 내부 반영한다.
+  const baseRaws=items.map(x=>x.P/S*100);
+  const baseAlloc=largestRemainder(baseRaws,100,items.map(x=>x.G)).out;
   items.forEach((x,i)=>{
-    const raws=levels.map(l=>l.rawPct[i]);
-    const Ns=levels.map(l=>l.pctAlloc[i]);
-    x.rawMin=Math.min(...raws);x.rawMax=Math.max(...raws);
-    x.NMin=Math.min(...Ns);x.NMax=Math.max(...Ns);
-    x.N=x.NMin===x.NMax?x.NMin:null;
-    const exitVals=Ns.map(n=>Math.max(0,99-n));
-    x.exitMin=Math.min(...exitVals);x.exitMax=Math.max(...exitVals);
+    x.raw=baseRaws[i];
+    x.rawMin=x.raw; x.rawMax=x.raw;
+    x.N=baseAlloc[i]; x.NMin=x.N; x.NMax=x.N;
+    x.exit=Math.max(0,99-x.N);
+    x.exitMin=x.exit; x.exitMax=x.exit;
   });
   items=sortDisplay(items);
   return {kind:"z2",parsed,S,items,levels,measured:true};
@@ -2692,6 +2695,14 @@ function validateResult(r){
     }
 
     if(r.parsed.mode==="z2boss"){
+      const baseRaws=original.map(x=>x.P/S2*100);
+      const baseTargets=largestRemainder(baseRaws,100,original.map(x=>x.G)).out;
+      const targetByName={}; original.forEach((x,i)=>targetByName[x.name]=baseTargets[i]);
+      if(r.items.reduce((a,x)=>a+x.N,0)!==100)problems.push("실전 목표 합계 ≠ 100");
+      for(const x of r.items){
+        if(x.N!==targetByName[x.name])problems.push(`${x.name} 단일 실전 목표 오류`);
+        if(x.exit!==Math.max(0,99-x.N))problems.push(`${x.name} 단일 이탈 기준 오류`);
+      }
       const ref=BOSSES[r.parsed.boss];
       if(!r.levels || r.levels.length!==ref.length)problems.push("레벨별 상세표 누락");
       else ref.forEach(([lv,hp],i)=>{
@@ -2767,11 +2778,9 @@ function render(r){
     main.innerHTML=table(
       ["닉네임","이탈 기준","종합 격추","계산 분배","실전 목표"],
       r.items.map(x=>{
-        const exitText=x.exitMin===undefined ? `${x.exit}.xx%` : (x.exitMin===x.exitMax ? `${x.exitMin}.xx%` : `${x.exitMin}.xx~${x.exitMax}.xx%`);
-        const rawFloorMin=Math.floor(x.rawMin+1e-9);
-        const rawFloorMax=Math.floor(x.rawMax+1e-9);
-        const rawText=rawFloorMin===rawFloorMax ? `${rawFloorMin}.xx%` : `${rawFloorMin}.xx~${rawFloorMax}.xx%`;
-        const goalText=x.NMin===undefined ? `${x.N}%` : (x.NMin===x.NMax ? `${x.NMin}%` : `${x.NMin}~${x.NMax}%`);
+        const exitText=`${x.exit}.xx%`;
+        const rawText=`${Math.floor(x.raw+1e-9)}.xx%`;
+        const goalText=`${x.N}%`;
         return [x.name,exitText,pct(x.G,1),rawText,goalText];
       }),
       "z2-main"
