@@ -167,13 +167,13 @@
 
 <meta property="og:title" content="도살장 격전지 계산기 V1.1.2">
 <meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260916-v112-verified.png">
+<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v112-verified.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 계산기 V1.1.2">
 <meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.1.2">
-<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260916-v112-verified.png">
+<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v112-verified.png">
 
 
 <style>
@@ -846,7 +846,7 @@ footer,.footer{
 
 <style>
 /* =========================================================
-   V 1.1.2 — 2026-09-16 최신 데이터 · 실측 보정
+   V 1.1.2 — 2026-09-17 최신 데이터 · 실측 보정
    ========================================================= */
 
 /* ---------- 계산 완료 / 오류 상태 : 밝은 배경에서도 확실한 대비 ---------- */
@@ -2330,7 +2330,7 @@ textarea{
     <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.1.2 · 2026-09-16 최신</div>
+  <div class="v112-version-final">V 1.1.2 · 2026-09-17 최신</div>
 </div>
 
 <section class="card">
@@ -2375,7 +2375,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.1.2 · 2026-09-16</div>
+  <div class="footer">도살장 길드 전용 · V 1.1.2 · 2026-09-17</div>
 </div>
 
 
@@ -2402,11 +2402,11 @@ textarea{
 <script>
 "use strict";
 
-const SERVER = 6;
+const SERVER = 0;
 
 const MEMBERS = {
   // minScore는 실측 보정용 내부값이며 길드원 상세표에는 표시하지 않는다.
-  "돗돔":       {base:172.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
+  "돗돔":       {base:173.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
   "매콤갈비":   {base:142.5, z1r:5, z2r:5, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
   "사마엘":     {base:103.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
   "혀녕":       {base:79.4,  z1r:0, z2r:5, minScore:1000, field:{wolf:24,pirate:22,cat:22,food:22}},
@@ -2464,7 +2464,7 @@ const REGIONS = {
 const WAVES_PER_SEC = 63/60; // 1.05
 const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
-const UPDATED_DATE = "2026-09-16";
+const UPDATED_DATE = "2026-09-17";
 
 // 함께 수집한 실측 검증값. 계산 화면에는 노출하지 않고 보정/검증 근거로만 보존한다.
 const COMPLETION_TIME_SAMPLES = [
@@ -2829,7 +2829,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.1.2 · 2026-09-16 최신 데이터 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.1.2 · 2026-09-17 최신 데이터 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -2887,7 +2887,7 @@ function renderRoster(){
     table(
       ["닉네임","기본","서버","1구역 종합","2구역 종합"],
       ordered.map(([n,m])=>[
-        n,pct(m.base),"6%",
+        n,pct(m.base),pct(SERVER),
         regionCombined(m.z1r,z1Total(n)),
         regionCombined(m.z2r,z2Total(n))
       ]),
@@ -2899,7 +2899,7 @@ function renderRoster(){
     table(
       ["닉네임","기본","서버","늑대(종합)","해적(종합)","고양이(종합)","음식(종합)"],
       ordered.map(([n,m])=>[
-        n,pct(m.base),"6%",
+        n,pct(m.base),pct(SERVER),
         regionCombined(m.field.wolf,fieldTotal(n,"wolf")),
         regionCombined(m.field.pirate,fieldTotal(n,"pirate")),
         regionCombined(m.field.cat,fieldTotal(n,"cat")),
@@ -2924,7 +2924,7 @@ rosterDetails.addEventListener("toggle",()=>{
 });
 
 if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260914b").then(reg=>reg.update()).catch(()=>{}));
+  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-20260917").then(reg=>reg.update()).catch(()=>{}));
 }
 </script>
 
