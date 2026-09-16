@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="apple-touch-icon" href="./dosaljang-profile-v112-clean.png" />
-  <title>도살장 격전지 계산기 V 1.2.0</title>
+  <title>도살장 격전지 계산기 V 1.2.1</title>
 
   <style>
     :root{
@@ -166,13 +166,13 @@
   </style>
 
 <meta property="og:title" content="도살장 격전지 계산기 V1.2.0">
-<meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.0">
+<meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.1">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 계산기 V1.2.0">
-<meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.0">
+<meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.1">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 
 
@@ -2336,6 +2336,40 @@ textarea{
 .rosterFieldCompact th:nth-child(2),.rosterFieldCompact td:nth-child(2){width:100px!important}
 .rosterFieldCompact th:nth-child(n+3),.rosterFieldCompact td:nth-child(n+3){width:112px!important}
 </style>
+
+<style>
+/* V1.2.1 roster table mobile fix: raw values, compact columns, sticky nickname */
+.roster .table-wrap-rosterUpperCompact,
+.roster .table-wrap-rosterFieldCompact{
+  width:100%!important; overflow-x:auto!important; overflow-y:visible!important;
+  -webkit-overflow-scrolling:touch!important; position:relative!important;
+}
+.roster table.rosterUpperCompact,
+.roster table.rosterFieldCompact{
+  table-layout:fixed!important; border-collapse:separate!important; border-spacing:0!important;
+}
+.roster table.rosterUpperCompact{width:306px!important;min-width:306px!important;}
+.roster table.rosterFieldCompact{width:436px!important;min-width:436px!important;}
+.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td,
+.roster table.rosterFieldCompact th,.roster table.rosterFieldCompact td{
+  box-sizing:border-box!important; padding:9px 5px!important; text-align:center!important;
+  white-space:nowrap!important; overflow:visible!important; font-size:12.3px!important;
+}
+.roster table.rosterUpperCompact th:nth-child(1),.roster table.rosterUpperCompact td:nth-child(1),
+.roster table.rosterFieldCompact th:nth-child(1),.roster table.rosterFieldCompact td:nth-child(1){
+  width:86px!important;min-width:86px!important;max-width:86px!important;text-align:left!important;
+  position:sticky!important;left:0!important;z-index:3!important;
+}
+.roster table.rosterUpperCompact th:nth-child(1),.roster table.rosterFieldCompact th:nth-child(1){z-index:5!important;background:#dcecff!important;}
+.roster table.rosterUpperCompact td:nth-child(1),.roster table.rosterFieldCompact td:nth-child(1){background:#fff!important;box-shadow:2px 0 0 rgba(191,220,255,.9)!important;}
+.roster table.rosterUpperCompact tbody tr:nth-child(even) td:nth-child(1),
+.roster table.rosterFieldCompact tbody tr:nth-child(even) td:nth-child(1){background:#f5f9fe!important;}
+.roster table.rosterUpperCompact th:nth-child(2),.roster table.rosterUpperCompact td:nth-child(2),
+.roster table.rosterFieldCompact th:nth-child(2),.roster table.rosterFieldCompact td:nth-child(2){width:74px!important;}
+.roster table.rosterUpperCompact th:nth-child(3),.roster table.rosterUpperCompact td:nth-child(3),
+.roster table.rosterUpperCompact th:nth-child(4),.roster table.rosterUpperCompact td:nth-child(4){width:73px!important;}
+.roster table.rosterFieldCompact th:nth-child(n+3),.roster table.rosterFieldCompact td:nth-child(n+3){width:69px!important;}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -2344,7 +2378,7 @@ textarea{
     <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.2.0 · 2026-09-17 최신</div>
+  <div class="v112-version-final">V 1.2.1 · 2026-09-17 최신</div>
 </div>
 
 <section class="card">
@@ -2397,7 +2431,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.2.0 · 2026-09-17</div>
+  <div class="footer">도살장 길드 전용 · V 1.2.1 · 2026-09-17</div>
 </div>
 
 
@@ -2922,7 +2956,7 @@ document.getElementById("shareOpenBtn").addEventListener("click",openShareView);
 document.getElementById("shareCloseBtn").addEventListener("click",closeShareView);
 document.getElementById("shareOverlay").addEventListener("click",e=>{if(e.target===e.currentTarget)closeShareView()});
 
-function regionRaw(v){return v ? `+${pct(v,1)}` : "-";}
+function regionRaw(v){return v ? `+${pct(v,1)}` : "0%";}
 function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
   document.getElementById("rosterUpper").innerHTML=
