@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="apple-touch-icon" href="./dosaljang-profile-v112-clean.png" />
-  <title>도살장 격전지 계산기 V 1.2.2</title>
+  <link rel="apple-touch-icon" href="./dosaljang-profile-v123.jpg" />
+  <title>도살장 격전지 계산기 V 1.2.3</title>
 
   <style>
     :root{
@@ -166,13 +166,13 @@
   </style>
 
 <meta property="og:title" content="도살장 격전지 계산기 V1.2.0">
-<meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.2">
+<meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.3">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 계산기 V1.2.0">
-<meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.2">
+<meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.3">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 
 
@@ -2338,7 +2338,7 @@ textarea{
 </style>
 
 <style>
-/* V1.2.2 roster table mobile fix: raw values, compact columns, sticky nickname */
+/* V1.2.3 roster table mobile fix: raw values, compact columns, sticky nickname */
 .roster .table-wrap-rosterUpperCompact,
 .roster .table-wrap-rosterFieldCompact{
   width:100%!important; overflow-x:auto!important; overflow-y:visible!important;
@@ -2372,7 +2372,7 @@ textarea{
 </style>
 
 <style>
-/* ===== V1.2.2 ROSTER TABLE FINAL POLISH ===== */
+/* ===== V1.2.3 ROSTER TABLE FINAL POLISH ===== */
 .roster .table-wrap-rosterUpperCompact,.roster .table-wrap-rosterFieldCompact{overflow-x:auto!important;overflow-y:visible!important;border:1px solid #b8d8ff!important;border-radius:15px!important;background:#fff!important;-webkit-overflow-scrolling:touch!important;}
 .roster table.rosterUpperCompact,.roster table.rosterFieldCompact{border-collapse:separate!important;border-spacing:0!important;table-layout:fixed!important;margin:0!important;border:0!important;border-radius:0!important;}
 .roster table.rosterUpperCompact{width:400px!important;min-width:400px!important;}
@@ -2390,15 +2390,68 @@ textarea{
 .roster-note{text-align:left!important;font-weight:900!important;letter-spacing:-.02em!important;}
 @media(max-width:520px){.roster table.rosterUpperCompact{width:400px!important;min-width:400px!important}.roster table.rosterFieldCompact{width:552px!important;min-width:552px!important}.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td,.roster table.rosterFieldCompact th,.roster table.rosterFieldCompact td{font-size:12.5px!important;padding:9px 9px!important;}}
 </style>
+
+<style>
+/* ===== V1.2.3 FINAL ROSTER GRID + SERVER HELP ===== */
+.server-board-help{display:inline-block;margin-top:3px;color:#55779d;font-weight:800!important;}
+
+/* 표 자체의 외곽선은 스크롤 래퍼가 담당 */
+.roster .table-wrap-rosterUpperCompact,.roster .table-wrap-rosterFieldCompact{
+  overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important;
+  border:1px solid #b8d8ff!important;border-radius:15px!important;background:#fff!important;
+}
+.roster table.rosterUpperCompact,.roster table.rosterFieldCompact{
+  border-collapse:separate!important;border-spacing:0!important;table-layout:fixed!important;
+  margin:0!important;border:0!important;border-radius:0!important;
+}
+/* 상층: 닉네임 포함 4열을 동일 폭으로 구성 */
+.roster table.rosterUpperCompact{width:344px!important;min-width:344px!important;max-width:344px!important;}
+.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td{
+  width:86px!important;min-width:86px!important;max-width:86px!important;
+}
+/* 일반·균열: 닉네임 86 / 기본 80 / 지역 72 */
+.roster table.rosterFieldCompact{width:454px!important;min-width:454px!important;max-width:454px!important;}
+.roster table.rosterFieldCompact th:first-child,.roster table.rosterFieldCompact td:first-child{width:86px!important;min-width:86px!important;max-width:86px!important;}
+.roster table.rosterFieldCompact th:nth-child(2),.roster table.rosterFieldCompact td:nth-child(2){width:80px!important;min-width:80px!important;max-width:80px!important;}
+.roster table.rosterFieldCompact th:nth-child(n+3),.roster table.rosterFieldCompact td:nth-child(n+3){width:72px!important;min-width:72px!important;max-width:72px!important;}
+
+/* 모든 열을 세로선으로 명확하게 구분 */
+.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td,
+.roster table.rosterFieldCompact th,.roster table.rosterFieldCompact td{
+  box-sizing:border-box!important;padding:9px 8px!important;white-space:nowrap!important;
+  border-right:1px solid #d3e5fa!important;border-bottom:1px solid #cfe3fb!important;
+  font-size:12.5px!important;line-height:1.25!important;
+}
+.roster table.rosterUpperCompact th:last-child,.roster table.rosterUpperCompact td:last-child,
+.roster table.rosterFieldCompact th:last-child,.roster table.rosterFieldCompact td:last-child{border-right:0!important;}
+.roster table.rosterUpperCompact tbody tr:last-child td,.roster table.rosterFieldCompact tbody tr:last-child td{border-bottom:0!important;}
+
+/* 닉네임은 두 표 완전 동일 + 좌측 고정. 경계선은 조금 더 선명하게 */
+.roster table.rosterUpperCompact th:first-child,.roster table.rosterUpperCompact td:first-child,
+.roster table.rosterFieldCompact th:first-child,.roster table.rosterFieldCompact td:first-child{
+  position:sticky!important;left:0!important;text-align:left!important;
+  font-size:12.5px!important;font-weight:900!important;letter-spacing:-.02em!important;
+  border-right:2px solid #bdd8f6!important;box-shadow:none!important;
+}
+.roster table.rosterUpperCompact th:first-child,.roster table.rosterFieldCompact th:first-child{z-index:7!important;background:#dcecff!important;}
+.roster table.rosterUpperCompact td:first-child,.roster table.rosterFieldCompact td:first-child{z-index:5!important;background:#fff!important;}
+.roster table.rosterUpperCompact tbody tr:nth-child(even) td:first-child,.roster table.rosterFieldCompact tbody tr:nth-child(even) td:first-child{background:#f5f9fe!important;}
+
+/* 숫자는 전부 우측 정렬 */
+.roster table.rosterUpperCompact th:not(:first-child),.roster table.rosterUpperCompact td:not(:first-child),
+.roster table.rosterFieldCompact th:not(:first-child),.roster table.rosterFieldCompact td:not(:first-child){text-align:right!important;}
+.roster table.rosterUpperCompact thead th,.roster table.rosterFieldCompact thead th{background:#dcecff!important;color:#123b79!important;font-weight:950!important;}
+.roster-note{text-align:left!important;font-weight:900!important;letter-spacing:-.02em!important;}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="v112-hero-final">
   <div class="v112-logo-final">
-    <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
+    <img src="./dosaljang-profile-v123.jpg" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.2.2 · 2026-09-17 최신</div>
+  <div class="v112-version-final">V 1.2.3 · 2026-09-17 최신</div>
 </div>
 
 <section class="card">
@@ -2409,7 +2462,7 @@ textarea{
       <div class="server-options">
         <button type="button" class="server-btn" data-server="0">0%</button><button type="button" class="server-btn" data-server="1">1%</button><button type="button" class="server-btn" data-server="2">2%</button><button type="button" class="server-btn" data-server="3">3%</button><button type="button" class="server-btn" data-server="4">4%</button><button type="button" class="server-btn" data-server="6">6%</button>
       </div>
-      <div class="server-required">※ 계산 전 현재 서버격추를 반드시 직접 선택해주세요.</div>
+      <div class="server-required">※ 계산 전 현재 서버격추를 반드시 직접 선택해주세요.<br><span class="server-board-help">서버격추는 트로피 아래 「서버 게시판」을 통해 확인할 수 있습니다.</span></div>
     </div>
     <div class="examples">
       <div><b>1구역(유령)</b> : 보스 남은 체력 / 참여자 닉네임</div>
@@ -2451,7 +2504,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.2.2 · 2026-09-17</div>
+  <div class="footer">도살장 길드 전용 · V 1.2.3 · 2026-09-17</div>
 </div>
 
 
@@ -2462,7 +2515,7 @@ textarea{
     </div>
     <div class="share-card" id="shareCard">
       <div class="share-brand">
-        <img src="./dosaljang-profile-v112-clean.png" alt="도살장" class="share-logo" />
+        <img src="./dosaljang-profile-v123.jpg" alt="도살장" class="share-logo" />
         <div><div class="share-brand-title">도살장 격전지 계산기</div></div>
       </div>
       <div class="share-result">
@@ -2851,7 +2904,7 @@ function render(r){
 
   if(r.kind==="profile"){
     headline.textContent=`${r.name} · 지역별 종합격추`;
-    main.innerHTML=table(["지역","지역격추","종합격추"],r.rows.map(x=>[x[0],x[1]?`+${pct(x[1],1)}`:"-",pct(x[2],1)]),"region-main");
+    main.innerHTML=table(["지역","지역격추","종합격추"],r.rows.map(x=>[x[0],regionRaw(x[1]),pct(x[2],1)]),"region-main");
     note.innerHTML=`<div class="note"><strong>이번 계산에 선택된 서버격추는 ${pct(selectedServer,0)}입니다.</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>기본격추 ${pct(r.base,1)} · 선택 서버격추 ${pct(selectedServer,0)}</div>`;
     detail.innerHTML="";
   }else if(r.kind==="region"){
