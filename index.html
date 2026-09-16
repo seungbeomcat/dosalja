@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="apple-touch-icon" href="./dosaljang-profile-v112-clean.png" />
-  <title>도살장 격전지 계산기 V 1.2.1</title>
+  <title>도살장 격전지 계산기 V 1.2.2</title>
 
   <style>
     :root{
@@ -166,13 +166,13 @@
   </style>
 
 <meta property="og:title" content="도살장 격전지 계산기 V1.2.0">
-<meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.1">
+<meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.2">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="도살장 격전지 계산기 V1.2.0">
-<meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.1">
+<meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.2">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 
 
@@ -2338,7 +2338,7 @@ textarea{
 </style>
 
 <style>
-/* V1.2.1 roster table mobile fix: raw values, compact columns, sticky nickname */
+/* V1.2.2 roster table mobile fix: raw values, compact columns, sticky nickname */
 .roster .table-wrap-rosterUpperCompact,
 .roster .table-wrap-rosterFieldCompact{
   width:100%!important; overflow-x:auto!important; overflow-y:visible!important;
@@ -2370,6 +2370,26 @@ textarea{
 .roster table.rosterUpperCompact th:nth-child(4),.roster table.rosterUpperCompact td:nth-child(4){width:73px!important;}
 .roster table.rosterFieldCompact th:nth-child(n+3),.roster table.rosterFieldCompact td:nth-child(n+3){width:69px!important;}
 </style>
+
+<style>
+/* ===== V1.2.2 ROSTER TABLE FINAL POLISH ===== */
+.roster .table-wrap-rosterUpperCompact,.roster .table-wrap-rosterFieldCompact{overflow-x:auto!important;overflow-y:visible!important;border:1px solid #b8d8ff!important;border-radius:15px!important;background:#fff!important;-webkit-overflow-scrolling:touch!important;}
+.roster table.rosterUpperCompact,.roster table.rosterFieldCompact{border-collapse:separate!important;border-spacing:0!important;table-layout:fixed!important;margin:0!important;border:0!important;border-radius:0!important;}
+.roster table.rosterUpperCompact{width:400px!important;min-width:400px!important;}
+.roster table.rosterFieldCompact{width:552px!important;min-width:552px!important;}
+.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td,.roster table.rosterFieldCompact th,.roster table.rosterFieldCompact td{box-sizing:border-box!important;padding:10px 10px!important;white-space:nowrap!important;border-bottom:1px solid #cfe3fb!important;}
+.roster table.rosterUpperCompact th:first-child,.roster table.rosterUpperCompact td:first-child,.roster table.rosterFieldCompact th:first-child,.roster table.rosterFieldCompact td:first-child{width:100px!important;min-width:100px!important;max-width:100px!important;position:sticky!important;left:0!important;text-align:left!important;z-index:4!important;}
+.roster table.rosterUpperCompact th:first-child,.roster table.rosterFieldCompact th:first-child{z-index:6!important;background:#dcecff!important;}
+.roster table.rosterUpperCompact td:first-child,.roster table.rosterFieldCompact td:first-child{background:#fff!important;box-shadow:2px 0 0 #c7def8!important;}
+.roster table.rosterUpperCompact tbody tr:nth-child(even) td:first-child,.roster table.rosterFieldCompact tbody tr:nth-child(even) td:first-child{background:#f5f9fe!important;}
+.roster table.rosterUpperCompact th:nth-child(n+2),.roster table.rosterUpperCompact td:nth-child(n+2){width:100px!important;min-width:100px!important;max-width:100px!important;text-align:right!important;}
+.roster table.rosterFieldCompact th:nth-child(2),.roster table.rosterFieldCompact td:nth-child(2){width:92px!important;min-width:92px!important;max-width:92px!important;text-align:right!important;}
+.roster table.rosterFieldCompact th:nth-child(n+3),.roster table.rosterFieldCompact td:nth-child(n+3){width:90px!important;min-width:90px!important;max-width:90px!important;text-align:right!important;}
+.roster table.rosterUpperCompact thead th,.roster table.rosterFieldCompact thead th{background:#dcecff!important;color:#123b79!important;font-weight:950!important;}
+.roster table.rosterUpperCompact tbody tr:last-child td,.roster table.rosterFieldCompact tbody tr:last-child td{border-bottom:0!important;}
+.roster-note{text-align:left!important;font-weight:900!important;letter-spacing:-.02em!important;}
+@media(max-width:520px){.roster table.rosterUpperCompact{width:400px!important;min-width:400px!important}.roster table.rosterFieldCompact{width:552px!important;min-width:552px!important}.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td,.roster table.rosterFieldCompact th,.roster table.rosterFieldCompact td{font-size:12.5px!important;padding:9px 9px!important;}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -2378,7 +2398,7 @@ textarea{
     <img src="./dosaljang-profile-v112-clean.png" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.2.1 · 2026-09-17 최신</div>
+  <div class="v112-version-final">V 1.2.2 · 2026-09-17 최신</div>
 </div>
 
 <section class="card">
@@ -2431,7 +2451,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.2.1 · 2026-09-17</div>
+  <div class="footer">도살장 길드 전용 · V 1.2.2 · 2026-09-17</div>
 </div>
 
 
@@ -2960,10 +2980,10 @@ function regionRaw(v){return v ? `+${pct(v,1)}` : "0%";}
 function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
   document.getElementById("rosterUpper").innerHTML=
-    `<div class="roster-note">상층 전용 · 기본격추와 지역격추 원본값</div>`+
+    `<div class="roster-note">[상층] 1구역, 2구역 지역 격추</div>`+
     table(["닉네임","기본","1구역 지역","2구역 지역"],ordered.map(([n,m])=>[n,pct(m.base),regionRaw(m.z1r),regionRaw(m.z2r)]),"rosterUpperCompact");
   document.getElementById("rosterField").innerHTML=
-    `<div class="roster-note">일반·균열 공용 · 기본격추와 지역격추 원본값</div>`+
+    `<div class="roster-note">[일반(균열)] 늑대, 해적, 고양이, 음식 지역 격추</div>`+
     table(["닉네임","기본","늑대","해적","고양이","음식"],ordered.map(([n,m])=>[n,pct(m.base),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food)]),"rosterFieldCompact");
 }
 
