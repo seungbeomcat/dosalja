@@ -2452,6 +2452,17 @@ textarea{
 .usage-guide .usage-example{display:inline-block!important;margin-left:6px!important;padding:2px 7px!important;border-radius:8px!important;background:#fff0dc!important;color:#8a4d16!important;font-style:normal!important;font-weight:950!important;white-space:nowrap!important;}
 .usage-guide .usage-bottom-note{margin-top:11px!important;padding-top:10px!important;border-top:1px solid #cfe2f8!important;color:#365e89!important;font-size:12.5px!important;font-weight:900!important;}
 @media(max-width:520px){.usage-guide{padding:12px 13px!important;font-size:12.5px!important}.usage-guide .usage-title{font-size:14px!important}.usage-guide .usage-row{grid-template-columns:1fr!important;gap:2px!important;margin:8px 0!important}.usage-guide .usage-row span{padding-left:20px!important}.usage-guide .usage-region span{padding-left:20px!important}.usage-guide .usage-bottom-note{font-size:11.8px!important;}}
+
+/* 2026-09-17 final compact usage / server warning */
+.server-required{color:#d93a3a!important;font-weight:800!important;}
+.server-required .server-board-help{color:#55779d!important;font-weight:800!important;}
+@media(max-width:520px){
+  .usage-guide{padding:11px 13px!important;}
+  .usage-guide .usage-title{margin-bottom:6px!important;}
+  .usage-guide .usage-row{gap:1px!important;margin:5px 0!important;line-height:1.35!important;}
+  .usage-guide .usage-row span,.usage-guide .usage-region span{padding-left:20px!important;}
+  .usage-guide .usage-bottom-note{margin-top:7px!important;padding-top:7px!important;}
+}
 </style>
 </head>
 <body>
@@ -2472,7 +2483,7 @@ textarea{
       <div class="server-options">
         <button type="button" class="server-btn" data-server="0">0%</button><button type="button" class="server-btn" data-server="1">1%</button><button type="button" class="server-btn" data-server="2">2%</button><button type="button" class="server-btn" data-server="3">3%</button><button type="button" class="server-btn" data-server="4">4%</button><button type="button" class="server-btn" data-server="6">6%</button>
       </div>
-      <div class="server-required">※ 계산 전 현재 서버격추를 반드시 직접 선택해주세요.<br><span class="server-board-help">서버격추는 트로피 아래 「서버 게시판」을 통해 확인할 수 있습니다.</span></div>
+      <div class="server-required">※ 계산 전 현재 서버격추를 선택하세요.<br><span class="server-board-help">서버격추는 트로피 아래 「서버 게시판」을 통해 확인할 수 있습니다.</span></div>
     </div>
     <div class="examples usage-guide">
       <div class="usage-title">[사용법]</div>
@@ -2547,7 +2558,7 @@ let selectedServer = null;
 
 const MEMBERS = {
   // minScore는 실측 보정용 내부값이며 길드원 상세표에는 표시하지 않는다.
-  "돗돔":       {base:180.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
+  "돗돔":       {base:183.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
   "매콤갈비":   {base:142.5, z1r:5, z2r:5, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
   "사마엘":     {base:103.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
   "혀녕":       {base:79.4,  z1r:0, z2r:5, minScore:1000, field:{wolf:24,pirate:22,cat:22,food:22}},
