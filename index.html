@@ -2442,6 +2442,16 @@ textarea{
 .roster table.rosterFieldCompact th:not(:first-child),.roster table.rosterFieldCompact td:not(:first-child){text-align:right!important;}
 .roster table.rosterUpperCompact thead th,.roster table.rosterFieldCompact thead th{background:#dcecff!important;color:#123b79!important;font-weight:950!important;}
 .roster-note{text-align:left!important;font-weight:900!important;letter-spacing:-.02em!important;}
+
+/* ===== V1.2.3 USAGE GUIDE READABILITY ===== */
+.usage-guide{margin-top:12px!important;padding:14px 15px!important;background:#f8fbff!important;border:1px solid #d9eaff!important;border-radius:16px!important;color:#203f68!important;font-weight:800!important;line-height:1.45!important;}
+.usage-guide .usage-title{margin:0 0 9px!important;color:#0b3e83!important;font-size:15px!important;font-weight:950!important;}
+.usage-guide .usage-row{display:grid!important;grid-template-columns:max-content 1fr!important;gap:8px 12px!important;align-items:baseline!important;margin:7px 0!important;color:#294c73!important;}
+.usage-guide .usage-row b{color:#075ec5!important;font-weight:950!important;white-space:nowrap!important;}
+.usage-guide .usage-row span{color:#294c73!important;font-weight:850!important;}
+.usage-guide .usage-example{display:inline-block!important;margin-left:6px!important;padding:2px 7px!important;border-radius:8px!important;background:#fff0dc!important;color:#8a4d16!important;font-style:normal!important;font-weight:950!important;white-space:nowrap!important;}
+.usage-guide .usage-bottom-note{margin-top:11px!important;padding-top:10px!important;border-top:1px solid #cfe2f8!important;color:#365e89!important;font-size:12.5px!important;font-weight:900!important;}
+@media(max-width:520px){.usage-guide{padding:12px 13px!important;font-size:12.5px!important}.usage-guide .usage-title{font-size:14px!important}.usage-guide .usage-row{grid-template-columns:1fr!important;gap:2px!important;margin:8px 0!important}.usage-guide .usage-row span{padding-left:20px!important}.usage-guide .usage-region span{padding-left:20px!important}.usage-guide .usage-bottom-note{font-size:11.8px!important;}}
 </style>
 </head>
 <body>
@@ -2464,11 +2474,13 @@ textarea{
       </div>
       <div class="server-required">※ 계산 전 현재 서버격추를 반드시 직접 선택해주세요.<br><span class="server-board-help">서버격추는 트로피 아래 「서버 게시판」을 통해 확인할 수 있습니다.</span></div>
     </div>
-    <div class="examples">
-      <div><b>1구역(유령)</b> : 보스 남은 체력 / 참여자 닉네임</div>
-      <div><b>2구역</b> : 보스명 / 참여자 닉네임</div>
-      <div><b>지역 딜</b> : 지역 / 닉네임 <span class="example-sub">예) 늑대 / 돗돔</span></div>
-      <div><b>닉네임만 입력</b> : 지역별 본인의 종합격추 확인</div>
+    <div class="examples usage-guide">
+      <div class="usage-title">[사용법]</div>
+      <div class="usage-row"><b>① 1구역(유령)</b><span>보스 남은 체력 / 참여자 닉네임</span></div>
+      <div class="usage-row"><b>② 2구역</b><span>보스명 / 참여자 닉네임</span></div>
+      <div class="usage-row usage-region"><b>③ 일반(균열) 개인 스코어 체크</b><span>지역 / 닉네임 <em class="usage-example">예) 음식 / 토시살</em></span></div>
+      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span>닉네임만 입력</span></div>
+      <div class="usage-bottom-note">※ 길드원 종합격추표는 페이지 최하단에서 확인할 수 있습니다.</div>
     </div>
     <div class="actions">
       <button class="primary" id="calcBtn">계산하기</button>
@@ -2535,7 +2547,7 @@ let selectedServer = null;
 
 const MEMBERS = {
   // minScore는 실측 보정용 내부값이며 길드원 상세표에는 표시하지 않는다.
-  "돗돔":       {base:173.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
+  "돗돔":       {base:180.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
   "매콤갈비":   {base:142.5, z1r:5, z2r:5, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
   "사마엘":     {base:103.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
   "혀녕":       {base:79.4,  z1r:0, z2r:5, minScore:1000, field:{wolf:24,pirate:22,cat:22,food:22}},
@@ -2544,7 +2556,7 @@ const MEMBERS = {
   "진니":       {base:51.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6}},
   "토시살":     {base:57,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "승부왕":     {base:48.2,  z1r:0, z2r:0, minScore:1000, field:{wolf:0,pirate:0,cat:0,food:0}},
+  "승부왕":     {base:48.2,  z1r:0, z2r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1}},
   "데이다라":   {base:40,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
   "바포메트":   {base:35.5,  z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
   "옥돔":       {base:34.5,  z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
@@ -2597,7 +2609,8 @@ const UPDATED_DATE = "2026-09-17";
 
 // 함께 수집한 실측 검증값. 계산 화면에는 노출하지 않고 보정/검증 근거로만 보존한다.
 const COMPLETION_TIME_SAMPLES = [
-  {content:"상층2",boss:"루이",level:16,participants:["돗돔","사마엘","뱅수띠","승부왕"],actualSec:37,note:"2026-09-16 저장 실측"}
+  {content:"상층2",boss:"루이",level:16,participants:["돗돔","사마엘","뱅수띠","승부왕"],actualSec:37,note:"2026-09-16 저장 실측"},
+  {content:"상층2",boss:"루나",level:37,participants:["돗돔"],server:1,base:173.9,region:5,G:179.9,hp:435000,predictedSec:146,predictedLow:145,predictedHigh:147,actualSec:148,note:"2026-09-17 저장 실측 · 당시 격추값 보존 · 차후 시간 보정용"}
 ];
 
 const CALIBRATION_SAMPLES = [
