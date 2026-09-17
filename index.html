@@ -2463,6 +2463,10 @@ textarea{
   .usage-guide .usage-row span,.usage-guide .usage-region span{padding-left:20px!important;}
   .usage-guide .usage-bottom-note{margin-top:7px!important;padding-top:7px!important;}
 }
+/* 2026-09-17 usage alignment final */
+@media(max-width:520px){
+  .usage-guide .usage-row span,.usage-guide .usage-region span{padding-left:0!important;}
+}
 </style>
 </head>
 <body>
@@ -2479,7 +2483,6 @@ textarea{
     <div class="label">계산 입력</div>
     <textarea id="input" spellcheck="false" placeholder="예) 바나냥 / 토시살 매콤갈비 옥돔" aria-label="계산 입력"></textarea>
     <div class="server-picker" aria-label="현재 서버격추 선택">
-      <div class="server-picker-title">현재 서버격추 선택</div>
       <div class="server-options">
         <button type="button" class="server-btn" data-server="0">0%</button><button type="button" class="server-btn" data-server="1">1%</button><button type="button" class="server-btn" data-server="2">2%</button><button type="button" class="server-btn" data-server="3">3%</button><button type="button" class="server-btn" data-server="4">4%</button><button type="button" class="server-btn" data-server="6">6%</button>
       </div>
@@ -2490,7 +2493,7 @@ textarea{
       <div class="usage-row"><b>① 1구역(유령)</b><span>보스 남은 체력 / 참여자 닉네임</span></div>
       <div class="usage-row"><b>② 2구역</b><span>보스명 / 참여자 닉네임</span></div>
       <div class="usage-row usage-region"><b>③ 일반(균열) 개인 스코어 체크</b><span>지역 / 닉네임 <em class="usage-example">예) 음식 / 토시살</em></span></div>
-      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span>닉네임만 입력</span></div>
+      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span>닉네임만 입력 <em class="usage-example">예) 승부왕</em></span></div>
       <div class="usage-bottom-note">※ 길드원 종합격추표는 페이지 최하단에서 확인할 수 있습니다.</div>
     </div>
     <div class="actions">
