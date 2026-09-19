@@ -2488,6 +2488,21 @@ textarea{
 .minscore-guide{margin:5px 2px 8px;color:#d62828;font-size:12px;font-weight:600;line-height:1.45}
 @media(max-width:520px){.minscore-guide{font-size:11px;line-height:1.4;margin:5px 1px 8px}}
 </style>
+
+<style id="v124-roster-alignment-hotfix">
+/* V1.2.4 final roster alignment: nickname header stays left; all numeric headers centered. */
+.roster table.rosterUpperCompact{width:620px!important;min-width:620px!important;max-width:620px!important;table-layout:fixed!important}
+.roster table.rosterUpperCompact th:first-child,.roster table.rosterUpperCompact td:first-child{width:140px!important;min-width:140px!important;max-width:140px!important}
+.roster table.rosterUpperCompact th:nth-child(n+2),.roster table.rosterUpperCompact td:nth-child(n+2){width:120px!important;min-width:120px!important;max-width:120px!important}
+.roster table.rosterUpperCompact thead th:first-child,
+.roster table.rosterFieldCompact thead th:first-child{text-align:left!important}
+.roster table.rosterUpperCompact thead th:not(:first-child),
+.roster table.rosterFieldCompact thead th:not(:first-child){text-align:center!important}
+.roster table.rosterUpperCompact tbody td:first-child,
+.roster table.rosterFieldCompact tbody td:first-child{text-align:left!important}
+.roster table.rosterUpperCompact tbody td:not(:first-child),
+.roster table.rosterFieldCompact tbody td:not(:first-child){text-align:right!important}
+</style>
 </head>
 <body>
 <div class="wrap">
