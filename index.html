@@ -2750,6 +2750,15 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
 .roster table.rosterUpperFlat th:first-child,.roster table.rosterUpperFlat td:first-child{width:20%!important;text-align:center!important;padding-left:0!important;padding-right:0!important}.roster table.rosterUpperFlat th:nth-child(n+2),.roster table.rosterUpperFlat td:nth-child(n+2){width:16%!important;text-align:center!important}.roster table.rosterUpperFlat th:last-child,.roster table.rosterUpperFlat td:last-child{border-right:0!important}.roster table.rosterUpperFlat tbody tr:last-child td{border-bottom:0!important}
 @media(max-width:520px){.roster table.rosterUpperFlat th{font-size:10px!important}.roster table.rosterUpperFlat td{font-size:10.5px!important}}
 </style>
+
+<style id="v124-summary-compact-after-meta-removal">
+.roster-card summary .guild-summary-wrap{
+  padding-top:12px!important;
+}
+.roster-card summary .guild-summary-title{
+  margin-top:0!important;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -2762,8 +2771,7 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
 </div>
 
 <section class="card">
-    <div class="label">계산 입력</div>
-    <textarea id="input" spellcheck="false" placeholder="예) 바나냥 / 토시살 매콤갈비 옥돔" aria-label="계산 입력"></textarea>
+    <textarea id="input" spellcheck="false" placeholder="사용법에 따라 원하는 내용을 입력하세요" aria-label="계산 내용 입력"></textarea>
     <div class="server-picker" aria-label="현재 서버격추 선택">
       <div class="server-options">
         <button type="button" class="server-btn" data-server="0">0%</button><button type="button" class="server-btn" data-server="1">1%</button><button type="button" class="server-btn" data-server="2">2%</button><button type="button" class="server-btn" data-server="3">3%</button><button type="button" class="server-btn" data-server="4">4%</button><button type="button" class="server-btn" data-server="6">6%</button>
@@ -2772,10 +2780,10 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
     </div>
     <div class="examples usage-guide">
       <div class="usage-title">[사용법]</div>
-      <div class="usage-row"><b>① 1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 체력 / 닉네임</span><em class="usage-example">예) 192만 / 돗돔 사마엘 XIGN</em></span></div>
-      <div class="usage-row"><b>② 2구역</b><span class="usage-detail"><span class="usage-desc">보스명 / 참여자 닉네임</span><em class="usage-example">예) 루나 / 혀녕 뱅수띠 페르시안</em></span></div>
-      <div class="usage-row usage-region"><b>③ 일반 | 균열 | 은하 스코어</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 해적 / 데이다라</em></span></div>
-      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span class="usage-detail"><span class="usage-desc">1인 닉네임만 입력시</span><em class="usage-example">예) 승부왕</em></span></div>
+      <div class="usage-row"><b>① 1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 체력 / 닉네임</span><em class="usage-example">예) 203만 / 매콤갈비 사마엘 토시살</em></span></div>
+      <div class="usage-row"><b>② 2구역</b><span class="usage-detail"><span class="usage-desc">보스명 / 참여자 닉네임</span><em class="usage-example">예) 바나냥 / 혀녕 진니 뱅수띠 XIGN</em></span></div>
+      <div class="usage-row usage-region"><b>③ 일반 | 균열 | 은하 스코어</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 늑대 / 데이다라</em></span></div>
+      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span class="usage-detail"><span class="usage-desc">1인 닉네임만 입력시</span><em class="usage-example">예) 페르시안</em></span></div>
       <div class="usage-bottom-note">※ 길드원 종합격추표는 페이지 최하단에서 확인할 수 있습니다.</div>
     </div>
     <div class="actions">
@@ -2798,12 +2806,11 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
     <details id="rosterDetails">
       <summary>
         <span class="guild-summary-wrap">
-          <span class="guild-meta">ONE TEAM · ONE TARGET</span>
           <span class="guild-summary-title">길드원 격추 세부 현황 (지역 포함)</span>
           <span id="rosterHint" class="roster-hint">▼ 터치해서 세부표 펼치기</span>
         </span>
       </summary>
-      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투당 최종 점수에 1회만 반영됩니다.</div>
+      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
       <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
         <button type="button" class="roster-tab active" data-roster-tab="field">일반 | 균열 | 은하</button>
         <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
