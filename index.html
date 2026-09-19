@@ -2519,6 +2519,84 @@ textarea{
 }
 </style>
 
+
+<style id="v124-usage-upper-compact-final">
+/* 사용법: 네 개 예시의 시작 X좌표를 동일하게 고정 */
+.usage-guide .usage-detail{
+  display:grid!important;
+  grid-template-columns:142px max-content!important;
+  column-gap:8px!important;
+  align-items:start!important;
+  padding-left:0!important;
+}
+.usage-guide .usage-desc{
+  display:block!important;
+  min-width:0!important;
+  padding-left:0!important;
+}
+.usage-guide .usage-example{
+  margin-left:0!important;
+  justify-self:start!important;
+}
+@media(max-width:520px){
+  .usage-guide .usage-detail{
+    grid-template-columns:142px max-content!important;
+    column-gap:6px!important;
+    padding-left:0!important;
+  }
+  .usage-guide .usage-desc{font-size:12px!important;line-height:1.3!important;}
+  .usage-guide .usage-example{font-size:11.5px!important;padding:2px 6px!important;}
+}
+
+/* 상층: 첫 화면에서 닉네임+기본+최소점수+1/2/3구역을 모두 확인 */
+.roster table.rosterUpperCompact{
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  table-layout:fixed!important;
+}
+.roster table.rosterUpperCompact th,
+.roster table.rosterUpperCompact td{
+  box-sizing:border-box!important;
+  padding-left:5px!important;
+  padding-right:5px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+}
+.roster table.rosterUpperCompact th:first-child,
+.roster table.rosterUpperCompact td:first-child{
+  width:25%!important;
+  min-width:0!important;
+  max-width:none!important;
+  text-align:left!important;
+}
+.roster table.rosterUpperCompact th:nth-child(n+2),
+.roster table.rosterUpperCompact td:nth-child(n+2){
+  width:15%!important;
+  min-width:0!important;
+  max-width:none!important;
+  text-align:right!important;
+}
+@media(max-width:520px){
+  .roster table.rosterUpperCompact th,
+  .roster table.rosterUpperCompact td{
+    padding-left:3px!important;
+    padding-right:3px!important;
+    font-size:11px!important;
+    letter-spacing:-.35px!important;
+  }
+  .roster table.rosterUpperCompact th:first-child,
+  .roster table.rosterUpperCompact td:first-child{
+    width:25%!important;
+  }
+  .roster table.rosterUpperCompact th:nth-child(n+2),
+  .roster table.rosterUpperCompact td:nth-child(n+2){
+    width:15%!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -2541,10 +2619,10 @@ textarea{
     </div>
     <div class="examples usage-guide">
       <div class="usage-title">[사용법]</div>
-      <div class="usage-row"><b>① 1구역(유령)</b><span>보스 남은 체력 / 참여자 닉네임</span></div>
-      <div class="usage-row"><b>② 2구역</b><span>보스명 / 참여자 닉네임</span></div>
-      <div class="usage-row usage-region"><b>③ 일반•균열•은하 개인 스코어 체크</b><span>지역 / 닉네임 <em class="usage-example">예) 음식 / 토시살</em></span></div>
-      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span>닉네임만 입력 <em class="usage-example">예) 승부왕</em></span></div>
+      <div class="usage-row"><b>① 1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 남은 체력 / 참여자 닉네임</span><em class="usage-example">예) 192만 / 돗돔 사마엘 XIGN</em></span></div>
+      <div class="usage-row"><b>② 2구역</b><span class="usage-detail"><span class="usage-desc">보스명 / 참여자 닉네임</span><em class="usage-example">예) 루나 / 혀녕 뱅수띠 페르시안</em></span></div>
+      <div class="usage-row usage-region"><b>③ 일반•균열•은하 개인 스코어 체크</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 해적 / 데이다라</em></span></div>
+      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span class="usage-detail"><span class="usage-desc">닉네임만 입력</span><em class="usage-example">예) 승부왕</em></span></div>
       <div class="usage-bottom-note">※ 길드원 종합격추표는 페이지 최하단에서 확인할 수 있습니다.</div>
     </div>
     <div class="actions">
