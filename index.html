@@ -2503,6 +2503,22 @@ textarea{
 .roster table.rosterUpperCompact tbody td:not(:first-child),
 .roster table.rosterFieldCompact tbody td:not(:first-child){text-align:right!important}
 </style>
+
+<style id="v124-upper-zone3-final">
+/* V1.2.4: 상층 3구역 추가. 상층 수치 5열은 동일 폭, 헤더/데이터 모두 우측 정렬. */
+.roster table.rosterUpperCompact{
+  width:740px!important;min-width:740px!important;max-width:740px!important;table-layout:fixed!important;
+}
+.roster table.rosterUpperCompact th:first-child,
+.roster table.rosterUpperCompact td:first-child{
+  width:140px!important;min-width:140px!important;max-width:140px!important;text-align:left!important;
+}
+.roster table.rosterUpperCompact th:nth-child(n+2),
+.roster table.rosterUpperCompact td:nth-child(n+2){
+  width:120px!important;min-width:120px!important;max-width:120px!important;text-align:right!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -2557,11 +2573,12 @@ textarea{
         </span>
       </summary>
       <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
-        <button type="button" class="roster-tab active" data-roster-tab="upper">상층</button>
-        <button type="button" class="roster-tab" data-roster-tab="field">일반•균열•은하</button>
+        <button type="button" class="roster-tab active" data-roster-tab="field">일반•균열•은하</button>
+        <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
       </div>
-      <div id="rosterUpper" class="roster roster-panel active"></div>
-      <div id="rosterField" class="roster roster-panel"></div>
+      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투당 최종 점수에 1회만 반영됩니다.</div>
+      <div id="rosterField" class="roster roster-panel active"></div>
+      <div id="rosterUpper" class="roster roster-panel"></div>
     </details>
   </section>
 
@@ -2596,21 +2613,21 @@ let selectedServer = null;
 
 const MEMBERS = {
   // minScore는 격전지 전투 1회 최종 스코어에 딱 한 번 가산되는 개인 고정값이다.
-  "돗돔":       {base:183.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
-  "매콤갈비":   {base:142.5, z1r:5, z2r:5, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
-  "사마엘":     {base:103.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
-  "혀녕":       {base:83.8,  z1r:0, z2r:5, minScore:1500, field:{wolf:24,pirate:22,cat:22,food:22}},
-  "XIGN":       {base:78,    z1r:0, z2r:5, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "뱅수띠":     {base:64,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "진니":       {base:51.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6}},
-  "토시살":     {base:57,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "페르시안":   {base:57,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "승부왕":     {base:48.2,  z1r:0, z2r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1}},
-  "데이다라":   {base:40,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "바포메트":   {base:35.5,  z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "옥돔":       {base:34.5,  z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "하니엘":     {base:29,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
-  "벨제붑":     {base:21,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}}
+  "돗돔":       {base:183.9, z1r:0, z2r:5, z3r:0, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
+  "매콤갈비":   {base:142.5, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
+  "사마엘":     {base:103.5,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
+  "혀녕":       {base:83.8,  z1r:0, z2r:5, z3r:0, minScore:1500, field:{wolf:24,pirate:22,cat:22,food:22}},
+  "XIGN":       {base:78,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "뱅수띠":     {base:64,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "진니":       {base:51.5,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6}},
+  "토시살":     {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "승부왕":     {base:48.2,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1}},
+  "데이다라":   {base:40,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "바포메트":   {base:35.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "옥돔":       {base:34.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "하니엘":     {base:29,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
+  "벨제붑":     {base:21,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}}
 };
 
 const ALIASES = {
@@ -2679,6 +2696,7 @@ const CALIBRATION_SAMPLES = [
 
 function z1Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z1r}
 function z2Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z2r}
+function z3Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z3r}
 function fieldBonus(name,key){const m=MEMBERS[name];return m.field ? m.field[key] : null}
 function fieldTotal(name,key){
   const b=fieldBonus(name,key);
@@ -2861,7 +2879,7 @@ function calcRegion(parsed){
 function calcProfile(parsed){
   const name=parsed.names[0], m=MEMBERS[name];
   const rows=[
-    ["상층 1구역",m.z1r,z1Total(name)], ["상층 2구역",m.z2r,z2Total(name)],
+    ["상층 1구역",m.z1r,z1Total(name)], ["상층 2구역",m.z2r,z2Total(name)], ["상층 3구역",m.z3r,z3Total(name)],
     ["늑대의 숲",m.field.wolf,fieldTotal(name,"wolf")], ["해적섬",m.field.pirate,fieldTotal(name,"pirate")],
     ["고양이 협곡",m.field.cat,fieldTotal(name,"cat")], ["음식의 광장",m.field.food,fieldTotal(name,"food")]
   ];
@@ -2885,7 +2903,7 @@ function validateResult(r){
   if(r.kind==="profile"){
     const m=MEMBERS[r.name];
     if(!m)problems.push("길드원 데이터 누락");
-    const expected=[[m.z1r,z1Total(r.name)],[m.z2r,z2Total(r.name)],[m.field.wolf,fieldTotal(r.name,"wolf")],[m.field.pirate,fieldTotal(r.name,"pirate")],[m.field.cat,fieldTotal(r.name,"cat")],[m.field.food,fieldTotal(r.name,"food")]];
+    const expected=[[m.z1r,z1Total(r.name)],[m.z2r,z2Total(r.name)],[m.z3r,z3Total(r.name)],[m.field.wolf,fieldTotal(r.name,"wolf")],[m.field.pirate,fieldTotal(r.name,"pirate")],[m.field.cat,fieldTotal(r.name,"cat")],[m.field.food,fieldTotal(r.name,"food")]];
     r.rows.forEach((x,i)=>{if(Math.abs(x[1]-expected[i][0])>1e-9||Math.abs(x[2]-expected[i][1])>1e-9)problems.push(x[0]+" 종합격추 오류")});
   }else if(r.kind==="region"){
     const bonus=fieldBonus(r.name,r.key);
@@ -3094,12 +3112,11 @@ document.getElementById("shareOverlay").addEventListener("click",e=>{if(e.target
 function regionRaw(v){return v ? `+${pct(v,1)}` : "0%";}
 function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
-  const minScoreGuide = `<div class="minscore-guide">※ 격전지 최소 점수 증가는 보스에게 피해를 주지 못해도 보장되며, 전투당 최종 점수에 1회만 반영됩니다.<br>※ 격전지 최소 점수 증가는 메달을 통해 올릴 수 있습니다.</div>`;
   document.getElementById("rosterUpper").innerHTML=
-    `<div class="roster-note">[상층] 1구역, 2구역 지역 격추</div>`+ minScoreGuide +
-    table(["닉네임","기본","최소 점수","1구역","2구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r)]),"rosterUpperCompact");
+    `<div class="roster-note">[상층] 1구역, 2구역, 3구역 지역 격추</div>`+
+    table(["닉네임","기본","최소 점수","1구역","2구역","3구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r),regionRaw(m.z3r)]),"rosterUpperCompact");
   document.getElementById("rosterField").innerHTML=
-    `<div class="roster-note">[일반•균열•은하] 늑대, 해적, 고양이, 음식 지역 격추</div>`+ minScoreGuide +
+    `<div class="roster-note">[일반•균열•은하] 늑대, 해적, 고양이, 음식 지역 격추</div>`+
     table(["닉네임","기본","최소 점수","늑대","해적","고양이","음식"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food)]),"rosterFieldCompact");
 }
 
