@@ -2631,6 +2631,21 @@ textarea{
 }
 </style>
 
+
+<style id="v124-upper-six-columns-one-screen">
+.roster table.rosterUpperCompact{width:100%!important;min-width:0!important;max-width:100%!important;table-layout:fixed!important}
+.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td{
+box-sizing:border-box!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;
+padding-left:1px!important;padding-right:1px!important;letter-spacing:-.45px!important;font-variant-numeric:tabular-nums!important}
+.roster table.rosterUpperCompact th:first-child,.roster table.rosterUpperCompact td:first-child{
+width:20%!important;min-width:0!important;max-width:none!important;text-align:left!important;padding-left:6px!important}
+.roster table.rosterUpperCompact th:nth-child(n+2),.roster table.rosterUpperCompact td:nth-child(n+2){
+width:16%!important;min-width:0!important;max-width:none!important;text-align:right!important}
+@media(max-width:520px){
+.roster table.rosterUpperCompact th{font-size:10px!important}
+.roster table.rosterUpperCompact td{font-size:10.5px!important}}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -2783,7 +2798,7 @@ const REGIONS = {
 const WAVES_PER_SEC = 63/60; // 1.05
 const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
-const UPDATED_DATE = "2026-09-19";
+const UPDATED_DATE = "2026-09-20";
 
 // 함께 수집한 실측 검증값. 계산 화면에는 노출하지 않고 보정/검증 근거로만 보존한다.
 const COMPLETION_TIME_SAMPLES = [
@@ -3228,7 +3243,7 @@ function renderRoster(){
     `<div class="roster-note">[상층] 1구역, 2구역, 3구역 지역 격추</div>`+
     table(["닉네임","기본","최소 점수","1구역","2구역","3구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r),regionRaw(m.z3r)]),"rosterUpperCompact");
   document.getElementById("rosterField").innerHTML=
-    `<div class="roster-note">[일반 | 균열 | 은하] 늑대, 해적, 고양이, 음식 지역 격추</div>`+
+    `<div class="roster-note">늑대, 해적, 고양이, 음식 지역 격추</div>`+
     table(["닉네임","기본","최소 점수","늑대","해적","고양이","음식"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food)]),"rosterFieldCompact");
 }
 
