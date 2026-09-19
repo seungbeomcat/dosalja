@@ -165,13 +165,13 @@
     @media(max-width:360px){.share-result th,.share-result td{font-size:10.5px}.share-result .headline{font-size:18px}}
   </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.2.0">
+<meta property="og:title" content="도살장 격전지 계산기 V1.2.3">
 <meta property="og:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.3">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.2.0">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.2.3">
 <meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열 격전지 계산기 V 1.2.3">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
 
@@ -846,7 +846,7 @@ footer,.footer{
 
 <style>
 /* =========================================================
-   V 1.2.3 — 2026-09-18 최신 데이터 · 실측 보정
+   V 1.2.3 — 2026-09-19 최신 데이터 · 실측 보정
    ========================================================= */
 
 /* ---------- 계산 완료 / 오류 상태 : 밝은 배경에서도 확실한 대비 ---------- */
@@ -2468,6 +2468,21 @@ textarea{
   .usage-guide .usage-row span,.usage-guide .usage-region span{padding-left:0!important;}
 }
 </style>
+
+<style id="v123-minscore-column-final">
+/* 2026-09-19: 격전지 최소점수 열을 기본 바로 다음에 배치 */
+.rosterUpperCompact{min-width:720px!important;table-layout:fixed!important}
+.rosterUpperCompact th:nth-child(1),.rosterUpperCompact td:nth-child(1){width:22%!important}
+.rosterUpperCompact th:nth-child(n+2),.rosterUpperCompact td:nth-child(n+2){width:19.5%!important}
+.rosterFieldCompact{min-width:860px!important;table-layout:fixed!important}
+.rosterFieldCompact th:nth-child(1),.rosterFieldCompact td:nth-child(1){width:18%!important}
+.rosterFieldCompact th:nth-child(2),.rosterFieldCompact td:nth-child(2){width:14%!important}
+.rosterFieldCompact th:nth-child(3),.rosterFieldCompact td:nth-child(3){width:16%!important}
+.rosterFieldCompact th:nth-child(n+4),.rosterFieldCompact td:nth-child(n+4){width:13%!important}
+.rosterUpperCompact th:nth-child(3),.rosterUpperCompact td:nth-child(3),
+.rosterFieldCompact th:nth-child(3),.rosterFieldCompact td:nth-child(3){text-align:right!important}
+.rosterUpperCompact th:nth-child(3),.rosterFieldCompact th:nth-child(3){line-height:1.18!important;white-space:normal!important}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -2476,7 +2491,7 @@ textarea{
     <img src="./dosaljang-profile-v123.jpg" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.2.3 · 2026-09-18 최신</div>
+  <div class="v112-version-final">V 1.2.3 · 2026-09-19 최신</div>
 </div>
 
 <section class="card">
@@ -2530,7 +2545,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.2.3 · 2026-09-18</div>
+  <div class="footer">도살장 길드 전용 · V 1.2.3 · 2026-09-19</div>
 </div>
 
 
@@ -2560,11 +2575,11 @@ textarea{
 let selectedServer = null;
 
 const MEMBERS = {
-  // minScore는 실측 보정용 내부값이며 길드원 상세표에는 표시하지 않는다.
+  // minScore는 격전지 전투 1회 최종 스코어에 딱 한 번 가산되는 개인 고정값이다.
   "돗돔":       {base:183.9, z1r:0, z2r:5, minScore:4500, field:{wolf:7,pirate:6,cat:6,food:6}},
   "매콤갈비":   {base:142.5, z1r:5, z2r:5, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8}},
   "사마엘":     {base:103.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7}},
-  "혀녕":       {base:83.8,  z1r:0, z2r:5, minScore:1000, field:{wolf:24,pirate:22,cat:22,food:22}},
+  "혀녕":       {base:83.8,  z1r:0, z2r:5, minScore:1500, field:{wolf:24,pirate:22,cat:22,food:22}},
   "XIGN":       {base:78,    z1r:0, z2r:5, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
   "뱅수띠":     {base:64,    z1r:0, z2r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0}},
   "진니":       {base:51.5,  z1r:0, z2r:5, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6}},
@@ -2619,7 +2634,7 @@ const REGIONS = {
 const WAVES_PER_SEC = 63/60; // 1.05
 const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
-const UPDATED_DATE = "2026-09-18";
+const UPDATED_DATE = "2026-09-19";
 
 // 함께 수집한 실측 검증값. 계산 화면에는 노출하지 않고 보정/검증 근거로만 보존한다.
 const COMPLETION_TIME_SAMPLES = [
@@ -2659,12 +2674,12 @@ function safeSecRange(sec){
   return {center:c,low:Math.max(0,c-SAFE_SEC),high:c+SAFE_SEC};
 }
 function allocateHpExact(hp,items){
-  const totalMin=items.reduce((a,x)=>a+minScore(x.name),0);
-  const remain=Math.max(0,hp-totalMin);
+  // 격전지 최소점수는 보스 HP/딜/분배/클리어시간을 바꾸지 않는다.
+  // 기존 화력비 계산을 그대로 유지하고, 최소점수는 최종 스코어에만 전투당 1회 가산한다.
   const S=items.reduce((a,x)=>a+x.P,0);
-  const raws=items.map(x=>minScore(x.name)+(S?remain*x.P/S:0));
+  const raws=items.map(x=>S?hp*x.P/S:0);
   const alloc=largestRemainder(raws,hp,items.map(x=>x.G));
-  return {raws,out:alloc.out,totalMin,remain,S};
+  return {raws,out:alloc.out,totalMin:0,remain:hp,S};
 }
 function fmtNum(n){return Number.isInteger(n)?String(n):String(Number(n.toFixed(1)))}
 function fmtInt(n){return Math.round(n).toLocaleString("ko-KR")}
@@ -2774,7 +2789,7 @@ function calcZ2(parsed){
 
   // 작전 분배값은 보스 레벨별 HP에 따라 흔들리는 범위값이 아니라
   // 참여자 화력비(P/S)를 기준으로 한 하나의 실전 목표로 고정한다.
-  // 개인 최소점수는 예상 완료시간 계산에만 내부 반영한다.
+  // 개인 최소점수는 분배/완료시간에는 반영하지 않고 최종 스코어에만 1회 가산한다.
   const baseRaws=items.map(x=>x.P/S*100);
   const baseAlloc=largestRemainder(baseRaws,100,items.map(x=>x.G)).out;
   items.forEach((x,i)=>{
@@ -2947,7 +2962,7 @@ function render(r){
       r.estimates.map(x=>[`${x.min}분`,fmtInt(x.damage),`${fmtInt(x.low)} ~ ${fmtInt(x.high)}`]),
       "level-table"
     );
-    note.innerHTML=`<div class="note"><strong>이번 계산에 선택된 서버격추는 ${pct(selectedServer,0)}입니다.</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>실측 보정식으로 개인 격전지 최소점수는 내부 반영하였습니다.</div>`;
+    note.innerHTML=`<div class="note"><strong>이번 계산에 선택된 서버격추는 ${pct(selectedServer,0)}입니다.</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>격전지 최소점수는 기존 계산 결과의 최종 스코어에 전투당 1회만 가산합니다.</div>`;
     detail.innerHTML="";
   }else if(r.kind==="z2"){
     if(r.parsed.mode==="z2boss"){
@@ -2968,7 +2983,7 @@ function render(r){
       "z2-main"
     );
 
-    note.innerHTML=`<div class="note"><strong>이번 계산에 선택된 서버격추는 ${pct(selectedServer,0)}입니다.</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>실측 보정식으로 개인 격전지 최소점수는 내부 반영하였습니다.</div>`;
+    note.innerHTML=`<div class="note"><strong>이번 계산에 선택된 서버격추는 ${pct(selectedServer,0)}입니다.</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>격전지 최소점수는 기존 계산 결과의 최종 스코어에 전투당 1회만 가산합니다.</div>`;
 
     if(r.parsed.mode==="z2boss"){
       detail.innerHTML=`<div class="section-title">레벨별 예상 완료시간</div>`+
@@ -2985,7 +3000,7 @@ function render(r){
       r.items.map(x=>[x.name,fmtInt(x.hp),pct(x.G,1),`${x.share.toFixed(2)}%`]),
       "z1-main"
     );
-    note.innerHTML=`<div class="note"><strong>이번 계산에 선택된 서버격추는 ${pct(selectedServer,0)}입니다.</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>실측 보정식으로 개인 격전지 최소점수는 내부 반영하였습니다.</div>`;
+    note.innerHTML=`<div class="note"><strong>이번 계산에 선택된 서버격추는 ${pct(selectedServer,0)}입니다.</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역격추</strong><br>격전지 최소점수는 기존 계산 결과의 최종 스코어에 전투당 1회만 가산합니다.</div>`;
     detail.innerHTML="";
   }
   result.classList.add("show");
@@ -3008,7 +3023,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.2.3 · 2026-09-18 최신 데이터 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.2.3 · 2026-09-19 최신 데이터 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -3061,10 +3076,10 @@ function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
   document.getElementById("rosterUpper").innerHTML=
     `<div class="roster-note">[상층] 1구역, 2구역 지역 격추</div>`+
-    table(["닉네임","기본","1구역 지역","2구역 지역"],ordered.map(([n,m])=>[n,pct(m.base),regionRaw(m.z1r),regionRaw(m.z2r)]),"rosterUpperCompact");
+    table(["닉네임","기본","격전지<br>최소점수","1구역 지역","2구역 지역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r)]),"rosterUpperCompact");
   document.getElementById("rosterField").innerHTML=
     `<div class="roster-note">[일반(균열)] 늑대, 해적, 고양이, 음식 지역 격추</div>`+
-    table(["닉네임","기본","늑대","해적","고양이","음식"],ordered.map(([n,m])=>[n,pct(m.base),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food)]),"rosterFieldCompact");
+    table(["닉네임","기본","격전지<br>최소점수","늑대","해적","고양이","음식"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food)]),"rosterFieldCompact");
 }
 
 document.querySelectorAll(".server-btn").forEach(btn=>btn.addEventListener("click",()=>{
@@ -3092,7 +3107,7 @@ rosterDetails.addEventListener("toggle",()=>{
 });
 
 if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-v120-20260917").then(reg=>reg.update()).catch(()=>{}));
+  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-v123-20260919").then(reg=>reg.update()).catch(()=>{}));
 }
 </script>
 
