@@ -2760,16 +2760,23 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
 }
 </style>
 
-<style id="v124-server-first-examples-final">
-/* 서버격추 선택 → 입력창 */
+<style id="v124-server-first-usage-example-only-fix">
+/* 서버격추 → 입력창 순서. 기존 사용법 그리드 구조는 변경하지 않음 */
 .server-picker{margin-top:0!important;margin-bottom:18px!important}
 #input{margin-top:0!important}
-/* 네 예시의 시작점을 동일하게 왼쪽으로 이동, 긴 배경도 카드 안에 유지 */
-.usage-guide .usage-row{grid-template-columns:126px minmax(0,1fr)!important}
-.usage-guide .usage-detail{min-width:0!important}
+
+/* 사용법: 설명 영역/줄바꿈은 기존 그대로, 예시만 동일하게 왼쪽 이동 */
 .usage-guide .usage-example{
- justify-self:start!important;max-width:100%!important;box-sizing:border-box!important;
- white-space:nowrap!important;font-size:clamp(11px,3.15vw,14px)!important;letter-spacing:-.35px!important
+  transform:translateX(-14px)!important;
+  transform-origin:left center!important;
+}
+@media(max-width:520px){
+  .usage-guide .usage-example{
+    transform:translateX(-14px)!important;
+    font-size:10.9px!important;
+    padding:2px 5px!important;
+    letter-spacing:-.25px!important;
+  }
 }
 </style>
 
