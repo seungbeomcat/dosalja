@@ -846,7 +846,7 @@ footer,.footer{
 
 <style>
 /* =========================================================
-   V 1.2.4 — 2026-09-19 최신 데이터 · 실측 보정
+   V 1.2.4 — 2026-09-19 실측 보정
    ========================================================= */
 
 /* ---------- 계산 완료 / 오류 상태 : 밝은 배경에서도 확실한 대비 ---------- */
@@ -2604,6 +2604,33 @@ textarea{
 }
 </style>
 
+
+<style id="v124-20260920-final-polish">
+.roster table.rosterUpperCompact{
+  width:536px!important;min-width:536px!important;max-width:536px!important;table-layout:fixed!important;
+}
+.roster table.rosterUpperCompact th,
+.roster table.rosterUpperCompact td{
+  box-sizing:border-box!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;
+  padding-left:4px!important;padding-right:4px!important;font-variant-numeric:tabular-nums!important;
+}
+.roster table.rosterUpperCompact th:first-child,
+.roster table.rosterUpperCompact td:first-child{
+  width:86px!important;min-width:86px!important;max-width:86px!important;text-align:left!important;
+  padding-left:7px!important;padding-right:4px!important;
+}
+.roster table.rosterUpperCompact th:nth-child(n+2),
+.roster table.rosterUpperCompact td:nth-child(n+2){
+  width:90px!important;min-width:90px!important;max-width:90px!important;text-align:right!important;
+}
+@media(max-width:520px){
+  .roster table.rosterUpperCompact{width:536px!important;min-width:536px!important;max-width:536px!important}
+  .roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td{
+    font-size:11.5px!important;letter-spacing:-.25px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -2612,7 +2639,7 @@ textarea{
     <img src="./dosaljang-profile-v123.jpg" alt="도살장 길드 프로필">
   </div>
   <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">V 1.2.4 · 2026-09-19 최신</div>
+  <div class="v112-version-final">2026년 9월 20일 V1.2.4</div>
 </div>
 
 <section class="card">
@@ -2628,8 +2655,8 @@ textarea{
       <div class="usage-title">[사용법]</div>
       <div class="usage-row"><b>① 1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 체력 / 닉네임</span><em class="usage-example">예) 192만 / 돗돔 사마엘 XIGN</em></span></div>
       <div class="usage-row"><b>② 2구역</b><span class="usage-detail"><span class="usage-desc">보스명 / 참여자 닉네임</span><em class="usage-example">예) 루나 / 혀녕 뱅수띠 페르시안</em></span></div>
-      <div class="usage-row usage-region"><b>③ 일반•균열•은하 개인 스코어 체크</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 해적 / 데이다라</em></span></div>
-      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span class="usage-detail"><span class="usage-desc">닉네임만 입력</span><em class="usage-example">예) 승부왕</em></span></div>
+      <div class="usage-row usage-region"><b>③ 일반 | 균열 | 은하 스코어</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 해적 / 데이다라</em></span></div>
+      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span class="usage-detail"><span class="usage-desc">1인 닉네임만 입력시</span><em class="usage-example">예) 승부왕</em></span></div>
       <div class="usage-bottom-note">※ 길드원 종합격추표는 페이지 최하단에서 확인할 수 있습니다.</div>
     </div>
     <div class="actions">
@@ -2659,7 +2686,7 @@ textarea{
       </summary>
       <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투당 최종 점수에 1회만 반영됩니다.</div>
       <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
-        <button type="button" class="roster-tab active" data-roster-tab="field">일반•균열•은하</button>
+        <button type="button" class="roster-tab active" data-roster-tab="field">일반 | 균열 | 은하</button>
         <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
       </div>
       <div id="rosterField" class="roster roster-panel active"></div>
@@ -2667,7 +2694,7 @@ textarea{
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · V 1.2.4 · 2026-09-19</div>
+  <div class="footer">도살장 길드 전용 · 2026년 9월 20일 V1.2.4</div>
 </div>
 
 
@@ -3006,7 +3033,7 @@ function validateResult(r){
     const S2=original.reduce((a,x)=>a+x.P,0);
     if(Math.abs(S2-r.S)>1e-9)problems.push("S ≠ ΣP");
     for(const x of r.items){
-      if(Math.abs(x.G-z2Total(x.name))>1e-9)problems.push(`${x.name} 최신 격추 오류`);
+      if(Math.abs(x.G-z2Total(x.name))>1e-9)problems.push(`${x.name}  격추 오류`);
     }
 
     if(r.parsed.mode==="z2boss"){
@@ -3044,7 +3071,7 @@ function validateResult(r){
     if(r.items.reduce((a,x)=>a+x.hp,0)!==r.parsed.hp)problems.push("담당 체력 합계 ≠ 입력 HP");
     for(const x of r.items){
       if(x.hp!==byName[x.name])problems.push(`${x.name} 담당 체력 배분 오류`);
-      if(Math.abs(x.G-z1Total(x.name))>1e-9)problems.push(`${x.name} 최신 격추 오류`);
+      if(Math.abs(x.G-z1Total(x.name))>1e-9)problems.push(`${x.name}  격추 오류`);
     }
     const expectedSec=alloc.remain/(WAVES_PER_SEC*SCORE_PER_WAVE*(alloc.S/100));
     const safe=safeSecRange(expectedSec);
@@ -3146,7 +3173,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.2.4 · 2026-09-19 최신 데이터 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.2.4 · 2026-09-19 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -3201,7 +3228,7 @@ function renderRoster(){
     `<div class="roster-note">[상층] 1구역, 2구역, 3구역 지역 격추</div>`+
     table(["닉네임","기본","최소 점수","1구역","2구역","3구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r),regionRaw(m.z3r)]),"rosterUpperCompact");
   document.getElementById("rosterField").innerHTML=
-    `<div class="roster-note">[일반•균열•은하] 늑대, 해적, 고양이, 음식 지역 격추</div>`+
+    `<div class="roster-note">[일반 | 균열 | 은하] 늑대, 해적, 고양이, 음식 지역 격추</div>`+
     table(["닉네임","기본","최소 점수","늑대","해적","고양이","음식"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food)]),"rosterFieldCompact");
 }
 
