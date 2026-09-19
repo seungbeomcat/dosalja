@@ -2521,7 +2521,7 @@ textarea{
 
 
 <style id="v124-usage-upper-compact-final">
-/* 사용법: 네 개 예시의 시작 X좌표를 동일하게 고정 */
+/* 사용법: 네 개 예시의 시작 X좌표 동일 */
 .usage-guide .usage-detail{
   display:grid!important;
   grid-template-columns:142px max-content!important;
@@ -2548,11 +2548,10 @@ textarea{
   .usage-guide .usage-example{font-size:11.5px!important;padding:2px 6px!important;}
 }
 
-/* 상층: 첫 화면에서 닉네임+기본+최소점수+1/2/3구역을 모두 확인 */
+/* 상층: 수치를 자르지 않는 것을 최우선으로 하며, 가능한 범위에서 첫 화면 정보량 확보 */
 .roster table.rosterUpperCompact{
   width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
+  min-width:600px!important;
   table-layout:fixed!important;
 }
 .roster table.rosterUpperCompact th,
@@ -2561,38 +2560,46 @@ textarea{
   padding-left:5px!important;
   padding-right:5px!important;
   white-space:nowrap!important;
-  overflow:hidden!important;
+  overflow:visible!important;
   text-overflow:clip!important;
 }
 .roster table.rosterUpperCompact th:first-child,
 .roster table.rosterUpperCompact td:first-child{
-  width:25%!important;
-  min-width:0!important;
-  max-width:none!important;
+  width:120px!important;
+  min-width:120px!important;
+  max-width:120px!important;
   text-align:left!important;
 }
 .roster table.rosterUpperCompact th:nth-child(n+2),
 .roster table.rosterUpperCompact td:nth-child(n+2){
-  width:15%!important;
-  min-width:0!important;
-  max-width:none!important;
+  width:96px!important;
+  min-width:96px!important;
+  max-width:96px!important;
   text-align:right!important;
 }
 @media(max-width:520px){
+  .roster table.rosterUpperCompact{
+    width:600px!important;
+    min-width:600px!important;
+  }
   .roster table.rosterUpperCompact th,
   .roster table.rosterUpperCompact td{
-    padding-left:3px!important;
-    padding-right:3px!important;
-    font-size:11px!important;
-    letter-spacing:-.35px!important;
+    padding-left:4px!important;
+    padding-right:4px!important;
+    font-size:11.5px!important;
+    letter-spacing:-.25px!important;
   }
   .roster table.rosterUpperCompact th:first-child,
   .roster table.rosterUpperCompact td:first-child{
-    width:25%!important;
+    width:120px!important;
+    min-width:120px!important;
+    max-width:120px!important;
   }
   .roster table.rosterUpperCompact th:nth-child(n+2),
   .roster table.rosterUpperCompact td:nth-child(n+2){
-    width:15%!important;
+    width:96px!important;
+    min-width:96px!important;
+    max-width:96px!important;
   }
 }
 </style>
@@ -2619,7 +2626,7 @@ textarea{
     </div>
     <div class="examples usage-guide">
       <div class="usage-title">[사용법]</div>
-      <div class="usage-row"><b>① 1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 남은 체력 / 참여자 닉네임</span><em class="usage-example">예) 192만 / 돗돔 사마엘 XIGN</em></span></div>
+      <div class="usage-row"><b>① 1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 체력 / 닉네임</span><em class="usage-example">예) 192만 / 돗돔 사마엘 XIGN</em></span></div>
       <div class="usage-row"><b>② 2구역</b><span class="usage-detail"><span class="usage-desc">보스명 / 참여자 닉네임</span><em class="usage-example">예) 루나 / 혀녕 뱅수띠 페르시안</em></span></div>
       <div class="usage-row usage-region"><b>③ 일반•균열•은하 개인 스코어 체크</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 해적 / 데이다라</em></span></div>
       <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span class="usage-detail"><span class="usage-desc">닉네임만 입력</span><em class="usage-example">예) 승부왕</em></span></div>
@@ -2650,11 +2657,11 @@ textarea{
           <span id="rosterHint" class="roster-hint">▼ 터치해서 세부표 펼치기</span>
         </span>
       </summary>
+      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투당 최종 점수에 1회만 반영됩니다.</div>
       <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
         <button type="button" class="roster-tab active" data-roster-tab="field">일반•균열•은하</button>
         <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
       </div>
-      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투당 최종 점수에 1회만 반영됩니다.</div>
       <div id="rosterField" class="roster roster-panel active"></div>
       <div id="rosterUpper" class="roster roster-panel"></div>
     </details>
