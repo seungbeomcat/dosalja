@@ -2742,6 +2742,14 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
 }
 </style>
 
+<style id="v124-upper-structural-flat-final">
+.roster .table-wrap-rosterUpperFlat{width:100%!important;overflow:visible!important;border:1px solid #b8d8ff!important;border-radius:15px!important;background:#fff!important}
+.roster table.rosterUpperFlat{width:100%!important;min-width:0!important;max-width:100%!important;table-layout:fixed!important;border-collapse:separate!important;border-spacing:0!important;margin:0!important;border:0!important}
+.roster table.rosterUpperFlat th,.roster table.rosterUpperFlat td{position:static!important;left:auto!important;right:auto!important;z-index:auto!important;box-sizing:border-box!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;text-align:center!important;text-indent:0!important;padding:9px 1px!important;border-right:1px solid #d3e5fa!important;border-bottom:1px solid #cfe3fb!important;color:#123b79!important;font-weight:900!important;line-height:1.25!important;letter-spacing:-.35px!important}
+.roster table.rosterUpperFlat th{background:#dcecff!important;font-weight:950!important}.roster table.rosterUpperFlat tbody tr:nth-child(even) td{background:#f5f9fe!important}.roster table.rosterUpperFlat tbody tr:nth-child(odd) td{background:#fff!important}
+.roster table.rosterUpperFlat th:first-child,.roster table.rosterUpperFlat td:first-child{width:20%!important;text-align:center!important;padding-left:0!important;padding-right:0!important}.roster table.rosterUpperFlat th:nth-child(n+2),.roster table.rosterUpperFlat td:nth-child(n+2){width:16%!important;text-align:center!important}.roster table.rosterUpperFlat th:last-child,.roster table.rosterUpperFlat td:last-child{border-right:0!important}.roster table.rosterUpperFlat tbody tr:last-child td{border-bottom:0!important}
+@media(max-width:520px){.roster table.rosterUpperFlat th{font-size:10px!important}.roster table.rosterUpperFlat td{font-size:10.5px!important}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3284,7 +3292,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.2.4 · 2026-09-19 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.2.4 · 2026-09-20 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -3337,7 +3345,7 @@ function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
   document.getElementById("rosterUpper").innerHTML=
     `<div class="roster-note">[상층] 1구역, 2구역, 3구역 지역 격추</div>`+
-    table(["닉네임","기본","최소 점수","1구역","2구역","3구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r),regionRaw(m.z3r)]),"rosterUpperCompact");
+    table(["닉네임","기본","최소 점수","1구역","2구역","3구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r),regionRaw(m.z3r)]),"rosterUpperFlat");
   document.getElementById("rosterField").innerHTML=
     `<div class="roster-note">늑대, 해적, 고양이, 음식 지역 격추</div>`+
     table(["닉네임","기본","최소 점수","늑대","해적","고양이","음식"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food)]),"rosterFieldCompact");
