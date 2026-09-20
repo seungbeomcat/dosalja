@@ -3127,15 +3127,65 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 }
 </style>
 
+
+<style id="v130-field-old-blue-line-transparent-final">
+/* 일반 | 균열 | 은하 — 닉네임 열의 과거 블루 구분선 완전 제거 */
+#rosterField table.rosterFieldCompact th:first-child,
+#rosterField table.rosterFieldCompact td:first-child{
+  border-right-color:transparent!important;
+  border-right-width:0!important;
+  box-shadow:none!important;
+}
+#rosterField table.rosterFieldCompact th:first-child::before,
+#rosterField table.rosterFieldCompact td:first-child::before,
+#rosterField table.rosterFieldCompact th:first-child::after,
+#rosterField table.rosterFieldCompact td:first-child::after{
+  content:none!important;
+  display:none!important;
+  width:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+
+<style id="v130-20260921-compact-header-final">
+/* 2026-09-21 compact header: small guild mark + title on one line, date/version below. */
+.v112-hero-final{padding:8px 12px 9px!important;margin:0 auto!important;text-align:center!important;}
+.v130-header-block{display:inline-grid!important;grid-template-columns:42px auto!important;grid-template-rows:auto auto!important;column-gap:9px!important;align-items:center!important;justify-items:center!important;min-height:0!important;}
+.v130-header-line{display:contents!important;}
+.v130-header-line .v112-logo-final{display:block!important;flex:0 0 42px!important;width:42px!important;height:42px!important;margin:0!important;border:0!important;background:transparent!important;box-shadow:none!important;}
+.v130-header-line .v112-logo-final img{width:100%!important;height:100%!important;display:block!important;object-fit:contain!important;}
+.v130-header-line .v112-title-final{font-size:clamp(25px,5.7vw,38px)!important;line-height:1.05!important;margin:0!important;white-space:nowrap!important;}
+.v112-version-final{grid-column:2!important;margin-top:4px!important;font-size:14px!important;line-height:1.15!important;text-align:center!important;justify-self:center!important;}
+@media(max-width:520px){
+  .v112-hero-final{padding:7px 8px 8px!important;}
+  .v130-header-block{grid-template-columns:38px auto!important;column-gap:7px!important;}
+  .v130-header-line .v112-logo-final{flex-basis:38px!important;width:38px!important;height:38px!important;}
+  .v130-header-line .v112-title-final{font-size:25px!important;}
+  .v112-version-final{font-size:13.5px!important;margin-top:3px!important;}
+}
+/* Preserve the latest table cleanup: no legacy blue divider on nickname column. */
+#rosterField table.rosterFieldCompact th:first-child,
+#rosterField table.rosterFieldCompact td:first-child,
+#rosterUpper table.rosterUpperCompact th:first-child,
+#rosterUpper table.rosterUpperCompact td:first-child{border-right-color:transparent!important;box-shadow:none!important;}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="v112-hero-final">
-  <div class="v112-logo-final">
-    <img src="./dosaljang-profile-v123.jpg" alt="도살장 길드 프로필">
+  <div class="v130-header-block">
+    <div class="v130-header-line">
+      <div class="v112-logo-final">
+        <img src="./dosaljang-profile-v123.jpg" alt="도살장 길드 프로필">
+      </div>
+      <div class="v112-title-final">도살장 격전지 계산기</div>
+    </div>
+    <div class="v112-version-final">2026년 9월 21일 V1.3.0</div>
   </div>
-  <div class="v112-title-final">도살장 격전지 계산기</div>
-  <div class="v112-version-final">2026년 9월 20일 V1.3.0</div>
 </div>
 
 <section class="card">
@@ -3183,7 +3233,7 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
       <summary>
         <span class="guild-summary-wrap">
           <span class="guild-summary-title">길드원 격추 세부 현황 (지역 포함)</span>
-          <span class="guild-meta">기준 : 2026년 9월 20일 일요일</span>
+          <span class="guild-meta">기준 : 2026년 9월 21일 월요일</span>
         </span>
       </summary>
       <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
@@ -3196,7 +3246,7 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
     </details>
   </section>
 
-  <div class="footer">도살장 길드 전용 · 2026년 9월 20일 V1.3.0</div>
+  <div class="footer">도살장 길드 전용 · 2026년 9월 21일 V1.3.0</div>
 </div>
 
 
@@ -3286,7 +3336,7 @@ const REGIONS = {
 const WAVES_PER_SEC = 63/60; // 1.05
 const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
-const UPDATED_DATE = "2026-09-20";
+const UPDATED_DATE = "2026-09-21";
 
 // 실측 보정 결과는 현재 계산 상수(WAVES_PER_SEC)에 반영되어 있습니다.
 function z1Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z1r}
