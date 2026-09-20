@@ -2937,6 +2937,88 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 /* Keep the existing yellow server-information note as a distinct information block. */
 @media(max-width:520px){.result .headline,.share-result .headline{font-size:18px!important}}
 </style>
+
+<style id="v130-final-visual-consistency">
+/* 2026-09-20 V1.3.0 — 최종 시각 일관성 보정 */
+
+/* 시간 제한 계산 예시를 아래 4개 사용법 예시와 동일한 pill로 통일 */
+.time-limit-example,
+.usage-guide .usage-example{
+  display:inline-block!important;
+  padding:2px 7px!important;
+  border-radius:8px!important;
+  background:#fff0dc!important;
+  color:#8a4d16!important;
+  font-style:normal!important;
+  font-weight:950!important;
+  white-space:nowrap!important;
+}
+
+/* 결과표·공유 결과표·레벨표·길드원표 헤더 Royal Violet B 통일 */
+.result table thead th,
+.share-result table thead th,
+.result-table thead th,
+.roster table thead th,
+.roster-table thead th,
+.roster table.rosterUpperFlat thead th,
+.roster table.rosterUpperCompact thead th,
+.roster table.rosterFieldCompact thead th{
+  background:#eadfff!important;
+  color:#3c197b!important;
+  border-color:#d8c8f5!important;
+}
+
+/* 결과표 일부 열에 남아 있던 별도 보라색 분할 제거 */
+.z2-main th:nth-child(4),
+.z2-main th:nth-child(5){
+  background:#eadfff!important;
+  color:#3c197b!important;
+}
+.z2-main td:nth-child(4),
+.z2-main td:nth-child(5){
+  background:inherit!important;
+  color:#302650!important;
+}
+
+/* 모든 표의 헤더/본문 중앙정렬 */
+.result table th,.result table td,
+.share-result table th,.share-result table td,
+.result-table th,.result-table td,
+.roster table th,.roster table td,
+.roster-table th,.roster-table td,
+.roster table.rosterUpperFlat th,.roster table.rosterUpperFlat td,
+.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td,
+.roster table.rosterFieldCompact th,.roster table.rosterFieldCompact td{
+  text-align:center!important;
+  vertical-align:middle!important;
+  text-indent:0!important;
+}
+
+/* 과거 first-column 좌측정렬 규칙 최종 차단 */
+.result table th:first-child,.result table td:first-child,
+.share-result table th:first-child,.share-result table td:first-child,
+.result-table th:first-child,.result-table td:first-child,
+.roster table th:first-child,.roster table td:first-child,
+.roster-table th:first-child,.roster-table td:first-child,
+.roster table.rosterUpperFlat th:first-child,.roster table.rosterUpperFlat td:first-child,
+.roster table.rosterUpperCompact th:first-child,.roster table.rosterUpperCompact td:first-child,
+.roster table.rosterFieldCompact th:first-child,.roster table.rosterFieldCompact td:first-child{
+  text-align:center!important;
+  padding-left:1px!important;
+  padding-right:1px!important;
+}
+
+/* 상층 표 sticky 재발 방지 */
+.roster table.rosterUpperFlat th,.roster table.rosterUpperFlat td,
+.roster table.rosterUpperCompact th,.roster table.rosterUpperCompact td{
+  position:static!important;
+  left:auto!important;
+  right:auto!important;
+  z-index:auto!important;
+  box-shadow:none!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
