@@ -3152,7 +3152,7 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 
 <style id="v130-20260921-compact-header-final">
 /* 2026-09-21 compact header: small guild mark + title on one line, date/version below. */
-.v112-hero-final{padding:8px 12px 9px!important;margin:0 auto!important;text-align:center!important;}
+.v112-hero-final{padding:22px 12px 5px!important;margin:0 auto!important;text-align:center!important;}
 .v130-header-block{display:inline-grid!important;grid-template-columns:42px auto!important;grid-template-rows:auto auto!important;column-gap:9px!important;align-items:center!important;justify-items:center!important;min-height:0!important;}
 .v130-header-line{display:contents!important;}
 .v130-header-line .v112-logo-final{display:block!important;flex:0 0 42px!important;width:42px!important;height:42px!important;margin:0!important;border:0!important;background:transparent!important;box-shadow:none!important;}
@@ -3160,7 +3160,7 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 .v130-header-line .v112-title-final{font-size:clamp(25px,5.7vw,38px)!important;line-height:1.05!important;margin:0!important;white-space:nowrap!important;}
 .v112-version-final{grid-column:2!important;margin-top:4px!important;font-size:14px!important;line-height:1.15!important;text-align:center!important;justify-self:center!important;}
 @media(max-width:520px){
-  .v112-hero-final{padding:7px 8px 8px!important;}
+  .v112-hero-final{padding:21px 8px 4px!important;}
   .v130-header-block{grid-template-columns:38px auto!important;column-gap:7px!important;}
   .v130-header-line .v112-logo-final{flex-basis:38px!important;width:38px!important;height:38px!important;}
   .v130-header-line .v112-title-final{font-size:25px!important;}
@@ -3169,6 +3169,14 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 /* Preserve upper table cleanup. Field divider is defined above in Royal Violet B. */
 #rosterUpper table.rosterUpperCompact th:first-child,
 #rosterUpper table.rosterUpperCompact td:first-child{border-right-color:transparent!important;box-shadow:none!important;}
+</style>
+
+
+<style id="v130-spacing-and-server-guide-final">
+/* 안내 → 서버격추 선택 → 입력 순서. 입력창 아래 줄 상자 여백 제거. */
+.server-picker .server-required{margin:0 0 8px!important;text-align:left!important;}
+textarea#input{display:block!important;margin-bottom:0!important;}
+.time-limit-toggle{margin:3px 4px 0!important;}
 </style>
 
 </head>
@@ -3188,10 +3196,10 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 
 <section class="card">
     <div class="server-picker" aria-label="현재 서버격추 선택">
+      <div class="server-required">계산 전 현재 서버격추를 선택하세요.</div>
       <div class="server-options">
         <button type="button" class="server-btn" data-server="0">0%</button><button type="button" class="server-btn" data-server="1">1%</button><button type="button" class="server-btn" data-server="2">2%</button><button type="button" class="server-btn" data-server="3">3%</button><button type="button" class="server-btn" data-server="4">4%</button><button type="button" class="server-btn" data-server="6">6%</button>
       </div>
-      <div class="server-required">※ 계산 전 현재 서버격추를 선택하세요.</div>
     </div>
     <textarea id="input" spellcheck="false" placeholder="사용법에 따라 원하는 내용을 입력하세요" aria-label="계산 내용 입력"></textarea>
     <label class="time-limit-toggle" for="timeLimitToggle">
@@ -3740,7 +3748,7 @@ function render(r){
     main.innerHTML=table(
       ["닉네임","이탈 기준","종합 격추","계산 분배","실전 목표"],
       r.items.map(x=>{
-        const exitText=r.timeLimited && x.limitSec!==null ? `-` : `${x.exit}.xx%`;
+        const exitText=r.timeLimited && x.limitSec!==null ? `${x.limitSec}초` : `${x.exit}.xx%`;
         const rawText=`${Math.floor(x.raw+1e-9)}.xx%`;
         const goalText=`${x.N}%`;
         return [x.name,exitText,pct(x.G,1),rawText,goalText];
