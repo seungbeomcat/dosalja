@@ -3019,6 +3019,114 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 }
 </style>
 
+
+<style id="v130-royal-violet-b-authoritative-final">
+/* 2026-09-20 V1.3.0 — Royal Violet B authoritative final */
+
+/* 모든 결과/길드 표: B안 팔레트 */
+.result .table-wrap,.share-result .table-wrap,.roster .table-wrap{
+  border-color:#d4bfff!important;background:#fff!important;
+  box-shadow:0 3px 12px rgba(91,26,181,.07)!important;
+}
+.result table,.share-result table,.roster table,
+.result table.z2-main,.result table.level-table,.share-result table.z2-main,
+.roster table.rosterFieldCompact,.roster table.rosterUpperFlat{
+  background:#fff!important;border-color:#d4bfff!important;
+}
+.result table thead th,.share-result table thead th,.roster table thead th,
+.result table.z2-main thead th,.result table.level-table thead th,
+.share-result table.z2-main thead th,
+.roster table.rosterFieldCompact thead th,
+.roster table.rosterUpperFlat thead th,
+.roster table.rosterFieldCompact thead th:first-child,
+.roster table.rosterUpperFlat thead th:first-child{
+  background:#eadfff!important;color:#3c197b!important;
+  border-color:#d8c8f5!important;text-align:center!important;vertical-align:middle!important;
+}
+.result table tbody td,.share-result table tbody td,.roster table tbody td,
+.result table.z2-main tbody td,.result table.level-table tbody td,
+.share-result table.z2-main tbody td,
+.roster table.rosterFieldCompact tbody td,
+.roster table.rosterUpperFlat tbody td{
+  color:#302650!important;border-color:#e5dcf6!important;
+  text-align:center!important;vertical-align:middle!important;
+}
+.result table tbody tr:nth-child(odd) td,.share-result table tbody tr:nth-child(odd) td,
+.roster table tbody tr:nth-child(odd) td,
+.roster table.rosterFieldCompact tbody tr:nth-child(odd) td,
+.roster table.rosterUpperFlat tbody tr:nth-child(odd) td{background:#fff!important}
+.result table tbody tr:nth-child(even) td,.share-result table tbody tr:nth-child(even) td,
+.roster table tbody tr:nth-child(even) td,
+.roster table.rosterFieldCompact tbody tr:nth-child(even) td,
+.roster table.rosterUpperFlat tbody tr:nth-child(even) td{background:#fbf8ff!important}
+
+/* 일반 | 균열 | 은하: sticky 닉네임 유지 + 헤더/15명 모두 중앙정렬 */
+#rosterField table.rosterFieldCompact th,
+#rosterField table.rosterFieldCompact td,
+#rosterField table.rosterFieldCompact th:nth-child(n+2),
+#rosterField table.rosterFieldCompact td:nth-child(n+2),
+#rosterField table.rosterFieldCompact th:first-child,
+#rosterField table.rosterFieldCompact td:first-child{
+  text-align:center!important;vertical-align:middle!important;
+}
+#rosterField table.rosterFieldCompact th:first-child,
+#rosterField table.rosterFieldCompact td:first-child{
+  padding-left:1px!important;padding-right:1px!important;
+  color:#302650!important;box-shadow:1px 0 0 #d8c8f5!important;
+}
+#rosterField table.rosterFieldCompact thead th:first-child{
+  background:#eadfff!important;color:#3c197b!important;
+}
+#rosterField table.rosterFieldCompact tbody tr:nth-child(odd) td:first-child{background:#fff!important}
+#rosterField table.rosterFieldCompact tbody tr:nth-child(even) td:first-child{background:#fbf8ff!important}
+#rosterField table.rosterFieldCompact th:first-child::after,
+#rosterField table.rosterFieldCompact td:first-child::after{
+  content:none!important;display:none!important;background:none!important;
+}
+
+/* 상층: 6열 한 화면 / sticky 없음 / 전 셀 중앙 / B안 */
+#rosterUpper table.rosterUpperFlat{
+  width:100%!important;min-width:0!important;max-width:100%!important;table-layout:fixed!important;
+}
+#rosterUpper table.rosterUpperFlat th,
+#rosterUpper table.rosterUpperFlat td,
+#rosterUpper table.rosterUpperFlat th:first-child,
+#rosterUpper table.rosterUpperFlat td:first-child{
+  position:static!important;left:auto!important;right:auto!important;z-index:auto!important;
+  text-align:center!important;vertical-align:middle!important;
+  padding-left:1px!important;padding-right:1px!important;box-shadow:none!important;
+}
+#rosterUpper table.rosterUpperFlat thead th{
+  background:#eadfff!important;color:#3c197b!important;border-color:#d8c8f5!important;
+}
+#rosterUpper table.rosterUpperFlat tbody tr:nth-child(odd) td{background:#fff!important}
+#rosterUpper table.rosterUpperFlat tbody tr:nth-child(even) td{background:#fbf8ff!important}
+#rosterUpper table.rosterUpperFlat th:first-child::after,
+#rosterUpper table.rosterUpperFlat td:first-child::after{content:none!important;display:none!important}
+
+/* 결과표/공유표/레벨표: 첫 열 포함 전체 중앙 + B안 단일 헤더 */
+#result table th,#result table td,#shareOverlay table th,#shareOverlay table td,
+#result table th:first-child,#result table td:first-child,
+#shareOverlay table th:first-child,#shareOverlay table td:first-child{
+  text-align:center!important;vertical-align:middle!important;
+}
+#result table.z2-main thead th,#shareOverlay table.z2-main thead th,
+#result table.level-table thead th,
+#result table.z2-main th:nth-child(4),#result table.z2-main th:nth-child(5),
+#shareOverlay table.z2-main th:nth-child(4),#shareOverlay table.z2-main th:nth-child(5){
+  background:#eadfff!important;color:#3c197b!important;
+}
+#result table.z2-main td:nth-child(4),#result table.z2-main td:nth-child(5),
+#shareOverlay table.z2-main td:nth-child(4),#shareOverlay table.z2-main td:nth-child(5){
+  color:#302650!important;
+}
+
+/* 표 위 설명 박스 */
+#rosterField .roster-note,#rosterUpper .roster-note{
+  background:#f4efff!important;color:#4b2783!important;border-color:#d8c5fb!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
