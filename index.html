@@ -2816,6 +2816,41 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
 }
 </style>
 
+
+<style id="v124-open-roster-usage-polish-20260920">
+/* 2026-09-20 requested UI-only changes: usage divider, examples left, roster always open. */
+.usage-guide .usage-title{
+  padding-bottom:8px!important;
+  margin-bottom:8px!important;
+  border-bottom:1px solid #b9d7f5!important;
+}
+.usage-guide .usage-detail{
+  grid-template-columns:112px minmax(0,max-content)!important;
+}
+#rosterDetails > summary{
+  min-height:76px!important;
+  padding:10px 14px!important;
+  cursor:default!important;
+  pointer-events:none!important;
+}
+#rosterDetails > summary:active{transform:none!important;}
+#rosterDetails > summary .guild-summary-wrap{
+  gap:4px!important;
+  padding-top:0!important;
+}
+#rosterDetails > summary .guild-summary-title{margin:0!important;}
+#rosterDetails > summary .guild-meta{
+  display:block!important;
+  margin:0!important;
+  color:#4f6f9a!important;
+  font-size:12.5px!important;
+  font-weight:850!important;
+}
+@media(max-width:520px){
+  .usage-guide .usage-detail{grid-template-columns:112px minmax(0,max-content)!important;}
+  #rosterDetails > summary{min-height:72px!important;padding:9px 12px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -2859,11 +2894,11 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
   </section>
 
   <section class="card roster-card">
-    <details id="rosterDetails">
+    <details id="rosterDetails" open>
       <summary>
         <span class="guild-summary-wrap">
           <span class="guild-summary-title">길드원 격추 세부 현황 (지역 포함)</span>
-          <span id="rosterHint" class="roster-hint">▼ 터치해서 세부표 펼치기</span>
+          <span class="guild-meta">기준 : 2026년 9월 20일 일요일</span>
         </span>
       </summary>
       <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
@@ -3431,11 +3466,6 @@ document.querySelectorAll(".roster-tab").forEach(btn=>{
     document.getElementById("rosterUpper").classList.toggle("active",btn.dataset.rosterTab==="upper");
     document.getElementById("rosterField").classList.toggle("active",btn.dataset.rosterTab==="field");
   });
-});
-const rosterDetails=document.getElementById("rosterDetails");
-const rosterHint=document.getElementById("rosterHint");
-rosterDetails.addEventListener("toggle",()=>{
-  rosterHint.textContent=rosterDetails.open ? "▲ 터치해서 세부표 접기" : "▼ 터치해서 세부표 펼치기";
 });
 
 if("serviceWorker" in navigator){
