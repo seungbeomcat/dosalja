@@ -3128,14 +3128,14 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 </style>
 
 
-<style id="v130-field-old-blue-line-transparent-final">
-/* 일반 | 균열 | 은하 — 닉네임 열의 과거 블루 구분선 완전 제거 */
+<style id="v130-field-violet-divider-final">
+/* 일반 | 균열 | 은하 — 다른 열과 동일한 1px Royal Violet B 구분선 */
 #rosterField table.rosterFieldCompact th:first-child,
 #rosterField table.rosterFieldCompact td:first-child{
-  border-right-color:transparent!important;
-  border-right-width:0!important;
+  border-right:1px solid #e5dcf6!important;
   box-shadow:none!important;
 }
+#rosterField table.rosterFieldCompact thead th:first-child{border-right-color:#d8c8f5!important;}
 #rosterField table.rosterFieldCompact th:first-child::before,
 #rosterField table.rosterFieldCompact td:first-child::before,
 #rosterField table.rosterFieldCompact th:first-child::after,
@@ -3166,9 +3166,7 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
   .v130-header-line .v112-title-final{font-size:25px!important;}
   .v112-version-final{font-size:13.5px!important;margin-top:3px!important;}
 }
-/* Preserve the latest table cleanup: no legacy blue divider on nickname column. */
-#rosterField table.rosterFieldCompact th:first-child,
-#rosterField table.rosterFieldCompact td:first-child,
+/* Preserve upper table cleanup. Field divider is defined above in Royal Violet B. */
 #rosterUpper table.rosterUpperCompact th:first-child,
 #rosterUpper table.rosterUpperCompact td:first-child{border-right-color:transparent!important;box-shadow:none!important;}
 </style>
