@@ -2803,6 +2803,19 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
 }
 </style>
 
+
+<style id="v124-input-border-emphasis-20260920">
+/* 2026-09-20 requested UI-only change: make the main input field unmistakable. */
+#input{
+  border:3px solid #176ee8!important;
+}
+#input:focus{
+  border-color:#1468f3!important;
+  box-shadow:0 0 0 3px rgba(23,110,232,.12)!important;
+  outline:none!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -2819,16 +2832,15 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
       <div class="server-options">
         <button type="button" class="server-btn" data-server="0">0%</button><button type="button" class="server-btn" data-server="1">1%</button><button type="button" class="server-btn" data-server="2">2%</button><button type="button" class="server-btn" data-server="3">3%</button><button type="button" class="server-btn" data-server="4">4%</button><button type="button" class="server-btn" data-server="6">6%</button>
       </div>
-      <div class="server-required">※ 계산 전 현재 서버격추를 선택하세요.<br><span class="server-board-help">서버격추는 트로피 아래 「서버 게시판」을 통해 확인할 수 있습니다.</span></div>
+      <div class="server-required">※ 계산 전 현재 서버격추를 선택하세요.</div>
     </div>
     <textarea id="input" spellcheck="false" placeholder="사용법에 따라 원하는 내용을 입력하세요" aria-label="계산 내용 입력"></textarea>
     <div class="examples usage-guide">
       <div class="usage-title">[사용법]</div>
-      <div class="usage-row"><b>① 1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 체력 / 닉네임</span><em class="usage-example">예) 203만 / 매콤갈비 사마엘 토시살</em></span></div>
-      <div class="usage-row"><b>② 2구역</b><span class="usage-detail"><span class="usage-desc">보스명 / 닉네임</span><em class="usage-example">예) 바나냥 / 혀녕 진니 뱅수띠 XIGN</em></span></div>
-      <div class="usage-row usage-region"><b>③ 일반 | 균열 | 은하 스코어</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 늑대 / 데이다라</em></span></div>
-      <div class="usage-row"><b>④ 지역별 종합격추 확인</b><span class="usage-detail"><span class="usage-desc">1인 닉네임만 입력시</span><em class="usage-example">예) 페르시안</em></span></div>
-      <div class="usage-bottom-note">※ 길드원 종합격추표는 페이지 최하단에서 확인할 수 있습니다.</div>
+      <div class="usage-row"><b>1구역(유령)</b><span class="usage-detail"><span class="usage-desc">보스 체력 / 닉네임</span><em class="usage-example">예) 203만 / 매콤갈비 사마엘 토시살</em></span></div>
+      <div class="usage-row"><b>2구역</b><span class="usage-detail"><span class="usage-desc">보스명 / 닉네임</span><em class="usage-example">예) 바나냥 / 혀녕 진니 뱅수띠 XIGN</em></span></div>
+      <div class="usage-row usage-region"><b>일반 | 균열 | 은하</b><span class="usage-detail"><span class="usage-desc">지역 / 닉네임</span><em class="usage-example">예) 늑대 / 데이다라</em></span></div>
+      <div class="usage-row"><b>지역별 종합격추</b><span class="usage-detail"><span class="usage-desc">1인 닉네임만 입력시</span><em class="usage-example">예) 페르시안</em></span></div>
     </div>
     <div class="actions">
       <button class="primary" id="calcBtn">계산하기</button>
