@@ -2889,6 +2889,54 @@ label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usa
 .time-limit-help{margin:7px 0 0!important;padding:10px 13px!important;border-color:#d1b9f8!important;background:#f5efff!important;color:#3a246b!important}.time-limit-help-title{color:#43177f!important}
 @media(max-width:520px){.time-limit-toggle{padding:6px 3px 5px!important;min-height:40px!important}.time-limit-toggle .toggle-label{font-size:13px!important}}
 </style>
+
+<style>
+/* ===== V1.3.0 Royal Violet B — completeness fix 2026-09-20 ===== */
+/* User examples: time-limit example must match the four normal example pills exactly. */
+.usage-example,.time-limit-example{
+  background:#fff0dc!important;
+  color:#91521f!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+/* Result headline: compact; no legacy oversized result title. */
+.result .headline,.share-result .headline{
+  color:#3d167f!important;
+  font-size:clamp(18px,4.7vw,24px)!important;
+  line-height:1.25!important;
+  font-weight:900!important;
+  letter-spacing:-.025em!important;
+}
+/* All calculation/result tables use the Royal Violet B palette. */
+.result .table-wrap,.share-result .table-wrap,.roster .table-wrap{
+  border-color:#d4bfff!important;
+  box-shadow:0 3px 12px rgba(91,26,181,.07)!important;
+}
+.result table,.share-result table,.roster table{background:#fff!important;border-color:#d4bfff!important}
+.result th,.share-result th,.roster th{
+  background:#eadfff!important;
+  color:#3c197b!important;
+  border-color:#d8c8f5!important;
+}
+.result td,.share-result td,.roster td{
+  color:#302650!important;
+  border-color:#e5dcf6!important;
+}
+.result tr:nth-child(even) td,.share-result tr:nth-child(even) td,.roster tr:nth-child(even) td{background:#fbf8ff!important}
+.z2-main th:nth-child(4),.z2-main th:nth-child(5){background:#e3d3ff!important;color:#35136f!important}
+.z2-main td:nth-child(4),.z2-main td:nth-child(5){background:#f7f1ff!important;color:#3d197d!important}
+.level-table td:nth-child(3){color:#3d197d!important}
+.roster-note{background:#f4efff!important;color:#4b2783!important;border-color:#d8c5fb!important}
+.roster-hint{background:#f3edff!important;color:#5a24a5!important;border-color:#cfb5fa!important}
+.guild-summary-title{color:#3d167f!important}.guild-meta{color:#6b51a0!important}
+/* Share card follows the same B palette instead of legacy blue/brown. */
+.share-overlay{background:#100719!important}
+.share-toolbar{background:linear-gradient(180deg,#100719 75%,transparent)!important}
+.share-card{background:#fff!important;border-color:#d1b8ff!important;box-shadow:0 18px 48px rgba(45,10,88,.30)!important}
+.share-close{background:#f6f0ff!important;color:#4b2187!important;border-color:#cdb5f6!important}
+/* Keep the existing yellow server-information note as a distinct information block. */
+@media(max-width:520px){.result .headline,.share-result .headline{font-size:18px!important}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3050,27 +3098,7 @@ const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
 const UPDATED_DATE = "2026-09-20";
 
-// 함께 수집한 실측 검증값. 계산 화면에는 노출하지 않고 보정/검증 근거로만 보존한다.
-const COMPLETION_TIME_SAMPLES = [
-  {content:"상층2",boss:"루이",level:16,participants:["돗돔","사마엘","뱅수띠","승부왕"],actualSec:37,note:"2026-09-16 저장 실측"},
-  {content:"상층2",boss:"루나",level:37,participants:["돗돔"],server:1,base:173.9,region:5,G:179.9,hp:435000,predictedSec:146,predictedLow:145,predictedHigh:147,actualSec:148,note:"2026-09-17 저장 실측 · 당시 격추값 보존 · 차후 시간 보정용"}
-];
-
-const CALIBRATION_SAMPLES = [
-  {member:"돗돔",content:"상층1",G:177.9,wave:64,completed:63,minScore:4500,actual:179577},
-  {member:"돗돔",content:"상층1",G:177.9,wave:127,completed:126,minScore:4500,actual:354654},
-  {member:"돗돔",content:"상층2",boss:"루니",level:26,G:182.9,wave:64,completed:63,minScore:4500,actual:182727},
-  {member:"승부왕",content:"상층1",G:53.4,wave:64,completed:63,minScore:1000,actual:97642},
-  {member:"승부왕",content:"상층1",G:53.4,wave:127,completed:126,minScore:1000,actual:194284},
-  {member:"승부왕",content:"일반-고양이",G:53.4,wave:64,completed:63,minScore:1000,actual:97642},
-  {member:"승부왕",content:"일반-고양이",G:53.4,wave:127,completed:126,minScore:1000,actual:194284},
-  {member:"승부왕",content:"일반-음식",G:54.4,wave:63,completed:62,minScore:1000,actual:96728},
-  {member:"승부왕",content:"일반-음식",G:54.4,wave:127,completed:126,minScore:1000,actual:195544},
-  {member:"승부왕",content:"일반-늑대",G:53.4,wave:64,completed:63,minScore:1000,actual:97642},
-  {member:"승부왕",content:"일반-늑대",G:53.4,wave:127,completed:126,minScore:1000,actual:194284}
-];
-
-
+// 실측 보정 결과는 현재 계산 상수(WAVES_PER_SEC)에 반영되어 있습니다.
 function z1Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z1r}
 function z2Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z2r}
 function z3Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z3r}
@@ -3466,7 +3494,7 @@ function render(r){
   }else if(r.kind==="z2"){
     if(r.parsed.mode==="z2boss"){
       const a=r.levels[0],b=r.levels[r.levels.length-1];
-      headline.textContent=r.timeLimited ? `${r.parsed.boss} Lv.${a.lv} : 예상시간 ${a.sec}초` : `${r.parsed.boss} Lv.${a.lv}~${b.lv} : 예상시간 ${a.sec}초 ~ ${b.sec}초`;
+      headline.textContent=r.timeLimited ? `${r.parsed.boss} Lv.${a.lv} : ${a.sec}초` : `${r.parsed.boss} Lv.${a.lv}~${b.lv} : ${a.sec}초 ~ ${b.sec}초`;
     }else{
       headline.textContent=`2구역 분배 · 화력합 S = ${fmtNum(r.S)}`;
     }
@@ -3474,7 +3502,7 @@ function render(r){
     main.innerHTML=table(
       ["닉네임","이탈 기준","종합 격추","계산 분배","실전 목표"],
       r.items.map(x=>{
-        const exitText=r.timeLimited && x.limitSec!==null ? `${x.limitSec}초` : `${x.exit}.xx%`;
+        const exitText=r.timeLimited && x.limitSec!==null ? `-` : `${x.exit}.xx%`;
         const rawText=`${Math.floor(x.raw+1e-9)}.xx%`;
         const goalText=`${x.N}%`;
         return [x.name,exitText,pct(x.G,1),rawText,goalText];
@@ -3612,9 +3640,6 @@ document.querySelectorAll(".roster-tab").forEach(btn=>{
   });
 });
 
-if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=dosaljang-v123-20260919").then(reg=>reg.update()).catch(()=>{}));
-}
 </script>
 
 
