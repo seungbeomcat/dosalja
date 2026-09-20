@@ -2864,8 +2864,32 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
 .time-limit-help-title{font-weight:950;margin-bottom:3px}
 .time-limit-example{display:inline-block;margin-top:5px;padding:3px 10px;border-radius:999px;background:#fff0dc;color:#91521f;font-style:normal;font-weight:900}
 @media(max-width:520px){.time-limit-toggle{padding:9px 12px}.time-limit-help{padding:10px 12px}.time-limit-toggle .toggle-label{font-size:14px}}
+
+/* ===== V1.3.0 Royal Violet B — final visual system ===== */
+:root{--violet:#6417d1;--violet2:#7b22e8;--deep:#32106f;--ink:#2b2351;--line:#d8c6ff;--lav:#f7f2ff;--lav2:#efe5ff;--soft:#fbf9ff}
+html,body{background:radial-gradient(circle at 50% -8%,rgba(190,135,255,.28),transparent 34%),linear-gradient(180deg,#fbf8ff 0%,#f4edff 54%,#eee5ff 100%)!important;color:var(--ink)!important}
+.v112-logo-final{box-shadow:0 6px 18px rgba(91,26,181,.18)!important}
+.v112-title-final{color:var(--deep)!important;font-weight:760!important;letter-spacing:-.035em!important}
+.v112-version-final{color:#5b2ca5!important}
+.card,section.card,.panel,.result-card,.share-card{background:rgba(255,255,255,.96)!important;border-color:#d6c2ff!important;box-shadow:0 10px 28px rgba(91,26,181,.10)!important}
+.server-picker,.examples,.usage-guide,#rosterDetails>summary,.roster-wrap{border-color:#d9c9fb!important;background:rgba(252,249,255,.94)!important}
+.server-btn{border-color:#cdb5f6!important;color:#4e218f!important;background:#fff!important}.server-btn.active{background:linear-gradient(180deg,#8b2df2,#5c10cc)!important;border-color:#6515d2!important;color:#fff!important;box-shadow:0 4px 12px rgba(98,20,210,.25)!important}
+textarea{border-color:#7220db!important;color:#2d2353!important;box-shadow:0 0 0 1px rgba(114,32,219,.08)!important}textarea:focus{outline:none!important;border-color:#6515d2!important;box-shadow:0 0 0 3px rgba(113,31,220,.12)!important}
+label,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.usage-row b,.guild-summary-title{color:#3d167f!important}
+.usage-guide{border-color:#dac8ff!important}.usage-guide .usage-title{border-color:#d6c4f8!important}.usage-example,.time-limit-example{background:#f0e2ff!important;color:#6630a4!important}
+#calcBtn,.primary,.calc-btn{background:linear-gradient(180deg,#8b2df2,#5b0fc8)!important;color:#fff!important;box-shadow:0 5px 14px rgba(91,15,200,.20)!important}
+#verifyBtn,#resetBtn,.secondary,.ghost{background:#fbf9ff!important;color:#452080!important;border-color:#cdb5f6!important}
+.roster-tab.active{background:linear-gradient(180deg,#8a32ec,#5e18c4)!important;color:#fff!important}.roster-tab{color:#53318a!important;border-color:#d2c1f3!important}
+.roster-desc,.guild-meta{color:#6b51a0!important}.roster-table th,.result-table th{background:#eadfff!important;color:#3c197b!important;border-color:#d6c4f8!important}.roster-table td,.result-table td{border-color:#e2d7f7!important;color:#302650!important}
+.result-card .notice,.formula-note{background:#f2e9ff!important;border-color:#cda8ff!important;color:#4a247e!important}
+.footer{color:#6d55a0!important}
+/* A안: OFF에서는 큰 박스를 만들지 않는 한 줄형 */
+.time-limit-toggle{margin:9px 4px 0!important;padding:7px 4px 6px!important;min-height:42px!important;border:0!important;border-bottom:1px solid #ddcff7!important;border-radius:0!important;background:transparent!important;color:#3b1979!important;box-shadow:none!important}
+.time-limit-toggle .toggle-label{font-size:13.5px!important;font-weight:850!important}.time-limit-right{gap:7px!important}.time-switch{width:48px!important;height:27px!important;background:#c9c4d3!important}.time-switch::after{width:21px!important;height:21px!important}.time-switch:checked{background:#6c19d8!important}.time-switch:checked::after{transform:translateX(21px)!important}.time-limit-state{font-size:13px!important}.time-switch:checked + .time-limit-state{color:#6417d1!important}
+.time-limit-help{margin:7px 0 0!important;padding:10px 13px!important;border-color:#d1b9f8!important;background:#f5efff!important;color:#3a246b!important}.time-limit-help-title{color:#43177f!important}
+@media(max-width:520px){.time-limit-toggle{padding:6px 3px 5px!important;min-height:40px!important}.time-limit-toggle .toggle-label{font-size:13px!important}}
 </style>
-\n<style>\n/* ===== V1.3.0 FINAL — Royal Violet B theme + compact time-limit row ===== */\n:root{\n  --violet-900:#33206f;--violet-800:#452b96;--violet-700:#5a3bc4;--violet-600:#6d4ee3;\n  --violet-500:#7b5cf0;--violet-300:#b9a8f5;--violet-200:#d9d0fb;--violet-100:#eeeaff;--violet-050:#f8f6ff;\n}\nhtml,body{\n  background:radial-gradient(circle at 50% -10%,rgba(123,92,240,.16),transparent 34%),linear-gradient(180deg,#fbfaff 0%,#f5f2ff 55%,#eeeaff 100%)!important;\n  color:#38256f!important;\n}\n.v112-logo-final{border-color:#a994f0!important;box-shadow:0 7px 20px rgba(79,52,154,.16)!important}\n.v112-title-final{\n  color:#34206f!important;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif!important;\n  font-weight:700!important;letter-spacing:-.032em!important;\n}\n.v112-version-final{color:#6348b8!important}\n.card,section.card,.panel,.result-card,.share-card{background:rgba(255,255,255,.96)!important;border-color:#d2c7f6!important;box-shadow:0 10px 28px rgba(76,50,151,.10)!important}\n.server-picker,.examples,.usage-guide,#rosterDetails>summary{background:#faf9ff!important;border-color:#d9d0f7!important}\n.server-btn{background:#fff!important;color:#4a3194!important;border-color:#c8bbf2!important}\n.server-btn.active,.server-btn[aria-pressed="true"]{background:linear-gradient(180deg,#7c5cf0,#5b3fd6)!important;color:#fff!important;border-color:#5b3fd6!important;box-shadow:0 5px 13px rgba(91,63,214,.22)!important}\ntextarea,input{border-color:#a892ef!important;color:#38256f!important}\ntextarea:focus,input:focus{border-color:#6d4ee3!important;box-shadow:0 0 0 3px rgba(109,78,227,.12)!important}\ntextarea::placeholder,input::placeholder{color:#8f82b8!important}\nlabel,.label,.field-title,.card-title,.section-title,.headline,.usage-title,.guild-summary-title{color:#392477!important}\n.examples{color:#574486!important}.examples b{color:#5a3bc4!important}\n.usage-example,.time-limit-example{background:#f0e9ff!important;color:#66409c!important}\n#calcBtn,.primary,.calc-btn{background:linear-gradient(180deg,#8060f4,#5a3bd3)!important;color:#fff!important;box-shadow:0 6px 15px rgba(91,59,211,.18)!important}\n#verifyBtn,#resetBtn,.secondary,.ghost{background:#faf8ff!important;color:#452b8f!important;border-color:#cbbdf4!important}\n.share-open{background:linear-gradient(180deg,#5b3b88,#432a6b)!important;color:#f7edff!important;border-color:#8e6bc2!important}\n/* A안: OFF일 때 큰 박스 없이 한 줄만 차지 */\n.time-limit-toggle{margin:10px 2px 0!important;padding:7px 3px 8px!important;min-height:38px!important;border:0!important;border-bottom:1px solid #ddd4f7!important;border-radius:0!important;background:transparent!important;color:#44317c!important;box-shadow:none!important}\n.time-limit-toggle .toggle-label{font-size:13px!important;font-weight:800!important;letter-spacing:-.02em!important}\n.time-switch{width:48px!important;height:27px!important;background:#d7d1e5!important;box-shadow:inset 0 0 0 1px #c7bce5!important}\n.time-switch::after{width:21px!important;height:21px!important;left:3px!important;top:3px!important}\n.time-switch:checked{background:#6d4ee3!important;box-shadow:none!important}.time-switch:checked::after{transform:translateX(21px)!important}\n.time-limit-state{font-size:12.5px!important;color:#9188a7!important;font-weight:850!important}.time-switch:checked + .time-limit-state{color:#5a3bc4!important}\n.time-limit-right{gap:7px!important}\n.time-limit-help{margin:7px 0 0!important;padding:10px 13px!important;border-color:#d3c7f5!important;background:#f5f1ff!important;color:#44317c!important;box-shadow:none!important}\n.time-limit-help-title{color:#3c277d!important}\n.table-wrap{border-color:#d2c7f6!important}.table-wrap table,table{background:#fff!important;border-color:#d2c7f6!important}\nth,.result th,.share-result th{background:#e9e3ff!important;color:#3c287d!important;border-color:#d2c7f6!important}\ntd,.result td,.share-result td{color:#3f3268!important;border-color:#e3dcf8!important}\n.note,.share-result .note{background:#f4efff!important;color:#4b327e!important;border-color:#cdbdf2!important;border-left-color:#7655d9!important}\n.roster-note{color:#574486!important}.guild-meta{color:#6b59a0!important}\n.status.ok{background:#edf8f1!important;border-color:#91c8a2!important;color:#23603b!important}.status.err{background:#fff1f3!important;border-color:#e9a6b1!important;color:#922f42!important}\n.share-card,.share-sheet{border-color:#cfc2f4!important}\n.share-brand{border-bottom-color:#c9bce9!important}.share-brand-title{color:#392477!important}\n@media(max-width:520px){\n  .time-limit-toggle{padding:6px 2px 7px!important;min-height:36px!important}.time-limit-toggle .toggle-label{font-size:12.5px!important}\n}\n</style>\n</head>
+</head>
 <body>
 <div class="wrap">
 <div class="v112-hero-final">
@@ -3123,21 +3147,22 @@ function parseInput(raw){
   }else mode="profile";
 
   let rawNames=tokenize(right);
-  // 시간 제한 ON에서만 `닉네임30초`, `닉네임 30초`, `닉네임30`, `닉네임 30`을 모두 허용한다.
-  // OFF에서는 기존 입력 규칙을 그대로 유지하며 숫자를 시간으로 해석하지 않는다.
+  if(rawNames.length===0)throw new Error(mode==="region" ? "닉네임을 입력해주세요." : "참여자를 한 명 이상 입력해주세요.");
+
+  // V1.3.0 시간 제한 입력: ON일 때만 네 형식을 모두 허용한다.
+  // 옥돔30초 / 옥돔 30초 / 옥돔30 / 옥돔 30, 혼합 입력도 지원.
   if(timeLimitMode){
     const merged=[];
     for(let i=0;i<rawNames.length;i++){
       const cur=rawNames[i];
       const next=rawNames[i+1];
       if(next && /^\d+초?$/.test(next) && normalizeName(cur)){
-        merged.push(cur+next);
-        i++;
+        merged.push(cur+next); i++;
       }else merged.push(cur);
     }
     rawNames=merged;
   }
-  if(rawNames.length===0)throw new Error(mode==="region" ? "닉네임을 입력해주세요." : "참여자를 한 명 이상 입력해주세요.");
+
   if(mode==="region" && rawNames.length!==1)throw new Error("지역 딜 계산은 닉네임 1명만 입력해주세요.");
   if(mode==="profile" && rawNames.length!==1)throw new Error("닉네임 단독 조회는 1명만 입력해주세요.");
 
@@ -3148,7 +3173,7 @@ function parseInput(raw){
     let nameToken=token, limitSec=null;
     if(timeLimitMode){
       const tm=token.match(/^(.+?)(\d+)(?:초)?$/);
-      if(tm){
+      if(tm && normalizeName(tm[1])){
         nameToken=tm[1];
         limitSec=Number(tm[2]);
         if(!Number.isInteger(limitSec)||limitSec<=0)throw new Error(`시간 제한은 1초 이상의 정수로 입력해주세요: "${token}"`);
