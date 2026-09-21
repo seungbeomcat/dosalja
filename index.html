@@ -3201,6 +3201,12 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 @media(max-width:520px){.v130-header-line .v112-title-final{font-size:23px!important;}}
 </style>
 
+<style id="v131-four-actions">
+#input::placeholder{font-size:14px!important;}
+.actions{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;}
+.actions > button{width:100%;min-width:0;min-height:46px;margin:0;box-sizing:border-box;}
+#rosterCard[hidden]{display:none!important;}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3229,9 +3235,10 @@ textarea#input{display:block!important;margin-bottom:0!important;}
       <span class="time-limit-right"><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
     <div id="timeLimitHelp" class="time-limit-help" aria-hidden="true">
-      <div class="time-limit-help-title">개별 전투시간 설정 사용법</div>
-      <div>전투시간을 지정할 길드원의 닉네임 뒤에 시간을 초 단위로 입력하세요.</div>
-      <div>여러 길드원의 전투시간을 각각 다르게 설정할 수 있습니다.</div>
+      <div class="time-limit-help-title">[개별 사용 시간 설정 사용법] 2구역 한정</div>
+      <div>닉네임 뒤에 사용 시간을 초 단위로 입력하세요.</div>
+      <div>여러 명의 사용 시간을 각각 다르게 지정할 수 있습니다.</div>
+      <div>참여자 중 최소 1명은 시간을 지정하지 마세요.</div>
       <em class="time-limit-example">예) 루나 / 돗돔 옥돔40초 승부30초</em>
     </div>
     <div class="examples usage-guide">
@@ -3243,9 +3250,10 @@ textarea#input{display:block!important;margin-bottom:0!important;}
     </div>
     <div class="actions">
       <button class="primary" id="calcBtn">계산하기</button>
-      <button class="secondary" id="verifyBtn">검증/재검증</button>
+      <button class="secondary" id="verifyBtn">검증</button>
+      <button class="secondary" id="clearBtn">초기화</button>
+      <button class="primary" id="rosterToggleBtn" type="button" aria-controls="rosterCard" aria-expanded="false">길드원 격추표</button>
     </div>
-    <button class="ghost" id="clearBtn">입력/결과 초기화</button>
     <button id="shareOpenBtn" class="share-open">단톡방 공유용 이미지 만들기(클릭)</button>
     <div id="status" class="status"></div>
   </section>
@@ -3257,7 +3265,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
     <div id="detail"></div>
   </section>
 
-  <section class="card roster-card">
+  <section class="card roster-card" id="rosterCard" hidden>
     <details id="rosterDetails" open>
       <summary>
         <span class="guild-summary-wrap">
@@ -3913,5 +3921,13 @@ document.querySelectorAll(".roster-tab").forEach(btn=>{
 
 
 
+<script>
+const rosterToggleButton=document.getElementById("rosterToggleBtn");
+const rosterCard=document.getElementById("rosterCard");
+rosterToggleButton.addEventListener("click",()=>{
+  rosterCard.hidden=!rosterCard.hidden;
+  rosterToggleButton.setAttribute("aria-expanded",String(!rosterCard.hidden));
+});
+</script>
 </body>
 </html>
