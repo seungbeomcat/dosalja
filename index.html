@@ -3262,6 +3262,13 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 #raidTable input{width:44px!important;max-width:100%!important;height:30px!important;min-height:30px!important;padding:2px!important;margin:0 auto!important;border-radius:6px!important;font-size:16px!important;line-height:normal!important}
 @media(min-width:600px){#raidTable th,#raidTable td{font-size:14px!important;padding:10px 4px!important}#raidTable input{width:58px!important}}
 </style>
+<style id="v141-screen-navigation">
+.actions{grid-auto-rows:auto!important}
+#raidOpenBtn{grid-column:1 / -1!important;min-height:42px!important;padding:10px 8px!important;border:1px solid #81bcb4!important;border-radius:12px!important;background:#e6f3ef!important;color:#245f58!important;font-size:15px!important;font-weight:700!important;box-shadow:none!important}
+#raidOpenBtn:hover{background:#d9ece6!important}
+#raidBackBtn{display:block!important;width:100%!important;min-height:42px!important;margin:0 0 14px!important;padding:10px!important;border:1px solid #81bcb4!important;border-radius:12px!important;background:#e6f3ef!important;color:#245f58!important;font-size:14px!important;font-weight:700!important;box-shadow:none!important}
+#raidOpenBtn:focus-visible,#raidBackBtn:focus-visible{outline:2px solid #357c71;outline-offset:3px}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3277,11 +3284,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
   </div>
 </div>
 
-<nav class="mode-tabs" role="tablist" aria-label="계산기 선택">
-<button id="calculatorTab" role="tab" aria-selected="true" aria-controls="calculatorPanel">일반</button>
-<button id="raidTab" role="tab" aria-selected="false" aria-controls="raidPanel" tabindex="-1">균열(은하) 초대형</button>
-</nav>
-<div id="calculatorPanel" role="tabpanel" aria-labelledby="calculatorTab">
+<div id="calculatorPanel">
 <section class="card">
     <div class="server-picker" aria-label="현재 서버격추 선택">
       <div class="server-required">계산 전 현재 서버격추를 선택하세요.</div>
@@ -3310,6 +3313,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
     <div class="actions">
       <button class="primary" id="calcBtn">계산하기</button>
       <button class="secondary" id="verifyBtn">검증</button>
+      <button id="raidOpenBtn" type="button" aria-controls="raidPanel">균열(은하) 초대형 계산하기</button>
       <button class="secondary" id="clearBtn">초기화</button>
       <button class="primary" id="rosterToggleBtn" type="button" aria-controls="rosterCard" aria-expanded="false">길드원 격추표</button>
     </div>
@@ -3343,7 +3347,8 @@ textarea#input{display:block!important;margin-bottom:0!important;}
   </section>
 
 </div>
-<section id="raidPanel" role="tabpanel" aria-labelledby="raidTab" hidden>
+<section id="raidPanel" aria-label="균열(은하) 초대형 계산" hidden>
+<button id="raidBackBtn" type="button" aria-controls="calculatorPanel">계산기로 돌아가기</button>
 <div class="card">
 <div class="raid-label">지역 선택</div>
 <div class="raid-options" role="group" aria-label="초대형 지역 선택">
@@ -4024,7 +4029,7 @@ document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr
 function updateRaid(){
   let total=0,count=0,invalid=false;
   const ready=raidRegion!==null&&raidServer!==null;
-  document.getElementById('raidRegionHeader').textContent='지역';
+  document.getElementById('raidRegionHeader').textContent=raidRegions[raidRegion]||'지역';
   raidMembers.forEach(([name,m],i)=>{
     const input=document.getElementById('raidTime'+i),raw=input.value.trim();
     const valid=raw===''||(/^\d+$/.test(raw)&&Number(raw)<=1200);
@@ -4050,15 +4055,19 @@ document.querySelectorAll('[data-raid-server]').forEach(b=>b.addEventListener('c
   document.querySelectorAll('[data-raid-server]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));updateRaid();
 }));
 document.getElementById('raidReset').addEventListener('click',()=>{raidMembers.forEach((_,i)=>document.getElementById('raidTime'+i).value='');updateRaid();});
-function selectCalculatorTab(raid){
-  document.getElementById('calculatorPanel').hidden=raid;document.getElementById('raidPanel').hidden=!raid;
-  ['calculatorTab','raidTab'].forEach((id,i)=>{const b=document.getElementById(id),active=Boolean(i)===raid;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
+let calculatorScrollY=0;
+function showRaidScreen(raid,moveFocus=false){
+  if(raid)calculatorScrollY=window.scrollY||0;
+  document.getElementById('calculatorPanel').hidden=raid;
+  document.getElementById('raidPanel').hidden=!raid;
+  if(moveFocus){
+    document.getElementById(raid?'raidBackBtn':'raidOpenBtn').focus({preventScroll:true});
+    window.scrollTo({top:raid?0:calculatorScrollY,behavior:'instant'});
+  }
 }
-['calculatorTab','raidTab'].forEach((id,i)=>{
-  const b=document.getElementById(id);b.addEventListener('click',()=>selectCalculatorTab(Boolean(i)));
-  b.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const raid=e.key==='End'?true:e.key==='Home'?false:!Boolean(i);selectCalculatorTab(raid);document.getElementById(raid?'raidTab':'calculatorTab').focus();}});
-});
-selectCalculatorTab(false);updateRaid();
+document.getElementById('raidOpenBtn').addEventListener('click',()=>showRaidScreen(true,true));
+document.getElementById('raidBackBtn').addEventListener('click',()=>showRaidScreen(false,true));
+showRaidScreen(false);updateRaid();
 </script>
 </body>
 </html>
