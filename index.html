@@ -3269,6 +3269,16 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 #raidBackBtn{display:block!important;width:100%!important;min-height:42px!important;margin:0 0 14px!important;padding:10px!important;border:1px solid #81bcb4!important;border-radius:12px!important;background:#e6f3ef!important;color:#245f58!important;font-size:14px!important;font-weight:700!important;box-shadow:none!important}
 #raidOpenBtn:focus-visible,#raidBackBtn:focus-visible{outline:2px solid #357c71;outline-offset:3px}
 </style>
+<style id="v141-rose-compact">
+#raidOpenBtn{background:#9d365b!important;border-color:#7f2848!important;color:#fff!important;box-shadow:0 3px 8px rgba(127,40,72,.12)!important}
+#raidOpenBtn:hover{background:#882d4e!important}
+#raidOpenBtn:focus-visible{outline-color:#7f2848!important}
+#raidPanel .raid-total{padding:9px 12px!important;margin:4px 0 10px!important}
+#raidPanel .raid-total-top{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important}
+#raidPanel .raid-total h2{font-size:13px!important;line-height:18px!important;margin:0!important}
+#raidPanel .raid-total p{font-size:11px!important;line-height:18px!important;margin:0!important;white-space:nowrap!important}
+#raidPanel .raid-total strong{font-size:22px!important;line-height:27px!important;margin:3px 0 0!important;overflow-wrap:anywhere!important}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3357,7 +3367,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 <div class="raid-options server" role="group" aria-label="초대형 서버격추 선택">
 <button type="button" data-raid-server="0" aria-pressed="false">0%</button><button type="button" data-raid-server="1" aria-pressed="false">1%</button><button type="button" data-raid-server="2" aria-pressed="false">2%</button><button type="button" data-raid-server="3" aria-pressed="false">3%</button><button type="button" data-raid-server="4" aria-pressed="false">4%</button><button type="button" data-raid-server="6" aria-pressed="false">6%</button>
 </div>
-<div class="raid-total" aria-live="polite" aria-atomic="true"><h2>예상 합계 스코어</h2><strong id="raidTotal">—</strong><p id="raidCount">참여 예정 0명</p></div>
+<div class="raid-total" aria-live="polite" aria-atomic="true"><div class="raid-total-top"><h2>예상 합계 스코어</h2><p id="raidCount">참여 0명</p></div><strong id="raidTotal">—</strong></div>
 <p class="raid-hint">길드원별 사용 시간을 초 단위로 입력하세요.<br>시간을 비워 두거나 0초로 입력하면 합계에서 제외됩니다.</p>
 <table id="raidTable"><thead><tr><th scope="col">닉네임</th><th scope="col">입력(초)</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th><th scope="col">최소점수</th><th scope="col">예상스코어</th></tr></thead><tbody id="raidRows"></tbody></table>
 <p id="raidMessage" class="raid-hint" role="status">지역과 서버격추를 선택하세요.</p>
@@ -4042,7 +4052,7 @@ function updateRaid(){
     if(score!==null)total+=score;
   });
   document.getElementById('raidTotal').textContent=ready&&!invalid?total.toLocaleString('ko-KR')+'점':'—';
-  document.getElementById('raidCount').textContent='참여 예정 '+count+'명';
+  document.getElementById('raidCount').textContent='참여 '+count+'명';
   document.getElementById('raidMessage').textContent=invalid?'사용 시간은 0~1,200초의 정수로 입력하세요.':!ready?'지역과 서버격추를 선택하세요.':'시간을 변경하면 예상 스코어와 합계가 자동 계산됩니다.';
 }
 raidMembers.forEach((_,i)=>document.getElementById('raidTime'+i).addEventListener('input',updateRaid));
