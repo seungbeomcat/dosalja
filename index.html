@@ -3303,6 +3303,10 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 #raidTable input{width:38px!important;height:28px!important;min-height:28px!important;padding:1px!important}
 @media(min-width:600px){#raidTable th{font-size:13px!important;padding:6px 2px!important}#raidTable th[colspan]{font-size:14px!important}#raidTable td{font-size:13px!important;height:36px!important;padding:5px 2px!important}#raidTable input{width:44px!important}}
 </style>
+<style id="v141-numeric-alignment">
+#raidTable thead th{text-align:center!important}
+#raidTable tbody td:nth-child(n+3){text-align:right!important;padding-right:5px!important}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3393,7 +3397,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 </div>
 <div class="raid-total" aria-live="polite" aria-atomic="true"><div class="raid-total-top"><h2>예상 합계 스코어</h2><p id="raidCount">참여 0명</p></div><strong id="raidTotal">—</strong></div>
 <p class="raid-hint">길드원별 사용 시간을 초 단위로 입력하세요.<br>시간을 비워 두거나 0초로 입력하면 합계에서 제외됩니다.</p>
-<table id="raidTable"><colgroup><col style="width:18%"><col style="width:14%"><col style="width:17%"><col style="width:16%"><col style="width:11%"><col style="width:24%"></colgroup><thead><tr><th scope="col" rowspan="2">닉네임</th><th scope="col" rowspan="2">입력(초)</th><th scope="colgroup" colspan="3">격전지 추가 점수</th><th scope="col" rowspan="2">예상스코어</th></tr><tr><th scope="col">종합</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th></tr></thead><tbody id="raidRows"></tbody></table>
+<table id="raidTable"><colgroup><col style="width:18%"><col style="width:14%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:20%"></colgroup><thead><tr><th scope="col" rowspan="2">닉네임</th><th scope="col" rowspan="2">입력(초)</th><th scope="colgroup" colspan="3">격전지 추가 점수</th><th scope="col" rowspan="2">예상스코어</th></tr><tr><th scope="col">종합</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th></tr></thead><tbody id="raidRows"></tbody></table>
 <p id="raidMessage" class="raid-hint" role="status">지역과 서버격추를 선택하세요.</p>
 </div>
 
