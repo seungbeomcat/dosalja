@@ -3280,11 +3280,21 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 #raidPanel .raid-total strong{font-size:22px!important;line-height:27px!important;margin:3px 0 0!important;overflow-wrap:anywhere!important}
 </style>
 <style id="v141-back-grid-polish">
-#raidBackBtn{width:33.333%!important;min-width:140px!important;max-width:100%!important;min-height:42px!important;margin:0 0 14px auto!important;padding:9px 8px!important;background:#9d365b!important;border:1px solid #7f2848!important;color:#fff!important;font-size:13px!important;line-height:1.3!important;white-space:nowrap!important;box-shadow:0 3px 8px rgba(127,40,72,.12)!important}
+#raidBackBtn{width:33.333%!important;min-width:140px!important;max-width:100%!important;min-height:42px!important;margin:12px auto 20px!important;padding:9px 8px!important;background:#9d365b!important;border:1px solid #7f2848!important;color:#fff!important;font-size:13px!important;line-height:1.3!important;white-space:nowrap!important;box-shadow:0 3px 8px rgba(127,40,72,.12)!important}
 #raidBackBtn:hover{background:#882d4e!important}
 #raidBackBtn:focus-visible{outline-color:#7f2848!important}
 #raidTable{border:1px solid #e1d5ef!important;border-collapse:collapse!important}
 #raidTable th,#raidTable td{border:1px solid #e1d5ef!important}
+</style>
+
+<style id="v141-five-column-polish">
+#raidTable th:nth-child(1){width:24%!important}
+#raidTable th:nth-child(2){width:17%!important}
+#raidTable th:nth-child(3){width:18%!important}
+#raidTable th:nth-child(4){width:13%!important}
+#raidTable th:nth-child(5){width:28%!important}
+#raidTable input{font-family:inherit!important;font-size:13px!important;font-weight:500!important;letter-spacing:0!important;line-height:1.3!important}
+@media(min-width:600px){#raidTable input{font-size:14px!important}}
 </style>
 </head>
 <body>
@@ -3376,7 +3386,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 </div>
 <div class="raid-total" aria-live="polite" aria-atomic="true"><div class="raid-total-top"><h2>예상 합계 스코어</h2><p id="raidCount">참여 0명</p></div><strong id="raidTotal">—</strong></div>
 <p class="raid-hint">길드원별 사용 시간을 초 단위로 입력하세요.<br>시간을 비워 두거나 0초로 입력하면 합계에서 제외됩니다.</p>
-<table id="raidTable"><thead><tr><th scope="col">닉네임</th><th scope="col">입력(초)</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th><th scope="col">최소점수</th><th scope="col">예상스코어</th></tr></thead><tbody id="raidRows"></tbody></table>
+<table id="raidTable"><thead><tr><th scope="col">닉네임</th><th scope="col">입력(초)</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th><th scope="col">예상스코어</th></tr></thead><tbody id="raidRows"></tbody></table>
 <p id="raidMessage" class="raid-hint" role="status">지역과 서버격추를 선택하세요.</p>
 </div>
 
@@ -4042,7 +4052,7 @@ function raidEstimate(name,seconds,region,server){
   // Continuous expected rate; minimum score added once for this boss only.
   return Math.round(sustainedDpsFromG(g)*seconds+(m.minScore||0));
 }
-document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><input id="raidTime${i}" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="${name} 사용 시간(초)" aria-describedby="raidMessage"></td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td>${(m.minScore||0).toLocaleString('ko-KR')}</td><td id="raidScore${i}">—</td></tr>`).join('');
+document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><input id="raidTime${i}" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="${name} 사용 시간(초)" aria-describedby="raidMessage"></td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td id="raidScore${i}">—</td></tr>`).join('');
 function updateRaid(){
   let total=0,count=0,invalid=false;
   const ready=raidRegion!==null&&raidServer!==null;
