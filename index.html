@@ -3734,6 +3734,40 @@ input, textarea, select{
 /* Raid table width rebalance: only nickname -> expected score. Other columns unchanged. */
 #raidTable th:last-child,#raidTable td:last-child{white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;}
 </style>
+
+<style id="v151-final-control-balance">
+/* 2026-09-23 final control balance — visual-only. Calculation/data logic unchanged. */
+/* Keep the selector start point; shorten only the nickname field at the right. */
+#input{width:calc(100% - 10px)!important;}
+/* Selector and nickname field: same, slightly slimmer vertical rhythm. */
+#modeSelectBtn,#input{height:40px!important;min-height:40px!important;}
+#input{line-height:40px!important;}
+#input::placeholder{line-height:40px!important;}
+.mode-menu{top:44px!important;}
+/* Three equal action buttons; preserve the current left and right outer endpoints. */
+.actions{grid-template-columns:repeat(3,29%)!important;justify-content:space-between!important;column-gap:0!important;row-gap:7px!important;}
+.actions>button:not(#raidOpenBtn){width:100%!important;}
+#raidOpenBtn{grid-column:1 / -1!important;width:100%!important;}
+/* Return button uses the same wine-gradient box language as the guild-total entry button. */
+#raidBackBtn{
+  width:100%!important;min-width:0!important;max-width:none!important;
+  height:44px!important;min-height:44px!important;margin:14px 0 0!important;padding:9px 10px!important;
+  border:1px solid #5d1e34!important;border-radius:12px!important;
+  background:linear-gradient(180deg,#8e3f59 0%,#70283f 100%)!important;
+  color:#fff!important;font-size:14px!important;font-weight:700!important;
+  box-shadow:0 5px 12px rgba(91,30,51,.16)!important;
+}
+#raidBackBtn:hover{background:linear-gradient(180deg,#82364f 0%,#652338 100%)!important;}
+#raidBackBtn:focus-visible{outline:2px solid #7f2848!important;outline-offset:3px!important;}
+@media(max-width:420px){
+  #input{width:calc(100% - 9px)!important;}
+  #modeSelectBtn,#input{height:39px!important;min-height:39px!important;}
+  #input,#input::placeholder{line-height:39px!important;}
+  .mode-menu{top:43px!important;}
+  .actions{grid-template-columns:repeat(3,29%)!important;}
+  #raidBackBtn{height:43px!important;min-height:43px!important;font-size:13.5px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
