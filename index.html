@@ -3350,7 +3350,17 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 #raidBackBtn{width:100%!important;min-width:0!important;margin:14px 0 0!important;background:#f7f4fb!important;border:1px solid #cfc5dd!important;color:#4c376a!important}
 .roster-card{display:block!important}
 .roster-tabs{gap:10px!important}.roster-tab{background:#f3f5f7!important;border:1px solid #c8cfd8!important;color:#48515e!important;box-shadow:none!important}.roster-tab.active{background:#e4ebf0!important;border-color:#8293a2!important;color:#263541!important;box-shadow:inset 0 0 0 1px #8293a2!important}
-@media(max-width:420px){.mode-input-row{grid-template-columns:30% 70%;gap:8px}#modeSelectBtn,#input{font-size:15px!important}.four-options{gap:6px}.four-options button{font-size:14px;padding:0 3px}#z1Extra{width:48%}}
+/* V1.5.0 final polish: compact controls, clear hierarchy, centered nickname text. */
+#input{padding:0 16px!important;line-height:normal!important;overflow:hidden!important;white-space:nowrap!important;vertical-align:middle!important}
+#input::placeholder{line-height:normal!important}
+.four-options button{height:36px!important;min-height:36px!important;padding:0 4px!important;border-color:#c9bfd8!important;background:#fbfafc!important;color:#3f3152!important}
+.four-options button.selected{background:#e6f1ee!important;border-color:#629b91!important;color:#185d54!important;box-shadow:inset 0 0 0 1px #629b91!important}
+.actions{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;grid-auto-rows:auto!important}
+.actions>button{min-height:46px!important;width:100%!important;margin:0!important;min-width:0!important;padding:9px 5px!important}
+#raidOpenBtn{grid-column:1 / -1!important;background:linear-gradient(180deg,#8e3f59 0%,#70283f 100%)!important;border:1px solid #5d1e34!important;color:#fff!important;box-shadow:0 5px 12px rgba(91,30,51,.16)!important}
+.roster-tab{background:#f8f5fc!important;border:1px solid #cbbce0!important;color:#5b4777!important;box-shadow:none!important}
+.roster-tab.active{background:#e9e0f5!important;border-color:#9273bb!important;color:#3e2365!important;box-shadow:inset 0 0 0 1px #9273bb!important}
+@media(max-width:420px){.mode-input-row{grid-template-columns:30% 70%;gap:8px}#modeSelectBtn,#input{font-size:15px!important}.four-options{gap:6px}.four-options button{font-size:14px!important;height:34px!important;min-height:34px!important;padding:0 3px!important}#z1Extra{width:48%}.actions>button{font-size:14px!important;padding-left:3px!important;padding-right:3px!important}#raidOpenBtn{font-size:14px!important}}
 </style>
 </head>
 <body>
@@ -3377,7 +3387,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
     </div>
     <div class="mode-input-row">
       <div class="mode-select-wrap">
-        <button id="modeSelectBtn" type="button" aria-haspopup="listbox" aria-expanded="false">계산 종류 <span>⌄</span></button>
+        <button id="modeSelectBtn" type="button" aria-haspopup="listbox" aria-expanded="false">선택 <span>⌄</span></button>
         <div id="modeMenu" class="mode-menu" role="listbox" hidden>
           <button type="button" data-mode="z1">1구역</button>
           <button type="button" data-mode="z2">2구역</button>
@@ -3385,7 +3395,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
           <button type="button" data-mode="profile">개인 종합 격추</button>
         </div>
       </div>
-      <textarea id="input" spellcheck="false" placeholder="닉네임을 입력하세요." aria-label="닉네임 입력"></textarea>
+      <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 입력하세요." aria-label="닉네임 입력">
     </div>
     <div id="modeExtras" class="mode-extras">
       <div id="z1Extra" class="mode-extra" hidden><input id="bossHpInput" type="text" inputmode="decimal" placeholder="보스 체력 (예: 203만)" aria-label="1구역 보스 체력"></div>
@@ -3407,10 +3417,10 @@ textarea#input{display:block!important;margin-bottom:0!important;}
       <em class="time-limit-example">예) 돗돔 옥돔40 승부30</em>
     </div>
     <div class="actions">
+      <button class="secondary" id="clearBtn">초기화</button>
       <button class="primary" id="calcBtn">계산하기</button>
       <button class="secondary" id="verifyBtn">검증</button>
-      <button class="secondary" id="clearBtn">초기화</button>
-      <button class="primary" id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false">길드 초대형 계산</button>
+      <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false">균열(은하) 길드 초대형 보스 계산</button>
     </div>
     <button id="shareOpenBtn" class="share-open">단톡방 공유용 이미지 만들기(클릭)</button>
     <div id="status" class="status"></div>
@@ -4095,7 +4105,7 @@ document.getElementById("clearBtn").addEventListener("click",()=>{
   document.getElementById("input").value="";
   document.getElementById("bossHpInput").value="";
   selectedMode=null; selectedBoss=null; selectedRegion=null; hideAllModeExtras();
-  document.getElementById("modeSelectBtn").firstChild.nodeValue="계산 종류 ";
+  document.getElementById("modeSelectBtn").firstChild.nodeValue="선택 ";
   document.querySelectorAll("[data-boss],[data-region]").forEach(b=>b.classList.remove("selected"));
   document.getElementById("result").classList.remove("show");
   document.getElementById("shareOpenBtn").classList.remove("show");
