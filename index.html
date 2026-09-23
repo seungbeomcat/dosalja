@@ -3603,16 +3603,10 @@ input, textarea, select{
 .table-wrap-z2-main table td:nth-child(2){
   border-left:0!important;
   border-right:0!important;
+  border-top:0!important;
+  border-bottom:0!important;
   box-shadow:none!important;
 }
-/* 기존 행 구분 가로선은 유지한다. 파란 외곽 프레임과 독립적으로 모든 행 경계가 보인다. */
-.table-wrap-z1-main table thead th:nth-child(2),
-.table-wrap-z2-main table thead th:nth-child(2),
-.table-wrap-z1-main table tbody tr:not(:last-child) td:nth-child(2),
-.table-wrap-z2-main table tbody tr:not(:last-child) td:nth-child(2){
-  border-bottom:1px solid #dcecff!important;
-}
-
 .table-wrap-z1-main::after,
 .table-wrap-z2-main::after{
   content:"";
@@ -3636,6 +3630,39 @@ input, textarea, select{
 }
 </style>
 
+
+<style id="v151-critical-column-structural-final">
+/* V1.5.1 structural final: the critical column is now a real table column.
+   No overlay/pseudo-element frame is used. Existing headers, values and calculation logic stay unchanged. */
+.table-wrap-z1-main::after,
+.table-wrap-z2-main::after{content:none!important;display:none!important;}
+
+.table-wrap-z1-main table .critical-col,
+.table-wrap-z2-main table .critical-col{
+  box-sizing:border-box!important;
+  border-left:3px solid #1769d2!important;
+  border-right:3px solid #1769d2!important;
+  box-shadow:none!important;
+}
+.table-wrap-z1-main table thead .critical-col,
+.table-wrap-z2-main table thead .critical-col{
+  border-top:3px solid #1769d2!important;
+  border-bottom:1px solid #d8c8f5!important;
+  color:#3c197b!important;
+  font-weight:inherit!important;
+}
+.table-wrap-z1-main table tbody .critical-col,
+.table-wrap-z2-main table tbody .critical-col{
+  border-top:0!important;
+  border-bottom:1px solid #e5dcf6!important;
+  color:#d71920!important;
+  font-weight:950!important;
+}
+.table-wrap-z1-main table tbody tr:last-child .critical-col,
+.table-wrap-z2-main table tbody tr:last-child .critical-col{
+  border-bottom:3px solid #1769d2!important;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -4195,8 +4222,10 @@ function validateResult(r){
 
 function table(headers,rows,klass=""){
   const wrapClass = klass ? `table-wrap table-wrap-${klass}` : "table-wrap";
-  return `<div class="${wrapClass}"><table class="${klass}"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead>
-  <tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  const criticalIndex = (klass === "z1-main" || klass === "z2-main") ? 1 : -1;
+  const headHtml = headers.map((h,i)=>`<th${i===criticalIndex?' class="critical-col"':''}>${h}</th>`).join("");
+  const bodyHtml = rows.map(r=>`<tr>${r.map((c,i)=>`<td${i===criticalIndex?' class="critical-col"':''}>${c}</td>`).join("")}</tr>`).join("");
+  return `<div class="${wrapClass}"><table class="${klass}"><thead><tr>${headHtml}</tr></thead><tbody>${bodyHtml}</tbody></table></div>`;
 }
 
 function render(r){
