@@ -3691,6 +3691,44 @@ input, textarea, select{
   border-bottom:0!important;
 }
 </style>
+
+<style id="v151-section-hierarchy-final">
+/* 2026-09-23 final hierarchy pass: large violet section frames.
+   Share overlay is intentionally excluded. Calculation/data logic unchanged. */
+:root{--section-violet:#8b35f2;--section-violet-dark:#6c1bd1;}
+#calculatorPanel > .card:first-child,
+#calculatorPanel > #result.card,
+#calculatorPanel > #rosterCard.card,
+#calculatorPanel > #raidPanel.card{
+  border:3px solid var(--section-violet)!important;
+  box-shadow:0 10px 24px rgba(108,27,209,.12)!important;
+}
+#calculatorPanel > #result.card{border-color:var(--section-violet)!important;}
+#calculatorPanel > #raidPanel.card{border-color:var(--section-violet)!important;}
+/* The nested raid content remains clean: only the large outer category gets the heavy frame. */
+#raidPanel > .card{border:1px solid #d6c2ff!important;box-shadow:none!important;}
+/* Keep result/share critical-column visual contract exactly as before. */
+
+/* 1F HP helper: visually one input group, close but not cramped, vertically centered to the HP box. */
+#z1Extra{
+  width:100%!important;min-width:0!important;margin:0 0 12px!important;
+  display:flex!important;align-items:center!important;gap:12px!important;
+}
+#z1Extra[hidden]{display:none!important;}
+#z1Extra .boss-hp-unit{
+  flex:0 0 24%!important;width:24%!important;min-width:0!important;
+}
+.z1-hp-helper{
+  flex:0 1 auto;display:flex;align-items:center;min-height:44px;
+  color:#5b4777;font-size:13px;font-weight:800;line-height:1.35;letter-spacing:-.2px;
+  white-space:nowrap;
+}
+@media(max-width:420px){
+  #z1Extra{gap:10px!important;}
+  #z1Extra .boss-hp-unit{flex-basis:24%!important;width:24%!important;}
+  .z1-hp-helper{font-size:11.5px;letter-spacing:-.45px;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3722,7 +3760,7 @@ input, textarea, select{
       <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 입력하세요." aria-label="닉네임 입력">
     </div>
     <div id="modeExtras" class="mode-extras">
-      <div id="z1Extra" class="mode-extra" hidden><div class="boss-hp-unit"><input id="bossHpInput" type="text" inputmode="decimal" pattern="[0-9.]*" placeholder="" aria-label="1구역 보스 체력(만 단위)"><span class="boss-hp-suffix">만</span></div></div>
+      <div id="z1Extra" class="mode-extra" hidden><div class="boss-hp-unit"><input id="bossHpInput" type="text" inputmode="decimal" pattern="[0-9.]*" placeholder="" aria-label="1구역 보스 체력(만 단위)"><span class="boss-hp-suffix">만</span></div><div class="z1-hp-helper">유령 보스의 잔여 체력을 (만) 기준으로 입력하세요.</div></div>
       <div id="z2Extra" class="mode-extra four-options" hidden>
         <button type="button" data-boss="루이">루이</button><button type="button" data-boss="루니">루니</button><button type="button" data-boss="루나">루나</button><button type="button" data-boss="바나냥">바나냥</button>
       </div>

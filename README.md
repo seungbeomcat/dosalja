@@ -25,3 +25,9 @@ GitHub Pages 루트에 이 ZIP의 파일들을 그대로 업로드하면 됩니�
 - 1구역 체력 입력 박스를 모드 선택 박스 폭/높이 감각에 맞게 축소, 예시 placeholder 제거, `만` 고정 유지.
 - 1구역 담당 체력 / 2구역 이탈 기준 핵심 열의 파란 사각 강조를 border-collapse 영향 없이 메인·공유 화면 모두 동일하게 렌더링하도록 보강.
 - 계산식, 길드원 데이터, 서버격추, 지역격추, 분배/이탈 계산 로직은 변경하지 않음.
+
+## 2026-09-23 UI hierarchy final pass
+- Main calculator, calculation result, guild-member status, and expanded guild-total calculator use a strong violet outer frame for clear large-category separation.
+- Share-only result screen is intentionally unchanged by the new outer-frame rule.
+- In 1F mode, the helper text `유령 보스의 잔여 체력을 (만) 기준으로 입력하세요.` sits beside the HP input, vertically centered to the input height with a comfortable nearby gap.
+- Existing result-table headers, critical-column blue frame/red values, formulas, member data, aliases, and calculation logic are preserved.
