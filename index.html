@@ -7,8 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <link rel="apple-touch-icon" href="./dosaljang-profile-v123.jpg" />
-  <title>도살장 격전지 계산기 V1.4.1</title>
+  <title>도살장 격전지 계산기 V1.5.0</title>
 
   <style>
     :root{
@@ -164,15 +163,15 @@
     @media(max-width:360px){.share-result th,.share-result td{font-size:10.5px}.share-result .headline{font-size:18px}}
   </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.4.1">
-<meta property="og:description" content="도살장 길드 전용 상층·일반·균열·은하 격전지 계산기 V1.4.1">
-<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
+<meta property="og:title" content="도살장 격전지 계산기 V1.5.0">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.5.0">
+<meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v150.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.4.1">
-<meta name="twitter:description" content="도살장 길드 전용 상층·일반·균열·은하 격전지 계산기 V1.4.1">
-<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-preview-20260917-v120-verified.png">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.5.0">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.5.0">
+<meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v150.png">
 
 
 <style>
@@ -3362,17 +3361,54 @@ textarea#input{display:block!important;margin-bottom:0!important;}
 .roster-tab.active{background:#e9e0f5!important;border-color:#9273bb!important;color:#3e2365!important;box-shadow:inset 0 0 0 1px #9273bb!important}
 @media(max-width:420px){.mode-input-row{grid-template-columns:30% 70%;gap:8px}#modeSelectBtn,#input{font-size:15px!important}.four-options{gap:6px}.four-options button{font-size:14px!important;height:34px!important;min-height:34px!important;padding:0 3px!important}#z1Extra{width:48%}.actions>button{font-size:14px!important;padding-left:3px!important;padding-right:3px!important}#raidOpenBtn{font-size:14px!important}}
 </style>
+
+<style id="v150-compact-density-final">
+/* 2026-09-23 compact-density pass: visual-only sizing/labels. Calculation logic is unchanged. */
+.server-picker{padding:9px 12px!important;margin-bottom:14px!important;border-radius:14px!important}
+.server-picker .server-required{margin:0 0 6px!important}
+.server-options{gap:6px!important}
+.server-btn{height:38px!important;min-height:38px!important;padding:0 2px!important;border-radius:10px!important}
+.mode-input-row{grid-template-columns:24% 76%!important;gap:8px!important;margin:14px 0 9px!important}
+#modeSelectBtn,#input{height:44px!important;min-height:44px!important;border-radius:13px!important}
+#modeSelectBtn{padding:0 8px!important;font-size:14px!important;line-height:1!important;gap:5px!important;white-space:nowrap!important}
+#input{padding:0 14px!important;font-size:15px!important;line-height:44px!important}
+#input::placeholder{line-height:44px!important}
+.mode-menu{top:48px!important;width:180px!important}
+.mode-menu button{padding:9px 11px!important;font-size:14px!important;white-space:nowrap!important}
+.four-options button{height:32px!important;min-height:32px!important;font-size:14px!important;border-radius:10px!important}
+#bossHpInput{height:38px!important}
+.actions{gap:7px!important;margin-top:8px!important}
+.actions>button{height:40px!important;min-height:40px!important;padding:5px 4px!important;font-size:14px!important;border-radius:12px!important}
+#raidOpenBtn{height:44px!important;min-height:44px!important;font-size:14px!important}
+@media(max-width:420px){
+ .mode-input-row{grid-template-columns:24% 76%!important;gap:7px!important}
+ #modeSelectBtn{font-size:13.5px!important;padding:0 5px!important}
+ #input{font-size:14.5px!important;padding:0 12px!important}
+ .four-options{gap:6px!important}
+ .four-options button{height:31px!important;min-height:31px!important;font-size:13.5px!important}
+ .actions>button{height:39px!important;min-height:39px!important;font-size:13.5px!important}
+ #raidOpenBtn{height:43px!important;min-height:43px!important;font-size:13.5px!important}
+}
+</style>
+
+<style id="v150-centered-no-logo-final">
+/* V1.5.0 header-only refinement: no guild mark; title/date centered on full calculator width. */
+.v112-hero-final{width:100%!important;box-sizing:border-box!important;text-align:center!important;}
+.v130-header-block{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:100%!important;margin:0 auto!important;}
+.v130-header-block .v112-title-final{width:100%!important;text-align:center!important;white-space:nowrap!important;margin:0!important;}
+.v130-header-block .v112-version-final{width:100%!important;text-align:center!important;margin:6px 0 0!important;}
+.v112-logo-final,.v130-header-line .v112-logo-final{display:none!important;}
+@media(max-width:520px){
+ .v130-header-block .v112-title-final{font-size:25px!important;}
+ .v130-header-block .v112-version-final{font-size:13.5px!important;margin-top:5px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="v112-hero-final">
   <div class="v130-header-block">
-    <div class="v130-header-line">
-      <div class="v112-logo-final">
-        <img src="./dosaljang-profile-v123.jpg" alt="도살장 길드 프로필">
-      </div>
-      <div class="v112-title-final">도살장 격전지 계산기</div>
-    </div>
+    <div class="v112-title-final">도살장 격전지 계산기</div>
     <div class="v112-version-final">2026년 9월 23일 V1.5.0</div>
   </div>
 </div>
@@ -3391,8 +3427,8 @@ textarea#input{display:block!important;margin-bottom:0!important;}
         <div id="modeMenu" class="mode-menu" role="listbox" hidden>
           <button type="button" data-mode="z1">1구역</button>
           <button type="button" data-mode="z2">2구역</button>
-          <button type="button" data-mode="region">개인 초대형</button>
-          <button type="button" data-mode="profile">개인 종합 격추</button>
+          <button type="button" data-mode="region">초대형</button>
+          <button type="button" data-mode="profile">격추</button>
         </div>
       </div>
       <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 입력하세요." aria-label="닉네임 입력">
@@ -3484,7 +3520,6 @@ textarea#input{display:block!important;margin-bottom:0!important;}
     </div>
     <div class="share-card" id="shareCard">
       <div class="share-brand">
-        <img src="./dosaljang-profile-v123.jpg" alt="도살장" class="share-logo" />
         <div><div class="share-brand-title">도살장 격전지 계산기</div></div>
       </div>
       <div class="share-result">
@@ -4008,7 +4043,7 @@ function setStatus(msg,type){
 
 let lastRaw="";
 let selectedMode=null, selectedBoss=null, selectedRegion=null;
-const MODE_LABELS={z1:"1구역",z2:"2구역",region:"개인 초대형",profile:"개인 종합 격추"};
+const MODE_LABELS={z1:"1구역",z2:"2구역",region:"초대형",profile:"격추"};
 function hideAllModeExtras(){
   ["z1Extra","z2Extra","regionExtra"].forEach(id=>document.getElementById(id).hidden=true);
 }
