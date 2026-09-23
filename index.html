@@ -3510,6 +3510,31 @@ input, textarea, select{
   .server-btn{height:32px!important;min-height:32px!important;}
   .share-brand-title{font-size:18px!important;}
 }
+
+/* V1.5.1 핵심 전투 수치 강조: 메인 결과표 + 단톡방 공유 결과표 공통
+   1구역=담당 체력, 2구역=이탈 기준. 계산 로직은 변경하지 않음. */
+.table-wrap-z1-main table th:nth-child(2),
+.table-wrap-z1-main table td:nth-child(2),
+.table-wrap-z2-main table th:nth-child(2),
+.table-wrap-z2-main table td:nth-child(2){
+  border-left:3px solid #1769d2!important;
+  border-right:3px solid #1769d2!important;
+}
+.table-wrap-z1-main table th:nth-child(2),
+.table-wrap-z2-main table th:nth-child(2){
+  border-top:3px solid #1769d2!important;
+  color:inherit!important;
+}
+.table-wrap-z1-main table tbody tr:last-child td:nth-child(2),
+.table-wrap-z2-main table tbody tr:last-child td:nth-child(2){
+  border-bottom:3px solid #1769d2!important;
+}
+.table-wrap-z1-main table tbody td:nth-child(2),
+.table-wrap-z2-main table tbody td:nth-child(2){
+  color:#d71920!important;
+  font-weight:950!important;
+}
+/* 공유 화면에서도 복제된 동일 table-wrap 클래스에 위 규칙이 그대로 적용됨 */
 </style>
 
 </head>
