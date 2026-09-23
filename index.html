@@ -3403,6 +3403,18 @@ textarea#input{display:block!important;margin-bottom:0!important;}
  .v130-header-block .v112-version-final{font-size:13.5px!important;margin-top:5px!important;}
 }
 </style>
+
+<style id="v150-20260923-final-request">
+/* Final requested refinement: single static centered selector chevron; animated twin chevrons only on guild-total button. */
+#modeSelectBtn{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+#modeSelectBtn>span{display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:1!important;position:relative!important;top:0!important;transform:none!important;animation:none!important;}
+#raidOpenBtn{position:relative!important;overflow:hidden!important;padding-left:46px!important;padding-right:46px!important;}
+#raidOpenBtn::before,#raidOpenBtn::after{content:"⌄\A⌄";white-space:pre;position:absolute;top:50%;transform:translateY(-50%);font-size:19px;line-height:.58;font-weight:900;color:#ffd7e3;text-shadow:0 0 6px rgba(255,214,227,.55);animation:v150GuildChevronFlow 1.15s ease-in-out infinite;}
+#raidOpenBtn::before{left:16px;}#raidOpenBtn::after{right:16px;animation-delay:.18s;}
+@keyframes v150GuildChevronFlow{0%,100%{transform:translateY(-57%);opacity:.55}50%{transform:translateY(-38%);opacity:1}}
+@media(prefers-reduced-motion:reduce){#raidOpenBtn::before,#raidOpenBtn::after{animation:none!important;transform:translateY(-50%)!important;opacity:1!important}}
+@media(max-width:420px){#raidOpenBtn{padding-left:38px!important;padding-right:38px!important;}#raidOpenBtn::before{left:12px}#raidOpenBtn::after{right:12px}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3427,8 +3439,8 @@ textarea#input{display:block!important;margin-bottom:0!important;}
         <div id="modeMenu" class="mode-menu" role="listbox" hidden>
           <button type="button" data-mode="z1">1구역</button>
           <button type="button" data-mode="z2">2구역</button>
-          <button type="button" data-mode="region">초대형</button>
-          <button type="button" data-mode="profile">격추</button>
+          <button type="button" data-mode="region">지역딜</button>
+          <button type="button" data-mode="profile">격추확인</button>
         </div>
       </div>
       <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 입력하세요." aria-label="닉네임 입력">
@@ -3456,7 +3468,7 @@ textarea#input{display:block!important;margin-bottom:0!important;}
       <button class="secondary" id="clearBtn">초기화</button>
       <button class="primary" id="calcBtn">계산하기</button>
       <button class="secondary" id="verifyBtn">검증</button>
-      <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false">균열(은하) 길드 초대형 보스 계산</button>
+      <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false">균열(은하) 초대형 길드 합계 계산</button>
     </div>
     <button id="shareOpenBtn" class="share-open">단톡방 공유용 이미지 만들기(클릭)</button>
     <div id="status" class="status"></div>
@@ -4043,7 +4055,7 @@ function setStatus(msg,type){
 
 let lastRaw="";
 let selectedMode=null, selectedBoss=null, selectedRegion=null;
-const MODE_LABELS={z1:"1구역",z2:"2구역",region:"초대형",profile:"격추"};
+const MODE_LABELS={z1:"1구역",z2:"2구역",region:"지역딜",profile:"격추확인"};
 function hideAllModeExtras(){
   ["z1Extra","z2Extra","regionExtra"].forEach(id=>document.getElementById(id).hidden=true);
 }
