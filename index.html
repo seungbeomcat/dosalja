@@ -3591,6 +3591,45 @@ input, textarea, select{
 }
 </style>
 
+
+<style id="v151-critical-column-continuous-frame-fix">
+/* V1.5.1 — 핵심 열 프레임 연속선 보정. 계산/데이터/표 내용은 변경하지 않음.
+   셀별 선을 제거하고 table-wrap 위에 열 전체 프레임을 1회만 그려 행 경계에서도 세로선이 끊기지 않는다. */
+.table-wrap-z1-main,
+.table-wrap-z2-main{position:relative!important;}
+.table-wrap-z1-main table th:nth-child(2),
+.table-wrap-z1-main table td:nth-child(2),
+.table-wrap-z2-main table th:nth-child(2),
+.table-wrap-z2-main table td:nth-child(2){
+  border-left:0!important;
+  border-right:0!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+.table-wrap-z1-main::after,
+.table-wrap-z2-main::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  z-index:8;
+  box-sizing:border-box;
+  border:3px solid #1769d2;
+  pointer-events:none;
+}
+/* 1구역: 1열 24% 다음의 담당 체력 28% 열 */
+.table-wrap-z1-main::after{left:24%;width:28%;}
+/* 2구역: 1열 18% 다음의 이탈 기준 18% 열 */
+.table-wrap-z2-main::after{left:18%;width:18%;}
+/* 핵심 수치의 기존 빨강/굵기 유지 */
+.table-wrap-z1-main table tbody td:nth-child(2),
+.table-wrap-z2-main table tbody td:nth-child(2){
+  color:#d71920!important;
+  font-weight:950!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
