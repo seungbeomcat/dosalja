@@ -3603,10 +3603,16 @@ input, textarea, select{
 .table-wrap-z2-main table td:nth-child(2){
   border-left:0!important;
   border-right:0!important;
-  border-top:0!important;
-  border-bottom:0!important;
   box-shadow:none!important;
 }
+/* 기존 행 구분 가로선은 유지한다. 파란 외곽 프레임과 독립적으로 모든 행 경계가 보인다. */
+.table-wrap-z1-main table thead th:nth-child(2),
+.table-wrap-z2-main table thead th:nth-child(2),
+.table-wrap-z1-main table tbody tr:not(:last-child) td:nth-child(2),
+.table-wrap-z2-main table tbody tr:not(:last-child) td:nth-child(2){
+  border-bottom:1px solid #dcecff!important;
+}
+
 .table-wrap-z1-main::after,
 .table-wrap-z2-main::after{
   content:"";
