@@ -3729,6 +3729,11 @@ input, textarea, select{
   .z1-hp-helper{font-size:11.5px;letter-spacing:-.45px;}
 }
 </style>
+
+<style id="v151-raid-score-width-final">
+/* Raid table width rebalance: only nickname -> expected score. Other columns unchanged. */
+#raidTable th:last-child,#raidTable td:last-child{white-space:nowrap!important;overflow-wrap:normal!important;word-break:keep-all!important;}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3782,7 +3787,7 @@ input, textarea, select{
       <button class="secondary" id="clearBtn">초기화</button>
       <button class="primary" id="calcBtn">계산하기</button>
       <button class="secondary" id="verifyBtn">검증</button>
-      <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">균열(은하) 초대형 길드 합계 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
+      <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">균열(은하) 초대형 보스, 길드 합계 점수 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
     </div>
     <button id="shareOpenBtn" class="share-open">단톡방 공유용 이미지 만들기(클릭)</button>
     <div id="status" class="status"></div>
@@ -3796,7 +3801,7 @@ input, textarea, select{
   </section>
 
 <section id="raidPanel" class="card inline-raid" aria-label="길드 초대형 계산" hidden>
-<button id="raidBackBtn" type="button" aria-controls="raidPanel">길드 초대형 계산 접기</button>
+<button id="raidBackBtn" type="button" aria-controls="raidPanel">계산기로 돌아가기</button>
 <div class="card">
 <div class="raid-label">지역 선택</div>
 <div class="raid-options" role="group" aria-label="초대형 지역 선택">
@@ -3808,7 +3813,7 @@ input, textarea, select{
 <div class="raid-total" aria-live="polite" aria-atomic="true"><div class="raid-total-top"><h2>예상 합계 스코어</h2><p id="raidCount">참여 0명</p></div><strong id="raidTotal">—</strong></div>
 <div class="raid-toolbar"><p class="raid-hint">사용 시간을 초 단위로 입력하세요.<br>미입력된 길드원은 합계에서 제외됩니다.</p><button id="raidReset" class="secondary" type="button">사용 시간 초기화</button></div>
 <p id="raidMessage" class="raid-hint" role="status" hidden></p>
-<div id="raidTableFrame"><div id="raidColumnOutline" aria-hidden="true"></div><table id="raidTable"><colgroup><col style="width:18%"><col style="width:14%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:20%"></colgroup><thead><tr><th scope="col" rowspan="2">닉네임</th><th scope="col" rowspan="2">입력(초)</th><th scope="colgroup" colspan="3">격전지 추가 점수</th><th scope="col" rowspan="2">예상스코어</th></tr><tr><th scope="col">종합</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th></tr></thead><tbody id="raidRows"></tbody></table></div>
+<div id="raidTableFrame"><div id="raidColumnOutline" aria-hidden="true"></div><table id="raidTable"><colgroup><col style="width:15%"><col style="width:14%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:23%"></colgroup><thead><tr><th scope="col" rowspan="2">닉네임</th><th scope="col" rowspan="2">입력(초)</th><th scope="colgroup" colspan="3">격전지 추가 점수</th><th scope="col" rowspan="2">예상스코어</th></tr><tr><th scope="col">종합</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th></tr></thead><tbody id="raidRows"></tbody></table></div>
 
 </div>
 
@@ -4584,6 +4589,7 @@ function showRaidScreen(open,moveFocus=false){
     panel.scrollIntoView({behavior:'smooth',block:'start'});
   }else if(moveFocus){
     document.getElementById('raidOpenBtn').focus({preventScroll:true});
+    window.scrollTo({top:0,left:0,behavior:'smooth'});
   }
 }
 document.getElementById('raidOpenBtn').addEventListener('click',()=>{
