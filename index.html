@@ -3930,6 +3930,16 @@ input, textarea, select{
 @media(max-width:520px){
   .time-limit-toggle{padding-top:9px!important;padding-bottom:5px!important;}
 }
+.time-limit-toggle.is-disabled{
+  color:#9b91aa!important;
+}
+.time-limit-toggle.is-disabled .time-switch{
+  opacity:.62!important;
+  cursor:default!important;
+}
+.time-limit-toggle.is-disabled .time-limit-state{
+  color:#9b91aa!important;
+}
 </style>
 </head>
 <body>
@@ -3983,8 +3993,8 @@ input, textarea, select{
       </div>
     </div>
     <label class="time-limit-toggle" for="timeLimitToggle">
-      <span class="toggle-label">개별 시간설정(2구역 전용)</span>
-      <span class="time-limit-right"><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
+      <span class="toggle-label">개별 시간설정</span>
+      <span class="time-limit-right"><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" disabled aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
     <div id="timeLimitHelp" class="time-limit-help" aria-hidden="true">
       <div class="time-limit-help-title">[개별 사용 시간 설정 사용법]</div>
@@ -4628,9 +4638,23 @@ const MODE_LABELS={z1:"1구역",z2:"2구역",region:"지역딜",profile:"종합�
 function hideAllModeExtras(){
   ["z1Extra","z2Extra","regionExtra"].forEach(id=>document.getElementById(id).hidden=true);
 }
+function setTimeLimitAvailability(enabled){
+  const toggle=document.getElementById("timeLimitToggle");
+  toggle.disabled=!enabled;
+  document.querySelector('.time-limit-toggle').classList.toggle("is-disabled",!enabled);
+  if(!enabled){
+    toggle.checked=false;
+    timeLimitMode=false;
+    document.getElementById("timeLimitState").textContent="OFF";
+    document.getElementById("timeLimitHelp").classList.remove("show");
+    document.getElementById("timeLimitHelp").setAttribute("aria-hidden","true");
+    toggle.setAttribute("aria-expanded","false");
+  }
+}
 function setMode(mode){
   selectedMode=mode; selectedBoss=null; selectedRegion=null;
   hideAllModeExtras();
+  setTimeLimitAvailability(mode==="z2");
   document.getElementById("modeSelectBtn").firstChild.nodeValue=MODE_LABELS[mode]+" ";
   document.getElementById("modeMenu").hidden=true;
   document.getElementById("modeSelectBtn").setAttribute("aria-expanded","false");
@@ -4731,6 +4755,7 @@ document.getElementById("clearBtn").addEventListener("click",()=>{
   document.getElementById("input").value="";
   document.getElementById("bossHpInput").value="";
   selectedMode=null; selectedBoss=null; selectedRegion=null; hideAllModeExtras();
+  setTimeLimitAvailability(false);
   document.getElementById("modeSelectBtn").firstChild.nodeValue="선택 ";
   document.querySelectorAll("[data-boss],[data-region]").forEach(b=>b.classList.remove("selected"));
   document.getElementById("result").classList.remove("show");
