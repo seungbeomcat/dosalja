@@ -3861,16 +3861,16 @@ input, textarea, select{
 
 
 <style id="v152-member-picker">
-/* V1.5.2 — nickname picker. Existing direct input and calculation engine remain available. */
+/* V1.5.2 — nickname picker, selection-only mobile UI. Calculation engine unchanged. */
 #input{cursor:pointer!important;}
 .member-picker-overlay{position:fixed;inset:0;z-index:1200;background:rgba(28,15,48,.42);display:none;align-items:flex-end;justify-content:center;padding:18px;}
 .member-picker-overlay.show{display:flex;}
 .member-picker-sheet{width:min(560px,100%);max-height:82vh;overflow:auto;background:#fff;border:2px solid #b98af7;border-radius:22px 22px 16px 16px;box-shadow:0 18px 48px rgba(49,23,87,.28);padding:18px 16px 16px;}
 .member-picker-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;}
 .member-picker-title{font-size:20px;font-weight:950;color:#35126f;letter-spacing:-.5px;}
-.member-picker-close{width:38px;height:38px;border:1px solid #d8c4f5;border-radius:12px;background:#faf8ff;color:#51218d;font-size:24px;line-height:1;}
-.member-picker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.member-pick{min-height:46px;border:1.5px solid #d6c5ec;border-radius:12px;background:#fbfaff;color:#402069;font-size:15px;font-weight:850;}
+.member-picker-close{width:38px;height:38px;border:1px solid #d8c4f5;border-radius:12px;background:#faf8ff;color:#51218d;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;text-align:center;}
+.member-picker-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;padding:0 10px;}
+.member-pick{width:100%;min-height:46px;border:1.5px solid #d6c5ec;border-radius:12px;background:#fbfaff;color:#402069;font-size:15px;font-weight:850;padding:0 5px;}
 .member-pick.selected{background:linear-gradient(180deg,#356fc4 0%,#24549f 100%);border-color:#244f93;color:#fff;box-shadow:0 4px 10px rgba(36,84,159,.18);}
 .member-picker-summary{margin-top:14px;padding:12px;border:1px solid #ddcef4;border-radius:14px;background:#faf8ff;}
 .member-picker-summary-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;color:#4a237e;font-size:13px;font-weight:900;}
@@ -3878,9 +3878,8 @@ input, textarea, select{
 .member-picker-chips{display:flex;flex-wrap:wrap;gap:6px;min-height:30px;}
 .member-picker-empty{color:#8a7a9f;font-size:13px;font-weight:700;}
 .member-chip{border:0;border-radius:9px;background:#eaf2ff;color:#1f559e;padding:7px 9px;font-size:12.5px;font-weight:900;}
-.member-picker-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px;}
+.member-picker-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:12px;}
 .member-picker-actions button{height:44px;border-radius:12px;font-size:14px;font-weight:900;}
-#memberDirectBtn{border:1px solid #d3c1ed;background:#fff;color:#54258b;}
 #memberDoneBtn{border:1px solid #51208d;background:linear-gradient(180deg,#6f45a9 0%,#57328d 100%);color:#fff;box-shadow:0 5px 12px rgba(74,35,126,.16);}
 @media(min-width:700px){.member-picker-overlay{align-items:center}.member-picker-sheet{border-radius:22px}}
 @media(max-width:390px){.member-picker-grid{gap:6px}.member-pick{font-size:13.5px;min-height:43px}.member-picker-title{font-size:18px}}
@@ -3903,7 +3902,7 @@ input, textarea, select{
       <div class="member-picker-summary-head"><span id="memberPickerCount">선택한 길드원 (0명)</span><button id="memberPickerClear" class="member-picker-clear" type="button">전체 해제</button></div>
       <div id="memberPickerChips" class="member-picker-chips"><span class="member-picker-empty">길드원을 선택해주세요.</span></div>
     </div>
-    <div class="member-picker-actions"><button id="memberDirectBtn" type="button">직접 입력</button><button id="memberDoneBtn" type="button">선택 완료</button></div>
+    <div class="member-picker-actions"><button id="memberDoneBtn" type="button">선택 완료</button></div>
   </div>
 </div>
 
@@ -3925,7 +3924,7 @@ input, textarea, select{
           <button type="button" data-mode="profile">격추확인</button>
         </div>
       </div>
-      <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 입력하세요." aria-label="닉네임 입력">
+      <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 선택하세요" aria-label="길드원 선택" readonly inputmode="none">
     </div>
     <div id="modeExtras" class="mode-extras">
       <div id="z1Extra" class="mode-extra" hidden><div class="boss-hp-unit"><input id="bossHpInput" type="text" inputmode="decimal" pattern="[0-9.]*" placeholder="" aria-label="1구역 보스 체력(만 단위)"><span class="boss-hp-suffix">만</span></div><div class="z1-hp-helper">유령 보스의 잔여 체력을 (만) 단위로 입력하세요.</div></div>
@@ -4633,12 +4632,11 @@ document.addEventListener("click",e=>{
 
 const nicknameInput=document.getElementById("input");
 nicknameInput.addEventListener("click",()=>{if(suppressPickerOnce){suppressPickerOnce=false;return;}openMemberPicker();});
-nicknameInput.addEventListener("focus",()=>{if(!suppressPickerOnce&&!document.getElementById("memberPicker").classList.contains("show"))openMemberPicker();});
+nicknameInput.addEventListener("focus",()=>{nicknameInput.blur();if(!document.getElementById("memberPicker").classList.contains("show"))openMemberPicker();});
 document.getElementById("memberPickerClose").addEventListener("click",closeMemberPicker);
 document.getElementById("memberPicker").addEventListener("click",e=>{if(e.target.id==="memberPicker")closeMemberPicker();});
 document.getElementById("memberPickerClear").addEventListener("click",()=>{memberPickerSelection=[];renderMemberPicker();});
 document.getElementById("memberDoneBtn").addEventListener("click",()=>{nicknameInput.value=memberPickerSelection.join(" ");closeMemberPicker();nicknameInput.blur();lastRaw="";});
-document.getElementById("memberDirectBtn").addEventListener("click",()=>{closeMemberPicker();suppressPickerOnce=true;setTimeout(()=>{nicknameInput.focus();const len=nicknameInput.value.length;try{nicknameInput.setSelectionRange(len,len)}catch(_){}},0);});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("memberPicker").classList.contains("show"))closeMemberPicker();});
 
 document.getElementById("calcBtn").addEventListener("click",()=>{
