@@ -3795,6 +3795,26 @@ input, textarea, select{
 /* Keep the existing green validation/information messages and purple primary action unchanged. */
 </style>
 
+
+<style id="v151-20260924-muted-primary-final">
+/* 2026-09-24 tone-down: preserve role hierarchy while reducing saturation. Visual only. */
+#calcBtn,.primary,.calc-btn{
+  background:linear-gradient(180deg,#6f43b8 0%,#56318f 100%)!important;
+  border-color:#513084!important;
+  color:#fff!important;
+  box-shadow:0 5px 13px rgba(79,47,132,.18)!important;
+}
+#calcBtn:hover,.primary:hover,.calc-btn:hover{background:linear-gradient(180deg,#653ca9 0%,#4e2b83 100%)!important;}
+#raidOpenBtn,#raidBackBtn{
+  background:linear-gradient(180deg,#7b4659 0%,#653747 100%)!important;
+  border-color:#59303f!important;
+  color:#fff!important;
+  box-shadow:0 5px 12px rgba(78,43,56,.14)!important;
+}
+#raidOpenBtn:hover,#raidBackBtn:hover{background:linear-gradient(180deg,#704052 0%,#5c3241 100%)!important;}
+#raidOpenBtn:focus-visible,#raidBackBtn:focus-visible{outline-color:#654052!important;}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -3835,7 +3855,7 @@ input, textarea, select{
       </div>
     </div>
     <label class="time-limit-toggle" for="timeLimitToggle">
-      <span class="toggle-label">개별 전투시간 설정</span>
+      <span class="toggle-label">개별 시간설정(2구역 전용)</span>
       <span class="time-limit-right"><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
     <div id="timeLimitHelp" class="time-limit-help" aria-hidden="true">
