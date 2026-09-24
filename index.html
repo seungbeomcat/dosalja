@@ -127,7 +127,7 @@
     }
 
     /* 공유용 결과 보기: 계산식/데이터 로직과 완전히 분리된 표시 전용 UI */
-    .share-open{display:none;width:100%;margin:8px 0 0;background:linear-gradient(180deg,#4a2c1d,#332018);color:#ffd79b;border:1px solid #b77a3f;box-shadow:inset 0 0 0 1px rgba(255,215,155,.05)}
+    .share-open{display:none;width:100%;margin:0 0 14px;background:linear-gradient(180deg,#4a2c1d,#332018);color:#ffd79b;border:1px solid #b77a3f;box-shadow:inset 0 0 0 1px rgba(255,215,155,.05)}
     .share-open.show{display:block}
     .share-overlay{display:none;position:fixed;inset:0;z-index:9999;background:#0b0606;overflow-y:auto;padding:18px 12px 36px}
     .share-overlay.show{display:block}
@@ -3914,11 +3914,11 @@ input, textarea, select{
       <button class="secondary" id="verifyBtn">검증</button>
       <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">균열(은하) 초대형 보스, 길드 합계 점수 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
     </div>
-    <button id="shareOpenBtn" class="share-open">단톡방 공유용 이미지 만들기(클릭)</button>
     <div id="status" class="status"></div>
   </section>
 
   <section id="result" class="card result">
+    <button id="shareOpenBtn" class="share-open">결과표 단톡방 공유용 이미지 만들기</button>
     <div id="headline" class="headline"></div>
     <div id="mainTable"></div>
     <div id="note"></div>
