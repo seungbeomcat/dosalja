@@ -3917,6 +3917,20 @@ input, textarea, select{
   margin-bottom:9px!important;
 }
 </style>
+
+<style id="v152-time-divider-above-final">
+/* 2026-09-24 visual-only: move the full-width divider from below the individual-time row to above it.
+   No sizing, selection, data, or calculation behavior is changed. */
+.time-limit-toggle{
+  border-top:1px solid #ddcff7!important;
+  border-bottom:0!important;
+  padding-top:10px!important;
+  padding-bottom:5px!important;
+}
+@media(max-width:520px){
+  .time-limit-toggle{padding-top:9px!important;padding-bottom:5px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
