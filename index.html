@@ -4119,6 +4119,26 @@ html,body{
 @media(min-width:600px){#raidTable .raid-minute-trigger{width:42px!important;font-size:13px!important}}
 </style>
 
+
+<style id="v152-title-underline-flow-final-correction">
+/* UI-only correction: restore the shorter approved underline and match the guild-arrow flow tempo. */
+.v112-hero-final::after{
+  width:72%!important;
+  height:1px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  background:linear-gradient(90deg,rgba(174,104,255,.18) 0%,rgba(174,104,255,.34) 28%,rgba(238,218,255,1) 46%,rgba(174,104,255,.48) 58%,rgba(174,104,255,.18) 100%)!important;
+  background-size:240% 100%!important;
+  animation:v152UnderlineFlowFast 1.15s ease-in-out infinite!important;
+}
+@keyframes v152UnderlineFlowFast{
+  0%{background-position:120% 0}
+  100%{background-position:-120% 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .v112-hero-final::after{animation:none!important;background-position:center!important}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
