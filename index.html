@@ -3866,7 +3866,7 @@ input, textarea, select{
 .member-picker-overlay{position:fixed;inset:0;z-index:1200;background:rgba(28,15,48,.42);display:none;align-items:flex-end;justify-content:center;padding:18px;}
 .member-picker-overlay.show{display:flex;}
 .member-picker-sheet{width:min(560px,100%);max-height:82vh;overflow:auto;background:#fff;border:2px solid #b98af7;border-radius:22px 22px 16px 16px;box-shadow:0 18px 48px rgba(49,23,87,.28);padding:18px 16px 16px;}
-.member-picker-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;}
+.member-picker-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 10px 12px;}
 .member-picker-title{font-size:20px;font-weight:950;color:#35126f;letter-spacing:-.5px;}
 .member-picker-close{width:38px;height:38px;border:1px solid #d8c4f5;border-radius:12px;background:#faf8ff;color:#51218d;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;text-align:center;}
 .member-picker-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;padding:0 10px;}
@@ -3896,7 +3896,7 @@ input, textarea, select{
 
 <div id="memberPicker" class="member-picker-overlay" aria-hidden="true">
   <div class="member-picker-sheet" role="dialog" aria-modal="true" aria-labelledby="memberPickerTitle">
-    <div class="member-picker-head"><div id="memberPickerTitle" class="member-picker-title">길드원 선택 (최대 15명)</div><button id="memberPickerClose" class="member-picker-close" type="button" aria-label="닫기">×</button></div>
+    <div class="member-picker-head"><div id="memberPickerTitle" class="member-picker-title">길드원 선택</div><button id="memberPickerClose" class="member-picker-close" type="button" aria-label="닫기">×</button></div>
     <div id="memberPickerGrid" class="member-picker-grid"></div>
     <div class="member-picker-summary">
       <div class="member-picker-summary-head"><span id="memberPickerCount">선택한 길드원 (0명)</span><button id="memberPickerClear" class="member-picker-clear" type="button">전체 해제</button></div>
