@@ -4019,6 +4019,38 @@ input, textarea, select{
   .v130-header-block .v112-version-final{font-size:10.5px!important;}
 }
 </style>
+
+<style id="v152-black-exterior-simple-linear-header-final">
+/* Requested final visual-only change: black exterior + No.6 simple linear header. */
+html,body{
+  background:#000000!important;
+}
+.v112-hero-final{
+  position:relative!important;
+  background:transparent!important;
+  padding:16px 12px 14px!important;
+}
+.v112-hero-final::after{
+  content:""!important;
+  display:block!important;
+  width:100%!important;
+  height:1px!important;
+  margin:13px auto 0!important;
+  background:linear-gradient(90deg,transparent 0%,rgba(174,104,255,.34) 16%,rgba(174,104,255,.82) 50%,rgba(174,104,255,.34) 84%,transparent 100%)!important;
+}
+.v130-header-block .v112-title-final{
+  color:#ffffff!important;
+  text-shadow:none!important;
+}
+.v130-header-block .v112-version-final{
+  color:#ffffff!important;
+  opacity:.86!important;
+}
+@media(max-width:520px){
+  .v112-hero-final{padding:14px 8px 12px!important;}
+  .v112-hero-final::after{margin-top:11px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
