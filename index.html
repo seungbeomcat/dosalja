@@ -3857,6 +3857,15 @@ input, textarea, select{
   box-shadow:inset 0 0 0 1px rgba(118,87,158,.30)!important;
   font-weight:900!important;
 }
+
+/* 2026-09-24 — verify action uses the same pale-green confirmation family as .status.ok. */
+#verifyBtn{
+  background:rgba(78,179,103,.14)!important;
+  border-color:rgba(91,174,112,.62)!important;
+  color:#176b3f!important;
+}
+#verifyBtn:active{background:rgba(78,179,103,.22)!important;}
+
 </style>
 
 
@@ -4076,11 +4085,11 @@ input, textarea, select{
       </summary>
       <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
       <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
-        <button type="button" class="roster-tab active" data-roster-tab="field">일반 | 균열 | 은하</button>
-        <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
+        <button type="button" class="roster-tab active" data-roster-tab="upper">상층</button>
+        <button type="button" class="roster-tab" data-roster-tab="field">일반 | 균열 | 은하</button>
       </div>
-      <div id="rosterField" class="roster roster-panel active"></div>
-      <div id="rosterUpper" class="roster roster-panel"></div>
+      <div id="rosterUpper" class="roster roster-panel active"></div>
+      <div id="rosterField" class="roster roster-panel"></div>
     </details>
   </section>
 
@@ -4816,7 +4825,7 @@ function regionRaw(v){return v ? `+${pct(v,1)}` : "0%";}
 function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
   document.getElementById("rosterUpper").innerHTML=
-    `<div class="roster-note">[상층] 1구역, 2구역, 3구역 지역</div>`+
+    `<div class="roster-note">1구역, 2구역, 3구역</div>`+
     table(["닉네임","기본","최소 점수","1구역","2구역","3구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r),regionRaw(m.z3r)]),"rosterUpperFlat");
   document.getElementById("rosterField").innerHTML=
     `<div class="roster-note">늑대, 해적, 고양이, 음식 지역</div>`+
