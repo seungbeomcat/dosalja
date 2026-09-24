@@ -4083,6 +4083,42 @@ html,body{
   .footer{padding-top:6px!important;}
 }
 </style>
+
+<style id="v152-title-underline-flow">
+.v112-hero-final::after{
+  background:linear-gradient(90deg,transparent 0%,rgba(174,104,255,.26) 16%,rgba(174,104,255,.62) 38%,rgba(238,218,255,1) 50%,rgba(174,104,255,.62) 62%,rgba(174,104,255,.26) 84%,transparent 100%)!important;
+  background-size:220% 100%!important;
+  animation:v152UnderlineFlow 3.2s ease-in-out infinite!important;
+}
+@keyframes v152UnderlineFlow{0%{background-position:115% 0}100%{background-position:-115% 0}}
+@media (prefers-reduced-motion:reduce){.v112-hero-final::after{animation:none!important;background-position:center!important}}
+
+#raidTable .raid-minute-native{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+  overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important;
+}
+#raidTable .raid-minute-trigger{
+  display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;
+  width:38px!important;height:27px!important;margin:0 auto!important;padding:0!important;border:1px solid #c4a9e7!important;
+  border-radius:7px!important;background:#fff!important;color:#402267!important;font:700 12px/1 inherit!important;cursor:pointer!important;
+}
+#raidTable .raid-minute-trigger.has-value{background:#faf7ff!important;border-color:#9e79d2!important}
+#raidMinuteMenu{
+  position:fixed;z-index:10050;width:108px;max-height:min(390px,calc(100vh - 24px));overflow:auto;padding:7px;
+  border:1px solid #cdb7e9;border-radius:13px;background:rgba(255,255,255,.98);box-shadow:0 10px 30px rgba(22,8,43,.22);
+  -webkit-overflow-scrolling:touch;
+}
+#raidMinuteMenu[hidden]{display:none!important}
+#raidMinuteMenu .raid-minute-menu-title{padding:5px 4px 8px;text-align:center;color:#5a347e;font-size:12px;font-weight:900;border-bottom:1px solid #eadff6}
+#raidMinuteMenu .raid-minute-option{
+  display:flex;width:100%;height:31px;align-items:center;justify-content:center;margin:2px 0;padding:0;border:0;border-radius:7px;
+  background:transparent;color:#251733;font-size:15px;font-weight:700;
+}
+#raidMinuteMenu .raid-minute-option[aria-checked="true"]{background:#eee3fb;color:#54228a;font-weight:900}
+#raidMinuteMenu .raid-minute-option:active{background:#e6d6f7}
+@media(min-width:600px){#raidTable .raid-minute-trigger{width:42px!important;font-size:13px!important}}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -4974,7 +5010,29 @@ function raidEstimate(name,minutes,region,server){
   // Continuous expected rate; minimum score added once for this boss only.
   return Math.round(sustainedDpsFromG(g)*(minutes*60)+(m.minScore||0));
 }
-document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><select id="raidTime${i}" class="raid-minute-select" aria-label="${name} 사용 시간(분)" aria-describedby="raidMessage"><option value=""></option>${Array.from({length:10},(_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}</select></td><td id="raidCombined${i}">—</td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td id="raidScore${i}">—</td></tr>`).join('');
+document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><select id="raidTime${i}" class="raid-minute-native" aria-label="${name} 사용 시간(분)" aria-describedby="raidMessage"><option value="">선택(분)</option>${Array.from({length:10},(_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}</select><button type="button" id="raidTimeBtn${i}" class="raid-minute-trigger" data-raid-minute-index="${i}" aria-haspopup="listbox" aria-expanded="false" aria-label="${name} 사용 시간 선택">—</button></td><td id="raidCombined${i}">—</td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td id="raidScore${i}">—</td></tr>`).join('');
+
+const raidMinuteMenu=document.createElement('div');
+raidMinuteMenu.id='raidMinuteMenu';raidMinuteMenu.hidden=true;raidMinuteMenu.setAttribute('role','listbox');raidMinuteMenu.setAttribute('aria-label','선택(분)');
+raidMinuteMenu.innerHTML=`<div class="raid-minute-menu-title">선택(분)</div>${Array.from({length:10},(_,n)=>`<button type="button" class="raid-minute-option" role="option" data-minute="${n+1}">${n+1}</button>`).join('')}`;
+document.body.appendChild(raidMinuteMenu);
+let raidMinuteOpenIndex=null;
+function syncRaidMinuteButton(i){const s=document.getElementById('raidTime'+i),b=document.getElementById('raidTimeBtn'+i);if(!s||!b)return;b.textContent=s.value||'—';b.classList.toggle('has-value',s.value!=='');}
+function closeRaidMinuteMenu(){if(raidMinuteOpenIndex!==null){const b=document.getElementById('raidTimeBtn'+raidMinuteOpenIndex);if(b)b.setAttribute('aria-expanded','false');}raidMinuteOpenIndex=null;raidMinuteMenu.hidden=true;}
+function openRaidMinuteMenu(i){
+  const b=document.getElementById('raidTimeBtn'+i),s=document.getElementById('raidTime'+i);if(!b||!s)return;raidMinuteOpenIndex=i;
+  document.querySelectorAll('#raidMinuteMenu .raid-minute-option').forEach(o=>o.setAttribute('aria-checked',String(o.dataset.minute===s.value)));
+  raidMinuteMenu.hidden=false;b.setAttribute('aria-expanded','true');
+  const r=b.getBoundingClientRect(),w=108,h=Math.min(390,raidMinuteMenu.scrollHeight);
+  let left=r.left+(r.width-w)/2;left=Math.max(8,Math.min(left,window.innerWidth-w-8));
+  let top=r.bottom+5;if(top+h>window.innerHeight-8)top=Math.max(8,r.top-h-5);
+  raidMinuteMenu.style.left=left+'px';raidMinuteMenu.style.top=top+'px';
+}
+document.querySelectorAll('.raid-minute-trigger').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const i=Number(b.dataset.raidMinuteIndex);if(raidMinuteOpenIndex===i&&!raidMinuteMenu.hidden){closeRaidMinuteMenu();return;}closeRaidMinuteMenu();openRaidMinuteMenu(i);}));
+raidMinuteMenu.addEventListener('click',e=>{const o=e.target.closest('.raid-minute-option');if(!o||raidMinuteOpenIndex===null)return;const i=raidMinuteOpenIndex,s=document.getElementById('raidTime'+i);s.value=o.dataset.minute;syncRaidMinuteButton(i);s.dispatchEvent(new Event('change',{bubbles:true}));closeRaidMinuteMenu();});
+document.addEventListener('click',e=>{if(!raidMinuteMenu.hidden&&!raidMinuteMenu.contains(e.target)&&!e.target.closest('.raid-minute-trigger'))closeRaidMinuteMenu();});
+window.addEventListener('resize',closeRaidMinuteMenu);window.addEventListener('scroll',closeRaidMinuteMenu,{passive:true});
+raidMembers.forEach((_,i)=>syncRaidMinuteButton(i));
 function updateRaid(){
   let total=0,count=0,invalid=false;
   const ready=raidRegion!==null&&raidServer!==null;
@@ -5005,7 +5063,7 @@ document.querySelectorAll('[data-raid-server]').forEach(b=>b.addEventListener('c
   raidServer=Number(b.dataset.raidServer);
   document.querySelectorAll('[data-raid-server]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));updateRaid();
 }));
-document.getElementById('raidReset').addEventListener('click',()=>{raidMembers.forEach((_,i)=>document.getElementById('raidTime'+i).value='');updateRaid();});
+document.getElementById('raidReset').addEventListener('click',()=>{closeRaidMinuteMenu();raidMembers.forEach((_,i)=>{document.getElementById('raidTime'+i).value='';syncRaidMinuteButton(i);});updateRaid();});
 function showRaidScreen(open,moveFocus=false){
   const panel=document.getElementById('raidPanel');
   panel.hidden=!open;
