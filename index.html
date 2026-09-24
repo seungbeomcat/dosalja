@@ -3884,6 +3884,28 @@ input, textarea, select{
 @media(min-width:700px){.member-picker-overlay{align-items:center}.member-picker-sheet{border-radius:22px}}
 @media(max-width:390px){.member-picker-grid{gap:6px}.member-pick{font-size:13.5px;min-height:43px}.member-picker-title{font-size:18px}}
 </style>
+
+<style id="v152-20260924-current-request-final">
+/* Current request: preserve outer endpoints, narrow the four choice boxes, widen only the three inner gaps. */
+#z2Extra.four-options,#regionExtra.four-options{
+  grid-template-columns:repeat(4,21.5%)!important;
+  justify-content:space-between!important;
+  column-gap:0!important;
+}
+/* Guild-total time selection: minutes only, no keyboard and no visible arrow. */
+#raidTable .raid-minute-select{
+  display:block!important;box-sizing:border-box!important;width:34px!important;max-width:100%!important;
+  height:25px!important;min-height:25px!important;margin:0 auto!important;padding:1px 2px!important;
+  border:1px solid #c4a9e7!important;border-radius:6px!important;background:#fff!important;
+  color:#402267!important;text-align:center!important;text-align-last:center!important;
+  font-family:inherit!important;font-size:12px!important;font-weight:500!important;line-height:1.3!important;
+  -webkit-appearance:none!important;appearance:none!important;background-image:none!important;
+}
+#raidTable .raid-minute-select:focus{outline:2px solid #7aaee8!important;outline-offset:0!important;}
+#raidPanel .raid-toolbar{align-items:center!important;}
+#raidPanel .raid-toolbar .raid-hint{display:flex!important;align-items:center!important;min-height:32px!important;margin:0!important;}
+@media(min-width:600px){#raidTable .raid-minute-select{width:40px!important;font-size:13px!important;}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3921,7 +3943,7 @@ input, textarea, select{
           <button type="button" data-mode="z1">1구역</button>
           <button type="button" data-mode="z2">2구역</button>
           <button type="button" data-mode="region">지역딜</button>
-          <button type="button" data-mode="profile">격추확인</button>
+          <button type="button" data-mode="profile">종합격추</button>
         </div>
       </div>
       <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 선택하세요" aria-label="길드원 선택" readonly inputmode="none">
@@ -3973,9 +3995,9 @@ input, textarea, select{
 <button type="button" data-raid-server="0" aria-pressed="false">0%</button><button type="button" data-raid-server="1" aria-pressed="false">1%</button><button type="button" data-raid-server="2" aria-pressed="false">2%</button><button type="button" data-raid-server="3" aria-pressed="false">3%</button><button type="button" data-raid-server="4" aria-pressed="false">4%</button><button type="button" data-raid-server="6" aria-pressed="false">6%</button>
 </div>
 <div class="raid-total" aria-live="polite" aria-atomic="true"><div class="raid-total-top"><h2>예상 합계 스코어</h2><p id="raidCount">참여 0명</p></div><strong id="raidTotal">—</strong></div>
-<div class="raid-toolbar"><p class="raid-hint">사용 시간을 초 단위로 입력하세요.<br>미입력된 길드원은 합계에서 제외됩니다.</p><button id="raidReset" class="secondary" type="button">사용 시간 초기화</button></div>
+<div class="raid-toolbar"><p class="raid-hint">미입력된 길드원은 계산에서 제외됩니다.</p><button id="raidReset" class="secondary" type="button">사용 시간 초기화</button></div>
 <p id="raidMessage" class="raid-hint" role="status" hidden></p>
-<div id="raidTableFrame"><div id="raidColumnOutline" aria-hidden="true"></div><table id="raidTable"><colgroup><col style="width:15%"><col style="width:14%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:23%"></colgroup><thead><tr><th scope="col" rowspan="2">닉네임</th><th scope="col" rowspan="2">입력(초)</th><th scope="colgroup" colspan="3">격전지 추가 점수</th><th scope="col" rowspan="2">예상스코어</th></tr><tr><th scope="col">종합</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th></tr></thead><tbody id="raidRows"></tbody></table></div>
+<div id="raidTableFrame"><div id="raidColumnOutline" aria-hidden="true"></div><table id="raidTable"><colgroup><col style="width:15%"><col style="width:14%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:23%"></colgroup><thead><tr><th scope="col" rowspan="2">닉네임</th><th scope="col" rowspan="2">시간(분)</th><th scope="colgroup" colspan="3">격전지 추가 점수</th><th scope="col" rowspan="2">예상스코어</th></tr><tr><th scope="col">종합</th><th scope="col">기본</th><th scope="col" id="raidRegionHeader">지역</th></tr></thead><tbody id="raidRows"></tbody></table></div>
 
 </div>
 
@@ -4577,7 +4599,7 @@ function setStatus(msg,type){
 
 let lastRaw="";
 let selectedMode=null, selectedBoss=null, selectedRegion=null;
-const MODE_LABELS={z1:"1구역",z2:"2구역",region:"지역딜",profile:"격추확인"};
+const MODE_LABELS={z1:"1구역",z2:"2구역",region:"지역딜",profile:"종합격추"};
 function hideAllModeExtras(){
   ["z1Extra","z2Extra","regionExtra"].forEach(id=>document.getElementById(id).hidden=true);
 }
@@ -4751,37 +4773,37 @@ document.querySelectorAll(".roster-tab").forEach(btn=>{
 const raidRegions={wolf:'늑대',pirate:'해적',cat:'고양이',food:'음식'};
 let raidRegion=null,raidServer=null;
 const raidMembers=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
-function raidEstimate(name,seconds,region,server){
+function raidEstimate(name,minutes,region,server){
   if(!Object.hasOwn(MEMBERS,name)||!Object.hasOwn(raidRegions,region)||![0,1,2,3,4,6].includes(server))return null;
-  if(!Number.isInteger(seconds)||seconds<0||seconds>1200)return null;
-  if(seconds===0)return 0;
+  if(!Number.isInteger(minutes)||minutes<0||minutes>10)return null;
+  if(minutes===0)return 0;
   const m=MEMBERS[name],g=m.base+server+m.field[region];
   // Continuous expected rate; minimum score added once for this boss only.
-  return Math.round(sustainedDpsFromG(g)*seconds+(m.minScore||0));
+  return Math.round(sustainedDpsFromG(g)*(minutes*60)+(m.minScore||0));
 }
-document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><input id="raidTime${i}" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="${name} 사용 시간(초)" aria-describedby="raidMessage"></td><td id="raidCombined${i}">—</td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td id="raidScore${i}">—</td></tr>`).join('');
+document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><select id="raidTime${i}" class="raid-minute-select" aria-label="${name} 사용 시간(분)" aria-describedby="raidMessage"><option value=""></option>${Array.from({length:10},(_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}</select></td><td id="raidCombined${i}">—</td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td id="raidScore${i}">—</td></tr>`).join('');
 function updateRaid(){
   let total=0,count=0,invalid=false;
   const ready=raidRegion!==null&&raidServer!==null;
   document.getElementById('raidRegionHeader').textContent=raidRegions[raidRegion]||'지역';
   raidMembers.forEach(([name,m],i)=>{
     const input=document.getElementById('raidTime'+i),raw=input.value.trim();
-    const valid=raw===''||(/^\d+$/.test(raw)&&Number(raw)<=1200);
+    const valid=raw===''||(/^\d+$/.test(raw)&&Number(raw)>=1&&Number(raw)<=10);
     input.setAttribute('aria-invalid',String(!valid));invalid=invalid||!valid;
     document.getElementById('raidBonus'+i).textContent=raidRegion===null?'—':m.field[raidRegion]+'%';
     document.getElementById('raidCombined'+i).textContent=ready?Number((m.base+raidServer+m.field[raidRegion]).toFixed(2))+'%':'—';
-    const sec=valid?Number(raw):null;
-    if(valid&&sec>0)count++;
-    const score=ready&&valid&&sec>0?raidEstimate(name,sec,raidRegion,raidServer):null;
+    const minutes=valid&&raw!==''?Number(raw):null;
+    if(valid&&minutes>0)count++;
+    const score=ready&&valid&&minutes>0?raidEstimate(name,minutes,raidRegion,raidServer):null;
     document.getElementById('raidScore'+i).textContent=score===null?'—':score.toLocaleString('ko-KR');
     if(score!==null)total+=score;
   });
   document.getElementById('raidTotal').textContent=ready&&!invalid?total.toLocaleString('ko-KR')+'점':'—';
   document.getElementById('raidCount').textContent='참여 '+count+'명';
   document.getElementById('raidMessage').hidden=!invalid;
-  document.getElementById('raidMessage').textContent=invalid?'사용 시간은 0~1,200초의 정수로 입력하세요.':!ready?'지역과 서버격추를 선택하세요.':'';
+  document.getElementById('raidMessage').textContent=invalid?'사용 시간은 1~10분 중에서 선택하세요.':!ready?'지역과 서버격추를 선택하세요.':'';
 }
-raidMembers.forEach((_,i)=>document.getElementById('raidTime'+i).addEventListener('input',updateRaid));
+raidMembers.forEach((_,i)=>document.getElementById('raidTime'+i).addEventListener('change',updateRaid));
 document.querySelectorAll('[data-raid-region]').forEach(b=>b.addEventListener('click',()=>{
   raidRegion=b.dataset.raidRegion;
   document.querySelectorAll('[data-raid-region]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));updateRaid();
