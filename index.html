@@ -4139,6 +4139,26 @@ html,body{
   .v112-hero-final::after{animation:none!important;background-position:center!important}
 }
 </style>
+
+<style id="v152-final-static-title-line-and-blank-raid-cells">
+/* Final UI-only pass: static tapered title rule; blank unselected raid time/score cells. */
+.v112-hero-final::after{
+  width:72%!important;
+  height:4px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  background:linear-gradient(to bottom,
+    rgba(174,104,255,.72) 0%,
+    rgba(174,104,255,.50) 24%,
+    rgba(174,104,255,.25) 52%,
+    rgba(174,104,255,.10) 76%,
+    transparent 100%)!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  clip-path:polygon(0 0,100% 0,50% 100%)!important;
+  animation:none!important;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -5030,14 +5050,14 @@ function raidEstimate(name,minutes,region,server){
   // Continuous expected rate; minimum score added once for this boss only.
   return Math.round(sustainedDpsFromG(g)*(minutes*60)+(m.minScore||0));
 }
-document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><select id="raidTime${i}" class="raid-minute-native" aria-label="${name} 사용 시간(분)" aria-describedby="raidMessage"><option value="">선택(분)</option>${Array.from({length:10},(_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}</select><button type="button" id="raidTimeBtn${i}" class="raid-minute-trigger" data-raid-minute-index="${i}" aria-haspopup="listbox" aria-expanded="false" aria-label="${name} 사용 시간 선택">—</button></td><td id="raidCombined${i}">—</td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td id="raidScore${i}">—</td></tr>`).join('');
+document.getElementById('raidRows').innerHTML=raidMembers.map(([name,m],i)=>`<tr><td>${name}</td><td><select id="raidTime${i}" class="raid-minute-native" aria-label="${name} 사용 시간(분)" aria-describedby="raidMessage"><option value="">선택(분)</option>${Array.from({length:10},(_,n)=>`<option value="${n+1}">${n+1}</option>`).join('')}</select><button type="button" id="raidTimeBtn${i}" class="raid-minute-trigger" data-raid-minute-index="${i}" aria-haspopup="listbox" aria-expanded="false" aria-label="${name} 사용 시간 선택"></button></td><td id="raidCombined${i}">—</td><td>${m.base}%</td><td id="raidBonus${i}">—</td><td id="raidScore${i}">—</td></tr>`).join('');
 
 const raidMinuteMenu=document.createElement('div');
 raidMinuteMenu.id='raidMinuteMenu';raidMinuteMenu.hidden=true;raidMinuteMenu.setAttribute('role','listbox');raidMinuteMenu.setAttribute('aria-label','선택(분)');
 raidMinuteMenu.innerHTML=`<div class="raid-minute-menu-title">선택(분)</div>${Array.from({length:10},(_,n)=>`<button type="button" class="raid-minute-option" role="option" data-minute="${n+1}">${n+1}</button>`).join('')}`;
 document.body.appendChild(raidMinuteMenu);
 let raidMinuteOpenIndex=null;
-function syncRaidMinuteButton(i){const s=document.getElementById('raidTime'+i),b=document.getElementById('raidTimeBtn'+i);if(!s||!b)return;b.textContent=s.value||'—';b.classList.toggle('has-value',s.value!=='');}
+function syncRaidMinuteButton(i){const s=document.getElementById('raidTime'+i),b=document.getElementById('raidTimeBtn'+i);if(!s||!b)return;b.textContent=s.value||'';b.classList.toggle('has-value',s.value!=='');}
 function closeRaidMinuteMenu(){if(raidMinuteOpenIndex!==null){const b=document.getElementById('raidTimeBtn'+raidMinuteOpenIndex);if(b)b.setAttribute('aria-expanded','false');}raidMinuteOpenIndex=null;raidMinuteMenu.hidden=true;}
 function openRaidMinuteMenu(i){
   const b=document.getElementById('raidTimeBtn'+i),s=document.getElementById('raidTime'+i);if(!b||!s)return;raidMinuteOpenIndex=i;
@@ -5066,7 +5086,7 @@ function updateRaid(){
     const minutes=valid&&raw!==''?Number(raw):null;
     if(valid&&minutes>0)count++;
     const score=ready&&valid&&minutes>0?raidEstimate(name,minutes,raidRegion,raidServer):null;
-    document.getElementById('raidScore'+i).textContent=score===null?'—':score.toLocaleString('ko-KR');
+    document.getElementById('raidScore'+i).textContent=score===null?'':score.toLocaleString('ko-KR');
     if(score!==null)total+=score;
   });
   document.getElementById('raidTotal').textContent=ready&&!invalid?total.toLocaleString('ko-KR')+'점':'—';
