@@ -1,6 +1,6 @@
 # 도살장 격전지 계산기 V1.5.1
 
-기준일: 2026년 9월 23일
+기준일: 2026년 9월 24일
 
 GitHub Pages 루트에 이 ZIP의 파일들을 그대로 업로드하면 됩니다. `index.html`은 반드시 루트에 두세요.
 
@@ -21,12 +21,12 @@ GitHub Pages 루트에 이 ZIP의 파일들을 그대로 업로드하면 됩니�
 
 기존 V1.4.1/V1.5.1의 길드원 데이터, 계산식, 결과 계산 엔진과 길드 초대형 계산 엔진은 이번 UI 정리에서 변경하지 않았습니다.
 
-## V1.5.1 corrective verification pass (2026-09-23)
+## V1.5.1 corrective verification pass (2026-09-24)
 - 1구역 체력 입력 박스를 모드 선택 박스 폭/높이 감각에 맞게 축소, 예시 placeholder 제거, `만` 고정 유지.
 - 1구역 담당 체력 / 2구역 이탈 기준 핵심 열의 파란 사각 강조를 border-collapse 영향 없이 메인·공유 화면 모두 동일하게 렌더링하도록 보강.
 - 계산식, 길드원 데이터, 서버격추, 지역격추, 분배/이탈 계산 로직은 변경하지 않음.
 
-## 2026-09-23 UI hierarchy final pass
+## 2026-09-24 UI hierarchy final pass
 - Main calculator, calculation result, guild-member status, and expanded guild-total calculator use a strong violet outer frame for clear large-category separation.
 - Share-only result screen is intentionally unchanged by the new outer-frame rule.
 - In 1F mode, the helper text `유령 보스의 잔여 체력을 (만) 기준으로 입력하세요.` sits beside the HP input, vertically centered to the input height with a comfortable nearby gap.

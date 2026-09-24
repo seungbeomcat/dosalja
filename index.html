@@ -3768,13 +3768,40 @@ input, textarea, select{
   #raidBackBtn{height:43px!important;min-height:43px!important;font-size:13.5px!important;}
 }
 </style>
+
+<style id="v151-20260924-selection-color-final">
+/* 2026-09-24 visual hierarchy: execution / server selection / boss-area selection / validation use distinct colors. */
+/* Server-kill selected state: deep indigo-blue, distinct from purple Calculate button. */
+.server-btn.active{
+  background:linear-gradient(180deg,#356fc4 0%,#24549f 100%)!important;
+  border-color:#244f93!important;
+  color:#fff!important;
+  box-shadow:0 4px 12px rgba(36,84,159,.22)!important;
+}
+/* 1F unit and 2F boss selected state: warm soft gold/amber. */
+.four-options button.selected,
+.boss-hp-unit{
+  background:#fff7df!important;
+  border-color:#d5a94d!important;
+  color:#725018!important;
+  box-shadow:inset 0 0 0 1px rgba(213,169,77,.38)!important;
+}
+#bossHpInput{color:#4d3a1d!important;}
+.boss-hp-suffix{
+  color:#725018!important;
+  font-size:13px!important;
+  font-weight:850!important;
+}
+/* Keep the existing green validation/information messages and purple primary action unchanged. */
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="v112-hero-final">
   <div class="v130-header-block">
     <div class="v112-title-final">도살장 격전지 계산기</div>
-    <div class="v112-version-final">2026년 9월 23일 V1.5.1</div>
+    <div class="v112-version-final">2026년 9월 24일 V1.5.1</div>
   </div>
 </div>
 
@@ -3799,7 +3826,7 @@ input, textarea, select{
       <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 입력하세요." aria-label="닉네임 입력">
     </div>
     <div id="modeExtras" class="mode-extras">
-      <div id="z1Extra" class="mode-extra" hidden><div class="boss-hp-unit"><input id="bossHpInput" type="text" inputmode="decimal" pattern="[0-9.]*" placeholder="" aria-label="1구역 보스 체력(만 단위)"><span class="boss-hp-suffix">만</span></div><div class="z1-hp-helper">유령 보스의 잔여 체력을 (만) 기준으로 입력하세요.</div></div>
+      <div id="z1Extra" class="mode-extra" hidden><div class="boss-hp-unit"><input id="bossHpInput" type="text" inputmode="decimal" pattern="[0-9.]*" placeholder="" aria-label="1구역 보스 체력(만 단위)"><span class="boss-hp-suffix">만</span></div><div class="z1-hp-helper">유령 보스의 잔여 체력을 (만) 단위로 입력하세요.</div></div>
       <div id="z2Extra" class="mode-extra four-options" hidden>
         <button type="button" data-boss="루이">루이</button><button type="button" data-boss="루니">루니</button><button type="button" data-boss="루나">루나</button><button type="button" data-boss="바나냥">바나냥</button>
       </div>
@@ -3859,7 +3886,7 @@ input, textarea, select{
       <summary>
         <span class="guild-summary-wrap">
           <span class="guild-summary-title">길드원 격추 세부 현황 (지역 포함)</span>
-          <span class="guild-meta">기준 : 2026년 9월 23일 수요일</span>
+          <span class="guild-meta">기준 : 2026년 9월 24일 목요일</span>
         </span>
       </summary>
       <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
@@ -3874,7 +3901,7 @@ input, textarea, select{
 
 </div>
 
-  <div class="footer">도살장 길드 전용 · 2026년 9월 23일 V1.5.1</div>
+  <div class="footer">도살장 길드 전용 · 2026년 9월 24일 V1.5.1</div>
 </div>
 
 
@@ -3963,7 +3990,7 @@ const REGIONS = {
 const WAVES_PER_SEC = 63/60; // 1.05
 const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
-const UPDATED_DATE = "2026-09-23";
+const UPDATED_DATE = "2026-09-24";
 
 // 실측 보정 결과는 현재 계산 상수(WAVES_PER_SEC)에 반영되어 있습니다.
 function z1Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z1r}
