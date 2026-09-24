@@ -3977,13 +3977,55 @@ input, textarea, select{
   }
 }
 </style>
+
+<style id="v152-single-line-header-final">
+/* V1.5.2: title stays centered to the full viewport; version is independently right-aligned. */
+.v112-hero-final{
+  position:relative!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  padding:16px 12px 10px!important;
+  margin:0 auto!important;
+}
+.v130-header-block{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  margin:0 auto!important;
+  min-height:0!important;
+}
+.v130-header-block .v112-title-final{
+  width:100%!important;
+  margin:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+.v130-header-block .v112-version-final{
+  position:absolute!important;
+  right:0!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:auto!important;
+  margin:0!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  color:#70558f!important;
+}
+@media(max-width:520px){
+  .v112-hero-final{padding:14px 8px 9px!important;}
+  .v130-header-block .v112-version-final{font-size:10.5px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="v112-hero-final">
   <div class="v130-header-block">
     <div class="v112-title-final">도살장 격전지 계산기</div>
-    <div class="v112-version-final">2026년 9월 24일 V1.5.2</div>
+    <div class="v112-version-final">V1.5.2</div>
   </div>
 </div>
 
