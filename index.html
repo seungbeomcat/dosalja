@@ -3930,6 +3930,14 @@ input, textarea, select{
 @media(max-width:520px){
   .time-limit-toggle{padding-top:9px!important;padding-bottom:5px!important;}
 }
+/* V1.5.2: 2구역에서만 개별 시간설정 사용 가능 상태를 명확히 표시 */
+.time-limit-available-badge{
+  display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+  margin-left:5px;padding:2px 8px;border-radius:999px;
+  background:#f0e2ff;color:#6630a4;font-size:.86em;font-weight:900;line-height:1.35;
+  white-space:nowrap;
+}
+.time-limit-available-badge[hidden]{display:none!important;}
 .time-limit-toggle.is-disabled{
   color:#9b91aa!important;
 }
@@ -3993,7 +4001,7 @@ input, textarea, select{
       </div>
     </div>
     <label class="time-limit-toggle" for="timeLimitToggle">
-      <span class="toggle-label">개별 시간설정</span>
+      <span class="toggle-label">개별 시간설정 <span id="timeLimitAvailableBadge" class="time-limit-available-badge" hidden>활성화</span></span>
       <span class="time-limit-right"><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" disabled aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
     <div id="timeLimitHelp" class="time-limit-help" aria-hidden="true">
@@ -4642,6 +4650,8 @@ function setTimeLimitAvailability(enabled){
   const toggle=document.getElementById("timeLimitToggle");
   toggle.disabled=!enabled;
   document.querySelector('.time-limit-toggle').classList.toggle("is-disabled",!enabled);
+  const badge=document.getElementById("timeLimitAvailableBadge");
+  if(badge) badge.hidden=!enabled;
   if(!enabled){
     toggle.checked=false;
     timeLimitMode=false;
