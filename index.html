@@ -3949,6 +3949,25 @@ input, textarea, select{
   color:#9b91aa!important;
 }
 </style>
+
+<style id="v152-roster-summary-vertical-compact-20260924">
+/* V1.5.2 UI-only: 길드원 격추 세부 현황표 제목/날짜 박스는 가로폭을 유지하고 세로 여백만 축소. */
+#rosterDetails > summary{
+  min-height:60px!important;
+  padding:6px 12px!important;
+}
+#rosterDetails > summary .guild-summary-wrap{
+  gap:2px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+@media(max-width:520px){
+  #rosterDetails > summary{
+    min-height:58px!important;
+    padding:5px 12px!important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
