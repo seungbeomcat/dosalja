@@ -4159,6 +4159,27 @@ html,body{
   animation:none!important;
 }
 </style>
+
+<style id="v152-responsive-display-policy">
+/* Production policy: preserve the approved portrait-phone composition on wide devices.
+   Wide screens get centered black gutters; narrow screens may shrink safely, never widen the app. */
+html,body{width:100%;max-width:100%;overflow-x:hidden!important;}
+body{min-width:0!important;}
+.wrap{
+  width:100%!important;
+  max-width:430px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  min-width:0!important;
+}
+.wrap > *, .card, .roster-card, #raidPanel, .v112-hero-final{max-width:100%!important;min-width:0!important;}
+img,svg,canvas,video{max-width:100%;height:auto;}
+input,textarea,select,button{max-width:100%;}
+.table-wrap,#raidTableFrame,.roster{max-width:100%!important;}
+@media (max-width:430px){
+  .wrap{max-width:100%!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -4261,7 +4282,7 @@ html,body{
       <summary>
         <span class="guild-summary-wrap">
           <span class="guild-summary-title">길드원 격추 세부 현황표</span>
-          <span class="guild-meta">기준 : 2026년 9월 24일 목요일</span>
+          <span class="guild-meta">기준 : 2026년 9월 25일 금요일</span>
         </span>
       </summary>
       <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
@@ -4276,7 +4297,7 @@ html,body{
 
 </div>
 
-  <div class="footer">도살장 길드 전용 · 2026년 9월 24일 V1.5.2</div>
+  <div class="footer">도살장 길드 전용 · 2026년 9월 25일 V1.5.2</div>
 </div>
 
 
