@@ -4180,6 +4180,19 @@ input,textarea,select,button{max-width:100%;}
   .wrap{max-width:100%!important;}
 }
 </style>
+
+<style id="v152-member-picker-compact-columns">
+/* 2026-09-25 UI-only: keep the picker grid's outer endpoints while narrowing all three equal member buttons. */
+.member-picker-grid{
+  grid-template-columns:repeat(3,29%)!important;
+  justify-content:space-between!important;
+  column-gap:0!important;
+}
+.member-pick{width:100%!important;}
+@media(max-width:390px){
+  .member-picker-grid{grid-template-columns:repeat(3,30%)!important;column-gap:0!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
