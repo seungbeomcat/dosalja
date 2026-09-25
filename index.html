@@ -4200,14 +4200,15 @@ input,textarea,select,button{max-width:100%;}
   display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;
 }
 .advanced-settings-label{display:flex;align-items:center;gap:7px;min-width:0;font-size:13.5px;font-weight:900;color:#3b1979;}
-.advanced-settings-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:19px;line-height:1;color:#a7a0b1;transition:color .18s ease,filter .18s ease;}
-.time-limit-toggle.is-disabled .advanced-settings-icon{color:#f7f4fb;text-shadow:0 0 0 #b9b1c3;filter:drop-shadow(0 0 1px #8f879b);}
-.time-limit-toggle:not(.is-disabled) .advanced-settings-icon{color:#6c19d8;filter:drop-shadow(0 0 2px rgba(108,25,216,.18));}
+.advanced-settings-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;line-height:1;transition:color .18s ease,filter .18s ease,transform .18s ease;}
+.advanced-settings-icon svg{display:block;width:100%;height:100%;fill:currentColor;}
+.time-limit-toggle.is-disabled .advanced-settings-icon{color:#fff;filter:drop-shadow(0 0 1px rgba(74,48,105,.8)) drop-shadow(0 1px 1px rgba(74,48,105,.45));}
+.time-limit-toggle:not(.is-disabled) .advanced-settings-icon{color:#1677e8;filter:drop-shadow(0 1px 2px rgba(22,119,232,.28));}
 .individual-time-label{font-size:13px;font-weight:850;color:#3b1979;white-space:nowrap;}
 .time-limit-toggle.is-disabled .advanced-settings-label,.time-limit-toggle.is-disabled .individual-time-label{color:#9b91aa!important;}
 .time-limit-right{margin-left:auto!important;}
 @media(max-width:380px){
-  .advanced-settings-label{gap:5px;font-size:12.5px}.advanced-settings-icon{width:18px;height:18px;font-size:17px}.individual-time-label{font-size:12px}.time-limit-right{gap:6px!important}
+  .advanced-settings-label{gap:5px;font-size:12.5px}.advanced-settings-icon{width:20px;height:20px}.individual-time-label{font-size:12px}.time-limit-right{gap:6px!important}
 }
 </style>
 </head>
@@ -4261,7 +4262,7 @@ input,textarea,select,button{max-width:100%;}
       </div>
     </div>
     <label class="time-limit-toggle is-disabled" for="timeLimitToggle">
-      <span class="advanced-settings-label"><span id="advancedSettingsIcon" class="advanced-settings-icon" aria-hidden="true">⚙</span><span>고급 설정</span></span>
+      <span class="advanced-settings-label"><span id="advancedSettingsIcon" class="advanced-settings-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19.14 12.94a7.7 7.7 0 0 0 .05-.94 7.7 7.7 0 0 0-.05-.94l2.03-1.58a.55.55 0 0 0 .13-.7l-1.92-3.32a.55.55 0 0 0-.67-.24l-2.39.96a7.4 7.4 0 0 0-1.63-.95l-.36-2.54a.55.55 0 0 0-.54-.46h-3.84a.55.55 0 0 0-.54.46l-.36 2.54a7.4 7.4 0 0 0-1.63.95l-2.39-.96a.55.55 0 0 0-.67.24L2.44 8.78a.55.55 0 0 0 .13.7l2.03 1.58a7.7 7.7 0 0 0-.05.94c0 .32.02.63.05.94l-2.03 1.58a.55.55 0 0 0-.13.7l1.92 3.32c.14.25.44.35.7.24l2.36-.95c.5.39 1.05.71 1.64.96l.36 2.52c.04.27.27.46.54.46h3.84c.27 0 .5-.19.54-.46l.36-2.52c.59-.25 1.14-.57 1.64-.96l2.36.95c.26.11.56.01.7-.24l1.92-3.32a.55.55 0 0 0-.13-.7l-2.03-1.58ZM11.87 15.5A3.5 3.5 0 1 1 11.87 8a3.5 3.5 0 0 1 0 7.5Z"/></svg></span><span>고급 설정</span></span>
       <span class="time-limit-right"><span class="individual-time-label">개별 시간설정</span><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" disabled aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
     <div id="timeLimitHelp" class="time-limit-help" aria-hidden="true">
