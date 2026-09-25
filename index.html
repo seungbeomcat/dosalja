@@ -4193,6 +4193,23 @@ input,textarea,select,button{max-width:100%;}
   .member-picker-grid{grid-template-columns:repeat(3,30%)!important;column-gap:0!important;}
 }
 </style>
+
+<style id="v152-advanced-settings-row-final">
+/* UI-only refinement: advanced settings row. Existing time-limit logic/calculation is unchanged. */
+.time-limit-toggle{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;
+}
+.advanced-settings-label{display:flex;align-items:center;gap:7px;min-width:0;font-size:13.5px;font-weight:900;color:#3b1979;}
+.advanced-settings-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:19px;line-height:1;color:#a7a0b1;transition:color .18s ease,filter .18s ease;}
+.time-limit-toggle.is-disabled .advanced-settings-icon{color:#f7f4fb;text-shadow:0 0 0 #b9b1c3;filter:drop-shadow(0 0 1px #8f879b);}
+.time-limit-toggle:not(.is-disabled) .advanced-settings-icon{color:#6c19d8;filter:drop-shadow(0 0 2px rgba(108,25,216,.18));}
+.individual-time-label{font-size:13px;font-weight:850;color:#3b1979;white-space:nowrap;}
+.time-limit-toggle.is-disabled .advanced-settings-label,.time-limit-toggle.is-disabled .individual-time-label{color:#9b91aa!important;}
+.time-limit-right{margin-left:auto!important;}
+@media(max-width:380px){
+  .advanced-settings-label{gap:5px;font-size:12.5px}.advanced-settings-icon{width:18px;height:18px;font-size:17px}.individual-time-label{font-size:12px}.time-limit-right{gap:6px!important}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -4243,9 +4260,9 @@ input,textarea,select,button{max-width:100%;}
         <button type="button" data-region="늑대">늑대</button><button type="button" data-region="해적">해적</button><button type="button" data-region="고양이">고양이</button><button type="button" data-region="음식">음식</button>
       </div>
     </div>
-    <label class="time-limit-toggle" for="timeLimitToggle">
-      <span class="toggle-label">개별 시간설정 <span id="timeLimitAvailableBadge" class="time-limit-available-badge" hidden>활성화</span></span>
-      <span class="time-limit-right"><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" disabled aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
+    <label class="time-limit-toggle is-disabled" for="timeLimitToggle">
+      <span class="advanced-settings-label"><span id="advancedSettingsIcon" class="advanced-settings-icon" aria-hidden="true">⚙</span><span>고급 설정</span></span>
+      <span class="time-limit-right"><span class="individual-time-label">개별 시간설정</span><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" disabled aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
     <div id="timeLimitHelp" class="time-limit-help" aria-hidden="true">
       <div class="time-limit-help-title">[개별 사용 시간 설정 사용법]</div>
