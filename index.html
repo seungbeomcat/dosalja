@@ -4255,6 +4255,27 @@ input,textarea,select,button{max-width:100%;}
 .rosterFieldCompact th:nth-child(n+4),.rosterFieldCompact td:nth-child(n+4){width:12.4%!important;}
 @media(min-width:600px){#raidTable .raid-minute-trigger{width:34px!important;}}
 </style>
+
+<style id="v153-roster-field-compact-equal-final">
+.roster table.rosterFieldCompact{
+  width:416px!important;min-width:416px!important;max-width:416px!important;table-layout:fixed!important;
+}
+.roster table.rosterFieldCompact th,
+.roster table.rosterFieldCompact td,
+.roster table.rosterFieldCompact th:first-child,
+.roster table.rosterFieldCompact td:first-child,
+.roster table.rosterFieldCompact th:nth-child(2),
+.roster table.rosterFieldCompact td:nth-child(2),
+.roster table.rosterFieldCompact th:nth-child(3),
+.roster table.rosterFieldCompact td:nth-child(3),
+.roster table.rosterFieldCompact th:nth-child(n+4),
+.roster table.rosterFieldCompact td:nth-child(n+4){
+  width:52px!important;min-width:52px!important;max-width:52px!important;
+  padding-left:4px!important;padding-right:4px!important;
+  text-align:center!important;white-space:nowrap!important;box-sizing:border-box!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -4503,7 +4524,7 @@ const REGIONS = {
 const WAVES_PER_SEC = 63/60; // 1.05
 const SCORE_PER_WAVE = 1000;
 const SAFE_SEC = 1;
-const UPDATED_DATE = "2026-09-24";
+const UPDATED_DATE = "2026-09-28";
 
 // 실측 보정 결과는 현재 계산 상수(WAVES_PER_SEC)에 반영되어 있습니다.
 function z1Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z1r}
@@ -4890,7 +4911,7 @@ function render(r){
     headline.textContent=`${r.parsed.region.label} · ${r.name} 예상 딜`;
     main.innerHTML=table(
       ["닉네임","지역격추","종합격추","화력값"],
-      [[r.name,`+${pct(r.bonus,1)}`,pct(r.G,1),fmtNum(r.P)]],
+      [[r.name,pct(r.bonus,1),pct(r.G,1),fmtNum(r.P)]],
       "region-main"
     )+
     `<div class="section-title">누적 예상 딜</div>`+
@@ -5102,7 +5123,7 @@ document.getElementById("shareOpenBtn").addEventListener("click",openShareView);
 document.getElementById("shareCloseBtn").addEventListener("click",closeShareView);
 document.getElementById("shareOverlay").addEventListener("click",e=>{if(e.target===e.currentTarget)closeShareView()});
 
-function regionRaw(v){return v ? `+${pct(v,1)}` : "0%";}
+function regionRaw(v){return pct(v,1).replace(/^\+/,"");}
 function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
   document.getElementById("rosterUpper").innerHTML=
