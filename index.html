@@ -4276,6 +4276,34 @@ input,textarea,select,button{max-width:100%;}
 }
 </style>
 
+
+<style id="v153-compact-table-typography-minute-value-final">
+/* 2026-09-28 visual-only refinement: typography follows the compact roster cells. */
+#rosterUpper table.rosterUpperFlat thead th,
+#rosterField table.rosterFieldCompact thead th{
+  font-size:11.5px!important;
+  font-weight:850!important;
+  letter-spacing:-.25px!important;
+  line-height:1.2!important;
+}
+#rosterUpper table.rosterUpperFlat tbody td,
+#rosterField table.rosterFieldCompact tbody td{
+  font-size:12.5px!important;
+  font-weight:780!important;
+  letter-spacing:-.25px!important;
+  line-height:1.22!important;
+}
+#rosterUpper table.rosterUpperFlat tbody td:first-child,
+#rosterField table.rosterFieldCompact tbody td:first-child{font-weight:820!important;}
+/* Keep the picker menu itself unchanged; only the chosen minute shown in each compact input is reduced. */
+#raidTable .raid-minute-trigger{
+  font-size:12px!important;
+  font-weight:650!important;
+  line-height:1!important;
+  letter-spacing:-.15px!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
