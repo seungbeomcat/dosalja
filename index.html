@@ -4550,6 +4550,42 @@ input,textarea,select,button{max-width:100%;}
 }
 </style>
 
+
+<style id="dosalja-boss-popup-last-updated">
+/* Compact reliability timestamp under the section title. */
+#bossPopupCard .boss-popup-title{
+  align-items:center!important;
+}
+#bossPopupCard .boss-popup-titlecopy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  min-width:0;
+  gap:2px;
+  line-height:1;
+}
+#bossPopupCard .boss-popup-titletext{
+  display:block;
+  line-height:1.08;
+}
+#bossPopupCard .boss-popup-lastupdated{
+  display:block;
+  margin:0;
+  color:#806b9a;
+  font-size:9.5px;
+  line-height:1.05;
+  font-weight:750;
+  letter-spacing:.01em;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+@media(max-width:420px){
+  #bossPopupCard .boss-popup-titlecopy{gap:1px}
+  #bossPopupCard .boss-popup-lastupdated{font-size:8.8px}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -4657,7 +4693,10 @@ input,textarea,select,button{max-width:100%;}
             <path d="M12 7.4v4.9l3.35 1.95"></path>
           </svg>
         </span>
-        <span class="boss-popup-titletext">2구역 보스 예상 팝업시간</span>
+        <span class="boss-popup-titlecopy">
+          <span class="boss-popup-titletext">2구역 보스 예상 팝업시간</span>
+          <span id="bossPopupLastUpdated" class="boss-popup-lastupdated">Last updated --:--:--</span>
+        </span>
       </span>
       <span class="boss-popup-linkhint">보스 현황 페이지로 이동 <span class="arr">›</span></span>
     </a>
@@ -5609,10 +5648,25 @@ const bossApp = getApps().find(a=>a.name==="dosaljaBossPopup")
 const bossAuth = getAuth(bossApp);
 const bossDb = getFirestore(bossApp);
 const rowsHost = document.getElementById("bossPopupRows");
+const lastUpdatedEl = document.getElementById("bossPopupLastUpdated");
 function bossPad(v){return String(v).padStart(2,"0");}
 function bossTimeText(ms){
   const d=new Date(ms);
   return `${bossPad(d.getHours())}:${bossPad(d.getMinutes())}`;
+}
+function renderBossLastUpdated(state){
+  if(!lastUpdatedEl)return;
+  let latest=null;
+  Object.values(state).forEach(data=>{
+    const ms=data?.updatedAt?.toMillis?.();
+    if(Number.isFinite(ms) && (latest===null || ms>latest)) latest=ms;
+  });
+  if(latest===null){
+    lastUpdatedEl.textContent="Last updated --:--:--";
+    return;
+  }
+  const d=new Date(latest);
+  lastUpdatedEl.textContent=`Last updated ${bossPad(d.getHours())}:${bossPad(d.getMinutes())}:${bossPad(d.getSeconds())}`;
 }
 function renderBossPopupRows(state){
   if(!rowsHost)return;
@@ -5642,6 +5696,7 @@ async function connectBossPopup(){
     onSnapshot(collection(bossDb,"bossTimers"),snap=>{
       const state={};
       snap.forEach(d=>state[d.id]=d.data());
+      renderBossLastUpdated(state);
       renderBossPopupRows(state);
     },err=>{
       console.error("[boss popup] Firestore snapshot error",err);
