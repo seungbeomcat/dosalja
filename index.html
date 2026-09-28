@@ -4403,7 +4403,7 @@ input,textarea,select,button{max-width:100%;}
   width:42px;height:42px;
   border-radius:11px;
   object-fit:cover;display:block;
-  border:1.5px solid #cdb7ea;
+  border:2.5px solid #9b6ed6;
   background:#ffd86a;
   box-shadow:
     0 0 0 2px rgba(255,255,255,.92),
@@ -4413,7 +4413,7 @@ input,textarea,select,button{max-width:100%;}
   align-self:end;
   min-width:0;
   color:#34204f;
-  font-size:13.5px;
+  font-size:14.5px;
   line-height:1.08;
   font-weight:900;
   letter-spacing:-.2px;
@@ -4440,10 +4440,35 @@ input,textarea,select,button{max-width:100%;}
   line-height:1.2;
 }
 #bossPopupCard .boss-popup-status{display:none!important;}
+#bossPopupCard .boss-popup-title{
+  position:relative;
+  padding-bottom:13px;
+}
+#bossPopupCard .boss-popup-titletext{display:block;}
+#bossPopupCard .boss-popup-now{
+  position:absolute;
+  left:37px;
+  bottom:0;
+  color:#795ba2;
+  font-size:10.5px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+/* 보스 팝업 카드와 길드원 격추 현황 헤더를 같은 라벤더 톤으로 통일 */
+#rosterDetails > summary{
+  background:linear-gradient(180deg,#fbf8ff 0%,#f1e8fb 100%)!important;
+  border-color:#ded1f2!important;
+}
+#rosterDetails > summary .guild-summary-title{color:#3b2268!important;}
+#rosterDetails > summary .guild-meta{color:#795ba2!important;}
 
 @media(max-width:420px){
   #bossPopupCard .boss-popup-head{min-height:49px;padding:7px 8px;gap:6px;}
-  #bossPopupCard .boss-popup-title{font-size:15.5px;gap:7px;}
+  #bossPopupCard .boss-popup-title{font-size:15.5px;gap:7px;padding-bottom:12px;}
+  #bossPopupCard .boss-popup-now{left:34px;font-size:9.8px;}
   #bossPopupCard .boss-popup-clock{width:27px;height:27px;flex-basis:27px;border-radius:9px;}
   #bossPopupCard .boss-popup-clock svg{width:16px;height:16px;}
   #bossPopupCard .boss-popup-linkhint{font-size:8.6px;padding:5px 6px 5px 7px;gap:3px;}
@@ -4453,8 +4478,8 @@ input,textarea,select,button{max-width:100%;}
     column-gap:7px;
     padding:7px 8px 6px;
   }
-  #bossPopupCard .boss-popup-img{width:39px;height:39px;border-radius:10px;border-width:1.5px;}
-  #bossPopupCard .boss-popup-name{font-size:12.8px;}
+  #bossPopupCard .boss-popup-img{width:39px;height:39px;border-radius:10px;border-width:2.5px;}
+  #bossPopupCard .boss-popup-name{font-size:13.8px;}
   #bossPopupCard .boss-popup-time{font-size:18.5px;}
   #bossPopupCard .boss-popup-time.unregistered{font-size:12px;}
 }
@@ -4563,7 +4588,7 @@ input,textarea,select,button{max-width:100%;}
 
 </section>
   
-  <section class="card" id="bossPopupCard" aria-label="보스 팝업 예상시간">
+  <section class="card" id="bossPopupCard" aria-label="2구역 보스 예상 팝업시간">
     <a class="boss-popup-head" href="https://seungbeomcat.github.io/cat-hero-boss/" aria-label="보스 현황 페이지로 이동">
       <span class="boss-popup-title">
         <span class="boss-popup-clock" aria-hidden="true">
@@ -4572,7 +4597,8 @@ input,textarea,select,button{max-width:100%;}
             <path d="M12 7.4v4.9l3.35 1.95"></path>
           </svg>
         </span>
-        보스 팝업 예상시간
+        <span class="boss-popup-titletext">2구역 보스 예상 팝업시간</span>
+        <span class="boss-popup-now" id="bossPopupNow" aria-live="off">현재 --:--:--</span>
       </span>
       <span class="boss-popup-linkhint">보스 현황 페이지로 이동 <span class="arr">›</span></span>
     </a>
@@ -5524,8 +5550,16 @@ const bossApp = getApps().find(a=>a.name==="dosaljaBossPopup")
 const bossAuth = getAuth(bossApp);
 const bossDb = getFirestore(bossApp);
 const rowsHost = document.getElementById("bossPopupRows");
+const bossNowEl = document.getElementById("bossPopupNow");
 
 function bossPad(v){return String(v).padStart(2,"0");}
+function renderBossNow(){
+  if(!bossNowEl)return;
+  const d=new Date();
+  bossNowEl.textContent=`현재 ${bossPad(d.getHours())}:${bossPad(d.getMinutes())}:${bossPad(d.getSeconds())}`;
+}
+renderBossNow();
+setInterval(renderBossNow,1000);
 function bossTimeText(ms){
   const d=new Date(ms);
   return `${bossPad(d.getHours())}:${bossPad(d.getMinutes())}`;
