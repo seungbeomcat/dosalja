@@ -4934,6 +4934,68 @@ input,textarea,select,button{max-width:100%;}
 }
 </style>
 
+
+<style id="v152-layout-refined-final">
+/* 1) Main calculator buttons: restore the established equal-width boxes with open space between them. */
+#calculatorCard .actions{
+  grid-template-columns:repeat(3,29%)!important;
+  justify-content:space-between!important;
+  column-gap:0!important;
+  row-gap:7px!important;
+}
+#calculatorCard .actions > #clearBtn,
+#calculatorCard .actions > #calcBtn,
+#calculatorCard .actions > #verifyBtn{
+  width:100%!important;
+  min-width:0!important;
+}
+
+/* 2) Standalone Rift(Galaxy) guild-total entry:
+      keep the original compact button dimensions, add a strong gold border only. */
+#raidEntryStandalone{
+  margin-top:9px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+#raidEntryStandalone #raidOpenBtn{
+  width:100%!important;
+  min-height:42px!important;
+  margin:0!important;
+  padding-top:10px!important;
+  padding-bottom:10px!important;
+  border:3px solid #d6a62f!important;
+  border-radius:12px!important;
+  box-shadow:0 4px 12px rgba(155,111,22,.16)!important;
+}
+#raidEntryStandalone #raidOpenBtn:focus-visible{
+  outline:2px solid #e0b84d!important;
+  outline-offset:3px!important;
+}
+
+/* 3) Roster: remove the redundant title box entirely from layout.
+      The minimum-score guide becomes the first visible content. */
+#rosterDetails > summary{
+  display:none!important;
+}
+#rosterCard{
+  padding-top:10px!important;
+}
+#rosterDetails > .minscore-guide{
+  margin-top:0!important;
+}
+
+@media(max-width:420px){
+  #raidEntryStandalone{margin-top:8px!important}
+  #raidEntryStandalone #raidOpenBtn{
+    min-height:42px!important;
+    padding-top:10px!important;
+    padding-bottom:10px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
