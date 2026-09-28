@@ -4329,12 +4329,14 @@ input,textarea,select,button{max-width:100%;}
 </style>
 
 <style id="dosalja-boss-popup-style">
-/* 2026-09-28 — boss popup summary added only; existing calculator/roster logic untouched. */
+/* 2026-09-28 compact 2x2 boss popup summary.
+   Existing calculator, roster, Firebase linkage, and sort logic are preserved. */
 #bossPopupCard{
   padding:0!important;
   overflow:hidden!important;
   background:#fff!important;
   border:3px solid var(--section-violet,#8b35f2)!important;
+  border-radius:18px!important;
   box-shadow:0 10px 24px rgba(108,27,209,.12)!important;
 }
 #bossPopupCard .boss-popup-head{
@@ -4342,104 +4344,124 @@ input,textarea,select,button{max-width:100%;}
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  min-height:50px;
-  padding:9px 14px;
-  border-bottom:1px solid #dfd3f3;
-  background:linear-gradient(180deg,#f8f2ff 0%,#f0e7ff 100%);
+  min-height:52px;
+  padding:8px 11px;
+  border-bottom:1px solid #ded1f2;
+  background:linear-gradient(180deg,#fbf8ff 0%,#f1e8fb 100%);
   text-decoration:none;
   color:#3d2468;
 }
 #bossPopupCard .boss-popup-head:active{background:#eadfff;}
 #bossPopupCard .boss-popup-title{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  min-width:0;
-  font-size:18px;
-  line-height:1.2;
-  font-weight:950;
-  letter-spacing:-.35px;
-  color:#3d2468;
+  display:flex;align-items:center;gap:8px;min-width:0;
+  font-size:17px;line-height:1.15;font-weight:950;
+  letter-spacing:-.35px;color:#3b2268;white-space:nowrap;
 }
 #bossPopupCard .boss-popup-clock{
-  width:24px;height:24px;flex:0 0 24px;
+  width:29px;height:29px;flex:0 0 29px;
   display:inline-flex;align-items:center;justify-content:center;
-  border:2px solid #7547b8;border-radius:50%;
-  color:#7547b8;font-size:13px;font-weight:950;
+  border:1px solid #d4c0ef;border-radius:10px;background:#fff;
+  color:#6840a3;box-shadow:0 2px 7px rgba(82,45,140,.08);
+}
+#bossPopupCard .boss-popup-clock svg{
+  width:17px;height:17px;display:block;stroke:currentColor;
 }
 #bossPopupCard .boss-popup-linkhint{
-  flex:0 0 auto;
-  display:flex;align-items:center;gap:5px;
-  color:#70558f;
-  font-size:10.5px;
-  font-weight:850;
-  white-space:nowrap;
+  flex:0 0 auto;display:flex;align-items:center;gap:4px;
+  min-height:29px;padding:5px 8px 5px 9px;
+  border:1px solid #d8c6ef;border-radius:999px;
+  background:rgba(255,255,255,.74);color:#66468d;
+  font-size:9.5px;font-weight:850;line-height:1;white-space:nowrap;
 }
-#bossPopupCard .boss-popup-linkhint .arr{font-size:16px;line-height:1;}
-#bossPopupRows{display:block;}
-#bossPopupCard .boss-popup-row{
+#bossPopupCard .boss-popup-linkhint .arr{font-size:14px;line-height:1;margin-top:-1px;}
+#bossPopupRows{
   display:grid;
-  grid-template-columns:46px minmax(0,1fr) auto;
-  align-items:center;
-  gap:10px;
-  min-height:54px;
-  padding:6px 14px;
-  border-bottom:1px solid #ece5f5;
+  grid-template-columns:1fr 1fr;
   background:#fff;
 }
-#bossPopupCard .boss-popup-row:last-child{border-bottom:0;}
+#bossPopupCard .boss-popup-row{
+  position:relative;
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  grid-template-rows:auto auto;
+  align-items:center;
+  column-gap:8px;
+  row-gap:1px;
+  min-height:78px;
+  padding:8px 10px 7px;
+  background:linear-gradient(180deg,#fff 0%,#fdfbff 100%);
+  border-bottom:1px solid #ece5f5;
+}
+#bossPopupCard .boss-popup-row:nth-child(odd){
+  border-right:1px solid #ece5f5;
+}
+#bossPopupCard .boss-popup-row:nth-last-child(-n+2){
+  border-bottom:0;
+}
 #bossPopupCard .boss-popup-img{
+  grid-row:1 / 3;
   width:42px;height:42px;
-  border-radius:10px;
-  object-fit:cover;
-  display:block;
-  border:1px solid #eadcf8;
+  border-radius:11px;
+  object-fit:cover;display:block;
+  border:1.5px solid #cdb7ea;
   background:#ffd86a;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.92),
+    0 2px 8px rgba(72,40,112,.12);
 }
 #bossPopupCard .boss-popup-name{
+  align-self:end;
   min-width:0;
-  color:#39235c;
-  font-size:15px;
+  color:#34204f;
+  font-size:13.5px;
+  line-height:1.08;
   font-weight:900;
   letter-spacing:-.2px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
+#bossPopupCard .boss-popup-name::after{display:none!important;}
 #bossPopupCard .boss-popup-time{
-  min-width:66px;
-  text-align:right;
-  color:#5a239f;
+  align-self:start;
+  min-width:0;
+  text-align:left;
+  color:#5923a0;
   font-size:20px;
-  line-height:1;
+  line-height:1.08;
   font-weight:950;
-  letter-spacing:-.25px;
+  letter-spacing:-.35px;
   font-variant-numeric:tabular-nums;
   white-space:nowrap;
 }
 #bossPopupCard .boss-popup-time.unregistered{
-  color:#8d829b;
-  font-size:14px;
-  letter-spacing:-.2px;
-}
-#bossPopupCard .boss-popup-status{
-  grid-column:2 / 4;
-  margin-top:-3px;
-  color:#968aa3;
-  font-size:9.5px;
-  font-weight:700;
+  color:#8e8498;
+  font-size:12.5px;
   line-height:1.2;
 }
+#bossPopupCard .boss-popup-status{display:none!important;}
+
 @media(max-width:420px){
-  #bossPopupCard .boss-popup-head{padding:8px 11px;min-height:48px;}
-  #bossPopupCard .boss-popup-title{font-size:17px;gap:7px;}
-  #bossPopupCard .boss-popup-linkhint{font-size:9.5px;}
+  #bossPopupCard .boss-popup-head{min-height:49px;padding:7px 8px;gap:6px;}
+  #bossPopupCard .boss-popup-title{font-size:15.5px;gap:7px;}
+  #bossPopupCard .boss-popup-clock{width:27px;height:27px;flex-basis:27px;border-radius:9px;}
+  #bossPopupCard .boss-popup-clock svg{width:16px;height:16px;}
+  #bossPopupCard .boss-popup-linkhint{font-size:8.6px;padding:5px 6px 5px 7px;gap:3px;}
   #bossPopupCard .boss-popup-row{
-    grid-template-columns:42px minmax(0,1fr) auto;
-    min-height:51px;
-    gap:9px;
-    padding:5px 11px;
+    grid-template-columns:39px minmax(0,1fr);
+    min-height:72px;
+    column-gap:7px;
+    padding:7px 8px 6px;
   }
-  #bossPopupCard .boss-popup-img{width:39px;height:39px;border-radius:9px;}
-  #bossPopupCard .boss-popup-name{font-size:14px;}
-  #bossPopupCard .boss-popup-time{font-size:19px;min-width:62px;}
+  #bossPopupCard .boss-popup-img{width:39px;height:39px;border-radius:10px;border-width:1.5px;}
+  #bossPopupCard .boss-popup-name{font-size:12.8px;}
+  #bossPopupCard .boss-popup-time{font-size:18.5px;}
+  #bossPopupCard .boss-popup-time.unregistered{font-size:12px;}
+}
+@media(max-width:350px){
+  #bossPopupCard .boss-popup-linkhint{font-size:0;padding:5px 7px;}
+  #bossPopupCard .boss-popup-linkhint::before{content:"보스 현황";font-size:8.6px;}
+  #bossPopupCard .boss-popup-linkhint .arr{font-size:13px;}
 }
 </style>
 
@@ -4543,7 +4565,15 @@ input,textarea,select,button{max-width:100%;}
   
   <section class="card" id="bossPopupCard" aria-label="보스 팝업 예상시간">
     <a class="boss-popup-head" href="https://seungbeomcat.github.io/cat-hero-boss/" aria-label="보스 현황 페이지로 이동">
-      <span class="boss-popup-title"><span class="boss-popup-clock">◷</span>보스 팝업 예상시간</span>
+      <span class="boss-popup-title">
+        <span class="boss-popup-clock" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.25"></circle>
+            <path d="M12 7.4v4.9l3.35 1.95"></path>
+          </svg>
+        </span>
+        보스 팝업 예상시간
+      </span>
       <span class="boss-popup-linkhint">보스 현황 페이지로 이동 <span class="arr">›</span></span>
     </a>
     <div id="bossPopupRows" aria-live="polite">
