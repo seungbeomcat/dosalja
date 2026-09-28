@@ -5722,10 +5722,49 @@ const bossAuth = getAuth(bossApp);
 const bossDb = getFirestore(bossApp);
 const rowsHost = document.getElementById("bossPopupRows");
 const lastUpdatedEl = document.getElementById("bossPopupLastUpdated");
+const BOSS_TIMERS_CACHE_KEY="catHeroBossTimersCacheV1";
 function bossPad(v){return String(v).padStart(2,"0");}
 function bossTimeText(ms){
   const d=new Date(ms);
   return `${bossPad(d.getHours())}:${bossPad(d.getMinutes())}`;
+}
+function bossTs(ms){
+  return Number.isFinite(ms)?{toMillis:()=>ms}:null;
+}
+function loadBossTimersCache(){
+  try{
+    const raw=localStorage.getItem(BOSS_TIMERS_CACHE_KEY);
+    if(!raw)return null;
+    const parsed=JSON.parse(raw);
+    if(!parsed||typeof parsed!=="object"||!parsed.state)return null;
+    const state={};
+    Object.entries(parsed.state).forEach(([id,x])=>{
+      state[id]={
+        spawnAt:bossTs(Number(x?.spawnAtMs)),
+        updatedAt:bossTs(Number(x?.updatedAtMs))
+      };
+    });
+    return state;
+  }catch(e){
+    console.warn("[boss popup] cache read failed",e);
+    return null;
+  }
+}
+function saveBossTimersCache(state){
+  try{
+    const plain={};
+    Object.entries(state).forEach(([id,x])=>{
+      const spawnAtMs=x?.spawnAt?.toMillis?.();
+      const updatedAtMs=x?.updatedAt?.toMillis?.();
+      plain[id]={
+        spawnAtMs:Number.isFinite(spawnAtMs)?spawnAtMs:null,
+        updatedAtMs:Number.isFinite(updatedAtMs)?updatedAtMs:null
+      };
+    });
+    localStorage.setItem(BOSS_TIMERS_CACHE_KEY,JSON.stringify({savedAt:Date.now(),state:plain}));
+  }catch(e){
+    console.warn("[boss popup] cache save failed",e);
+  }
 }
 function renderBossLastUpdated(state){
   if(!lastUpdatedEl)return;
@@ -5763,6 +5802,13 @@ function renderBossPopupRows(state){
     rowsHost.appendChild(x.row);
   });
 }
+function renderCachedBossPopupImmediately(){
+  const cached=loadBossTimersCache();
+  if(!cached)return false;
+  renderBossLastUpdated(cached);
+  renderBossPopupRows(cached);
+  return true;
+}
 async function connectBossPopup(){
   try{
     if(!bossAuth.currentUser) await signInAnonymously(bossAuth);
@@ -5771,6 +5817,7 @@ async function connectBossPopup(){
       snap.forEach(d=>state[d.id]=d.data());
       renderBossLastUpdated(state);
       renderBossPopupRows(state);
+      saveBossTimersCache(state);
     },err=>{
       console.error("[boss popup] Firestore snapshot error",err);
     });
@@ -5778,6 +5825,7 @@ async function connectBossPopup(){
     console.error("[boss popup] Firebase connection error",err);
   }
 }
+renderCachedBossPopupImmediately();
 connectBossPopup();
 </script>
 
