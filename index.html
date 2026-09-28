@@ -4646,7 +4646,7 @@ input,textarea,select,button{max-width:100%;}
 /* Four times: keep right alignment, but move the common right edge inward. */
 #bossPopupCard .boss-popup-time{
   text-align:right!important;
-  padding-right:16px!important;
+  padding-right:9px!important;
 }
 
 /* Roster title box: pastel lavender, not blue. */
@@ -4692,7 +4692,7 @@ input,textarea,select,button{max-width:100%;}
         </span>
         <span class="boss-popup-titlecopy">
           <span class="boss-popup-titletext">2구역 보스 팝업 예상시간</span>
-          <span id="bossPopupLastUpdated" class="boss-popup-lastupdated">Last updated : --월 --일 --시 --분</span>
+          <span id="bossPopupLastUpdated" class="boss-popup-lastupdated">Updated : --월 --일 --시 --분</span>
         </span>
       </span>
       <span class="boss-popup-linkhint">2구역 현황 페이지로 이동 <span class="arr">›</span></span>
@@ -5735,11 +5735,11 @@ function renderBossLastUpdated(state){
     if(Number.isFinite(ms) && (latest===null || ms>latest)) latest=ms;
   });
   if(latest===null){
-    lastUpdatedEl.textContent="Last updated : --월 --일 --시 --분";
+    lastUpdatedEl.textContent="Updated : --월 --일 --시 --분";
     return;
   }
   const d=new Date(latest);
-  lastUpdatedEl.textContent=`Last updated : ${d.getMonth()+1}월 ${d.getDate()}일 ${bossPad(d.getHours())}시 ${bossPad(d.getMinutes())}분`;
+  lastUpdatedEl.textContent=`Updated : ${d.getMonth()+1}월 ${d.getDate()}일 ${bossPad(d.getHours())}시 ${bossPad(d.getMinutes())}분`;
 }
 function renderBossPopupRows(state){
   if(!rowsHost)return;
