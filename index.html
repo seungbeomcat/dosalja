@@ -4313,6 +4313,20 @@ input,textarea,select,button{max-width:100%;}
 #rosterField table.rosterFieldCompact tbody td{font-size:10px!important;}
 </style>
 
+
+<style id="v152-roster-row-selection-20260928">
+/* UI-only: selected guild member row is outlined as one continuous blue rectangle. */
+#rosterUpper tbody tr.roster-selectable-row, #rosterField tbody tr.roster-selectable-row{cursor:pointer;}
+#rosterUpper tbody tr.roster-selectable-row.roster-row-selected td,
+#rosterField tbody tr.roster-selectable-row.roster-row-selected td{
+  border-top:3px solid #1677ff!important;
+  border-bottom:3px solid #1677ff!important;
+}
+#rosterUpper tbody tr.roster-selectable-row.roster-row-selected td:first-child,
+#rosterField tbody tr.roster-selectable-row.roster-row-selected td:first-child{border-left:3px solid #1677ff!important;}
+#rosterUpper tbody tr.roster-selectable-row.roster-row-selected td:last-child,
+#rosterField tbody tr.roster-selectable-row.roster-row-selected td:last-child{border-right:3px solid #1677ff!important;}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -4420,11 +4434,11 @@ input,textarea,select,button{max-width:100%;}
       </summary>
       <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
       <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
-        <button type="button" class="roster-tab active" data-roster-tab="upper">상층</button>
-        <button type="button" class="roster-tab" data-roster-tab="field">일반 | 균열 | 은하</button>
+        <button type="button" class="roster-tab active" data-roster-tab="field">일반 | 균열 | 은하</button>
+        <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
       </div>
-      <div id="rosterUpper" class="roster roster-panel active"></div>
-      <div id="rosterField" class="roster roster-panel"></div>
+      <div id="rosterUpper" class="roster roster-panel"></div>
+      <div id="rosterField" class="roster roster-panel active"></div>
     </details>
   </section>
 
@@ -4928,7 +4942,8 @@ function table(headers,rows,klass=""){
   const wrapClass = klass ? `table-wrap table-wrap-${klass}` : "table-wrap";
   const criticalIndex = (klass === "z1-main" || klass === "z2-main") ? 1 : -1;
   const headHtml = headers.map((h,i)=>`<th${i===criticalIndex?' class="critical-col"':''}>${h}</th>`).join("");
-  const bodyHtml = rows.map(r=>`<tr>${r.map((c,i)=>`<td${i===criticalIndex?' class="critical-col"':''}>${c}</td>`).join("")}</tr>`).join("");
+  const selectableRoster = (klass === "rosterUpperFlat" || klass === "rosterFieldCompact");
+  const bodyHtml = rows.map(r=>`<tr${selectableRoster?' class="roster-selectable-row" tabindex="0" role="button" aria-pressed="false"':''}>${r.map((c,i)=>`<td${i===criticalIndex?' class="critical-col"':''}>${c}</td>`).join("")}</tr>`).join("");
   return `<div class="${wrapClass}"><table class="${klass}"><thead><tr>${headHtml}</tr></thead><tbody>${bodyHtml}</tbody></table></div>`;
 }
 
@@ -5181,6 +5196,21 @@ document.querySelectorAll(".server-btn").forEach(btn=>btn.addEventListener("clic
 }));
 
 renderRoster();
+
+// UI-only row focus: one selected row at a time across both roster tables; tap again to clear.
+function toggleRosterRow(row){
+  const wasSelected=row.classList.contains("roster-row-selected");
+  document.querySelectorAll("#rosterUpper .roster-row-selected, #rosterField .roster-row-selected").forEach(r=>{
+    r.classList.remove("roster-row-selected");
+    r.setAttribute("aria-pressed","false");
+  });
+  if(!wasSelected){row.classList.add("roster-row-selected");row.setAttribute("aria-pressed","true");}
+}
+["rosterUpper","rosterField"].forEach(id=>{
+  const panel=document.getElementById(id);
+  panel.addEventListener("click",e=>{const row=e.target.closest("tr.roster-selectable-row");if(row&&panel.contains(row))toggleRosterRow(row);});
+  panel.addEventListener("keydown",e=>{const row=e.target.closest("tr.roster-selectable-row");if(row&&(e.key==="Enter"||e.key===" ")){e.preventDefault();toggleRosterRow(row);}});
+});
 
 document.querySelectorAll(".roster-tab").forEach(btn=>{
   btn.addEventListener("click",()=>{
