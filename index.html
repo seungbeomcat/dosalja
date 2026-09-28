@@ -4996,6 +4996,46 @@ input,textarea,select,button{max-width:100%;}
 }
 </style>
 
+
+<style id="v152-final-user-fixes">
+/* Final user-requested refinements */
+#rosterCard{padding-top:10px!important;}
+#rosterDetails > .minscore-guide{
+  order:99!important;
+  margin:10px 2px 0!important;
+}
+@media(max-width:520px){
+  #rosterDetails > .minscore-guide{margin:9px 1px 0!important;}
+}
+/* Change standalone raid-entry side icons from downward chevrons to fixed lightning with gentle pulse. */
+#raidOpenBtn .raid-flow{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:16px!important;
+  height:20px!important;
+  flex:0 0 16px!important;
+}
+#raidOpenBtn .raid-flow i{display:none!important;}
+#raidOpenBtn .raid-flow::before{
+  content:"⚡";
+  display:block!important;
+  font-size:17px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  color:#ffe27a!important;
+  text-shadow:0 0 0 rgba(255,226,122,0), 0 0 6px rgba(255,226,122,.38);
+  animation:raidBoltPulse 1.55s ease-in-out infinite!important;
+}
+#raidOpenBtn .raid-flow-left::before{animation-delay:0s!important;}
+#raidOpenBtn .raid-flow-right::before{animation-delay:.18s!important;}
+@keyframes raidBoltPulse{
+  0%,100%{opacity:.72;transform:scale(1);text-shadow:0 0 0 rgba(255,226,122,0), 0 0 4px rgba(255,226,122,.22);}
+  50%{opacity:1;transform:scale(1.06);text-shadow:0 0 0 rgba(255,226,122,0), 0 0 9px rgba(255,226,122,.55);}
+}
+@media(prefers-reduced-motion:reduce){#raidOpenBtn .raid-flow::before{animation:none!important;opacity:1!important;transform:none!important;}}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -5140,13 +5180,13 @@ input,textarea,select,button{max-width:100%;}
           
         </span>
       </summary>
-      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
       <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
         <button type="button" class="roster-tab active" data-roster-tab="field">일반 | 균열 | 은하</button>
         <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
       </div>
       <div id="rosterUpper" class="roster roster-panel"></div>
       <div id="rosterField" class="roster roster-panel active"></div>
+      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
     </details>
   </section>
 
@@ -5887,10 +5927,10 @@ function regionRaw(v){return pct(v,1).replace(/^\+/,"");}
 function renderRoster(){
   const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
   document.getElementById("rosterUpper").innerHTML=
-    `<div class="roster-note">1구역, 2구역, 3구역</div>`+
+    `<div class="roster-note">[격추] 상층 1구역, 2구역, 3구역</div>`+
     table(["닉네임","기본","최소 점수","1구역","2구역","3구역"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.z1r),regionRaw(m.z2r),regionRaw(m.z3r)]),"rosterUpperFlat");
   document.getElementById("rosterField").innerHTML=
-    `<div class="roster-note">늑대, 해적, 고양이, 음식, 은하</div>`+
+    `<div class="roster-note">[격추] 늑대, 해적, 고양이, 음식</div>`+
     table(["닉네임","기본","최소 점수","늑대","해적","고양이","음식","은하"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food),regionRaw(m.field.galaxy)]),"rosterFieldCompact");
 }
 
