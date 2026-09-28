@@ -4281,14 +4281,14 @@ input,textarea,select,button{max-width:100%;}
 /* 2026-09-28 visual-only refinement: typography follows the compact roster cells. */
 #rosterUpper table.rosterUpperFlat thead th,
 #rosterField table.rosterFieldCompact thead th{
-  font-size:11.5px!important;
+  font-size:9.2px!important;
   font-weight:850!important;
   letter-spacing:-.25px!important;
   line-height:1.2!important;
 }
 #rosterUpper table.rosterUpperFlat tbody td,
 #rosterField table.rosterFieldCompact tbody td{
-  font-size:12.5px!important;
+  font-size:10px!important;
   font-weight:780!important;
   letter-spacing:-.25px!important;
   line-height:1.22!important;
@@ -4302,6 +4302,15 @@ input,textarea,select,button{max-width:100%;}
   line-height:1!important;
   letter-spacing:-.15px!important;
 }
+</style>
+
+
+<style id="v154-roster-80pct-and-picker-order-final">
+/* 2026-09-28: roster table typography = 80% of prior compact typography. Layout dimensions unchanged. */
+#rosterUpper table.rosterUpperFlat thead th,
+#rosterField table.rosterFieldCompact thead th{font-size:9.2px!important;}
+#rosterUpper table.rosterUpperFlat tbody td,
+#rosterField table.rosterFieldCompact tbody td{font-size:10px!important;}
 </style>
 
 </head>
@@ -4486,7 +4495,7 @@ function pickerNamesFromInput(){
 }
 function renderMemberPicker(){
   const grid=document.getElementById("memberPickerGrid");
-  grid.innerHTML=Object.keys(MEMBERS).map(name=>`<button type="button" class="member-pick${memberPickerSelection.includes(name)?' selected':''}" data-member-pick="${name}">${name}</button>`).join('');
+  grid.innerHTML=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base).map(([name])=>`<button type="button" class="member-pick${memberPickerSelection.includes(name)?' selected':''}" data-member-pick="${name}">${name}</button>`).join('');
   grid.querySelectorAll('[data-member-pick]').forEach(btn=>btn.addEventListener('click',()=>{
     const n=btn.dataset.memberPick, i=memberPickerSelection.indexOf(n);
     if(i>=0)memberPickerSelection.splice(i,1); else memberPickerSelection.push(n);
