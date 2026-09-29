@@ -5036,6 +5036,24 @@ input,textarea,select,button{max-width:100%;}
 @media(prefers-reduced-motion:reduce){#raidOpenBtn .raid-flow::before{animation:none!important;opacity:1!important;transform:none!important;}}
 </style>
 
+
+<style id="v152-input-border-polish-final">
+/* 1) Server-kill selector group: clearer light-purple section border. */
+#calculatorCard .server-picker{
+  border:2px solid #cdb5f6!important;
+}
+
+/* 2) Mode "선택" box: exact same blue border color/thickness as nickname input. */
+#calculatorCard #modeSelectBtn{
+  border:3px solid #176ee8!important;
+}
+#calculatorCard #modeSelectBtn:focus-visible{
+  border-color:#1468f3!important;
+  box-shadow:0 0 0 3px rgba(23,110,232,.12)!important;
+  outline:none!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
