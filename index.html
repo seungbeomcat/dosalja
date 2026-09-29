@@ -5295,14 +5295,23 @@ html,body,button,input,textarea,select,option{
   width:100%!important;min-width:0!important;max-width:none!important;
   margin:2px 0 10px!important;
 }
-#z1Extra .z1-boss-options{margin:0 0 9px!important;}
-#z1Extra .z1-boss-options button{white-space:nowrap!important;}
+/* 과거 1구역 입력칸용 flex 규칙을 차단하고, 1구역 전용 UI는 세로 2단으로 고정한다. */
+#z1Extra.z1-plan-extra[hidden]{display:none!important;}
+#z1Extra.z1-plan-extra:not([hidden]){display:block!important;}
+#z1Extra .z1-boss-options{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  width:100%!important;gap:8px!important;margin:0 0 9px!important;
+}
+#z1Extra .z1-boss-options button{
+  width:100%!important;min-width:0!important;white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:clip!important;padding-left:2px!important;padding-right:2px!important;
+}
 #z1Extra .z1-boss-options button.selected{
   background:#e9e0f5!important;border-color:#7b56aa!important;color:#3e2365!important;
   box-shadow:inset 0 0 0 1px #7b56aa!important;
 }
 .z1-meta-grid{
-  display:grid;grid-template-columns:22% 27% 23% 28%;gap:6px;width:100%;
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1.2fr);gap:6px;width:100%;
 }
 .z1-meta-box{
   box-sizing:border-box;min-width:0;height:58px;padding:6px 6px 5px;
@@ -5369,7 +5378,9 @@ html,body,button,input,textarea,select,option{
 .z1-summary-box.diff-wait .z1-summary-value{font-size:14px;color:#6e5b7d;}
 
 @media(max-width:420px){
-  .z1-meta-grid{gap:5px!important;grid-template-columns:22% 27% 23% 28%!important;}
+  .z1-meta-grid{gap:5px!important;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1.2fr)!important;}
+  #z1Extra .z1-boss-options{gap:6px!important;}
+  #z1Extra .z1-boss-options button{font-size:12.8px!important;letter-spacing:-.35px!important;}
   .z1-meta-box{height:55px!important;padding:5px 4px 4px!important;}
   .z1-meta-label{font-size:9.8px!important;}
   #z1MaxHpOutput,#z1RemainingHpOutput{font-size:12.2px!important;}
