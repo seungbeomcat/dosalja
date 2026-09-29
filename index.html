@@ -5210,6 +5210,77 @@ input,textarea,select,button{max-width:100%;}
 </style>
 
 
+<style id="v152-20260929-boss-time-arrow-polish-final">
+/* 2026-09-29 UI-only polish: stronger sequential navigation cue + structurally aligned popup clocks. */
+#bossPopupCard .boss-popup-detail-flow{
+  width:22px!important;
+  height:20px!important;
+  flex-basis:22px!important;
+  gap:1px!important;
+  overflow:visible!important;
+}
+#bossPopupCard .boss-popup-detail-flow i{
+  width:7px!important;
+  height:7px!important;
+  margin-left:-1px!important;
+  border-right:2.4px solid #176ee8!important;
+  border-bottom:2.4px solid #176ee8!important;
+  transform:translateX(-2px) rotate(-45deg)!important;
+  opacity:.28;
+  filter:drop-shadow(0 0 0 rgba(23,110,232,0));
+  animation:bossDetailChevronFlowEnhanced 1.28s cubic-bezier(.4,0,.2,1) infinite!important;
+  will-change:transform,opacity,filter;
+}
+#bossPopupCard .boss-popup-detail-flow i:first-child{margin-left:0!important;animation-delay:0s!important;}
+#bossPopupCard .boss-popup-detail-flow i:nth-child(2){animation-delay:.16s!important;}
+@keyframes bossDetailChevronFlowEnhanced{
+  0%,18%,100%{opacity:.24;transform:translateX(-2px) rotate(-45deg);filter:drop-shadow(0 0 0 rgba(23,110,232,0));}
+  48%{opacity:1;transform:translateX(2.5px) rotate(-45deg);filter:drop-shadow(0 0 2.5px rgba(23,110,232,.48));}
+  70%{opacity:.48;transform:translateX(4px) rotate(-45deg);filter:drop-shadow(0 0 1px rgba(23,110,232,.18));}
+}
+@media(prefers-reduced-motion:reduce){
+  #bossPopupCard .boss-popup-detail-flow i{
+    animation:none!important;opacity:1!important;transform:rotate(-45deg)!important;filter:none!important;
+  }
+}
+
+/* Clock digits are separate fixed cells, so every value reads consistently as “09 : 43”. */
+#bossPopupCard .boss-popup-time:not(.unregistered){
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  font-variant-numeric:tabular-nums!important;
+  letter-spacing:0!important;
+}
+#bossPopupCard .boss-time-clock{
+  display:inline-grid!important;
+  grid-template-columns:2.05ch .72ch 2.05ch!important;
+  column-gap:.22ch!important;
+  align-items:baseline!important;
+  justify-content:center!important;
+  font:inherit!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+#bossPopupCard .boss-time-hour,
+#bossPopupCard .boss-time-minute{
+  width:2.05ch!important;
+  text-align:center!important;
+  font:inherit!important;
+  font-variant-numeric:tabular-nums!important;
+}
+#bossPopupCard .boss-time-separator{
+  width:.72ch!important;
+  text-align:center!important;
+  font:inherit!important;
+  opacity:.95;
+}
+@media(max-width:390px){
+  #bossPopupCard .boss-popup-detail-flow{width:20px!important;height:18px!important;flex-basis:20px!important;}
+  #bossPopupCard .boss-popup-detail-flow i{width:6px!important;height:6px!important;border-width:2.2px!important;}
+}
+</style>
+
 <style id="cross-platform-font-lock">
 /* Cross-platform text lock: same Pretendard Variable webfont on iOS, Android, Windows and macOS. */
 html,body,button,input,textarea,select,option{
@@ -6281,7 +6352,24 @@ const BOSS_TIMERS_CACHE_KEY="catHeroBossTimersCacheV1";
 function bossPad(v){return String(v).padStart(2,"0");}
 function bossTimeText(ms){
   const d=new Date(ms);
-  return `${bossPad(d.getHours())}:${bossPad(d.getMinutes())}`;
+  return {hour:bossPad(d.getHours()),minute:bossPad(d.getMinutes())};
+}
+function renderBossPopupTime(el,ms){
+  const t=bossTimeText(ms);
+  el.replaceChildren();
+  const clock=document.createElement("span");
+  clock.className="boss-time-clock";
+  const hour=document.createElement("span");
+  hour.className="boss-time-hour";
+  hour.textContent=t.hour;
+  const sep=document.createElement("span");
+  sep.className="boss-time-separator";
+  sep.textContent=":";
+  const minute=document.createElement("span");
+  minute.className="boss-time-minute";
+  minute.textContent=t.minute;
+  clock.append(hour,sep,minute);
+  el.appendChild(clock);
 }
 function bossTs(ms){
   return Number.isFinite(ms)?{toMillis:()=>ms}:null;
@@ -6348,9 +6436,10 @@ function renderBossPopupRows(state){
   rows.forEach(x=>{
     const timeEl=x.row.querySelector(".boss-popup-time");
     if(x.ms!==null){
-      timeEl.textContent=bossTimeText(x.ms);
       timeEl.classList.remove("unregistered");
+      renderBossPopupTime(timeEl,x.ms);
     }else{
+      timeEl.replaceChildren();
       timeEl.textContent="미등록";
       timeEl.classList.add("unregistered");
     }
