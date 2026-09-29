@@ -5290,7 +5290,7 @@ html,body,button,input,textarea,select,option{
 
 
 <style id="v152-z1-plan-ui">
-/* 1구역 전용 계획 UI. 2구역/초대형/격추확인 레이아웃에는 영향 없음. */
+/* 1구역 전용 계획 UI. 2구역/초대형/격추확인에는 영향 없음. */
 #z1Extra.z1-plan-extra{
   width:100%!important;min-width:0!important;max-width:none!important;
   margin:2px 0 10px!important;overflow:visible!important;
@@ -5305,81 +5305,102 @@ html,body,button,input,textarea,select,option{
   width:100%!important;min-width:0!important;white-space:nowrap!important;
   overflow:hidden!important;text-overflow:clip!important;padding-left:2px!important;padding-right:2px!important;
 }
-/* 2구역 보스 선택 상태와 완전히 동일한 warm-gold 계열. */
+/* 2구역 보스 선택과 동일한 선택 색상. */
 #z1Extra .z1-boss-options button.selected{
   background:#f8e8b9!important;border-color:#c99732!important;color:#60400f!important;
   box-shadow:inset 0 0 0 1px rgba(178,126,31,.30),0 2px 7px rgba(156,111,28,.10)!important;
 }
 
-/* 레벨 + 남은체력 입력은 큰 2칸, 우측은 전체/남은 체력을 2단으로 쌓는다. */
+/* 레벨/남은체력은 동일 크기, 우측 전체/남은체력은 2단 압축. */
 .z1-meta-layout{
-  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,28fr) minmax(0,48fr);
+  display:grid;grid-template-columns:minmax(0,29fr) minmax(0,29fr) minmax(0,42fr);
   gap:7px;width:100%;align-items:stretch;overflow:visible;
 }
 .z1-meta-tall{
-  box-sizing:border-box;min-width:0;height:76px;padding:8px 6px 7px;
+  box-sizing:border-box;min-width:0;height:82px;padding:8px 7px 7px;
   border:1px solid #d7c6ef;border-radius:12px;background:#faf8fd;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   color:#4c3570;font-weight:850;text-align:center;overflow:visible;
 }
 .z1-meta-label{
-  display:block;width:100%;font-size:10.5px;line-height:1;white-space:nowrap;
-  color:#67527f;font-weight:850;
+  display:block;width:100%;font-size:12.5px;line-height:1;white-space:nowrap;
+  color:#67527f;font-weight:900;
 }
 .z1-level-box{position:relative;z-index:12;}
 .z1-level-picker{position:relative;width:100%;display:flex;justify-content:center;overflow:visible;}
+.z1-level-entry,.z1-percent-entry{
+  display:flex;align-items:center;justify-content:center;gap:6px;width:100%;
+  color:#4c3570;font-weight:950;
+}
 #z1LevelBtn{
-  box-sizing:border-box;width:72px;height:32px;min-height:32px;padding:0 8px;
-  border:1.5px solid #c8b7e0;border-radius:8px;background:#fff;color:#3d2464;
+  box-sizing:border-box;width:82px;height:36px;min-height:36px;padding:0 9px;
+  border:1.5px solid #c8b7e0;border-radius:9px;background:#fff;color:#3d2464;
   display:flex;align-items:center;justify-content:center;gap:5px;
-  font-size:14px!important;font-weight:900!important;line-height:1!important;box-shadow:none!important;
+  font-size:17px!important;font-weight:950!important;line-height:1!important;box-shadow:none!important;
 }
 #z1LevelBtn:not(:disabled):focus-visible{outline:2px solid #176ee8;outline-offset:1px;}
-#z1LevelBtn:disabled{
-  color:#9f95ad;background:#f2eff6;border-color:#ddd5e8;cursor:not-allowed;opacity:.82;
-}
+#z1LevelBtn:disabled{color:#9f95ad;background:#f2eff6;border-color:#ddd5e8;cursor:not-allowed;opacity:.82;}
+.z1-level-unit,.z1-percent-suffix{font-size:16px;line-height:1;font-weight:950;color:#4c3570;white-space:nowrap;}
 .z1-level-chevron{font-size:12px;line-height:1;transform:translateY(-1px);}
 .z1-level-menu{
-  position:absolute;left:50%;top:36px;transform:translateX(-50%);z-index:120;
-  width:76px;max-height:222px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  position:absolute;left:50%;top:40px;transform:translateX(-50%);z-index:120;
+  width:74px;max-height:220px;overflow-y:auto;-webkit-overflow-scrolling:touch;
   box-sizing:border-box;padding:4px;background:#fff;border:1px solid #d4c4e8;border-radius:10px;
   box-shadow:0 10px 24px rgba(63,38,98,.20);
 }
 .z1-level-menu[hidden]{display:none!important;}
 .z1-level-menu button{
   display:flex;width:100%;height:31px;min-height:31px;padding:0;align-items:center;justify-content:center;
-  border:0;border-radius:6px;background:#fff;color:#3d2464;font-size:13px!important;font-weight:850!important;
+  border:0;border-radius:6px;background:#fff;color:#3d2464;font-size:15px!important;font-weight:900!important;
 }
 .z1-level-menu button+button{margin-top:1px;}
 .z1-level-menu button:hover,.z1-level-menu button:focus-visible{background:#f3eef9;outline:none;}
 .z1-level-menu button[aria-selected="true"]{background:#eee5f7;color:#3c1d69;font-weight:950!important;}
-.z1-percent-entry{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;font-size:13px;color:#4c3570;font-weight:900;}
 #z1RemainingPctInput{
-  box-sizing:border-box;width:min(78px,calc(100% - 20px));height:32px;min-height:32px;padding:0 5px;
-  border:1.5px solid #9bcfff;border-radius:8px;background:#fff;color:#3d2464;
-  font-size:15px!important;font-weight:900;text-align:center;outline:none;
+  box-sizing:border-box;width:min(86px,calc(100% - 26px));height:36px;min-height:36px;padding:0 6px;
+  border:1.5px solid #9bcfff;border-radius:9px;background:#fff;color:#3d2464;
+  font-size:17px!important;font-weight:950;text-align:center;outline:none;
 }
 #z1RemainingPctInput:focus{border-color:#176ee8;box-shadow:0 0 0 2px rgba(23,110,232,.10);}
 #z1RemainingPctInput.is-invalid{border-color:#d64343!important;background:#fff5f5!important;}
-.z1-meta-stack{display:grid;grid-template-rows:1fr 1fr;gap:6px;min-width:0;height:76px;}
+.z1-meta-stack{display:grid;grid-template-rows:1fr 1fr;gap:6px;min-width:0;height:82px;}
 .z1-meta-row{
-  box-sizing:border-box;min-width:0;height:35px;padding:0 9px;
+  box-sizing:border-box;min-width:0;height:38px;padding:0 7px;
   border:1px solid #d7c6ef;border-radius:10px;background:#faf8fd;
-  display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px;
+  display:grid;grid-template-columns:56px auto;justify-content:center;align-items:center;gap:8px;
   color:#4c3570;text-align:left;
 }
-.z1-meta-row-label{font-size:10.3px;line-height:1;color:#67527f;font-weight:850;white-space:nowrap;}
+.z1-meta-row-label{font-size:11.6px;line-height:1;color:#67527f;font-weight:900;white-space:nowrap;text-align:right;}
 #z1MaxHpOutput,#z1RemainingHpOutput{
-  display:block;min-width:0;font-size:13px;line-height:1;color:#3d2464;font-weight:950;
-  white-space:nowrap;overflow:hidden;text-overflow:clip;text-align:right;font-variant-numeric:tabular-nums;
+  display:block;min-width:0;font-size:14.5px;line-height:1;color:#3d2464;font-weight:950;
+  white-space:nowrap;text-align:left;font-variant-numeric:tabular-nums;
 }
 #z1RemainingHpOutput{color:#8a4b12;}
 
-/* 1구역 결과표: 고정 5열만 사용. */
+/* 레벨/체력 정보 바로 아래 1:1 분배 방식 선택. */
+.z1-distribution-picker{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin:10px 0 0;
+}
+.z1-distribution-btn{
+  box-sizing:border-box;width:100%;height:40px;min-height:40px;padding:0 6px;
+  border:1.5px solid #cbb9e4;border-radius:11px;background:#fff;color:#4a2b72;
+  font-size:14px!important;font-weight:900!important;letter-spacing:-.25px;white-space:nowrap;
+}
+.z1-distribution-btn:disabled{opacity:.48;cursor:not-allowed;background:#f5f2f8;color:#9489a3;}
+.z1-distribution-btn.selected{
+  background:linear-gradient(180deg,#7a45c8,#6130ad)!important;border-color:#5b2aa5!important;color:#fff!important;
+  box-shadow:0 4px 10px rgba(89,43,157,.18)!important;
+}
+
+/* 1구역 결과표. */
 #result.z1-result-active .headline{
-  font-size:12px!important;line-height:1.25!important;letter-spacing:-.45px!important;
-  white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;margin-bottom:9px!important;
-  font-variant-numeric:tabular-nums;
+  font-size:16px!important;line-height:1.2!important;letter-spacing:-.45px!important;
+  white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;margin-bottom:9px!important;
+  font-variant-numeric:tabular-nums;font-weight:950!important;
+}
+#shareHeadline.z1-share-headline{
+  white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;
+  line-height:1.2!important;font-weight:950!important;letter-spacing:-.45px!important;
 }
 .table-wrap-z1-plan-main{overflow:hidden!important;border-radius:14px!important;}
 .z1-plan-main{table-layout:fixed!important;width:100%!important;}
@@ -5390,9 +5411,7 @@ html,body,button,input,textarea,select,option{
 .z1-plan-main th:nth-child(4),.z1-plan-main td:nth-child(4){width:23%!important;}
 .z1-plan-main th:nth-child(5),.z1-plan-main td:nth-child(5){width:18%!important;}
 .z1-plan-main th{line-height:1.15!important;}
-.z1-plan-main .critical-col{
-  box-sizing:border-box!important;border-left:3px solid #1769d2!important;border-right:3px solid #1769d2!important;
-}
+.z1-plan-main .critical-col{box-sizing:border-box!important;border-left:3px solid #1769d2!important;border-right:3px solid #1769d2!important;}
 .z1-plan-main thead .critical-col{border-top:3px solid #1769d2!important;}
 .z1-plan-main tbody tr:last-child .critical-col{border-bottom:3px solid #1769d2!important;}
 .z1-plan-main tbody .critical-col{color:#d71920!important;font-weight:950!important;}
@@ -5404,8 +5423,8 @@ html,body,button,input,textarea,select,option{
 }
 .z1-assign-input:focus{border-color:#176ee8;box-shadow:0 0 0 2px rgba(23,110,232,.12);}
 .z1-assign-input.is-invalid{border-color:#d64343!important;background:#fff5f5!important;}
-.z1-pct-suffix{font-size:11px;font-weight:900;color:#4c3570;}
-.z1-share-pct{font-weight:950;color:#3d2464;}
+.z1-pct-suffix{font-size:12px;font-weight:900;color:#4c3570;}
+.z1-equal-pct,.z1-share-pct{font-weight:950;color:#3d2464;}
 .z1-plan-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px;}
 .z1-summary-box{
   box-sizing:border-box;min-width:0;min-height:68px;padding:8px 5px;border:1px solid #d6c4ef;border-radius:12px;
@@ -5421,23 +5440,28 @@ html,body,button,input,textarea,select,option{
 .z1-summary-box.diff-over{background:#fff1f1;border-color:#e4aaaa;}
 .z1-summary-box.diff-over .z1-summary-value{color:#b32727;}
 .z1-summary-box.diff-wait .z1-summary-value{font-size:14px;color:#6e5b7d;}
+
 @media(max-width:420px){
-  .z1-meta-layout{grid-template-columns:minmax(0,23fr) minmax(0,27fr) minmax(0,50fr);gap:5px!important;}
+  .z1-meta-layout{grid-template-columns:minmax(0,29fr) minmax(0,29fr) minmax(0,42fr);gap:5px!important;}
   #z1Extra .z1-boss-options{gap:6px!important;}
   #z1Extra .z1-boss-options button{font-size:12.8px!important;letter-spacing:-.35px!important;}
-  .z1-meta-tall,.z1-meta-stack{height:72px!important;}
-  .z1-meta-tall{padding:7px 4px 6px!important;gap:6px!important;}
+  .z1-meta-tall,.z1-meta-stack{height:80px!important;}
+  .z1-meta-tall{padding:7px 4px 6px!important;gap:7px!important;}
   .z1-meta-stack{gap:5px!important;}
-  .z1-meta-row{height:33.5px!important;padding:0 6px!important;gap:5px!important;}
-  .z1-meta-label,.z1-meta-row-label{font-size:9.5px!important;}
-  #z1LevelBtn{width:64px!important;height:30px!important;min-height:30px!important;font-size:13px!important;}
-  .z1-level-menu{width:68px!important;top:34px!important;max-height:210px!important;}
-  .z1-level-menu button{height:29px!important;min-height:29px!important;font-size:12.5px!important;}
-  #z1RemainingPctInput{width:min(70px,calc(100% - 18px))!important;height:30px!important;min-height:30px!important;font-size:14px!important;}
-  #z1MaxHpOutput,#z1RemainingHpOutput{font-size:11.8px!important;}
-  #result.z1-result-active .headline{font-size:10.8px!important;letter-spacing:-.55px!important;}
+  .z1-meta-row{height:37.5px!important;padding:0 4px!important;grid-template-columns:50px auto!important;gap:6px!important;}
+  .z1-meta-label{font-size:12.6px!important;}
+  .z1-meta-row-label{font-size:11.3px!important;}
+  #z1LevelBtn{width:78px!important;height:34px!important;min-height:34px!important;font-size:17px!important;}
+  .z1-level-unit,.z1-percent-suffix{font-size:16px!important;}
+  .z1-level-menu{width:70px!important;top:38px!important;max-height:210px!important;}
+  .z1-level-menu button{height:29px!important;min-height:29px!important;font-size:14px!important;}
+  #z1RemainingPctInput{width:min(78px,calc(100% - 24px))!important;height:34px!important;min-height:34px!important;font-size:17px!important;}
+  #z1MaxHpOutput,#z1RemainingHpOutput{font-size:12.6px!important;}
+  .z1-distribution-picker{gap:6px!important;margin-top:8px!important;}
+  .z1-distribution-btn{height:38px!important;min-height:38px!important;font-size:12.7px!important;padding:0 3px!important;}
+  #result.z1-result-active .headline{font-size:15px!important;letter-spacing:-.65px!important;}
   .z1-plan-main th,.z1-plan-main td{padding-left:2px!important;padding-right:2px!important;font-size:10.7px!important;}
-  .z1-assign-input{width:48px!important;height:29px!important;min-height:29px!important;font-size:16px!important;padding:0 2px!important;}
+  .z1-assign-input{width:48px!important;height:30px!important;min-height:30px!important;font-size:16px!important;padding:0 2px!important;}
   .z1-summary-box{min-height:64px!important;padding:7px 3px!important;}
   .z1-summary-label{font-size:9.8px!important;}
   .z1-summary-value{font-size:15px!important;}
@@ -5534,19 +5558,23 @@ html,body,button,input,textarea,select,option{
           <div class="z1-meta-tall z1-level-box">
             <span class="z1-meta-label">레벨</span>
             <div class="z1-level-picker">
-              <button id="z1LevelBtn" type="button" aria-haspopup="listbox" aria-expanded="false" disabled><span id="z1LevelBtnText">선택</span><span class="z1-level-chevron" aria-hidden="true">⌄</span></button>
+              <span class="z1-level-entry"><button id="z1LevelBtn" type="button" aria-haspopup="listbox" aria-expanded="false" disabled><span id="z1LevelBtnText">선택</span><span id="z1LevelUnit" class="z1-level-unit" hidden>Lv</span><span class="z1-level-chevron" aria-hidden="true">⌄</span></button></span>
               <div id="z1LevelMenu" class="z1-level-menu" role="listbox" hidden></div>
               <input id="z1LevelSelect" type="hidden" value="">
             </div>
           </div>
           <label class="z1-meta-tall z1-remaining-input-box">
             <span class="z1-meta-label">남은체력</span>
-            <span class="z1-percent-entry"><input id="z1RemainingPctInput" type="text" inputmode="decimal" pattern="[0-9.]*" autocomplete="off" aria-label="남은 체력 비율"><span>%</span></span>
+            <span class="z1-percent-entry"><input id="z1RemainingPctInput" type="text" inputmode="decimal" pattern="[0-9.]*" autocomplete="off" aria-label="남은 체력 비율"><span class="z1-percent-suffix">%</span></span>
           </label>
           <div class="z1-meta-stack">
             <div class="z1-meta-row"><span class="z1-meta-row-label">전체체력</span><output id="z1MaxHpOutput">—</output></div>
             <div class="z1-meta-row"><span class="z1-meta-row-label">남은체력</span><output id="z1RemainingHpOutput">—</output></div>
           </div>
+        </div>
+        <div class="z1-distribution-picker" role="group" aria-label="1구역 분배 방식 선택">
+          <button id="z1EqualTimeBtn" class="z1-distribution-btn" type="button" data-z1-distribution="equal" disabled>균등시간 분배</button>
+          <button id="z1DirectAssignBtn" class="z1-distribution-btn" type="button" data-z1-distribution="direct" disabled>직접 할당 분배</button>
         </div>
       </div>
       <div id="z2Extra" class="mode-extra four-options" hidden>
@@ -6655,11 +6683,12 @@ connectBossPopup();
 
 
 <script id="v152-z1-plan-engine">
-/* 1구역 전용 계획 계산: 기존 격추 데이터와 DPS 상수/공식을 그대로 사용한다. */
+/* 1구역 전용 계획 계산. 기존 길드원 격추/DPS 상수와 계산식을 그대로 사용한다. */
 const Z1_GHOST_BOSSES=["유령 크랩","유령 꿀벌","유령 토끼","유령 격전쥐"];
 let selectedZ1Boss=null;
 let selectedZ1Level=null;
 let z1Assignments={};
+let z1DistributionMode=null; // equal | direct
 let currentZ1PlanActive=false;
 
 function z1GhostMaxHp(level){
@@ -6667,9 +6696,9 @@ function z1GhostMaxHp(level){
   if(!Number.isInteger(lv)||lv<20||lv>40)return null;
   return 8000000+(lv-20)*100000;
 }
-function z1FmtPct(n){
+function z1FmtPct(n,d=3){
   if(n===null||n===undefined||!Number.isFinite(Number(n)))return "—";
-  return Number(n).toFixed(3).replace(/0+$/,'').replace(/\.$/,'')+"%";
+  return Number(n).toFixed(d).replace(/0+$/,'').replace(/\.$/,'')+"%";
 }
 function z1ReadNames(){
   const raw=document.getElementById("input").value.trim();
@@ -6699,9 +6728,22 @@ function buildZ1PlanConfig(){
   const remainingPct=z1ReadRemainingPct();
   const remainingHp=remainingPct===null?null:Math.round(maxHp*remainingPct/100);
   const names=z1ReadNames();
-  return {boss:selectedZ1Boss,level:lv,maxHp,remainingPct,remainingHp,names};
+  if(!z1DistributionMode)throw new Error("1구역 분배 방식을 선택해주세요.");
+  if(z1DistributionMode==="equal" && remainingPct===null)throw new Error("균등시간 분배는 남은체력 %를 입력해주세요.");
+  return {boss:selectedZ1Boss,level:lv,maxHp,remainingPct,remainingHp,names,distributionMode:z1DistributionMode};
 }
 function calcZ1Plan(cfg){
+  if(cfg.distributionMode==="equal"){
+    const base=cfg.names.map(name=>{const G=z1Total(name);return {name,G,P:100+G,M:minScore(name)}});
+    const alloc=allocateHpExact(cfg.remainingHp,base);
+    const commonSecRaw=cfg.remainingHp/(WAVES_PER_SEC*SCORE_PER_WAVE*(alloc.S/100));
+    const commonSec=safeSecRange(commonSecRaw).center;
+    let items=base.map((x,i)=>({
+      name:x.name,G:x.G,assignedPct:alloc.out[i]/cfg.maxHp*100,assignedHp:alloc.out[i],secRaw:commonSecRaw,sec:commonSec
+    }));
+    items=sortDisplay(items);
+    return {kind:"z1plan",distributionMode:"equal",parsed:cfg,items,sumPct:cfg.remainingPct,sumHp:cfg.remainingHp,diffPct:0,diffHp:0,commonSec};
+  }
   let items=cfg.names.map(name=>{
     const G=z1Total(name);
     const assignedPct=Object.prototype.hasOwnProperty.call(z1Assignments,name)?z1Assignments[name]:null;
@@ -6715,7 +6757,7 @@ function calcZ1Plan(cfg){
   const sumHp=items.reduce((a,x)=>a+(x.assignedHp===null?0:x.assignedHp),0);
   const diffPct=cfg.remainingPct===null?null:(sumPct-cfg.remainingPct);
   const diffHp=cfg.remainingHp===null?null:(sumHp-cfg.remainingHp);
-  return {kind:"z1plan",parsed:cfg,items,sumPct,sumHp,diffPct,diffHp};
+  return {kind:"z1plan",distributionMode:"direct",parsed:cfg,items,sumPct,sumHp,diffPct,diffHp};
 }
 function validateZ1Plan(r){
   const problems=[];
@@ -6726,23 +6768,38 @@ function validateZ1Plan(r){
     const eh=Math.round(expectedMax*r.parsed.remainingPct/100);
     if(r.parsed.remainingHp!==eh)problems.push("1구역 남은 체력 오류");
   }
-  for(const x of r.items){
-    const G=z1Total(x.name);
-    if(Math.abs(x.G-G)>1e-9)problems.push(`${x.name} 1구역 종합격추 오류`);
-    if(x.assignedPct!==null){
-      const hp=Math.round(expectedMax*x.assignedPct/100);
-      if(x.assignedHp!==hp)problems.push(`${x.name} 담당 체력 오류`);
-      const sec=safeSecRange(hp/sustainedDpsFromG(G)).center;
-      if(x.sec!==sec)problems.push(`${x.name} 예상시간 오류`);
+  if(r.distributionMode==="equal"){
+    if(r.parsed.remainingHp===null)problems.push("균등시간 남은체력 누락");
+    const original=r.parsed.names.map(name=>{const G=z1Total(name);return {name,G,P:100+G,M:minScore(name)}});
+    const alloc=allocateHpExact(r.parsed.remainingHp,original);
+    const hpByName={};original.forEach((x,i)=>hpByName[x.name]=alloc.out[i]);
+    const expectedSec=safeSecRange(r.parsed.remainingHp/(WAVES_PER_SEC*SCORE_PER_WAVE*(alloc.S/100))).center;
+    if(r.sumHp!==r.parsed.remainingHp||r.diffHp!==0||Math.abs(r.diffPct)>1e-9)problems.push("균등시간 합계/차이 오류");
+    for(const x of r.items){
+      if(Math.abs(x.G-z1Total(x.name))>1e-9)problems.push(`${x.name} 1구역 종합격추 오류`);
+      if(x.assignedHp!==hpByName[x.name])problems.push(`${x.name} 균등시간 담당 체력 오류`);
+      if(Math.abs(x.assignedPct-(x.assignedHp/expectedMax*100))>1e-9)problems.push(`${x.name} 균등시간 담당 비율 오류`);
+      if(x.sec!==expectedSec)problems.push(`${x.name} 균등시간 예상시간 오류`);
     }
-  }
-  const sumPct=r.items.reduce((a,x)=>a+(x.assignedPct===null?0:x.assignedPct),0);
-  const sumHp=r.items.reduce((a,x)=>a+(x.assignedHp===null?0:x.assignedHp),0);
-  if(Math.abs(sumPct-r.sumPct)>1e-9)problems.push("담당 비율 합계 오류");
-  if(sumHp!==r.sumHp)problems.push("담당 체력 합계 오류");
-  if(r.parsed.remainingPct!==null){
-    if(Math.abs((sumPct-r.parsed.remainingPct)-r.diffPct)>1e-9)problems.push("담당 비율 차이 오류");
-    if((sumHp-r.parsed.remainingHp)!==r.diffHp)problems.push("담당 체력 차이 오류");
+  }else{
+    for(const x of r.items){
+      const G=z1Total(x.name);
+      if(Math.abs(x.G-G)>1e-9)problems.push(`${x.name} 1구역 종합격추 오류`);
+      if(x.assignedPct!==null){
+        const hp=Math.round(expectedMax*x.assignedPct/100);
+        if(x.assignedHp!==hp)problems.push(`${x.name} 담당 체력 오류`);
+        const sec=safeSecRange(hp/sustainedDpsFromG(G)).center;
+        if(x.sec!==sec)problems.push(`${x.name} 예상시간 오류`);
+      }
+    }
+    const sumPct=r.items.reduce((a,x)=>a+(x.assignedPct===null?0:x.assignedPct),0);
+    const sumHp=r.items.reduce((a,x)=>a+(x.assignedHp===null?0:x.assignedHp),0);
+    if(Math.abs(sumPct-r.sumPct)>1e-9)problems.push("담당 비율 합계 오류");
+    if(sumHp!==r.sumHp)problems.push("담당 체력 합계 오류");
+    if(r.parsed.remainingPct!==null){
+      if(Math.abs((sumPct-r.parsed.remainingPct)-r.diffPct)>1e-9)problems.push("담당 비율 차이 오류");
+      if((sumHp-r.parsed.remainingHp)!==r.diffHp)problems.push("담당 체력 차이 오류");
+    }
   }
   return {pass:problems.length===0,problems};
 }
@@ -6768,62 +6825,66 @@ function z1SummaryMarkup(r){
 }
 function z1PlanTableMarkup(r){
   const rows=r.items.map(x=>{
-    const raw=x.assignedPct===null?"":String(x.assignedPct);
     const hp=x.assignedHp===null?"—":fmtInt(x.assignedHp);
     const sec=x.sec===null?"—":`약 ${x.sec}초`;
-    return `<tr data-z1-row="${x.name}">
-      <td>${x.name}</td>
-      <td>${pct(x.G,1)}</td>
-      <td><div class="z1-pct-editor"><input class="z1-assign-input" type="text" inputmode="decimal" pattern="[0-9.]*" autocomplete="off" value="${raw}" data-z1-pct="${x.name}" aria-label="${x.name} 담당비율"><span class="z1-pct-suffix">%</span></div></td>
-      <td class="critical-col" data-z1-hp="${x.name}">${hp}</td>
-      <td data-z1-sec="${x.name}">${sec}</td>
-    </tr>`;
+    let pctCell;
+    if(r.distributionMode==="equal"){
+      pctCell=`<span class="z1-equal-pct">${z1FmtPct(x.assignedPct,2)}</span>`;
+    }else{
+      const raw=x.assignedPct===null?"":String(x.assignedPct);
+      pctCell=`<div class="z1-pct-editor"><input class="z1-assign-input" type="text" inputmode="decimal" pattern="[0-9.]*" autocomplete="off" value="${raw}" data-z1-pct="${x.name}" aria-label="${x.name} 담당비율"><span class="z1-pct-suffix">%</span></div>`;
+    }
+    return `<tr data-z1-row="${x.name}"><td>${x.name}</td><td>${pct(x.G,1)}</td><td>${pctCell}</td><td class="critical-col" data-z1-hp="${x.name}">${hp}</td><td data-z1-sec="${x.name}">${sec}</td></tr>`;
   }).join("");
   return `<div class="table-wrap table-wrap-z1-plan-main"><table class="z1-plan-main"><thead><tr><th>닉네임</th><th>1구역<br>종합격추</th><th>담당비율</th><th class="critical-col">담당체력</th><th>예상시간</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function z1HeadlineText(cfg){
-  if(cfg.remainingPct===null)return `Lv.${cfg.level} ${cfg.boss} · 남은 체력 미입력`;
-  return `Lv.${cfg.level} ${cfg.boss} · 남은 체력 ${z1FmtPct(cfg.remainingPct)} · ${fmtInt(cfg.remainingHp)}`;
+  if(cfg.remainingPct===null)return `Lv.${cfg.level} ${cfg.boss} | 남은체력 : 미입력`;
+  return `Lv.${cfg.level} ${cfg.boss} | 남은체력 : ${fmtInt(cfg.remainingHp)} (${z1FmtPct(cfg.remainingPct)})`;
+}
+function fitZ1HeadlineElement(el,maxPx=16,minPx=11){
+  if(!el)return;
+  el.style.fontSize=maxPx+"px";
+  let size=maxPx,guard=0;
+  while(el.scrollWidth>el.clientWidth && size>minPx && guard<20){size-=.5;el.style.fontSize=size+"px";guard++;}
+}
+function z1NoteMarkup(){
+  return `<div class="note"><strong>선택된 서버격추는 ${pct(selectedServer,0)}</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
 }
 function renderZ1Plan(r){
   currentZ1PlanActive=true;
   const result=document.getElementById("result");
   result.classList.add("z1-result-active");
-  document.getElementById("headline").textContent=z1HeadlineText(r.parsed);
+  const headline=document.getElementById("headline");
+  headline.textContent=z1HeadlineText(r.parsed);
   document.getElementById("mainTable").innerHTML=z1PlanTableMarkup(r)+z1SummaryMarkup(r);
-  document.getElementById("note").innerHTML=`<div class="note"><strong>종합격추 = 기본 + 서버 + 지역</strong></div>`;
+  document.getElementById("note").innerHTML=z1NoteMarkup();
   document.getElementById("detail").innerHTML="";
   result.classList.add("show");
   document.getElementById("shareOpenBtn").classList.add("show");
+  requestAnimationFrame(()=>fitZ1HeadlineElement(headline,16,11));
 }
 function validateZ1AssignmentInputs(){
-  if(!currentZ1PlanActive)return;
+  if(z1DistributionMode!=="direct")return;
   const bad=[...document.querySelectorAll('.z1-assign-input')].find(inp=>{
-    const raw=inp.value.trim();
-    if(!raw)return false;
+    const raw=inp.value.trim();if(!raw)return false;
     if(!/^\d+(?:\.\d+)?$/.test(raw))return true;
     const v=Number(raw);return !Number.isFinite(v)||v<0||v>100;
   });
   if(bad)throw new Error("담당비율은 0~100 사이 숫자로 입력해주세요.");
 }
 function updateZ1PlanRowsAndSummary(){
-  if(!currentZ1PlanActive)return;
-  let r;
-  try{r=calcZ1Plan(buildZ1PlanConfig());}catch(_){return;}
+  if(!currentZ1PlanActive||z1DistributionMode!=="direct")return;
+  let r;try{r=calcZ1Plan(buildZ1PlanConfig());}catch(_){return;}
   for(const x of r.items){
-    const hp=document.querySelector(`[data-z1-hp="${x.name}"]`);
-    const sec=document.querySelector(`[data-z1-sec="${x.name}"]`);
+    const hp=document.querySelector(`[data-z1-hp="${x.name}"]`),sec=document.querySelector(`[data-z1-sec="${x.name}"]`);
     if(hp)hp.textContent=x.assignedHp===null?"—":fmtInt(x.assignedHp);
     if(sec)sec.textContent=x.sec===null?"—":`약 ${x.sec}초`;
   }
   const sumPct=document.getElementById("z1SumPct"),sumHp=document.getElementById("z1SumHp");
-  if(sumPct)sumPct.textContent=z1FmtPct(r.sumPct);
-  if(sumHp)sumHp.textContent=fmtInt(r.sumHp);
+  if(sumPct)sumPct.textContent=z1FmtPct(r.sumPct);if(sumHp)sumHp.textContent=fmtInt(r.sumHp);
   const oldDiff=document.getElementById("z1DiffValue")?.closest('.z1-summary-box');
-  if(oldDiff){
-    const holder=document.createElement('div');holder.innerHTML=z1DiffMarkup(r);
-    oldDiff.replaceWith(holder.firstElementChild);
-  }
+  if(oldDiff){const holder=document.createElement('div');holder.innerHTML=z1DiffMarkup(r);oldDiff.replaceWith(holder.firstElementChild);}
 }
 function updateZ1Meta(){
   const lv=Number(document.getElementById("z1LevelSelect").value);
@@ -6832,30 +6893,45 @@ function updateZ1Meta(){
   document.getElementById("z1MaxHpOutput").textContent=hp===null?"—":fmtInt(hp);
   const inp=document.getElementById("z1RemainingPctInput"),raw=inp.value.trim();
   let pctv=null;
-  if(raw && /^\d+(?:\.\d+)?$/.test(raw)){
-    const n=Number(raw);if(Number.isFinite(n)&&n>=0&&n<=100)pctv=n;
-  }
+  if(raw && /^\d+(?:\.\d+)?$/.test(raw)){const n=Number(raw);if(Number.isFinite(n)&&n>=0&&n<=100)pctv=n;}
   inp.classList.toggle("is-invalid",!!raw && pctv===null);
   document.getElementById("z1RemainingHpOutput").textContent=(hp!==null&&pctv!==null)?fmtInt(Math.round(hp*pctv/100)):"—";
+  updateZ1DistributionAvailability();
 }
 function closeZ1LevelMenu(){
   const menu=document.getElementById('z1LevelMenu'),btn=document.getElementById('z1LevelBtn');
   if(menu)menu.hidden=true;if(btn)btn.setAttribute('aria-expanded','false');
 }
 function setZ1Level(levelValue){
-  const hidden=document.getElementById('z1LevelSelect'),txt=document.getElementById('z1LevelBtnText');
+  const hidden=document.getElementById('z1LevelSelect'),txt=document.getElementById('z1LevelBtnText'),unit=document.getElementById('z1LevelUnit');
   const lv=Number(levelValue);
-  if(Number.isInteger(lv)&&lv>=20&&lv<=40){hidden.value=String(lv);txt.textContent=String(lv);}
-  else{hidden.value="";txt.textContent="선택";}
+  if(Number.isInteger(lv)&&lv>=20&&lv<=40){hidden.value=String(lv);txt.textContent=String(lv);unit.hidden=false;}
+  else{hidden.value="";txt.textContent="선택";unit.hidden=true;}
   document.querySelectorAll('#z1LevelMenu [data-z1-level]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.z1Level===hidden.value)));
-  updateZ1Meta();
+  updateZ1Meta();invalidateZ1Result();
+}
+function invalidateZ1Result(){
   currentZ1PlanActive=false;
   document.getElementById('result').classList.remove('show','z1-result-active');
   document.getElementById('shareOpenBtn').classList.remove('show');
 }
+function z1HasSelectedMembers(){return pickerNamesFromInput().length>0;}
+function updateZ1DistributionAvailability(){
+  const ready=!!selectedZ1Boss && Number.isInteger(selectedZ1Level) && z1HasSelectedMembers();
+  document.querySelectorAll('[data-z1-distribution]').forEach(btn=>btn.disabled=!ready);
+  if(!ready && z1DistributionMode){z1DistributionMode=null;document.querySelectorAll('[data-z1-distribution]').forEach(b=>b.classList.remove('selected'));}
+}
+function setZ1DistributionMode(mode){
+  if(mode!=="equal"&&mode!=="direct")return;
+  const btn=document.querySelector(`[data-z1-distribution="${mode}"]`);if(!btn||btn.disabled)return;
+  z1DistributionMode=mode;
+  document.querySelectorAll('[data-z1-distribution]').forEach(b=>b.classList.toggle('selected',b.dataset.z1Distribution===mode));
+  invalidateZ1Result();
+}
 function resetZ1PlanUi(){
-  selectedZ1Boss=null;selectedZ1Level=null;z1Assignments={};currentZ1PlanActive=false;
+  selectedZ1Boss=null;selectedZ1Level=null;z1Assignments={};z1DistributionMode=null;currentZ1PlanActive=false;
   document.querySelectorAll('[data-z1-boss]').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('[data-z1-distribution]').forEach(b=>{b.classList.remove('selected');b.disabled=true;});
   setZ1Level(null);
   const levelBtn=document.getElementById('z1LevelBtn');if(levelBtn)levelBtn.disabled=true;
   closeZ1LevelMenu();
@@ -6866,88 +6942,54 @@ function resetZ1PlanUi(){
 }
 
 (function initZ1Plan(){
-  const level=document.getElementById("z1LevelSelect");
-  const levelBtn=document.getElementById("z1LevelBtn");
-  const levelMenu=document.getElementById("z1LevelMenu");
+  const levelBtn=document.getElementById("z1LevelBtn"),levelMenu=document.getElementById("z1LevelMenu");
   for(let lv=20;lv<=40;lv++)levelMenu.insertAdjacentHTML('beforeend',`<button type="button" role="option" data-z1-level="${lv}" aria-selected="false">${lv}</button>`);
-  levelBtn.addEventListener('click',()=>{
-    if(levelBtn.disabled)return;
-    const willOpen=levelMenu.hidden;levelMenu.hidden=!willOpen;levelBtn.setAttribute('aria-expanded',String(willOpen));
-  });
-  levelMenu.addEventListener('click',e=>{
-    const btn=e.target.closest('[data-z1-level]');if(!btn)return;
-    setZ1Level(btn.dataset.z1Level);closeZ1LevelMenu();
-  });
-  document.addEventListener('click',e=>{
-    if(!e.target.closest('.z1-level-picker'))closeZ1LevelMenu();
-  });
+  levelBtn.addEventListener('click',()=>{if(levelBtn.disabled)return;const willOpen=levelMenu.hidden;levelMenu.hidden=!willOpen;levelBtn.setAttribute('aria-expanded',String(willOpen));});
+  levelMenu.addEventListener('click',e=>{const btn=e.target.closest('[data-z1-level]');if(!btn)return;setZ1Level(btn.dataset.z1Level);closeZ1LevelMenu();});
+  document.addEventListener('click',e=>{if(!e.target.closest('.z1-level-picker'))closeZ1LevelMenu();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeZ1LevelMenu();});
   document.querySelectorAll('[data-z1-boss]').forEach(btn=>btn.addEventListener('click',()=>{
-    selectedZ1Boss=btn.dataset.z1Boss;
-    document.querySelectorAll('[data-z1-boss]').forEach(x=>x.classList.toggle('selected',x===btn));
-    levelBtn.disabled=false;
-    currentZ1PlanActive=false;
-    document.getElementById('result').classList.remove('show','z1-result-active');
-    document.getElementById('shareOpenBtn').classList.remove('show');
+    selectedZ1Boss=btn.dataset.z1Boss;document.querySelectorAll('[data-z1-boss]').forEach(x=>x.classList.toggle('selected',x===btn));
+    levelBtn.disabled=false;updateZ1DistributionAvailability();invalidateZ1Result();
   }));
+  document.querySelectorAll('[data-z1-distribution]').forEach(btn=>btn.addEventListener('click',()=>setZ1DistributionMode(btn.dataset.z1Distribution)));
   document.getElementById('z1RemainingPctInput').addEventListener('input',()=>{
     updateZ1Meta();
     if(currentZ1PlanActive){
-      try{
-        const r=calcZ1Plan(buildZ1PlanConfig());
-        document.getElementById('headline').textContent=z1HeadlineText(r.parsed);
-        updateZ1PlanRowsAndSummary();
-      }catch(_){/* 입력 도중에는 결과를 유지 */}
+      try{const r=calcZ1Plan(buildZ1PlanConfig());renderZ1Plan(r);}catch(_){/* 입력 도중 유지 */}
     }
   });
   document.getElementById('mainTable').addEventListener('input',e=>{
-    const input=e.target.closest('.z1-assign-input');
-    if(!input)return;
-    const name=input.dataset.z1Pct,raw=input.value.trim();
-    input.setAttribute('value',input.value);
+    const input=e.target.closest('.z1-assign-input');if(!input)return;
+    const name=input.dataset.z1Pct,raw=input.value.trim();input.setAttribute('value',input.value);
     if(!raw){delete z1Assignments[name];input.classList.remove('is-invalid');updateZ1PlanRowsAndSummary();return;}
     if(!/^\d+(?:\.\d+)?$/.test(raw)){input.classList.add('is-invalid');delete z1Assignments[name];updateZ1PlanRowsAndSummary();return;}
-    const v=Number(raw);
-    if(!Number.isFinite(v)||v<0||v>100){input.classList.add('is-invalid');delete z1Assignments[name];updateZ1PlanRowsAndSummary();return;}
+    const v=Number(raw);if(!Number.isFinite(v)||v<0||v>100){input.classList.add('is-invalid');delete z1Assignments[name];updateZ1PlanRowsAndSummary();return;}
     input.classList.remove('is-invalid');z1Assignments[name]=v;updateZ1PlanRowsAndSummary();
   });
 
-  // 1구역일 때만 기존 균등분배 클릭 처리보다 먼저 전용 계산을 실행한다.
   document.getElementById('calcBtn').addEventListener('click',e=>{
-    if(selectedMode!=="z1")return;
-    e.preventDefault();e.stopImmediatePropagation();
+    if(selectedMode!=="z1")return;e.preventDefault();e.stopImmediatePropagation();
     try{
-      validateZ1AssignmentInputs();
-      const r=calcZ1Plan(buildZ1PlanConfig());
-      const v=validateZ1Plan(r);
+      validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus("계산 완료 · V1.5.2 · 1구역 개별 담당비율 반영 · 내부 검증 PASS","ok");
-    }catch(err){
-      currentZ1PlanActive=false;document.getElementById('result').classList.remove('show','z1-result-active');document.getElementById('shareOpenBtn').classList.remove('show');setStatus(err.message,"err");
-    }
+      setStatus(`계산 완료 · V1.5.2 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+    }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
-    if(selectedMode!=="z1")return;
-    e.preventDefault();e.stopImmediatePropagation();
+    if(selectedMode!=="z1")return;e.preventDefault();e.stopImmediatePropagation();
     try{
-      validateZ1AssignmentInputs();
-      const r=calcZ1Plan(buildZ1PlanConfig());
-      const v=validateZ1Plan(r);
-      renderZ1Plan(r);
-      if(v.pass)setStatus("재검증 PASS · 1구역 입력값부터 전체 재계산 완료","ok");
+      validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);renderZ1Plan(r);
+      if(v.pass)setStatus(`재검증 PASS · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} 전체 재계산 완료`,"ok");
       else setStatus("재검증 FAIL · "+v.problems.join(" / "),"err");
     }catch(err){setStatus(err.message,"err");}
   },true);
   document.getElementById('shareOpenBtn').addEventListener('click',e=>{
-    if(!currentZ1PlanActive)return;
-    e.preventDefault();e.stopImmediatePropagation();
-    try{
-      validateZ1AssignmentInputs();
-      const check=validateZ1Plan(calcZ1Plan(buildZ1PlanConfig()));
-      if(!check.pass)throw new Error("공유 전 검증 FAIL · "+check.problems.join(" / "));
-    }catch(err){setStatus(err.message,"err");return;}
-    document.getElementById('shareHeadline').textContent=document.getElementById('headline').textContent;
+    if(!currentZ1PlanActive)return;e.preventDefault();e.stopImmediatePropagation();
+    try{validateZ1AssignmentInputs();const check=validateZ1Plan(calcZ1Plan(buildZ1PlanConfig()));if(!check.pass)throw new Error("공유 전 검증 FAIL · "+check.problems.join(" / "));}
+    catch(err){setStatus(err.message,"err");return;}
+    const shareHeadline=document.getElementById('shareHeadline');shareHeadline.textContent=document.getElementById('headline').textContent;shareHeadline.classList.add('z1-share-headline');
     const clone=document.getElementById('mainTable').cloneNode(true);
     clone.querySelectorAll('.z1-assign-input').forEach(inp=>{
       const span=document.createElement('span');span.className='z1-share-pct';span.textContent=(inp.value.trim()?inp.value.trim():'—')+(inp.value.trim()?'%':'');
@@ -6957,22 +6999,18 @@ function resetZ1PlanUi(){
     document.getElementById('shareMainTable').innerHTML=clone.innerHTML;
     document.getElementById('shareNote').innerHTML=document.getElementById('note').innerHTML;
     const ov=document.getElementById('shareOverlay');ov.classList.add('show');ov.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';ov.scrollTop=0;
+    requestAnimationFrame(()=>fitZ1HeadlineElement(shareHeadline,16,10.5));
   },true);
 
-  document.querySelectorAll('#modeMenu [data-mode]').forEach(btn=>btn.addEventListener('click',()=>{
-    resetZ1PlanUi();
-  }));
+  document.querySelectorAll('#modeMenu [data-mode]').forEach(btn=>btn.addEventListener('click',()=>{resetZ1PlanUi();document.getElementById('shareHeadline')?.classList.remove('z1-share-headline');}));
   document.getElementById('memberDoneBtn').addEventListener('click',()=>{
     if(selectedMode!=="z1")return;
-    const keep=new Set(pickerNamesFromInput());
-    Object.keys(z1Assignments).forEach(n=>{if(!keep.has(n))delete z1Assignments[n];});
-    currentZ1PlanActive=false;document.getElementById('result').classList.remove('show','z1-result-active');document.getElementById('shareOpenBtn').classList.remove('show');
+    const keep=new Set(pickerNamesFromInput());Object.keys(z1Assignments).forEach(n=>{if(!keep.has(n))delete z1Assignments[n];});
+    updateZ1DistributionAvailability();invalidateZ1Result();
   });
-  document.querySelectorAll('.server-btn').forEach(btn=>btn.addEventListener('click',()=>{if(selectedMode==="z1")currentZ1PlanActive=false;}));
+  document.querySelectorAll('.server-btn').forEach(btn=>btn.addEventListener('click',()=>{if(selectedMode==="z1")invalidateZ1Result();}));
   document.getElementById('clearBtn').addEventListener('click',resetZ1PlanUi);
-  levelBtn.disabled=true;
-  setZ1Level(null);
-  updateZ1Meta();
+  levelBtn.disabled=true;setZ1Level(null);updateZ1Meta();updateZ1DistributionAvailability();
 })();
 </script>
 
