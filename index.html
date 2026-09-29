@@ -5336,7 +5336,7 @@ html,body,button,input,textarea,select,option{
   box-sizing:border-box;width:82px;height:36px;min-height:36px;padding:0 9px;
   border:1.5px solid #c8b7e0;border-radius:9px;background:#fff;color:#3d2464;
   display:flex;align-items:center;justify-content:center;gap:5px;
-  font-size:17px!important;font-weight:950!important;line-height:1!important;box-shadow:none!important;
+  font-size:16px!important;font-weight:950!important;line-height:1!important;box-shadow:none!important;
 }
 #z1LevelBtn:not(:disabled):focus-visible{outline:2px solid #176ee8;outline-offset:1px;}
 #z1LevelBtn:disabled{color:#9f95ad;background:#f2eff6;border-color:#ddd5e8;cursor:not-allowed;opacity:.82;}
@@ -5359,7 +5359,7 @@ html,body,button,input,textarea,select,option{
 #z1RemainingPctInput{
   box-sizing:border-box;width:min(86px,calc(100% - 26px));height:36px;min-height:36px;padding:0 6px;
   border:1.5px solid #9bcfff;border-radius:9px;background:#fff;color:#3d2464;
-  font-size:17px!important;font-weight:950;text-align:center;outline:none;
+  font-size:16px!important;font-weight:950;text-align:center;outline:none;
 }
 #z1RemainingPctInput:focus{border-color:#176ee8;box-shadow:0 0 0 2px rgba(23,110,232,.10);}
 #z1RemainingPctInput.is-invalid{border-color:#d64343!important;background:#fff5f5!important;}
@@ -5451,11 +5451,11 @@ html,body,button,input,textarea,select,option{
   .z1-meta-row{height:37.5px!important;padding:0 4px!important;grid-template-columns:50px auto!important;gap:6px!important;}
   .z1-meta-label{font-size:12.6px!important;}
   .z1-meta-row-label{font-size:11.3px!important;}
-  #z1LevelBtn{width:78px!important;height:34px!important;min-height:34px!important;font-size:17px!important;}
+  #z1LevelBtn{width:78px!important;height:34px!important;min-height:34px!important;font-size:16px!important;}
   .z1-level-unit,.z1-percent-suffix{font-size:16px!important;}
   .z1-level-menu{width:70px!important;top:38px!important;max-height:210px!important;}
   .z1-level-menu button{height:29px!important;min-height:29px!important;font-size:14px!important;}
-  #z1RemainingPctInput{width:min(78px,calc(100% - 24px))!important;height:34px!important;min-height:34px!important;font-size:17px!important;}
+  #z1RemainingPctInput{width:min(78px,calc(100% - 24px))!important;height:34px!important;min-height:34px!important;font-size:16px!important;}
   #z1MaxHpOutput,#z1RemainingHpOutput{font-size:12.6px!important;}
   .z1-distribution-picker{gap:6px!important;margin-top:8px!important;}
   .z1-distribution-btn{height:38px!important;min-height:38px!important;font-size:12.7px!important;padding:0 3px!important;}
@@ -5558,7 +5558,7 @@ html,body,button,input,textarea,select,option{
           <div class="z1-meta-tall z1-level-box">
             <span class="z1-meta-label">레벨</span>
             <div class="z1-level-picker">
-              <span class="z1-level-entry"><button id="z1LevelBtn" type="button" aria-haspopup="listbox" aria-expanded="false" disabled><span id="z1LevelBtnText">선택</span><span id="z1LevelUnit" class="z1-level-unit" hidden>Lv</span><span class="z1-level-chevron" aria-hidden="true">⌄</span></button></span>
+              <span class="z1-level-entry"><button id="z1LevelBtn" type="button" aria-haspopup="listbox" aria-expanded="false" disabled><span id="z1LevelBtnText">선택</span><span class="z1-level-chevron" aria-hidden="true">⌄</span></button><span id="z1LevelUnit" class="z1-level-unit" hidden>Lv</span></span>
               <div id="z1LevelMenu" class="z1-level-menu" role="listbox" hidden></div>
               <input id="z1LevelSelect" type="hidden" value="">
             </div>
@@ -5707,8 +5707,8 @@ function pickerNamesFromInput(){
   const raw=document.getElementById("input").value.trim();
   if(!raw)return [];
   const out=[];
-  raw.split(/[\\s,]+/).forEach(tok=>{
-    const bare=tok.replace(/\\d+(?:\\.\\d+)?(?:초)?$/,'');
+  raw.split(/[\s,]+/).forEach(tok=>{
+    const bare=tok.replace(/\d+(?:\.\d+)?(?:초)?$/,'');
     const n=Object.prototype.hasOwnProperty.call(MEMBERS,bare)?bare:null;
     if(n&&!out.includes(n))out.push(n);
   });
