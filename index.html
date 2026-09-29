@@ -5060,15 +5060,96 @@ input,textarea,select,button{max-width:100%;}
 <link rel="preload" as="image" href="assets/luna-v337.png" fetchpriority="high">
 <link rel="preload" as="image" href="assets/bananyang-v337.png" fetchpriority="high">
 
-\n<style id="v152-compact-info-header-final">\n.v152-compact-info-header{\n  width:100%!important;display:flex!important;align-items:flex-end!important;justify-content:space-between!important;\n  gap:34px!important;padding:11px 13px 7px!important;margin:0!important;background:transparent!important;\n}\n.v152-info-group{\n  position:relative!important;display:inline-flex!important;align-items:center!important;min-width:0!important;\n  padding:0 0 8px!important;color:#fff!important;font-size:11.4px!important;line-height:1!important;font-weight:950!important;\n  letter-spacing:-.08px!important;white-space:nowrap!important;\n}\n.v152-info-left{justify-content:flex-start!important;gap:5px!important;}\n.v152-info-right{justify-content:flex-end!important;text-align:right!important;margin-left:auto!important;}\n.v152-info-sep{opacity:.68!important;font-weight:800!important;}\n.v152-info-group::after{\n  content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:4px!important;\n  background:linear-gradient(to bottom,rgba(174,104,255,.72) 0%,rgba(174,104,255,.50) 24%,rgba(174,104,255,.25) 52%,rgba(174,104,255,.10) 76%,transparent 100%)!important;\n  clip-path:polygon(0 0,100% 0,50% 100%)!important;animation:none!important;\n}\n#bossPopupCard{margin-top:0!important;}\n@media(max-width:520px){\n  .v152-compact-info-header{gap:22px!important;padding:10px 10px 7px!important;}\n  .v152-info-group{font-size:10.6px!important;padding-bottom:7px!important;}\n  .v152-info-left{gap:4px!important;}\n}\n@media(max-width:390px){\n  .v152-compact-info-header{gap:14px!important;padding-left:8px!important;padding-right:8px!important;}\n  .v152-info-group{font-size:10px!important;letter-spacing:-.16px!important;}\n  .v152-info-left{gap:3px!important;}\n}\n</style>\n
+
+<style id="v152-clean-boss-header-final">
+.v152-boss-info-header{
+  width:100%!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:space-between!important;
+  gap:28px!important;
+  margin:0!important;
+  padding:8px 12px 1px!important;
+  background:transparent!important;
+}
+.v152-boss-info-group{
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  min-width:0!important;
+  padding:0 0 6px!important;
+  color:#d6c8ec!important;
+  font-size:10.8px!important;
+  line-height:1!important;
+  font-weight:850!important;
+  letter-spacing:-.12px!important;
+  white-space:nowrap!important;
+}
+.v152-boss-info-left{
+  justify-content:flex-start!important;
+  text-align:left!important;
+}
+.v152-boss-info-left > span{
+  margin:0 4px!important;
+  opacity:.62!important;
+  font-weight:700!important;
+}
+.v152-boss-info-right{
+  justify-content:flex-end!important;
+  text-align:right!important;
+  margin-left:auto!important;
+}
+.v152-boss-info-group::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  height:2px!important;
+  border-radius:99px!important;
+  background:linear-gradient(90deg,
+    rgba(119,55,221,.20) 0%,
+    rgba(151,82,240,.78) 22%,
+    rgba(151,82,240,.92) 50%,
+    rgba(151,82,240,.78) 78%,
+    rgba(119,55,221,.20) 100%)!important;
+}
+#bossPopupCard{
+  margin-top:6px!important;
+}
+@media(max-width:430px){
+  .v152-boss-info-header{
+    gap:18px!important;
+    padding:7px 10px 1px!important;
+  }
+  .v152-boss-info-group{
+    font-size:9.8px!important;
+    padding-bottom:6px!important;
+  }
+  .v152-boss-info-left > span{
+    margin:0 3px!important;
+  }
+}
+@media(max-width:365px){
+  .v152-boss-info-header{
+    gap:12px!important;
+    padding-left:9px!important;
+    padding-right:9px!important;
+  }
+  .v152-boss-info-group{
+    font-size:9.2px!important;
+    letter-spacing:-.18px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
-<div class="v152-compact-info-header" aria-label="길드 및 계산기 정보">
-  <div class="v152-info-group v152-info-left">
-    <span>서버 879</span><span class="v152-info-sep">|</span><span>길드명 도살자</span><span class="v152-info-sep">|</span><span>길드원 15명</span>
-  </div>
-  <div class="v152-info-group v152-info-right">격전지 계산기 V1.5.2</div>
+<div class="v152-boss-info-header" aria-label="길드 및 계산기 정보">
+  <div class="v152-boss-info-group v152-boss-info-left">서버879 <span>|</span> 도살자 <span>|</span> 길드원 15명</div>
+  <div class="v152-boss-info-group v152-boss-info-right">격전지 계산기 V1.5.2</div>
 </div>
 
 <div id="memberPicker" class="member-picker-overlay" aria-hidden="true">
@@ -5253,7 +5334,7 @@ const MEMBERS = {
   "매콤갈비":   {base:142.5, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
   "사마엘":     {base:122.5,   z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:13,pirate:7,cat:7,food:7,galaxy:0}},
   "혀녕":       {base:93.8,  z1r:0, z2r:5, z3r:0, minScore:1500, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
-  "XIGN":       {base:78,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "XIGN":       {base:84,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "뱅수띠":     {base:64,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "진니":       {base:57.5,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6,galaxy:0}},
   "토시살":     {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
