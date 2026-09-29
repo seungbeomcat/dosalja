@@ -5293,46 +5293,94 @@ html,body,button,input,textarea,select,option{
 /* 1구역 전용 계획 UI. 2구역/초대형/격추확인 레이아웃에는 영향 없음. */
 #z1Extra.z1-plan-extra{
   width:100%!important;min-width:0!important;max-width:none!important;
-  margin:2px 0 10px!important;
+  margin:2px 0 10px!important;overflow:visible!important;
 }
-/* 과거 1구역 입력칸용 flex 규칙을 차단하고, 1구역 전용 UI는 세로 2단으로 고정한다. */
 #z1Extra.z1-plan-extra[hidden]{display:none!important;}
 #z1Extra.z1-plan-extra:not([hidden]){display:block!important;}
 #z1Extra .z1-boss-options{
   display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  width:100%!important;gap:8px!important;margin:0 0 9px!important;
+  width:100%!important;gap:8px!important;margin:0 0 10px!important;
 }
 #z1Extra .z1-boss-options button{
   width:100%!important;min-width:0!important;white-space:nowrap!important;
   overflow:hidden!important;text-overflow:clip!important;padding-left:2px!important;padding-right:2px!important;
 }
+/* 2구역 보스 선택 상태와 완전히 동일한 warm-gold 계열. */
 #z1Extra .z1-boss-options button.selected{
-  background:#e9e0f5!important;border-color:#7b56aa!important;color:#3e2365!important;
-  box-shadow:inset 0 0 0 1px #7b56aa!important;
+  background:#f8e8b9!important;border-color:#c99732!important;color:#60400f!important;
+  box-shadow:inset 0 0 0 1px rgba(178,126,31,.30),0 2px 7px rgba(156,111,28,.10)!important;
 }
-.z1-meta-grid{
-  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1.2fr);gap:6px;width:100%;
+
+/* 레벨 + 남은체력 입력은 큰 2칸, 우측은 전체/남은 체력을 2단으로 쌓는다. */
+.z1-meta-layout{
+  display:grid;grid-template-columns:minmax(0,24fr) minmax(0,28fr) minmax(0,48fr);
+  gap:7px;width:100%;align-items:stretch;overflow:visible;
 }
-.z1-meta-box{
-  box-sizing:border-box;min-width:0;height:58px;padding:6px 6px 5px;
-  border:1px solid #d7c6ef;border-radius:11px;background:#faf8fd;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-  color:#4c3570;font-weight:850;text-align:center;
+.z1-meta-tall{
+  box-sizing:border-box;min-width:0;height:76px;padding:8px 6px 7px;
+  border:1px solid #d7c6ef;border-radius:12px;background:#faf8fd;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  color:#4c3570;font-weight:850;text-align:center;overflow:visible;
 }
-.z1-meta-label{display:block;width:100%;font-size:10.8px;line-height:1.05;white-space:nowrap;color:#67527f;font-weight:850;}
-#z1LevelSelect,
+.z1-meta-label{
+  display:block;width:100%;font-size:10.5px;line-height:1;white-space:nowrap;
+  color:#67527f;font-weight:850;
+}
+.z1-level-box{position:relative;z-index:12;}
+.z1-level-picker{position:relative;width:100%;display:flex;justify-content:center;overflow:visible;}
+#z1LevelBtn{
+  box-sizing:border-box;width:72px;height:32px;min-height:32px;padding:0 8px;
+  border:1.5px solid #c8b7e0;border-radius:8px;background:#fff;color:#3d2464;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  font-size:14px!important;font-weight:900!important;line-height:1!important;box-shadow:none!important;
+}
+#z1LevelBtn:not(:disabled):focus-visible{outline:2px solid #176ee8;outline-offset:1px;}
+#z1LevelBtn:disabled{
+  color:#9f95ad;background:#f2eff6;border-color:#ddd5e8;cursor:not-allowed;opacity:.82;
+}
+.z1-level-chevron{font-size:12px;line-height:1;transform:translateY(-1px);}
+.z1-level-menu{
+  position:absolute;left:50%;top:36px;transform:translateX(-50%);z-index:120;
+  width:76px;max-height:222px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  box-sizing:border-box;padding:4px;background:#fff;border:1px solid #d4c4e8;border-radius:10px;
+  box-shadow:0 10px 24px rgba(63,38,98,.20);
+}
+.z1-level-menu[hidden]{display:none!important;}
+.z1-level-menu button{
+  display:flex;width:100%;height:31px;min-height:31px;padding:0;align-items:center;justify-content:center;
+  border:0;border-radius:6px;background:#fff;color:#3d2464;font-size:13px!important;font-weight:850!important;
+}
+.z1-level-menu button+button{margin-top:1px;}
+.z1-level-menu button:hover,.z1-level-menu button:focus-visible{background:#f3eef9;outline:none;}
+.z1-level-menu button[aria-selected="true"]{background:#eee5f7;color:#3c1d69;font-weight:950!important;}
+.z1-percent-entry{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;font-size:13px;color:#4c3570;font-weight:900;}
 #z1RemainingPctInput{
-  box-sizing:border-box;border:1px solid #cabce1;border-radius:8px;background:#fff;color:#3d2464;
-  height:29px;min-height:29px;font-size:16px!important;font-weight:900;text-align:center;outline:none;
+  box-sizing:border-box;width:min(78px,calc(100% - 20px));height:32px;min-height:32px;padding:0 5px;
+  border:1.5px solid #9bcfff;border-radius:8px;background:#fff;color:#3d2464;
+  font-size:15px!important;font-weight:900;text-align:center;outline:none;
 }
-#z1LevelSelect{width:100%;padding:0 3px;text-align-last:center;}
-.z1-percent-entry{display:flex;align-items:center;justify-content:center;gap:3px;width:100%;font-size:12px;color:#4c3570;font-weight:900;}
-#z1RemainingPctInput{width:calc(100% - 16px);padding:0 4px;}
-#z1MaxHpOutput,#z1RemainingHpOutput{display:block;width:100%;font-size:13.2px;line-height:1.1;color:#3d2464;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-#z1RemainingHpOutput{color:#8a4b12;}
+#z1RemainingPctInput:focus{border-color:#176ee8;box-shadow:0 0 0 2px rgba(23,110,232,.10);}
 #z1RemainingPctInput.is-invalid{border-color:#d64343!important;background:#fff5f5!important;}
+.z1-meta-stack{display:grid;grid-template-rows:1fr 1fr;gap:6px;min-width:0;height:76px;}
+.z1-meta-row{
+  box-sizing:border-box;min-width:0;height:35px;padding:0 9px;
+  border:1px solid #d7c6ef;border-radius:10px;background:#faf8fd;
+  display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px;
+  color:#4c3570;text-align:left;
+}
+.z1-meta-row-label{font-size:10.3px;line-height:1;color:#67527f;font-weight:850;white-space:nowrap;}
+#z1MaxHpOutput,#z1RemainingHpOutput{
+  display:block;min-width:0;font-size:13px;line-height:1;color:#3d2464;font-weight:950;
+  white-space:nowrap;overflow:hidden;text-overflow:clip;text-align:right;font-variant-numeric:tabular-nums;
+}
+#z1RemainingHpOutput{color:#8a4b12;}
 
 /* 1구역 결과표: 고정 5열만 사용. */
+#result.z1-result-active .headline{
+  font-size:12px!important;line-height:1.25!important;letter-spacing:-.45px!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;margin-bottom:9px!important;
+  font-variant-numeric:tabular-nums;
+}
 .table-wrap-z1-plan-main{overflow:hidden!important;border-radius:14px!important;}
 .z1-plan-main{table-layout:fixed!important;width:100%!important;}
 .z1-plan-main th,.z1-plan-main td{text-align:center!important;vertical-align:middle!important;}
@@ -5358,10 +5406,7 @@ html,body,button,input,textarea,select,option{
 .z1-assign-input.is-invalid{border-color:#d64343!important;background:#fff5f5!important;}
 .z1-pct-suffix{font-size:11px;font-weight:900;color:#4c3570;}
 .z1-share-pct{font-weight:950;color:#3d2464;}
-
-.z1-plan-summary{
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px;
-}
+.z1-plan-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px;}
 .z1-summary-box{
   box-sizing:border-box;min-width:0;min-height:68px;padding:8px 5px;border:1px solid #d6c4ef;border-radius:12px;
   background:#faf8fd;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
@@ -5376,21 +5421,22 @@ html,body,button,input,textarea,select,option{
 .z1-summary-box.diff-over{background:#fff1f1;border-color:#e4aaaa;}
 .z1-summary-box.diff-over .z1-summary-value{color:#b32727;}
 .z1-summary-box.diff-wait .z1-summary-value{font-size:14px;color:#6e5b7d;}
-
 @media(max-width:420px){
-  .z1-meta-grid{gap:5px!important;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) minmax(0,1fr) minmax(0,1.2fr)!important;}
+  .z1-meta-layout{grid-template-columns:minmax(0,23fr) minmax(0,27fr) minmax(0,50fr);gap:5px!important;}
   #z1Extra .z1-boss-options{gap:6px!important;}
   #z1Extra .z1-boss-options button{font-size:12.8px!important;letter-spacing:-.35px!important;}
-  .z1-meta-box{height:55px!important;padding:5px 4px 4px!important;}
-  .z1-meta-label{font-size:9.8px!important;}
-  #z1MaxHpOutput,#z1RemainingHpOutput{font-size:12.2px!important;}
-  #z1LevelSelect,#z1RemainingPctInput{height:28px!important;min-height:28px!important;font-size:16px!important;}
+  .z1-meta-tall,.z1-meta-stack{height:72px!important;}
+  .z1-meta-tall{padding:7px 4px 6px!important;gap:6px!important;}
+  .z1-meta-stack{gap:5px!important;}
+  .z1-meta-row{height:33.5px!important;padding:0 6px!important;gap:5px!important;}
+  .z1-meta-label,.z1-meta-row-label{font-size:9.5px!important;}
+  #z1LevelBtn{width:64px!important;height:30px!important;min-height:30px!important;font-size:13px!important;}
+  .z1-level-menu{width:68px!important;top:34px!important;max-height:210px!important;}
+  .z1-level-menu button{height:29px!important;min-height:29px!important;font-size:12.5px!important;}
+  #z1RemainingPctInput{width:min(70px,calc(100% - 18px))!important;height:30px!important;min-height:30px!important;font-size:14px!important;}
+  #z1MaxHpOutput,#z1RemainingHpOutput{font-size:11.8px!important;}
+  #result.z1-result-active .headline{font-size:10.8px!important;letter-spacing:-.55px!important;}
   .z1-plan-main th,.z1-plan-main td{padding-left:2px!important;padding-right:2px!important;font-size:10.7px!important;}
-  .z1-plan-main th:nth-child(1),.z1-plan-main td:nth-child(1){width:19%!important;}
-  .z1-plan-main th:nth-child(2),.z1-plan-main td:nth-child(2){width:21%!important;}
-  .z1-plan-main th:nth-child(3),.z1-plan-main td:nth-child(3){width:19%!important;}
-  .z1-plan-main th:nth-child(4),.z1-plan-main td:nth-child(4){width:23%!important;}
-  .z1-plan-main th:nth-child(5),.z1-plan-main td:nth-child(5){width:18%!important;}
   .z1-assign-input{width:48px!important;height:29px!important;min-height:29px!important;font-size:16px!important;padding:0 2px!important;}
   .z1-summary-box{min-height:64px!important;padding:7px 3px!important;}
   .z1-summary-label{font-size:9.8px!important;}
@@ -5484,11 +5530,23 @@ html,body,button,input,textarea,select,option{
         <div class="four-options z1-boss-options" role="group" aria-label="1구역 유령 보스 선택">
           <button type="button" data-z1-boss="유령 크랩">유령 크랩</button><button type="button" data-z1-boss="유령 꿀벌">유령 꿀벌</button><button type="button" data-z1-boss="유령 토끼">유령 토끼</button><button type="button" data-z1-boss="유령 격전쥐">유령 격전쥐</button>
         </div>
-        <div class="z1-meta-grid">
-          <label class="z1-meta-box z1-level-box"><span class="z1-meta-label">레벨</span><select id="z1LevelSelect" aria-label="1구역 유령 보스 레벨 선택"><option value="">선택</option></select></label>
-          <div class="z1-meta-box"><span class="z1-meta-label">전체체력</span><output id="z1MaxHpOutput">—</output></div>
-          <label class="z1-meta-box"><span class="z1-meta-label">현재 남은 %</span><span class="z1-percent-entry"><input id="z1RemainingPctInput" type="text" inputmode="decimal" pattern="[0-9.]*" autocomplete="off" aria-label="현재 남은 체력 비율"><span>%</span></span></label>
-          <div class="z1-meta-box"><span class="z1-meta-label">남은체력</span><output id="z1RemainingHpOutput">—</output></div>
+        <div class="z1-meta-layout">
+          <div class="z1-meta-tall z1-level-box">
+            <span class="z1-meta-label">레벨</span>
+            <div class="z1-level-picker">
+              <button id="z1LevelBtn" type="button" aria-haspopup="listbox" aria-expanded="false" disabled><span id="z1LevelBtnText">선택</span><span class="z1-level-chevron" aria-hidden="true">⌄</span></button>
+              <div id="z1LevelMenu" class="z1-level-menu" role="listbox" hidden></div>
+              <input id="z1LevelSelect" type="hidden" value="">
+            </div>
+          </div>
+          <label class="z1-meta-tall z1-remaining-input-box">
+            <span class="z1-meta-label">남은체력</span>
+            <span class="z1-percent-entry"><input id="z1RemainingPctInput" type="text" inputmode="decimal" pattern="[0-9.]*" autocomplete="off" aria-label="남은 체력 비율"><span>%</span></span>
+          </label>
+          <div class="z1-meta-stack">
+            <div class="z1-meta-row"><span class="z1-meta-row-label">전체체력</span><output id="z1MaxHpOutput">—</output></div>
+            <div class="z1-meta-row"><span class="z1-meta-row-label">남은체력</span><output id="z1RemainingHpOutput">—</output></div>
+          </div>
         </div>
       </div>
       <div id="z2Extra" class="mode-extra four-options" hidden>
@@ -6626,9 +6684,9 @@ function z1ReadRemainingPct(){
   const el=document.getElementById("z1RemainingPctInput");
   const raw=el.value.trim();
   if(!raw){el.classList.remove("is-invalid");return null;}
-  if(!/^\d+(?:\.\d+)?$/.test(raw)){el.classList.add("is-invalid");throw new Error("현재 남은 체력 %는 숫자로 입력해주세요.");}
+  if(!/^\d+(?:\.\d+)?$/.test(raw)){el.classList.add("is-invalid");throw new Error("남은체력 %는 숫자로 입력해주세요.");}
   const v=Number(raw);
-  if(!Number.isFinite(v)||v<0||v>100){el.classList.add("is-invalid");throw new Error("현재 남은 체력 %는 0~100 사이로 입력해주세요.");}
+  if(!Number.isFinite(v)||v<0||v>100){el.classList.add("is-invalid");throw new Error("남은체력 %는 0~100 사이로 입력해주세요.");}
   el.classList.remove("is-invalid");return v;
 }
 function buildZ1PlanConfig(){
@@ -6723,11 +6781,15 @@ function z1PlanTableMarkup(r){
   }).join("");
   return `<div class="table-wrap table-wrap-z1-plan-main"><table class="z1-plan-main"><thead><tr><th>닉네임</th><th>1구역<br>종합격추</th><th>담당비율</th><th class="critical-col">담당체력</th><th>예상시간</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
+function z1HeadlineText(cfg){
+  if(cfg.remainingPct===null)return `Lv.${cfg.level} ${cfg.boss} · 남은 체력 미입력`;
+  return `Lv.${cfg.level} ${cfg.boss} · 남은 체력 ${z1FmtPct(cfg.remainingPct)} · ${fmtInt(cfg.remainingHp)}`;
+}
 function renderZ1Plan(r){
   currentZ1PlanActive=true;
   const result=document.getElementById("result");
-  const rem=r.parsed.remainingPct===null?"":` · 잔여 ${z1FmtPct(r.parsed.remainingPct)}`;
-  document.getElementById("headline").textContent=`1구역 · ${r.parsed.boss} Lv.${r.parsed.level} · 전체 체력 ${fmtInt(r.parsed.maxHp)}${rem}`;
+  result.classList.add("z1-result-active");
+  document.getElementById("headline").textContent=z1HeadlineText(r.parsed);
   document.getElementById("mainTable").innerHTML=z1PlanTableMarkup(r)+z1SummaryMarkup(r);
   document.getElementById("note").innerHTML=`<div class="note"><strong>종합격추 = 기본 + 서버 + 지역</strong></div>`;
   document.getElementById("detail").innerHTML="";
@@ -6776,37 +6838,64 @@ function updateZ1Meta(){
   inp.classList.toggle("is-invalid",!!raw && pctv===null);
   document.getElementById("z1RemainingHpOutput").textContent=(hp!==null&&pctv!==null)?fmtInt(Math.round(hp*pctv/100)):"—";
 }
+function closeZ1LevelMenu(){
+  const menu=document.getElementById('z1LevelMenu'),btn=document.getElementById('z1LevelBtn');
+  if(menu)menu.hidden=true;if(btn)btn.setAttribute('aria-expanded','false');
+}
+function setZ1Level(levelValue){
+  const hidden=document.getElementById('z1LevelSelect'),txt=document.getElementById('z1LevelBtnText');
+  const lv=Number(levelValue);
+  if(Number.isInteger(lv)&&lv>=20&&lv<=40){hidden.value=String(lv);txt.textContent=String(lv);}
+  else{hidden.value="";txt.textContent="선택";}
+  document.querySelectorAll('#z1LevelMenu [data-z1-level]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.z1Level===hidden.value)));
+  updateZ1Meta();
+  currentZ1PlanActive=false;
+  document.getElementById('result').classList.remove('show','z1-result-active');
+  document.getElementById('shareOpenBtn').classList.remove('show');
+}
 function resetZ1PlanUi(){
   selectedZ1Boss=null;selectedZ1Level=null;z1Assignments={};currentZ1PlanActive=false;
   document.querySelectorAll('[data-z1-boss]').forEach(b=>b.classList.remove('selected'));
-  const sel=document.getElementById('z1LevelSelect');if(sel)sel.value="";
+  setZ1Level(null);
+  const levelBtn=document.getElementById('z1LevelBtn');if(levelBtn)levelBtn.disabled=true;
+  closeZ1LevelMenu();
   const rem=document.getElementById('z1RemainingPctInput');if(rem){rem.value="";rem.classList.remove('is-invalid');}
   const max=document.getElementById('z1MaxHpOutput');if(max)max.textContent="—";
   const rh=document.getElementById('z1RemainingHpOutput');if(rh)rh.textContent="—";
+  document.getElementById('result')?.classList.remove('z1-result-active');
 }
 
 (function initZ1Plan(){
   const level=document.getElementById("z1LevelSelect");
-  for(let lv=20;lv<=40;lv++)level.insertAdjacentHTML('beforeend',`<option value="${lv}">Lv.${lv}</option>`);
+  const levelBtn=document.getElementById("z1LevelBtn");
+  const levelMenu=document.getElementById("z1LevelMenu");
+  for(let lv=20;lv<=40;lv++)levelMenu.insertAdjacentHTML('beforeend',`<button type="button" role="option" data-z1-level="${lv}" aria-selected="false">${lv}</button>`);
+  levelBtn.addEventListener('click',()=>{
+    if(levelBtn.disabled)return;
+    const willOpen=levelMenu.hidden;levelMenu.hidden=!willOpen;levelBtn.setAttribute('aria-expanded',String(willOpen));
+  });
+  levelMenu.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-z1-level]');if(!btn)return;
+    setZ1Level(btn.dataset.z1Level);closeZ1LevelMenu();
+  });
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.z1-level-picker'))closeZ1LevelMenu();
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeZ1LevelMenu();});
   document.querySelectorAll('[data-z1-boss]').forEach(btn=>btn.addEventListener('click',()=>{
     selectedZ1Boss=btn.dataset.z1Boss;
     document.querySelectorAll('[data-z1-boss]').forEach(x=>x.classList.toggle('selected',x===btn));
+    levelBtn.disabled=false;
     currentZ1PlanActive=false;
-    document.getElementById('result').classList.remove('show');
+    document.getElementById('result').classList.remove('show','z1-result-active');
     document.getElementById('shareOpenBtn').classList.remove('show');
   }));
-  level.addEventListener('change',()=>{
-    updateZ1Meta();currentZ1PlanActive=false;
-    document.getElementById('result').classList.remove('show');
-    document.getElementById('shareOpenBtn').classList.remove('show');
-  });
   document.getElementById('z1RemainingPctInput').addEventListener('input',()=>{
     updateZ1Meta();
     if(currentZ1PlanActive){
       try{
         const r=calcZ1Plan(buildZ1PlanConfig());
-        const rem=r.parsed.remainingPct===null?"":` · 잔여 ${z1FmtPct(r.parsed.remainingPct)}`;
-        document.getElementById('headline').textContent=`1구역 · ${r.parsed.boss} Lv.${r.parsed.level} · 전체 체력 ${fmtInt(r.parsed.maxHp)}${rem}`;
+        document.getElementById('headline').textContent=z1HeadlineText(r.parsed);
         updateZ1PlanRowsAndSummary();
       }catch(_){/* 입력 도중에는 결과를 유지 */}
     }
@@ -6835,7 +6924,7 @@ function resetZ1PlanUi(){
       renderZ1Plan(r);lastRaw="";
       setStatus("계산 완료 · V1.5.2 · 1구역 개별 담당비율 반영 · 내부 검증 PASS","ok");
     }catch(err){
-      currentZ1PlanActive=false;document.getElementById('result').classList.remove('show');document.getElementById('shareOpenBtn').classList.remove('show');setStatus(err.message,"err");
+      currentZ1PlanActive=false;document.getElementById('result').classList.remove('show','z1-result-active');document.getElementById('shareOpenBtn').classList.remove('show');setStatus(err.message,"err");
     }
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -6877,10 +6966,12 @@ function resetZ1PlanUi(){
     if(selectedMode!=="z1")return;
     const keep=new Set(pickerNamesFromInput());
     Object.keys(z1Assignments).forEach(n=>{if(!keep.has(n))delete z1Assignments[n];});
-    currentZ1PlanActive=false;document.getElementById('result').classList.remove('show');document.getElementById('shareOpenBtn').classList.remove('show');
+    currentZ1PlanActive=false;document.getElementById('result').classList.remove('show','z1-result-active');document.getElementById('shareOpenBtn').classList.remove('show');
   });
   document.querySelectorAll('.server-btn').forEach(btn=>btn.addEventListener('click',()=>{if(selectedMode==="z1")currentZ1PlanActive=false;}));
   document.getElementById('clearBtn').addEventListener('click',resetZ1PlanUi);
+  levelBtn.disabled=true;
+  setZ1Level(null);
   updateZ1Meta();
 })();
 </script>
