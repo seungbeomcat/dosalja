@@ -6300,6 +6300,73 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
 #rosterMemberPopover{display:none!important;}
 </style>
 
+
+<style id="v152-roster-detail-polish-final-20260930">
+/* Final roster-detail polish: align title with member list, remove duplicate server summary,
+   use one thin base-kill strip, header-only table fill, black body text, and one group divider. */
+#rosterDetailPanel .roster-detail-head strong{
+  flex:0 0 104px!important;
+  width:104px!important;
+  min-width:104px!important;
+  max-width:104px!important;
+  display:block!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+}
+.roster-base-strip{
+  width:100%!important;
+  height:31px!important;
+  min-height:31px!important;
+  max-height:31px!important;
+  margin:0 0 5px!important;
+  padding:0 7px!important;
+  border:1px solid #d7c8ec!important;
+  border-radius:8px!important;
+  background:#fff!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:4px!important;
+  box-sizing:border-box!important;
+  white-space:nowrap!important;
+}
+.roster-base-strip-label{
+  color:#111827!important;
+  font-size:9.4px!important;
+  line-height:1!important;
+  font-weight:850!important;
+}
+.roster-base-strip strong{
+  color:#145aa6!important;
+  font-size:14.5px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  font-variant-numeric:tabular-nums!important;
+}
+.roster-inline-table-wrap{
+  height:168px!important;
+  background:#fff!important;
+}
+.roster-inline-table thead th{
+  background:#eadfff!important;
+  color:#111111!important;
+  font-weight:900!important;
+}
+.roster-inline-table tbody td,
+.roster-inline-table .roster-upper-row td,
+.roster-inline-table .roster-field-row td{
+  background:#fff!important;
+  color:#111111!important;
+}
+.roster-inline-table .roster-group-start td{
+  border-top:3px solid #9b78d1!important;
+}
+.roster-inline-table td:last-child{
+  color:#145aa6!important;
+  font-weight:950!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -8008,13 +8075,13 @@ function resetZ1PlanUi(){
       return `<tr class="roster-${group}-row${start?' roster-group-start':''}"><td>${label}</td><td>${fmtPctValue(bonus)}</td><td>${fmtPctValue(total)}</td></tr>`;
     }).join('');
     detailPane.innerHTML=`
-      <div class="roster-inline-summary">
-        <div class="roster-inline-summary-box"><span class="roster-inline-summary-label">기본(탈것포함)</span><strong>${fmtPctValue(m.base)}</strong></div>
-        <div class="roster-inline-summary-box"><span class="roster-inline-summary-label">서버격추</span><strong>${fmtPctValue(rosterServer)}</strong></div>
+      <div class="roster-base-strip" aria-label="기본격추 탈것 포함">
+        <span class="roster-base-strip-label">기본(탈것포함) :</span>
+        <strong>${fmtPctValue(m.base)}</strong>
       </div>
       <div class="roster-inline-table-wrap">
         <table class="roster-inline-table">
-          <thead><tr><th aria-label="구분"></th><th>지역 격추</th><th>종합 격추</th></tr></thead>
+          <thead><tr><th>지역</th><th>지역 격추</th><th>종합 격추</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
       </div>`;
