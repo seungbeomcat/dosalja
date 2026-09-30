@@ -5891,10 +5891,10 @@ html,body,button,input,textarea,select,option{
 <style id="v152-main-server-dropdown-centered-initial-20260930">
 /* 2026-09-30: compact main server selector + more vertically balanced initial screen. */
 .v152-boss-info-header{
-  padding-top:clamp(50px,7svh,64px)!important;
+  padding-top:clamp(58px,8svh,72px)!important;
 }
 @media(max-height:700px){
-  .v152-boss-info-header{padding-top:46px!important;}
+  .v152-boss-info-header{padding-top:54px!important;}
 }
 
 #calculatorCard{
@@ -6017,6 +6017,26 @@ html,body,button,input,textarea,select,option{
   #calculatorCard .main-server-menu{width:52px!important;}
 }
 </style>
+
+<style id="v152-roster-head-grid-edge-align-20260930">
+/* Align the detail header to the first and third nickname button edges. */
+#rosterDetailPanel .roster-detail-head{
+  width:288px!important;
+  max-width:100%!important;
+  margin:0 auto 10px!important;
+  box-sizing:border-box!important;
+}
+#rosterDetailPanel .roster-detail-server-control{
+  margin-left:auto!important;
+}
+@media(max-width:365px){
+  #rosterDetailPanel .roster-detail-head{
+    width:264px!important;
+    margin:0 auto 10px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -6192,8 +6212,8 @@ html,body,button,input,textarea,select,option{
     <div id="status" class="status"></div>
   </section>
 
-  <section id="raidEntryStandalone" class="raid-entry-standalone" aria-label="균열 은하 초대형 보스 길드 합계 점수 계산">
-    <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">균열(은하) 초대형 보스, 길드 합계 점수 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
+  <section id="raidEntryStandalone" class="raid-entry-standalone" aria-label="초대형 보스 길드 합계 점수 계산">
+    <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">초대형 보스 길드 합계 점수 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
   </section>
 
   <footer class="footer-credits" aria-label="제작 정보">
