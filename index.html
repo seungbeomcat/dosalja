@@ -5470,6 +5470,40 @@ html,body,button,input,textarea,select,option{
 }
 </style>
 
+
+<style id="v152-20260930-advanced-z2-border-unify-final">
+/* 2026-09-30 UI polish only: persistent divider, 2구역-only advanced row, unified control borders. */
+#calculatorCard .mode-section-divider{
+  display:block!important;
+  width:calc(100% - 8px)!important;
+  height:0!important;
+  margin:9px 4px 3px!important;
+  border-top:1px solid #ddcff7!important;
+}
+#calculatorCard #advancedSettingsRow[hidden]{display:none!important;}
+#calculatorCard #advancedSettingsRow{
+  border-top:0!important;
+  margin-top:0!important;
+  padding-top:5px!important;
+}
+/* Use the approved boss-card/Updated border as the violet reference: #7b3fe4 / 2px. */
+#calculatorCard .server-picker{
+  border:2px solid #7b3fe4!important;
+}
+#calculatorCard .actions > #clearBtn,
+#calculatorCard .actions > #calcBtn{
+  border:2px solid #7b3fe4!important;
+  box-sizing:border-box!important;
+}
+/* Verification retains its semantic green while matching the same 2px visual weight. */
+#calculatorCard .actions > #verifyBtn{
+  border:2px solid #5bae70!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:420px){
+  #calculatorCard .mode-section-divider{margin-top:8px!important;margin-bottom:3px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -5585,7 +5619,8 @@ html,body,button,input,textarea,select,option{
         <button type="button" data-region="늑대">늑대</button><button type="button" data-region="해적">해적</button><button type="button" data-region="고양이">고양이</button><button type="button" data-region="음식">음식</button><button type="button" data-region="은하">은하</button>
       </div>
     </div>
-    <label class="time-limit-toggle is-disabled" for="timeLimitToggle">
+    <div id="modeSectionDivider" class="mode-section-divider" aria-hidden="true"></div>
+    <label id="advancedSettingsRow" class="time-limit-toggle is-disabled" for="timeLimitToggle" hidden>
       <span class="advanced-settings-label"><span id="advancedSettingsIcon" class="advanced-settings-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M19.14 12.94a7.7 7.7 0 0 0 .05-.94 7.7 7.7 0 0 0-.05-.94l2.03-1.58a.55.55 0 0 0 .13-.7l-1.92-3.32a.55.55 0 0 0-.67-.24l-2.39.96a7.4 7.4 0 0 0-1.63-.95l-.36-2.54a.55.55 0 0 0-.54-.46h-3.84a.55.55 0 0 0-.54.46l-.36 2.54a7.4 7.4 0 0 0-1.63.95l-2.39-.96a.55.55 0 0 0-.67.24L2.44 8.78a.55.55 0 0 0 .13.7l2.03 1.58a7.7 7.7 0 0 0-.05.94c0 .32.02.63.05.94l-2.03 1.58a.55.55 0 0 0-.13.7l1.92 3.32c.14.25.44.35.7.24l2.36-.95c.5.39 1.05.71 1.64.96l.36 2.52c.04.27.27.46.54.46h3.84c.27 0 .5-.19.54-.46l.36-2.52c.59-.25 1.14-.57 1.64-.96l2.36.95c.26.11.56.01.7-.24l1.92-3.32a.55.55 0 0 0-.13-.7l-2.03-1.58ZM11.87 15.5A3.5 3.5 0 1 1 11.87 8a3.5 3.5 0 0 1 0 7.5Z"/></svg></span><span>고급 설정</span></span>
       <span class="time-limit-right"><span class="individual-time-label">개별 시간설정</span><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" disabled aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
@@ -6255,6 +6290,7 @@ function setMode(mode){
   selectedMode=mode; selectedBoss=null; selectedRegion=null;
   hideAllModeExtras();
   setTimeLimitAvailability(mode==="z2");
+  document.getElementById("advancedSettingsRow").hidden=mode!=="z2";
   document.getElementById("modeSelectBtn").firstChild.nodeValue=MODE_LABELS[mode]+" ";
   document.getElementById("modeMenu").hidden=true;
   document.getElementById("modeSelectBtn").setAttribute("aria-expanded","false");
@@ -6356,6 +6392,7 @@ document.getElementById("clearBtn").addEventListener("click",()=>{
   document.getElementById("bossHpInput").value="";
   selectedMode=null; selectedBoss=null; selectedRegion=null; hideAllModeExtras();
   setTimeLimitAvailability(false);
+  document.getElementById("advancedSettingsRow").hidden=true;
   document.getElementById("modeSelectBtn").firstChild.nodeValue="선택 ";
   document.querySelectorAll("[data-boss],[data-region]").forEach(b=>b.classList.remove("selected"));
   document.getElementById("result").classList.remove("show");
