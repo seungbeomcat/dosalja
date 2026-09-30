@@ -2830,7 +2830,9 @@ width:16%!important;min-width:0!important;max-width:none!important;text-align:ri
   min-height:76px!important;
   padding:10px 14px!important;
   cursor:default!important;
-  pointer-events:none!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  touch-action:none!important;
 }
 #rosterDetails > summary:active{transform:none!important;}
 #rosterDetails > summary .guild-summary-wrap{
@@ -6185,7 +6187,11 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
   box-shadow:inset 0 0 0 1px rgba(123,63,228,.10)!important;
   transform:translateY(0)!important;
   will-change:transform!important;
+  cursor:grab!important;
+  touch-action:none!important;
+  user-select:none!important;
 }
+.roster-scroll-thumb:active{cursor:grabbing!important;}
 
 .roster-member-detail-pane{
   min-width:0!important;
@@ -6315,14 +6321,15 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
 }
 .roster-base-strip{
   width:100%!important;
-  height:31px!important;
-  min-height:31px!important;
-  max-height:31px!important;
-  margin:0 0 5px!important;
-  padding:0 7px!important;
-  border:1px solid #d7c8ec!important;
-  border-radius:8px!important;
-  background:#fff!important;
+  height:26px!important;
+  min-height:26px!important;
+  max-height:26px!important;
+  margin:0 0 4px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
@@ -6332,19 +6339,19 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
 }
 .roster-base-strip-label{
   color:#111827!important;
-  font-size:9.4px!important;
+  font-size:10.2px!important;
   line-height:1!important;
   font-weight:850!important;
 }
 .roster-base-strip strong{
   color:#145aa6!important;
-  font-size:14.5px!important;
+  font-size:15.6px!important;
   line-height:1!important;
   font-weight:950!important;
   font-variant-numeric:tabular-nums!important;
 }
 .roster-inline-table-wrap{
-  height:168px!important;
+  height:173px!important;
   background:#fff!important;
 }
 .roster-inline-table thead th{
@@ -8081,7 +8088,7 @@ function resetZ1PlanUi(){
       </div>
       <div class="roster-inline-table-wrap">
         <table class="roster-inline-table">
-          <thead><tr><th>지역</th><th>지역 격추</th><th>종합 격추</th></tr></thead>
+          <thead><tr><th>지역</th><th>지역 추가</th><th>종합 격추</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
       </div>`;
@@ -8127,6 +8134,60 @@ function resetZ1PlanUi(){
     renderDetail();
   });
   if(scroller)scroller.addEventListener('scroll',syncScrollThumb,{passive:true});
+
+  // The visible thumb is a real scrollbar control: drag it to move the member list.
+  const scrollRail=scrollThumb?scrollThumb.parentElement:null;
+  let draggingThumb=false;
+  let dragStartY=0;
+  let dragStartScrollTop=0;
+  function thumbMetrics(){
+    if(!scroller||!scrollThumb||!scrollRail)return null;
+    const railH=scrollRail.clientHeight||204;
+    const thumbH=scrollThumb.offsetHeight||28;
+    const maxThumbTop=Math.max(0,railH-thumbH);
+    const maxScroll=Math.max(0,scroller.scrollHeight-scroller.clientHeight);
+    return {railH,thumbH,maxThumbTop,maxScroll};
+  }
+  function startThumbDrag(e){
+    if(!scroller||!scrollThumb)return;
+    const m=thumbMetrics();
+    if(!m||m.maxScroll<=0)return;
+    draggingThumb=true;
+    dragStartY=e.clientY;
+    dragStartScrollTop=scroller.scrollTop;
+    if(scrollThumb.setPointerCapture&&e.pointerId!==undefined){try{scrollThumb.setPointerCapture(e.pointerId);}catch(_){}}
+    e.preventDefault();
+  }
+  function moveThumbDrag(e){
+    if(!draggingThumb||!scroller)return;
+    const m=thumbMetrics();
+    if(!m||m.maxThumbTop<=0)return;
+    const deltaY=e.clientY-dragStartY;
+    scroller.scrollTop=dragStartScrollTop+(deltaY/m.maxThumbTop)*m.maxScroll;
+    e.preventDefault();
+  }
+  function endThumbDrag(e){
+    if(!draggingThumb)return;
+    draggingThumb=false;
+    if(scrollThumb&&scrollThumb.releasePointerCapture&&e.pointerId!==undefined){try{scrollThumb.releasePointerCapture(e.pointerId);}catch(_){}}
+  }
+  if(scrollThumb){
+    scrollThumb.addEventListener('pointerdown',startThumbDrag);
+    scrollThumb.addEventListener('pointermove',moveThumbDrag);
+    scrollThumb.addEventListener('pointerup',endThumbDrag);
+    scrollThumb.addEventListener('pointercancel',endThumbDrag);
+  }
+  if(scrollRail){
+    scrollRail.addEventListener('pointerdown',e=>{
+      if(e.target===scrollThumb||!scroller)return;
+      const m=thumbMetrics();
+      if(!m||m.maxScroll<=0)return;
+      const rect=scrollRail.getBoundingClientRect();
+      const desired=Math.max(0,Math.min(m.maxThumbTop,e.clientY-rect.top-m.thumbH/2));
+      scroller.scrollTop=(desired/m.maxThumbTop)*m.maxScroll;
+      e.preventDefault();
+    });
+  }
 
   document.addEventListener('pointerdown',e=>{
     if(!serverMenu.hidden&&!e.target.closest('.roster-server-dropdown'))closeServerMenu();
