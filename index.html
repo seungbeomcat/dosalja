@@ -5823,6 +5823,70 @@ html,body,button,input,textarea,select,option{
 .roster-popover-table td:last-child{color:#542398!important;font-weight:950!important;}
 </style>
 
+
+
+<style id="v152-roster-dropdown-final-20260930">
+/* Final roster-detail control pass: compact independent server dropdown + locked members until selection. */
+.v152-boss-info-header{padding-top:34px!important;}
+@media(max-width:430px){.v152-boss-info-header{padding-top:34px!important;}}
+
+/* Match the expanded roster panel outline to the gold long-function button above. */
+#rosterDetailPanel{
+  border:3px solid #d6a62f!important;
+  box-shadow:0 8px 20px rgba(155,111,22,.12)!important;
+  overflow:visible!important;
+}
+.roster-detail-head{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  gap:10px!important;margin:0 4px 10px!important;color:#3f216d!important;
+}
+.roster-detail-head strong{font-size:15px!important;font-weight:950!important;white-space:nowrap!important;}
+.roster-detail-server-control{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:5px!important;flex:0 0 auto!important;white-space:nowrap!important;}
+.roster-detail-server-label{font-size:11.2px!important;line-height:1!important;font-weight:800!important;color:#5a328f!important;}
+.roster-server-dropdown{position:relative!important;display:inline-block!important;}
+.roster-server-select-button{
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;
+  width:55px!important;height:29px!important;min-height:29px!important;padding:0 6px!important;
+  border:1.5px solid #bda7db!important;border-radius:8px!important;background:#fff!important;
+  color:#4f3074!important;font-size:10.8px!important;line-height:1!important;font-weight:750!important;
+  box-shadow:none!important;box-sizing:border-box!important;
+}
+.roster-server-select-button[aria-expanded="true"]{border-color:#7b3fe4!important;box-shadow:0 0 0 2px rgba(123,63,228,.08)!important;}
+.roster-server-caret{font-size:8px!important;line-height:1!important;color:#6a3ca0!important;transform:translateY(.5px)!important;}
+.roster-server-menu{
+  position:absolute!important;z-index:10100!important;right:0!important;top:calc(100% + 4px)!important;
+  width:55px!important;padding:3px!important;border:1px solid #cdbfe0!important;border-radius:8px!important;
+  background:#fff!important;box-shadow:0 7px 18px rgba(65,38,99,.15)!important;box-sizing:border-box!important;
+}
+.roster-server-menu[hidden]{display:none!important;}
+.roster-server-menu button{
+  display:block!important;width:100%!important;height:24px!important;min-height:24px!important;margin:0!important;padding:0!important;
+  border:0!important;border-radius:5px!important;background:transparent!important;color:#4c3a61!important;
+  font-size:10.2px!important;line-height:1!important;font-weight:600!important;text-align:center!important;box-shadow:none!important;
+}
+.roster-server-menu button+button{margin-top:1px!important;}
+.roster-server-menu button:hover,.roster-server-menu button:focus-visible{background:#f4effa!important;outline:none!important;}
+.roster-server-menu button[aria-selected="true"]{background:#eee5fb!important;color:#542398!important;font-weight:700!important;}
+
+/* Before server selection, names remain visible but cannot be selected. */
+.roster-member-btn:disabled{
+  opacity:.46!important;cursor:not-allowed!important;filter:saturate(.55)!important;box-shadow:none!important;
+}
+
+/* Keep the member popover compact and rectangular. */
+.roster-member-popover{width:172px!important;}
+
+@media(max-width:365px){
+  .roster-detail-head{gap:6px!important;margin-left:2px!important;margin-right:2px!important;}
+  .roster-detail-head strong{font-size:14px!important;}
+  .roster-detail-server-control{gap:4px!important;}
+  .roster-detail-server-label{font-size:10.6px!important;}
+  .roster-server-select-button,.roster-server-menu{width:51px!important;}
+  .roster-server-select-button{height:28px!important;min-height:28px!important;font-size:10.3px!important;padding:0 5px!important;}
+  .roster-server-menu button{height:23px!important;min-height:23px!important;font-size:9.8px!important;}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -5887,17 +5951,21 @@ html,body,button,input,textarea,select,option{
   <section class="card roster-detail-card" id="rosterDetailPanel" hidden aria-label="길드원 격전지 추가점수 상세정보 선택">
     <div class="roster-detail-head">
       <strong>길드원 선택</strong>
-      <span>기본격추 높은 순</span>
-    </div>
-    <div class="roster-detail-server-picker" aria-label="상세정보 전용 서버격추 선택">
-      <div class="roster-detail-server-title">서버격추 선택</div>
-      <div id="rosterDetailServerOptions" class="roster-detail-server-options" role="group" aria-label="상세정보 전용 서버격추 선택">
-        <button type="button" data-roster-server="0" aria-pressed="false">0%</button>
-        <button type="button" data-roster-server="1" aria-pressed="false">1%</button>
-        <button type="button" data-roster-server="2" aria-pressed="false">2%</button>
-        <button type="button" data-roster-server="3" aria-pressed="false">3%</button>
-        <button type="button" data-roster-server="4" aria-pressed="false">4%</button>
-        <button type="button" data-roster-server="6" aria-pressed="false">6%</button>
+      <div class="roster-detail-server-control" aria-label="상세정보 전용 서버격추 선택">
+        <span class="roster-detail-server-label">서버격추</span>
+        <div class="roster-server-dropdown">
+          <button id="rosterServerSelectButton" class="roster-server-select-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="rosterServerMenu">
+            <span id="rosterServerSelectValue">선택</span><span class="roster-server-caret" aria-hidden="true">▼</span>
+          </button>
+          <div id="rosterServerMenu" class="roster-server-menu" role="listbox" hidden>
+            <button type="button" data-roster-server="0" role="option" aria-selected="false">0%</button>
+            <button type="button" data-roster-server="1" role="option" aria-selected="false">1%</button>
+            <button type="button" data-roster-server="2" role="option" aria-selected="false">2%</button>
+            <button type="button" data-roster-server="3" role="option" aria-selected="false">3%</button>
+            <button type="button" data-roster-server="4" role="option" aria-selected="false">4%</button>
+            <button type="button" data-roster-server="6" role="option" aria-selected="false">6%</button>
+          </div>
+        </div>
       </div>
     </div>
     <div id="rosterMemberGrid" class="roster-member-grid" role="listbox" aria-label="길드원 선택"></div>
@@ -7405,6 +7473,9 @@ function resetZ1PlanUi(){
   const openBtn=document.getElementById('rosterOpenBtn');
   const grid=document.getElementById('rosterMemberGrid');
   const popover=document.getElementById('rosterMemberPopover');
+  const serverSelectBtn=document.getElementById('rosterServerSelectButton');
+  const serverSelectValue=document.getElementById('rosterServerSelectValue');
+  const serverMenu=document.getElementById('rosterServerMenu');
   const rosterServerButtons=[...document.querySelectorAll('[data-roster-server]')];
   let selectedRosterMember=null;
   let rosterServer=null; // 상세정보 전용 서버격추. 메인 계산기의 selectedServer와 완전히 분리.
@@ -7429,14 +7500,27 @@ function resetZ1PlanUi(){
   }
   function renderGrid(){
     const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
-    grid.innerHTML=ordered.map(([name])=>`<button type="button" class="roster-member-btn${selectedRosterMember===name?' selected':''}" data-roster-member="${name}" role="option" aria-selected="${selectedRosterMember===name?'true':'false'}">${name}</button>`).join('');
+    const locked=rosterServer===null;
+    grid.innerHTML=ordered.map(([name])=>`<button type="button" class="roster-member-btn${selectedRosterMember===name?' selected':''}" data-roster-member="${name}" role="option" aria-selected="${selectedRosterMember===name?'true':'false'}" aria-disabled="${locked?'true':'false'}"${locked?' disabled':''}>${name}</button>`).join('');
   }
-  function syncRosterServerButtons(){
+  function syncRosterServerControl(){
+    serverSelectValue.textContent=rosterServer===null?'선택':fmtPctValue(rosterServer);
     rosterServerButtons.forEach(btn=>{
       const on=rosterServer!==null&&Number(btn.dataset.rosterServer)===rosterServer;
-      btn.classList.toggle('active',on);
-      btn.setAttribute('aria-pressed',String(on));
+      btn.setAttribute('aria-selected',String(on));
     });
+    renderGrid();
+  }
+  function openServerMenu(){
+    serverMenu.hidden=false;
+    serverSelectBtn.setAttribute('aria-expanded','true');
+  }
+  function closeServerMenu(){
+    serverMenu.hidden=true;
+    serverSelectBtn.setAttribute('aria-expanded','false');
+  }
+  function toggleServerMenu(){
+    if(serverMenu.hidden)openServerMenu();else closeServerMenu();
   }
   function closePopover(clearSelection=true){
     popover.hidden=true;
@@ -7452,7 +7536,7 @@ function resetZ1PlanUi(){
     const r=anchor.getBoundingClientRect();
     const vw=document.documentElement.clientWidth||window.innerWidth;
     const vh=window.innerHeight;
-    const margin=8,gap=7,preferred=210,minWidth=166;
+    const margin=8,gap=7,preferred=172,minWidth=132;
     const leftSpace=Math.max(0,r.left-gap-margin);
     const rightSpace=Math.max(0,vw-r.right-gap-margin);
     const useRight=rightSpace>=leftSpace;
@@ -7473,21 +7557,20 @@ function resetZ1PlanUi(){
     popover.style.top=Math.round(top)+'px';
   }
   function renderPopover(anchor){
+    if(rosterServer===null){closePopover(true);return;}
     if(!selectedRosterMember||!Object.prototype.hasOwnProperty.call(MEMBERS,selectedRosterMember)){
       closePopover();return;
     }
     const m=MEMBERS[selectedRosterMember];
-    const hasServer=rosterServer!==null;
-    const serverText=hasServer?fmtPctValue(rosterServer):'미선택';
     const rows=regionRows(m).map(({label,bonus,group,start})=>{
-      const total=hasServer?m.base+rosterServer+bonus:null;
+      const total=m.base+rosterServer+bonus;
       return `<tr class="roster-${group}-row${start?' roster-group-start':''}"><td>${label}</td><td>${fmtPctValue(bonus)}</td><td>${fmtPctValue(total)}</td></tr>`;
     }).join('');
     popover.innerHTML=`
       <div class="roster-popover-name">${selectedRosterMember}</div>
       <div class="roster-popover-summary">
         <div class="roster-popover-summary-box"><span class="roster-popover-label">기본격추<br><small>(탈것 포함)</small></span><strong>${fmtPctValue(m.base)}</strong></div>
-        <div class="roster-popover-summary-box"><span class="roster-popover-label">서버격추</span><strong>${serverText}</strong></div>
+        <div class="roster-popover-summary-box"><span class="roster-popover-label">서버격추</span><strong>${fmtPctValue(rosterServer)}</strong></div>
       </div>
       <div class="roster-popover-table-wrap"><table class="roster-popover-table"><thead><tr><th>구분</th><th>지역격추</th><th>종합격추</th></tr></thead><tbody>${rows}</tbody></table></div>`;
     popover.hidden=false;
@@ -7497,22 +7580,28 @@ function resetZ1PlanUi(){
   function setOpen(open){
     panel.hidden=!open;
     openBtn.setAttribute('aria-expanded',String(open));
+    closeServerMenu();
     if(open){
-      selectedRosterMember=null;selectedAnchor=null;renderGrid();syncRosterServerButtons();closePopover(false);
+      selectedRosterMember=null;selectedAnchor=null;renderGrid();closePopover(false);
     }else closePopover(true);
   }
 
   openBtn.addEventListener('click',()=>setOpen(panel.hidden));
 
+  serverSelectBtn.addEventListener('click',e=>{
+    e.stopPropagation();
+    toggleServerMenu();
+  });
   rosterServerButtons.forEach(btn=>btn.addEventListener('click',e=>{
     e.stopPropagation();
     rosterServer=Number(btn.dataset.rosterServer);
-    syncRosterServerButtons();
+    closeServerMenu();
+    syncRosterServerControl();
     if(selectedRosterMember&&selectedAnchor)renderPopover(selectedAnchor);
   }));
 
   grid.addEventListener('click',e=>{
-    const btn=e.target.closest('[data-roster-member]');if(!btn)return;
+    const btn=e.target.closest('[data-roster-member]');if(!btn||btn.disabled||rosterServer===null)return;
     const name=btn.dataset.rosterMember;
     if(selectedRosterMember===name&&!popover.hidden){closePopover(true);return;}
     selectedRosterMember=name;
@@ -7521,19 +7610,25 @@ function resetZ1PlanUi(){
     renderPopover(fresh||btn);
   });
 
-  // 선택한 닉네임을 다시 누르거나, 팝업/서버선택 이외의 빈 공간을 누르면 상세 팝업만 닫습니다.
+  // Same nickname or blank space closes the member popover. Clicking outside also closes the compact server menu.
   document.addEventListener('pointerdown',e=>{
+    if(!serverMenu.hidden&&!e.target.closest('.roster-server-dropdown'))closeServerMenu();
     if(popover.hidden)return;
     if(popover.contains(e.target))return;
-    if(e.target.closest('[data-roster-server]'))return;
+    if(e.target.closest('.roster-server-dropdown'))return;
     if(e.target.closest('[data-roster-member]'))return;
     closePopover(true);
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!popover.hidden)closePopover(true);});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(!serverMenu.hidden){closeServerMenu();return;}
+      if(!popover.hidden)closePopover(true);
+    }
+  });
   window.addEventListener('resize',()=>{if(selectedAnchor&&!popover.hidden)positionPopover(selectedAnchor);});
   window.addEventListener('scroll',()=>{if(selectedAnchor&&!popover.hidden)positionPopover(selectedAnchor);},{passive:true});
 
-  renderGrid();syncRosterServerButtons();
+  syncRosterServerControl();
 
   /* Fixed logical share canvas. The card is always laid out at 720px and only scaled visually. */
   const overlay=document.getElementById('shareOverlay');
