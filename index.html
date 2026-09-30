@@ -5504,6 +5504,233 @@ html,body,button,input,textarea,select,option{
   #calculatorCard .mode-section-divider{margin-top:8px!important;margin-bottom:3px!important;}
 }
 </style>
+
+<style id="v152-roster-detail-redesign-and-fixed-share-final">
+/* 2026-09-30: compact member-detail entry + one-member detail view. Existing member data and formulas are untouched. */
+
+/* Give the compact top information strip slightly more breathing room above the boss cards. */
+.v152-boss-info-header{
+  padding-top:13px!important;
+  padding-bottom:2px!important;
+}
+@media(max-width:430px){.v152-boss-info-header{padding-top:12px!important;padding-bottom:2px!important;}}
+
+/* Initial-state member detail entry matches the approved Rift(Galaxy) long entry button. */
+#rosterEntryStandalone{
+  width:100%!important;
+  margin-top:9px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+#rosterEntryStandalone #rosterOpenBtn{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-height:42px!important;
+  margin:0!important;
+  padding:10px 10px!important;
+  border:3px solid #d6a62f!important;
+  border-radius:12px!important;
+  background:#9d365b!important;
+  color:#fff!important;
+  font-size:15px!important;
+  line-height:1.2!important;
+  font-weight:800!important;
+  box-shadow:0 4px 12px rgba(155,111,22,.16)!important;
+  box-sizing:border-box!important;
+}
+#rosterEntryStandalone #rosterOpenBtn:active{transform:scale(.997)}
+#rosterEntryStandalone #rosterOpenBtn:focus-visible{outline:2px solid #e0b84d!important;outline-offset:3px!important;}
+#rosterOpenBtn .raid-btn-group{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;max-width:100%!important;}
+#rosterOpenBtn .raid-btn-text{display:inline-block!important;white-space:nowrap!important;}
+#rosterOpenBtn .raid-flow{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:16px!important;height:20px!important;flex:0 0 16px!important;}
+#rosterOpenBtn .raid-flow i{display:none!important;}
+#rosterOpenBtn .raid-flow::before{
+  content:"⚡";display:block!important;font-size:17px!important;line-height:1!important;font-weight:900!important;
+  color:#ffe27a!important;text-shadow:0 0 6px rgba(255,226,122,.38);
+  animation:rosterBoltPulse 1.55s ease-in-out infinite!important;
+}
+#rosterOpenBtn .raid-flow-right::before{animation-delay:.18s!important;}
+@keyframes rosterBoltPulse{0%,100%{opacity:.72;transform:scale(1);text-shadow:0 0 4px rgba(255,226,122,.22)}50%{opacity:1;transform:scale(1.06);text-shadow:0 0 9px rgba(255,226,122,.55)}}
+@media(prefers-reduced-motion:reduce){#rosterOpenBtn .raid-flow::before{animation:none!important;opacity:1!important;transform:none!important;}}
+
+.creator-credit{
+  margin:7px 0 0!important;
+  text-align:center!important;
+  color:#d6c8ec!important;
+  font-size:11.6px!important;
+  line-height:1.25!important;
+  font-weight:800!important;
+  letter-spacing:-.1px!important;
+}
+@media(max-width:430px){
+  #rosterEntryStandalone{margin-top:8px!important;}
+  #rosterEntryStandalone #rosterOpenBtn{min-height:42px!important;font-size:13.5px!important;}
+  #rosterOpenBtn .raid-btn-group{gap:8px!important;}
+  .creator-credit{font-size:10.5px!important;}
+}
+
+/* Expanded member picker/detail: no category tabs, no full 15-row table. */
+#rosterDetailPanel{
+  margin-top:8px!important;
+  padding:12px!important;
+  border:3px solid var(--section-violet,#8b35f2)!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 10px 24px rgba(108,27,209,.10)!important;
+}
+#rosterDetailPanel[hidden]{display:none!important;}
+.roster-detail-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 2px 10px;color:#3f216d;}
+.roster-detail-head strong{font-size:15px;font-weight:950;white-space:nowrap;}
+.roster-detail-head span{font-size:11px;font-weight:750;color:#7a6a91;text-align:right;}
+.roster-member-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;width:100%;}
+.roster-member-btn{
+  min-width:0;height:36px;padding:0 5px;border:1.5px solid #d0c1e6;border-radius:10px;background:#fbf9fe;
+  color:#493066;font-size:12.5px!important;font-weight:850!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.roster-member-btn.selected{background:linear-gradient(180deg,#7b45c8,#6231ad)!important;border-color:#5d2ba6!important;color:#fff!important;box-shadow:0 3px 9px rgba(89,43,157,.16)!important;}
+.roster-member-detail{margin-top:11px;padding-top:11px;border-top:1px solid #e0d5f2;}
+.roster-member-detail[hidden]{display:none!important;}
+.roster-selected-name{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 9px;}
+.roster-selected-name strong{font-size:18px;color:#3c197b;font-weight:950;}
+.roster-server-chip{padding:5px 8px;border-radius:999px;background:#f1e9ff;color:#5c2ba5;font-size:11px;font-weight:900;white-space:nowrap;}
+.roster-member-summary{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:9px;}
+.roster-summary-box{min-height:54px;padding:7px 6px;border:1px solid #d7c8ec;border-radius:11px;background:#faf8fd;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.roster-summary-label{font-size:10.5px;color:#725e89;font-weight:850;}
+.roster-summary-value{margin-top:4px;font-size:18px;color:#3e1f6c;font-weight:950;font-variant-numeric:tabular-nums;}
+.roster-detail-table-wrap{overflow:hidden;border:1px solid #d7c8ec;border-radius:12px;background:#fff;}
+.roster-detail-table{width:100%;table-layout:fixed;border-collapse:collapse!important;background:#fff!important;}
+.roster-detail-table th,.roster-detail-table td{height:34px;padding:5px 4px!important;border:1px solid #e4dcf2!important;text-align:center!important;vertical-align:middle!important;}
+.roster-detail-table th{background:#eadfff!important;color:#3c197b!important;font-size:11px!important;font-weight:900!important;line-height:1.15!important;}
+.roster-detail-table td{font-size:12px!important;color:#302650!important;font-weight:780!important;background:#fff!important;}
+.roster-detail-table tbody tr:nth-child(even) td{background:#fbf8ff!important;}
+.roster-detail-table td:last-child{color:#542398!important;font-weight:950!important;}
+.roster-detail-formula{margin-top:8px;padding:8px 9px;border:1px solid #edc76c;border-left:5px solid #d6a62f;border-radius:10px;background:#fff8e7;color:#67420c;font-size:11px;font-weight:850;line-height:1.35;}
+@media(max-width:390px){
+  .roster-member-grid{gap:6px;}
+  .roster-member-btn{font-size:11.8px!important;}
+  .roster-detail-head strong{font-size:14px}.roster-detail-head span{font-size:10px}
+  .roster-detail-table th{font-size:10.3px!important}.roster-detail-table td{font-size:11.2px!important}
+}
+
+/* Device-independent share-card composition: one 720px logical card scaled as a whole to the viewport. */
+.share-shell{max-width:none!important;width:100%!important;margin:0 auto!important;}
+.share-stage{position:relative;margin:0 auto!important;overflow:visible!important;}
+#shareCard{
+  position:absolute!important;left:0!important;top:0!important;
+  width:720px!important;min-width:720px!important;max-width:720px!important;
+  margin:0!important;transform-origin:top left!important;box-sizing:border-box!important;
+}
+/* Freeze card typography/layout in logical pixels so different phones do not trigger different media-query compositions. */
+#shareCard .share-brand-title{font-size:20px!important;}
+#shareCard .share-result .headline{font-size:19px!important;}
+#shareCard .share-result th,#shareCard .share-result td{font-size:12px!important;padding:10px 3px!important;}
+#shareCard .share-result .note{font-size:12px!important;}
+#shareCard #shareHeadline.z1-share-headline{font-size:15px!important;}
+.share-hint{margin-top:10px!important;}
+</style>
+
+
+<style id="v152-final-order-credit-button-match-20260930">
+/* Final 2026-09-30 placement + long-button visual unification. */
+#rosterEntryStandalone{margin-top:9px!important;margin-bottom:8px!important;}
+#rosterEntryStandalone #rosterOpenBtn,
+#raidEntryStandalone #raidOpenBtn{
+  min-height:42px!important;
+  padding:10px 10px!important;
+  border:3px solid #d6a62f!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#8e3f59 0%,#70283f 100%)!important;
+  color:#fff!important;
+  box-shadow:0 4px 12px rgba(155,111,22,.16)!important;
+  box-sizing:border-box!important;
+}
+#rosterEntryStandalone #rosterOpenBtn:focus-visible,
+#raidEntryStandalone #raidOpenBtn:focus-visible{outline:2px solid #e0b84d!important;outline-offset:3px!important;}
+.creator-credit,.build-credit{
+  text-align:center!important;
+  color:#d6c8ec!important;
+  font-size:10.8px!important;
+  line-height:1.25!important;
+  font-weight:800!important;
+  letter-spacing:-.12px!important;
+}
+.creator-credit{margin:7px 0 0!important;}
+.build-credit{margin:3px 0 0!important;}
+@media(max-width:430px){
+  #rosterEntryStandalone{margin-top:8px!important;margin-bottom:7px!important;}
+  .creator-credit,.build-credit{font-size:9.8px!important;}
+}
+</style>
+
+<style id="v152-credit-final-and-long-button-sync-20260930">
+/* Final 2026-09-30 long-button naming/effect sync + footer credit placement. */
+#rosterEntryStandalone #rosterOpenBtn,
+#raidEntryStandalone #raidOpenBtn{
+  min-height:42px!important;
+  padding:10px 10px!important;
+  border:3px solid #d6a62f!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#8e3f59 0%,#70283f 100%)!important;
+  color:#fff!important;
+  box-shadow:0 4px 12px rgba(155,111,22,.16)!important;
+  box-sizing:border-box!important;
+}
+#rosterEntryStandalone #rosterOpenBtn .raid-btn-group,
+#raidEntryStandalone #raidOpenBtn .raid-btn-group{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;max-width:100%!important;
+}
+#rosterEntryStandalone #rosterOpenBtn .raid-btn-text,
+#raidEntryStandalone #raidOpenBtn .raid-btn-text{
+  display:inline-block!important;white-space:nowrap!important;font-size:14px!important;line-height:1.2!important;font-weight:850!important;
+}
+#rosterEntryStandalone #rosterOpenBtn .raid-flow,
+#raidEntryStandalone #raidOpenBtn .raid-flow{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;width:16px!important;height:20px!important;flex:0 0 16px!important;
+}
+#rosterEntryStandalone #rosterOpenBtn .raid-flow i,
+#raidEntryStandalone #raidOpenBtn .raid-flow i{display:none!important;}
+#rosterEntryStandalone #rosterOpenBtn .raid-flow::before,
+#raidEntryStandalone #raidOpenBtn .raid-flow::before{
+  content:"⚡"!important;display:block!important;font-size:17px!important;line-height:1!important;font-weight:900!important;
+  color:#ffe27a!important;text-shadow:0 0 0 rgba(255,226,122,0),0 0 6px rgba(255,226,122,.38)!important;
+  animation:raidBoltPulse 1.55s ease-in-out infinite!important;
+}
+#rosterEntryStandalone #rosterOpenBtn .raid-flow-left::before,
+#raidEntryStandalone #raidOpenBtn .raid-flow-left::before{animation-delay:0s!important;}
+#rosterEntryStandalone #rosterOpenBtn .raid-flow-right::before,
+#raidEntryStandalone #raidOpenBtn .raid-flow-right::before{animation-delay:.18s!important;}
+
+.footer-credits{
+  width:100%!important;box-sizing:border-box!important;margin:8px 0 2px!important;text-align:center!important;
+}
+.footer-credits .creator-credit{
+  position:relative!important;display:inline-block!important;margin:0!important;padding:0 0 6px!important;
+  color:#d6c8ec!important;font-size:10.8px!important;line-height:1!important;font-weight:850!important;letter-spacing:-.12px!important;text-align:center!important;
+}
+.footer-credits .creator-credit::after{
+  content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:2px!important;border-radius:99px!important;
+  background:linear-gradient(90deg,rgba(119,55,221,.20) 0%,rgba(151,82,240,.78) 22%,rgba(151,82,240,.92) 50%,rgba(151,82,240,.78) 78%,rgba(119,55,221,.20) 100%)!important;
+  box-shadow:0 0 6px rgba(151,82,240,.24)!important;
+}
+.footer-credits .build-credit{
+  margin:5px 0 0!important;color:#d6c8ec!important;font-size:10.8px!important;line-height:1.1!important;font-weight:800!important;letter-spacing:-.12px!important;text-align:center!important;
+}
+@media(max-width:430px){
+  #rosterEntryStandalone #rosterOpenBtn .raid-btn-text,
+  #raidEntryStandalone #raidOpenBtn .raid-btn-text{font-size:12.8px!important;}
+  #rosterEntryStandalone #rosterOpenBtn .raid-btn-group,
+  #raidEntryStandalone #raidOpenBtn .raid-btn-group{gap:8px!important;}
+  .footer-credits .creator-credit,.footer-credits .build-credit{font-size:9.8px!important;}
+}
+@media(prefers-reduced-motion:reduce){
+  #rosterEntryStandalone #rosterOpenBtn .raid-flow::before,
+  #raidEntryStandalone #raidOpenBtn .raid-flow::before{animation:none!important;opacity:1!important;transform:none!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -5559,9 +5786,22 @@ html,body,button,input,textarea,select,option{
     </div>
 
   </section>
-  <section id="raidEntryStandalone" class="raid-entry-standalone" aria-label="균열 은하 초대형 보스 길드 합계 점수 계산">
-    <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">균열(은하) 초대형 보스, 길드 합계 점수 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
+  <section id="rosterEntryStandalone" class="roster-entry-standalone" aria-label="길드원 격전지 추가점수 상세정보">
+    <button id="rosterOpenBtn" type="button" aria-controls="rosterDetailPanel" aria-expanded="false">
+      <span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">길드원 격전지 추가점수 상세정보</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span>
+    </button>
   </section>
+
+  <section class="card roster-detail-card" id="rosterDetailPanel" hidden aria-label="길드원 격전지 추가점수 상세정보 선택 및 상세">
+    <div class="roster-detail-head">
+      <strong>길드원 선택</strong>
+      <span>길드원 15명 중 한 명을 선택하세요.</span>
+    </div>
+    <div id="rosterMemberGrid" class="roster-member-grid" role="listbox" aria-label="길드원 선택"></div>
+    <div id="rosterMemberDetail" class="roster-member-detail" hidden></div>
+  </section>
+
+  
 
 
 <section class="card" id="calculatorCard">
@@ -5638,6 +5878,16 @@ html,body,button,input,textarea,select,option{
     <div id="status" class="status"></div>
   </section>
 
+  <section id="raidEntryStandalone" class="raid-entry-standalone" aria-label="균열 은하 초대형 보스 길드 합계 점수 계산">
+    <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">균열(은하) 초대형 보스, 길드 합계 점수 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
+  </section>
+
+  <footer class="footer-credits" aria-label="제작 정보">
+    <div class="creator-credit">Created by 돗돔 · V1.5.2</div>
+    <div class="build-credit">2026.09.30</div>
+  </footer>
+
+
   <section id="result" class="card result">
     <button id="shareOpenBtn" class="share-open">결과표 단톡방 공유용 이미지 만들기</button>
     <div id="headline" class="headline"></div>
@@ -5667,27 +5917,17 @@ html,body,button,input,textarea,select,option{
 
 </section>
   
-  <section class="card roster-card" id="rosterCard">
-    <details id="rosterDetails" open>
-      <summary>
-        <span class="guild-summary-wrap">
-          <span class="guild-summary-title">길드원 격추 세부 현황표</span>
-          
-        </span>
-      </summary>
-      <div class="roster-tabs" role="tablist" aria-label="격추 현황 구분">
-        <button type="button" class="roster-tab active" data-roster-tab="field">일반 | 균열 | 은하</button>
-        <button type="button" class="roster-tab" data-roster-tab="upper">상층</button>
-      </div>
-      <div id="rosterUpper" class="roster roster-panel"></div>
-      <div id="rosterField" class="roster roster-panel active"></div>
-      <div class="minscore-guide">※ 격전지 최소 점수란 보스에게 피해를 주지 못해도 보장되는 점수이며, 전투시 최종 점수에 1회만 반영됩니다.(메달을 통해 올릴수 있음)</div>
-    </details>
-  </section>
+  
+
+  
+
+  <!-- Legacy roster render targets are intentionally kept hidden so the verified data-render path remains intact. -->
+  <div id="rosterUpper" hidden aria-hidden="true"></div>
+  <div id="rosterField" hidden aria-hidden="true"></div>
 
 </div>
 
-  <div class="footer">도살장 길드 전용 · 2026년 9월 28일 V1.5.2</div>
+  
 </div>
 
 
@@ -5696,14 +5936,16 @@ html,body,button,input,textarea,select,option{
     <div class="share-toolbar">
       <button id="shareCloseBtn" class="share-close">계산기로 돌아가기</button>
     </div>
-    <div class="share-card" id="shareCard">
-      <div class="share-brand">
-        <div><div class="share-brand-title">도살장 격전지 계산기</div></div>
-      </div>
-      <div class="share-result">
-        <div id="shareHeadline" class="headline"></div>
-        <div id="shareMainTable"></div>
-        <div id="shareNote"></div>
+    <div id="shareStage" class="share-stage">
+      <div class="share-card" id="shareCard">
+        <div class="share-brand">
+          <div><div class="share-brand-title">도살장 격전지 계산기</div></div>
+        </div>
+        <div class="share-result">
+          <div id="shareHeadline" class="headline"></div>
+          <div id="shareMainTable"></div>
+          <div id="shareNote"></div>
+        </div>
       </div>
     </div>
     <div class="share-hint">이 화면의 결과 카드 부분만 캡처해서 공유하면 가장 선명합니다.</div>
@@ -7049,6 +7291,86 @@ function resetZ1PlanUi(){
   document.querySelectorAll('.server-btn').forEach(btn=>btn.addEventListener('click',()=>{if(selectedMode==="z1")invalidateZ1Result();}));
   document.getElementById('clearBtn').addEventListener('click',resetZ1PlanUi);
   levelBtn.disabled=true;setZ1Level(null);updateZ1Meta();updateZ1DistributionAvailability();
+})();
+</script>
+
+
+<script id="v152-roster-detail-redesign-and-fixed-share-js">
+(function(){
+  "use strict";
+  const panel=document.getElementById('rosterDetailPanel');
+  const openBtn=document.getElementById('rosterOpenBtn');
+  const grid=document.getElementById('rosterMemberGrid');
+  const detail=document.getElementById('rosterMemberDetail');
+  let selectedRosterMember=null;
+
+  function fmtPctValue(v){
+    if(v===null||v===undefined||!Number.isFinite(Number(v)))return '—';
+    const n=Number(v);return (Math.abs(n-Math.round(n))<1e-9?String(Math.round(n)):n.toFixed(1).replace(/\.0$/,''))+'%';
+  }
+  function regionRows(m){
+    return [
+      ['1구역',m.z1r],['2구역',m.z2r],['3구역',m.z3r],
+      ['늑대',m.field.wolf],['해적',m.field.pirate],['고양이',m.field.cat],['음식',m.field.food],['은하',m.field.galaxy]
+    ];
+  }
+  function renderDetail(){
+    if(!selectedRosterMember||!Object.prototype.hasOwnProperty.call(MEMBERS,selectedRosterMember)){
+      detail.hidden=true;detail.innerHTML='';return;
+    }
+    const m=MEMBERS[selectedRosterMember];
+    const hasServer=selectedServer!==null;
+    const serverText=hasServer?`+${selectedServer}%`:'미선택';
+    const rows=regionRows(m).map(([label,bonus])=>{
+      const total=hasServer?m.base+selectedServer+bonus:null;
+      return `<tr><td>${label}</td><td>${fmtPctValue(bonus)}</td><td>${fmtPctValue(total)}</td></tr>`;
+    }).join('');
+    detail.innerHTML=`
+      <div class="roster-selected-name"><strong>${selectedRosterMember}</strong><span class="roster-server-chip">서버격추 ${serverText}</span></div>
+      <div class="roster-member-summary">
+        <div class="roster-summary-box"><span class="roster-summary-label">기본격추 (탈것 포함)</span><strong class="roster-summary-value">${fmtPctValue(m.base)}</strong></div>
+        <div class="roster-summary-box"><span class="roster-summary-label">현재 서버격추</span><strong class="roster-summary-value">${serverText}</strong></div>
+      </div>
+      <div class="roster-detail-table-wrap"><table class="roster-detail-table"><thead><tr><th>구분</th><th>지역격추</th><th>종합격추</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="roster-detail-formula">종합격추 = 기본격추(탈것 포함) + 서버격추 + 해당 지역격추</div>`;
+    detail.hidden=false;
+  }
+  function renderGrid(){
+    const ordered=Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
+    grid.innerHTML=ordered.map(([name])=>`<button type="button" class="roster-member-btn${selectedRosterMember===name?' selected':''}" data-roster-member="${name}" role="option" aria-selected="${selectedRosterMember===name?'true':'false'}">${name}</button>`).join('');
+  }
+  function setOpen(open){
+    panel.hidden=!open;openBtn.setAttribute('aria-expanded',String(open));
+    if(open){renderGrid();if(selectedRosterMember)renderDetail();}
+  }
+  openBtn.addEventListener('click',()=>setOpen(panel.hidden));
+  grid.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-roster-member]');if(!btn)return;
+    selectedRosterMember=btn.dataset.rosterMember;renderGrid();renderDetail();
+  });
+  document.querySelectorAll('.server-btn').forEach(btn=>btn.addEventListener('click',()=>{if(!panel.hidden&&selectedRosterMember)renderDetail();}));
+  renderGrid();
+
+  /* Fixed logical share canvas. The card is always laid out at 720px and only scaled visually. */
+  const overlay=document.getElementById('shareOverlay');
+  const stage=document.getElementById('shareStage');
+  const card=document.getElementById('shareCard');
+  function fitShareCard(){
+    if(!overlay||!stage||!card||!overlay.classList.contains('show'))return;
+    card.style.transform='none';
+    const logicalWidth=720;
+    const available=Math.max(280,Math.min(logicalWidth,window.innerWidth-14));
+    const scale=available/logicalWidth;
+    const logicalHeight=card.scrollHeight;
+    card.style.transform=`scale(${scale})`;
+    stage.style.width=(logicalWidth*scale)+'px';
+    stage.style.height=(logicalHeight*scale)+'px';
+  }
+  if(overlay){
+    const obs=new MutationObserver(()=>{if(overlay.classList.contains('show'))requestAnimationFrame(()=>requestAnimationFrame(fitShareCard));});
+    obs.observe(overlay,{attributes:true,attributeFilter:['class']});
+  }
+  window.addEventListener('resize',()=>requestAnimationFrame(fitShareCard));
 })();
 </script>
 
