@@ -5887,6 +5887,136 @@ html,body,button,input,textarea,select,option{
 }
 </style>
 
+
+<style id="v152-main-server-dropdown-centered-initial-20260930">
+/* 2026-09-30: compact main server selector + more vertically balanced initial screen. */
+.v152-boss-info-header{
+  padding-top:clamp(50px,7svh,64px)!important;
+}
+@media(max-height:700px){
+  .v152-boss-info-header{padding-top:46px!important;}
+}
+
+#calculatorCard{
+  position:relative!important;
+  overflow:visible!important;
+  padding-top:10px!important;
+  padding-bottom:8px!important;
+}
+#calculatorCard .calculator-compact-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  margin:0 2px 10px!important;
+  min-height:31px!important;
+}
+#calculatorCard .calculator-compact-title{
+  color:#3f216d!important;
+  font-size:15px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  white-space:nowrap!important;
+}
+#calculatorCard .main-server-control{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:5px!important;
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+}
+#calculatorCard .main-server-label{
+  color:#5a328f!important;
+  font-size:11.2px!important;
+  line-height:1!important;
+  font-weight:800!important;
+}
+#calculatorCard .main-server-dropdown{
+  position:relative!important;
+  display:inline-block!important;
+}
+#calculatorCard .main-server-select-button{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:4px!important;
+  width:55px!important;
+  height:29px!important;
+  min-height:29px!important;
+  padding:0 6px!important;
+  border:1.5px solid #bda7db!important;
+  border-radius:8px!important;
+  background:#fff!important;
+  color:#4f3074!important;
+  font-size:10.8px!important;
+  line-height:1!important;
+  font-weight:750!important;
+  box-shadow:none!important;
+  box-sizing:border-box!important;
+}
+#calculatorCard .main-server-select-button[aria-expanded="true"]{
+  border-color:#7b3fe4!important;
+  box-shadow:0 0 0 2px rgba(123,63,228,.08)!important;
+}
+#calculatorCard .main-server-caret{
+  color:#6a3ca0!important;
+  font-size:8px!important;
+  line-height:1!important;
+  transform:translateY(.5px)!important;
+}
+#calculatorCard .main-server-menu{
+  position:absolute!important;
+  z-index:10120!important;
+  right:0!important;
+  top:calc(100% + 4px)!important;
+  width:55px!important;
+  padding:3px!important;
+  border:1px solid #cdbfe0!important;
+  border-radius:8px!important;
+  background:#fff!important;
+  box-shadow:0 7px 18px rgba(65,38,99,.15)!important;
+  box-sizing:border-box!important;
+}
+#calculatorCard .main-server-menu[hidden]{display:none!important;}
+#calculatorCard .main-server-menu button{
+  display:block!important;
+  width:100%!important;
+  height:24px!important;
+  min-height:24px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:5px!important;
+  background:transparent!important;
+  color:#4c3a61!important;
+  font-size:10.2px!important;
+  line-height:1!important;
+  font-weight:600!important;
+  text-align:center!important;
+  box-shadow:none!important;
+}
+#calculatorCard .main-server-menu button+button{margin-top:1px!important;}
+#calculatorCard .main-server-menu button:hover,
+#calculatorCard .main-server-menu button:focus-visible{
+  background:#f4effa!important;
+  outline:none!important;
+}
+#calculatorCard .main-server-menu button[aria-selected="true"]{
+  background:#eee5fb!important;
+  color:#542398!important;
+  font-weight:700!important;
+}
+/* The removed large server selector no longer consumes vertical space. */
+#calculatorCard .mode-input-row{margin-top:7px!important;}
+
+@media(max-width:365px){
+  #calculatorCard .calculator-compact-title{font-size:14px!important;}
+  #calculatorCard .main-server-label{font-size:10.6px!important;}
+  #calculatorCard .main-server-select-button,
+  #calculatorCard .main-server-menu{width:52px!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -5976,10 +6106,23 @@ html,body,button,input,textarea,select,option{
 
 
 <section class="card" id="calculatorCard">
-    <div class="server-picker-label">서버격추 선택</div>
-    <div class="server-picker" aria-label="현재 서버격추 선택">
-      <div class="server-options">
-        <button type="button" class="server-btn" data-server="0">0%</button><button type="button" class="server-btn" data-server="1">1%</button><button type="button" class="server-btn" data-server="2">2%</button><button type="button" class="server-btn" data-server="3">3%</button><button type="button" class="server-btn" data-server="4">4%</button><button type="button" class="server-btn" data-server="6">6%</button>
+    <div class="calculator-compact-head">
+      <strong class="calculator-compact-title">격전지 계산하기</strong>
+      <div class="main-server-control" aria-label="메인 계산기 서버격추 선택">
+        <span class="main-server-label">서버격추</span>
+        <div class="main-server-dropdown">
+          <button id="mainServerSelectButton" class="main-server-select-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="mainServerMenu">
+            <span id="mainServerSelectValue">선택</span><span class="main-server-caret" aria-hidden="true">▼</span>
+          </button>
+          <div id="mainServerMenu" class="main-server-menu" role="listbox" hidden>
+            <button type="button" data-main-server="0" role="option" aria-selected="false">0%</button>
+            <button type="button" data-main-server="1" role="option" aria-selected="false">1%</button>
+            <button type="button" data-main-server="2" role="option" aria-selected="false">2%</button>
+            <button type="button" data-main-server="3" role="option" aria-selected="false">3%</button>
+            <button type="button" data-main-server="4" role="option" aria-selected="false">4%</button>
+            <button type="button" data-main-server="6" role="option" aria-selected="false">6%</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="mode-input-row">
@@ -6844,14 +6987,44 @@ function renderRoster(){
     table(["닉네임","기본","최소 점수","늑대","해적","고양이","음식","은하"],ordered.map(([n,m])=>[n,pct(m.base),fmtInt(m.minScore||0),regionRaw(m.field.wolf),regionRaw(m.field.pirate),regionRaw(m.field.cat),regionRaw(m.field.food),regionRaw(m.field.galaxy)]),"rosterFieldCompact");
 }
 
-document.querySelectorAll(".server-btn").forEach(btn=>btn.addEventListener("click",()=>{
-  selectedServer=Number(btn.dataset.server);
-  document.querySelectorAll(".server-btn").forEach(x=>x.classList.toggle("active",x===btn));
+const mainServerSelectBtn=document.getElementById("mainServerSelectButton");
+const mainServerSelectValue=document.getElementById("mainServerSelectValue");
+const mainServerMenu=document.getElementById("mainServerMenu");
+const mainServerOptions=[...document.querySelectorAll("[data-main-server]")];
+function closeMainServerMenu(){
+  mainServerMenu.hidden=true;
+  mainServerSelectBtn.setAttribute("aria-expanded","false");
+}
+function openMainServerMenu(){
+  mainServerMenu.hidden=false;
+  mainServerSelectBtn.setAttribute("aria-expanded","true");
+}
+function syncMainServerControl(){
+  mainServerSelectValue.textContent=selectedServer===null?"선택":`${selectedServer}%`;
+  mainServerOptions.forEach(btn=>btn.setAttribute("aria-selected",String(selectedServer!==null&&Number(btn.dataset.mainServer)===selectedServer)));
+}
+mainServerSelectBtn.addEventListener("click",e=>{
+  e.stopPropagation();
+  if(mainServerMenu.hidden)openMainServerMenu();else closeMainServerMenu();
+});
+mainServerOptions.forEach(btn=>btn.addEventListener("click",e=>{
+  e.stopPropagation();
+  selectedServer=Number(btn.dataset.mainServer);
+  syncMainServerControl();
+  closeMainServerMenu();
   document.getElementById("result").classList.remove("show");
   document.getElementById("shareOpenBtn").classList.remove("show");
   lastRaw="";
+  if(typeof invalidateZ1Result==="function")invalidateZ1Result();
   setStatus(`서버격추 ${selectedServer}% 선택 완료 · 계산을 실행해주세요.`,"ok");
 }));
+document.addEventListener("pointerdown",e=>{
+  if(!mainServerMenu.hidden&&!e.target.closest(".main-server-dropdown"))closeMainServerMenu();
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&!mainServerMenu.hidden)closeMainServerMenu();
+});
+syncMainServerControl();
 
 renderRoster();
 
