@@ -6037,6 +6037,81 @@ html,body,button,input,textarea,select,option{
 }
 </style>
 
+
+<style id="v152-result-order-mode-compact-share-restore-20260930">
+/* Main mode selector: only 1구역 / 2구역 / 지역딜 remain, so keep it compact. */
+#calculatorCard .mode-input-row{
+  grid-template-columns:92px minmax(0,1fr)!important;
+  gap:8px!important;
+}
+#calculatorCard .mode-select-wrap{width:92px!important;min-width:92px!important;max-width:92px!important;}
+#calculatorCard #modeSelectBtn{width:92px!important;min-width:92px!important;max-width:92px!important;padding:0 7px!important;}
+#calculatorCard .mode-menu{
+  width:96px!important;min-width:96px!important;max-width:96px!important;
+  padding:5px!important;
+}
+#calculatorCard .mode-menu button{
+  padding:8px 8px!important;
+  font-size:13px!important;
+  font-weight:800!important;
+  text-align:center!important;
+}
+@media(max-width:365px){
+  #calculatorCard .mode-input-row{grid-template-columns:88px minmax(0,1fr)!important;gap:7px!important;}
+  #calculatorCard .mode-select-wrap,
+  #calculatorCard #modeSelectBtn{width:88px!important;min-width:88px!important;max-width:88px!important;}
+  #calculatorCard .mode-menu{width:92px!important;min-width:92px!important;max-width:92px!important;}
+}
+
+/* Restore the share result card to the earlier responsive proportions.
+   Do not force a 720px logical canvas and scale it down on phones. */
+.share-shell{
+  width:100%!important;
+  max-width:720px!important;
+  margin:0 auto!important;
+}
+.share-stage{
+  position:relative!important;
+  width:100%!important;
+  height:auto!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+}
+#shareCard{
+  position:static!important;
+  left:auto!important;
+  top:auto!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:720px!important;
+  margin:0 auto!important;
+  transform:none!important;
+  transform-origin:center top!important;
+  box-sizing:border-box!important;
+}
+/* Let the original responsive share typography apply again. */
+#shareCard .share-brand-title{font-size:20px!important;}
+#shareCard .share-result .headline{font-size:22px!important;}
+#shareCard .share-result th,
+#shareCard .share-result td{font-size:14px!important;padding:12px 4px!important;line-height:1.22!important;}
+#shareCard .share-result .note{font-size:13.5px!important;padding:11px 12px!important;}
+#shareCard #shareHeadline.z1-share-headline{font-size:19px!important;}
+@media(max-width:430px){
+  #shareCard .share-brand-title{font-size:17px!important;}
+  #shareCard .share-result .headline{font-size:19px!important;}
+  #shareCard .share-result th,
+  #shareCard .share-result td{font-size:11.8px!important;padding:10px 2px!important;}
+  #shareCard .share-result .note{font-size:12px!important;}
+  #shareCard #shareHeadline.z1-share-headline{font-size:18px!important;}
+}
+@media(max-width:360px){
+  #shareCard .share-result th,
+  #shareCard .share-result td{font-size:10.5px!important;}
+  #shareCard .share-result .headline{font-size:18px!important;}
+  #shareCard #shareHeadline.z1-share-headline{font-size:17px!important;}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -6152,7 +6227,6 @@ html,body,button,input,textarea,select,option{
           <button type="button" data-mode="z1">1구역</button>
           <button type="button" data-mode="z2">2구역</button>
           <button type="button" data-mode="region">지역딜</button>
-          <button type="button" data-mode="profile">종합격추</button>
         </div>
       </div>
       <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="닉네임을 선택하세요" aria-label="길드원 선택" readonly inputmode="none">
@@ -6212,6 +6286,14 @@ html,body,button,input,textarea,select,option{
     <div id="status" class="status"></div>
   </section>
 
+  <section id="result" class="card result">
+    <button id="shareOpenBtn" class="share-open">결과표 단톡방 공유용 이미지 만들기</button>
+    <div id="headline" class="headline"></div>
+    <div id="mainTable"></div>
+    <div id="note"></div>
+    <div id="detail"></div>
+  </section>
+
   <section id="raidEntryStandalone" class="raid-entry-standalone" aria-label="초대형 보스 길드 합계 점수 계산">
     <button id="raidOpenBtn" type="button" aria-controls="raidPanel" aria-expanded="false"><span class="raid-btn-group"><span class="raid-flow raid-flow-left" aria-hidden="true"><i></i><i></i></span><span class="raid-btn-text">초대형 보스 길드 합계 점수 계산</span><span class="raid-flow raid-flow-right" aria-hidden="true"><i></i><i></i></span></span></button>
   </section>
@@ -6221,14 +6303,6 @@ html,body,button,input,textarea,select,option{
     <div class="build-credit">2026.09.30</div>
   </footer>
 
-
-  <section id="result" class="card result">
-    <button id="shareOpenBtn" class="share-open">결과표 단톡방 공유용 이미지 만들기</button>
-    <div id="headline" class="headline"></div>
-    <div id="mainTable"></div>
-    <div id="note"></div>
-    <div id="detail"></div>
-  </section>
 
 <section id="raidPanel" class="card inline-raid" aria-label="길드 초대형 계산" hidden>
 <button id="raidBackBtn" type="button" aria-controls="raidPanel">계산기로 돌아가기</button>
@@ -7829,14 +7903,12 @@ function resetZ1PlanUi(){
   const card=document.getElementById('shareCard');
   function fitShareCard(){
     if(!overlay||!stage||!card||!overlay.classList.contains('show'))return;
-    card.style.transform='none';
-    const logicalWidth=720;
-    const available=Math.max(280,Math.min(logicalWidth,window.innerWidth-14));
-    const scale=available/logicalWidth;
-    const logicalHeight=card.scrollHeight;
-    card.style.transform=`scale(${scale})`;
-    stage.style.width=(logicalWidth*scale)+'px';
-    stage.style.height=(logicalHeight*scale)+'px';
+    card.style.removeProperty('transform');
+    card.style.removeProperty('width');
+    card.style.removeProperty('min-width');
+    card.style.removeProperty('max-width');
+    stage.style.removeProperty('width');
+    stage.style.removeProperty('height');
   }
   if(overlay){
     const obs=new MutationObserver(()=>{if(overlay.classList.contains('show'))requestAnimationFrame(()=>requestAnimationFrame(fitShareCard));});
