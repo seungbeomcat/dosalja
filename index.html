@@ -6446,68 +6446,64 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
 }
 #featureEntryGrid .feature-card-copy>span{display:block!important;width:100%!important;text-align:center!important;}
 
-/* Left card: the earlier sparkling lightning pulse, on both sides. */
-#featureEntryGrid .feature-bolt{
+/* Refined feature-card icons: decorative accents stay secondary to centered copy. */
+#featureEntryGrid .feature-card-accent{
   position:absolute!important;
+  right:14px!important;
   top:50%!important;
-  width:18px!important;
-  height:22px!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
   transform:translateY(-50%)!important;
+  pointer-events:none!important;
+  z-index:1!important;
+}
+
+/* Left card: one small lightning accent only, softly pulsing on the right. */
+#featureEntryGrid .feature-card-roster .feature-bolt{
+  width:17px!important;
+  height:22px!important;
   color:#ffe27a!important;
-  font-size:18px!important;
+  font-size:17px!important;
   line-height:1!important;
   font-weight:900!important;
-  text-shadow:0 0 6px rgba(255,226,122,.38)!important;
-  animation:raidBoltPulse 1.55s ease-in-out infinite!important;
-  pointer-events:none!important;
+  opacity:.72!important;
+  text-shadow:0 0 4px rgba(255,226,122,.28)!important;
+  animation:featureBoltRefinedPulse 1.65s ease-in-out infinite!important;
 }
-#featureEntryGrid .feature-bolt-left{left:10px!important;animation-delay:0s!important;}
-#featureEntryGrid .feature-bolt-right{right:10px!important;animation-delay:.18s!important;}
+@keyframes featureBoltRefinedPulse{
+  0%,100%{opacity:.48;filter:drop-shadow(0 0 0 rgba(255,226,122,0));transform:translateY(-50%) scale(.96);}
+  48%{opacity:1;filter:drop-shadow(0 0 4px rgba(255,226,122,.78));transform:translateY(-50%) scale(1.04);}
+}
 
-/* Right card: same flowing double-chevron effect as the 2구역 page button, on the right only. */
-#featureEntryGrid .feature-chevron-flow{
-  position:absolute!important;
-  right:10px!important;
-  top:50%!important;
-  transform:translateY(-50%)!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:22px!important;
-  height:20px!important;
-  gap:1px!important;
-  overflow:visible!important;
-  pointer-events:none!important;
+/* Right card: one compact downward cue only, softly flowing on the right. */
+#featureEntryGrid .feature-card-raid .feature-down-cue{
+  width:20px!important;
+  height:22px!important;
 }
-#featureEntryGrid .feature-chevron-flow i{
-  width:7px!important;
-  height:7px!important;
-  margin-left:-1px!important;
-  border-right:2.4px solid #f4ecff!important;
-  border-bottom:2.4px solid #f4ecff!important;
-  transform:translateX(-2px) rotate(-45deg)!important;
-  opacity:.22!important;
+#featureEntryGrid .feature-card-raid .feature-down-cue::before{
+  content:""!important;
+  width:9px!important;
+  height:9px!important;
+  border-right:2.5px solid #f4ecff!important;
+  border-bottom:2.5px solid #f4ecff!important;
+  transform:translateY(-3px) rotate(45deg)!important;
+  opacity:.42!important;
   filter:drop-shadow(0 0 0 rgba(244,236,255,0))!important;
-  animation:featureChevronFlowStrong 1.28s cubic-bezier(.4,0,.2,1) infinite!important;
-  will-change:transform,opacity,filter!important;
+  animation:featureDownCueFlow 1.32s cubic-bezier(.4,0,.2,1) infinite!important;
 }
-@keyframes featureChevronFlowStrong{
-  0%,18%,100%{opacity:.20;transform:translateX(-2px) rotate(-45deg);filter:drop-shadow(0 0 0 rgba(244,236,255,0));}
-  46%{opacity:1;transform:translateX(2.5px) rotate(-45deg);filter:drop-shadow(0 0 4px rgba(240,225,255,.95)) drop-shadow(0 0 7px rgba(176,112,255,.68));}
-  70%{opacity:.46;transform:translateX(4px) rotate(-45deg);filter:drop-shadow(0 0 2px rgba(240,225,255,.38));}
+@keyframes featureDownCueFlow{
+  0%,20%,100%{opacity:.34;transform:translateY(-4px) rotate(45deg);filter:drop-shadow(0 0 0 rgba(244,236,255,0));}
+  50%{opacity:1;transform:translateY(1px) rotate(45deg);filter:drop-shadow(0 0 4px rgba(240,225,255,.90)) drop-shadow(0 0 7px rgba(176,112,255,.56));}
+  74%{opacity:.56;transform:translateY(3px) rotate(45deg);filter:drop-shadow(0 0 2px rgba(240,225,255,.34));}
 }
-#featureEntryGrid .feature-chevron-flow i:first-child{margin-left:0!important;animation-delay:0s!important;}
-#featureEntryGrid .feature-chevron-flow i:nth-child(2){animation-delay:.16s!important;}
 
 /* Main nickname field must finish on the same right edge as the calculator controls. */
 #calculatorCard #input{width:100%!important;max-width:none!important;}
 
 @media(prefers-reduced-motion:reduce){
-  #featureEntryGrid .feature-bolt{animation:none!important;opacity:1!important;}
-  #featureEntryGrid .feature-chevron-flow i{animation:none!important;opacity:1!important;transform:rotate(-45deg)!important;filter:none!important;}
+  #featureEntryGrid .feature-card-roster .feature-bolt{animation:none!important;opacity:.82!important;filter:none!important;}
+  #featureEntryGrid .feature-card-raid .feature-down-cue::before{animation:none!important;opacity:.82!important;filter:none!important;transform:rotate(45deg)!important;}
 }
 </style>
 
@@ -6568,13 +6564,12 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
   </section>
   <section id="featureEntryGrid" class="feature-entry-grid" aria-label="격전지 보조 기능">
     <button id="rosterOpenBtn" class="feature-card feature-card-roster" type="button" aria-controls="rosterDetailPanel" aria-expanded="false" aria-label="길드원 격추 상세정보">
-      <span class="feature-bolt feature-bolt-left" aria-hidden="true">⚡</span>
       <span class="feature-card-copy"><span>길드원 격추</span><span>상세정보</span></span>
-      <span class="feature-bolt feature-bolt-right" aria-hidden="true">⚡</span>
+      <span class="feature-card-accent feature-bolt" aria-hidden="true">⚡</span>
     </button>
     <button id="raidOpenBtn" class="feature-card feature-card-raid" type="button" aria-controls="raidPanel" aria-expanded="false" aria-label="초대형 보스 합계 계산">
       <span class="feature-card-copy"><span>초대형 보스</span><span>합계 계산</span></span>
-      <span class="feature-chevron-flow" aria-hidden="true"><i></i><i></i></span>
+      <span class="feature-card-accent feature-down-cue" aria-hidden="true"></span>
     </button>
   </section>
 <section class="card roster-detail-card" id="rosterDetailPanel" hidden aria-label="길드원 격전지 추가점수 상세정보 선택">
