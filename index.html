@@ -6507,6 +6507,40 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
 }
 </style>
 
+
+<style id="v161-table-divider-card-polish-final-20261001">
+/* V1.6.1 micro-polish only — preserve fixed cross-platform typography/metrics. */
+
+/* Stronger full-width separator between 1~3구역 and 늑대~은하 groups. */
+#rosterDetailPanel .roster-inline-table .roster-group-start td{
+  border-top:4px solid #8858c2!important;
+}
+
+/* Right feature card: slightly brighter/downward cue so its visual weight matches the lightning card. */
+#featureEntryGrid .feature-card-raid .feature-down-cue::before{
+  width:9px!important;
+  height:9px!important;
+  border-right:2.6px solid #faf6ff!important;
+  border-bottom:2.6px solid #faf6ff!important;
+  opacity:.54!important;
+  filter:drop-shadow(0 0 2px rgba(248,240,255,.42))!important;
+}
+@keyframes featureDownCueFlow{
+  0%,20%,100%{opacity:.46;transform:translateY(-4px) rotate(45deg);filter:drop-shadow(0 0 1px rgba(244,236,255,.20));}
+  50%{opacity:1;transform:translateY(1px) rotate(45deg);filter:drop-shadow(0 0 5px rgba(250,246,255,.98)) drop-shadow(0 0 8px rgba(186,124,255,.66));}
+  74%{opacity:.64;transform:translateY(3px) rotate(45deg);filter:drop-shadow(0 0 3px rgba(244,236,255,.46));}
+}
+
+/* Slightly tighten the mode selector ↔ nickname field gap without changing either control size. */
+#calculatorCard .mode-input-row{gap:6px!important;}
+
+/* Keep the two-line feature-card copy centered and platform-invariant. */
+#featureEntryGrid .feature-card-copy{
+  text-align:center!important;
+  gap:2px!important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -6567,8 +6601,8 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
       <span class="feature-card-copy"><span>길드원 격추</span><span>상세정보</span></span>
       <span class="feature-card-accent feature-bolt" aria-hidden="true">⚡</span>
     </button>
-    <button id="raidOpenBtn" class="feature-card feature-card-raid" type="button" aria-controls="raidPanel" aria-expanded="false" aria-label="초대형 보스 합계 계산">
-      <span class="feature-card-copy"><span>초대형 보스</span><span>합계 계산</span></span>
+    <button id="raidOpenBtn" class="feature-card feature-card-raid" type="button" aria-controls="raidPanel" aria-expanded="false" aria-label="초대형 보스 길드 합계 계산">
+      <span class="feature-card-copy"><span>초대형 보스</span><span>길드 합계 계산</span></span>
       <span class="feature-card-accent feature-down-cue" aria-hidden="true"></span>
     </button>
   </section>
