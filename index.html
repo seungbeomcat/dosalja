@@ -6541,6 +6541,106 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
 }
 </style>
 
+
+<style id="v161-ops-link-tosisal60-final-20261001">
+/* 2026-10-01: operations-page link + compact first-screen balance.
+   Fixed px metrics only: keep the same visual composition on iPhone, Galaxy and desktop. */
+
+/* The new bottom link adds vertical content, so raise the whole first-view composition slightly. */
+.v152-boss-info-header{padding-top:48px!important;}
+
+/* Existing two feature cards: preserve design and typography, reduce only vertical height. */
+#featureEntryGrid .feature-card{
+  height:54px!important;
+  min-height:54px!important;
+  max-height:54px!important;
+  padding-top:4px!important;
+  padding-bottom:4px!important;
+}
+
+/* Full-width link to the new Rift/Galaxy operations page. */
+#opsStatusLinkWrap{
+  width:100%!important;
+  margin:8px 0 0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+}
+#opsStatusLink{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  height:54px!important;
+  min-height:54px!important;
+  max-height:54px!important;
+  margin:0!important;
+  padding:4px 42px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  border:3px solid #d6a62f!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#8e3f59 0%,#70283f 100%)!important;
+  color:#fff!important;
+  box-shadow:0 4px 12px rgba(155,111,22,.16)!important;
+  text-decoration:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+#opsStatusLink:active{transform:scale(.997)!important;}
+#opsStatusLink:focus-visible{outline:2px solid #e0b84d!important;outline-offset:3px!important;}
+#opsStatusLink .ops-link-copy{
+  display:block!important;
+  width:100%!important;
+  color:#fff!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+  font-size:13.6px!important;
+  line-height:1.13!important;
+  font-weight:850!important;
+  letter-spacing:-.18px!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  pointer-events:none!important;
+}
+
+/* Twin LEFT chevrons: same pulse/flow language as the 2구역 navigation cue, direction reversed. */
+#opsStatusLink .ops-link-flow{
+  position:absolute!important;
+  left:17px!important;
+  top:50%!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:22px!important;
+  height:20px!important;
+  gap:1px!important;
+  overflow:visible!important;
+  transform:translateY(-50%)!important;
+  pointer-events:none!important;
+}
+#opsStatusLink .ops-link-flow i{
+  display:block!important;
+  width:7px!important;
+  height:7px!important;
+  margin-right:-1px!important;
+  border-left:2.4px solid #ffe27a!important;
+  border-bottom:2.4px solid #ffe27a!important;
+  opacity:.28!important;
+  filter:drop-shadow(0 0 0 rgba(255,226,122,0))!important;
+  transform:translateX(2px) rotate(45deg)!important;
+  animation:opsLinkChevronFlowLeft 1.28s cubic-bezier(.4,0,.2,1) infinite!important;
+  will-change:transform,opacity,filter;
+}
+#opsStatusLink .ops-link-flow i:last-child{margin-right:0!important;animation-delay:.16s!important;}
+@keyframes opsLinkChevronFlowLeft{
+  0%,18%,100%{opacity:.24;transform:translateX(2px) rotate(45deg);filter:drop-shadow(0 0 0 rgba(255,226,122,0));}
+  48%{opacity:1;transform:translateX(-2.5px) rotate(45deg);filter:drop-shadow(0 0 3px rgba(255,226,122,.66));}
+  70%{opacity:.48;transform:translateX(-4px) rotate(45deg);filter:drop-shadow(0 0 1px rgba(255,226,122,.28));}
+}
+@media (prefers-reduced-motion:reduce){
+  #opsStatusLink .ops-link-flow i{animation:none!important;opacity:1!important;transform:rotate(45deg)!important;filter:none!important;}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -6765,6 +6865,12 @@ html,body,button,input,textarea,select,option{font-family:"Pretendard Variable",
     <div id="note"></div>
     <div id="detail"></div>
   </section>
+<div id="opsStatusLinkWrap" class="ops-status-link-wrap" aria-label="이번주 균열 은하 사용 기록 현황 페이지 이동">
+  <a id="opsStatusLink" class="ops-status-link" href="https://seungbeomcat.github.io/cat-hero-ops/" aria-label="이번주 균열 은하 사용 기록 현황 업뎃중 페이지로 이동">
+    <span class="ops-link-flow" aria-hidden="true"><i></i><i></i></span>
+    <span class="ops-link-copy">이번주 균열(은하) 사용 기록 현황(업뎃중)</span>
+  </a>
+</div>
 <footer class="footer-credits" aria-label="제작 정보">
     <div class="creator-credit">Created by 돗돔 · V1.6.1</div>
     <div class="build-credit">2026.09.30</div>
@@ -6817,7 +6923,7 @@ const MEMBERS = {
   "XIGN":       {base:84,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "뱅수띠":     {base:64,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "진니":       {base:57.5,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6,galaxy:0}},
-  "토시살":     {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "토시살":     {base:60,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "승부왕":     {base:60.1,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1,galaxy:0}},
   "데이다라":   {base:93,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
