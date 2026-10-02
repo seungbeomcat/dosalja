@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.6.7</title>
+  <title>도살장 격전지 계산기 V1.6.9</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.6.7">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.7">
+<meta property="og:title" content="도살장 격전지 계산기 V1.6.9">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.9">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.7">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.7">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.9">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.9">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6739,6 +6739,146 @@ html,body,button,input,select,textarea{
   #calculatorCard .mode-input-row{grid-template-columns:30% 70%!important;gap:6px!important;}
 }
 </style>
+
+<style id="v169-ops-strong-gold-left-arrow">
+/* V1.6.9 — strong flashing left-flow cue for OPS history card */
+#opsStatusLink .ops-link-flow{
+  position:absolute!important;
+  left:14px!important;
+  top:50%!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:44px!important;
+  height:34px!important;
+  gap:0!important;
+  overflow:visible!important;
+  transform:translateY(-50%)!important;
+  pointer-events:none!important;
+}
+#opsStatusLink .ops-link-flow::before{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:44px!important;
+  height:44px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,
+    rgba(255,255,255,.96) 0%,
+    rgba(255,232,120,.88) 18%,
+    rgba(255,190,20,.56) 42%,
+    rgba(255,160,0,0) 76%)!important;
+  transform:translate(-50%,-50%) scale(.72)!important;
+  opacity:.24!important;
+  animation:opsStrongGoldHalo .82s ease-in-out infinite!important;
+  filter:blur(.2px)!important;
+}
+#opsStatusLink .ops-link-flow i{
+  position:relative!important;
+  z-index:1!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:18px!important;
+  height:30px!important;
+  margin:0 -2px 0 0!important;
+  border:0!important;
+  color:#F6C945!important;
+  font-style:normal!important;
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  opacity:.18!important;
+  transform:translateX(7px) scale(.84)!important;
+  filter:
+    brightness(.78)
+    drop-shadow(0 0 1px rgba(255,203,53,.6))!important;
+  animation:opsStrongGoldArrow .82s cubic-bezier(.18,.86,.26,1) infinite!important;
+  will-change:transform,opacity,filter,color,text-shadow;
+}
+#opsStatusLink .ops-link-flow i::before{
+  content:"‹"!important;
+  display:block!important;
+  font-size:38px!important;
+  line-height:26px!important;
+  font-weight:950!important;
+  color:currentColor!important;
+  text-shadow:
+    0 0 2px rgba(255,255,255,.95),
+    0 0 7px rgba(255,217,74,.9),
+    0 0 13px rgba(255,169,0,.72)!important;
+}
+#opsStatusLink .ops-link-flow i:last-child{
+  margin-right:0!important;
+  animation-delay:.12s!important;
+}
+@keyframes opsStrongGoldArrow{
+  0%,8%,100%{
+    opacity:.16;
+    color:#C99A25;
+    transform:translateX(7px) scale(.82);
+    filter:brightness(.7) saturate(.85) drop-shadow(0 0 1px rgba(255,180,0,.35));
+  }
+  22%{
+    opacity:1;
+    color:#FFF4A8;
+    transform:translateX(1px) scale(1.32);
+    filter:
+      brightness(2.45)
+      saturate(1.7)
+      drop-shadow(0 0 4px rgba(255,255,235,1))
+      drop-shadow(0 0 10px rgba(255,219,64,1))
+      drop-shadow(0 0 18px rgba(255,142,0,.98));
+  }
+  42%{
+    opacity:1;
+    color:#F6C945;
+    transform:translateX(-9px) scale(1.14);
+    filter:
+      brightness(1.9)
+      saturate(1.45)
+      drop-shadow(0 0 4px rgba(255,241,170,.98))
+      drop-shadow(0 0 12px rgba(255,178,0,.92));
+  }
+  62%{
+    opacity:.42;
+    color:#D9A92E;
+    transform:translateX(-13px) scale(.94);
+    filter:brightness(1.05) saturate(1.05) drop-shadow(0 0 4px rgba(255,178,0,.45));
+  }
+}
+@keyframes opsStrongGoldHalo{
+  0%,100%{
+    opacity:.12;
+    transform:translate(-50%,-50%) scale(.62);
+  }
+  32%{
+    opacity:.92;
+    transform:translate(-50%,-50%) scale(1.25);
+  }
+  58%{
+    opacity:.38;
+    transform:translate(-58%,-50%) scale(1.04);
+  }
+}
+/* Card remains fixed: only the two arrows animate. */
+#opsStatusLink{
+  transform:none!important;
+}
+@media (prefers-reduced-motion:reduce){
+  #opsStatusLink .ops-link-flow i{
+    animation:none!important;
+    opacity:1!important;
+    color:#F6C945!important;
+    transform:none!important;
+    filter:brightness(1.35) drop-shadow(0 0 7px rgba(255,190,0,.75))!important;
+  }
+  #opsStatusLink .ops-link-flow::before{
+    animation:none!important;
+    opacity:.35!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -6970,7 +7110,7 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.6.7</div>
+    <div class="creator-credit">Created by 돗돔 · V1.6.9</div>
     <div class="build-credit">2026.10.02</div>
   </footer>
 
@@ -7651,7 +7791,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.6.7 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.6.9 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -8373,7 +8513,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.6.7 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.6.9 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
