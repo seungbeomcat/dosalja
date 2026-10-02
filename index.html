@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.6.10</title>
+  <title>도살장 격전지 계산기 V1.6.12</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.6.10">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.10">
+<meta property="og:title" content="도살장 격전지 계산기 V1.6.12">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.12">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.10">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.10">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.12">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.12">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6740,108 +6740,114 @@ html,body,button,input,select,textarea{
 }
 </style>
 
-<style id="v1610-ops-crisp-gold-left-arrow">
-/* V1.6.10 — crisp twin LEFT arrows: same boss-page chevron shape mirrored, strong sequential flash, no blur halo. */
-#opsStatusLink .ops-link-flow{
-  position:absolute!important;
-  left:14px!important;
-  top:50%!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:46px!important;
-  height:34px!important;
-  gap:1px!important;
-  overflow:visible!important;
-  transform:translateY(-50%)!important;
-  pointer-events:none!important;
-}
-#opsStatusLink .ops-link-flow::before{
-  content:none!important;
-  display:none!important;
-}
-#opsStatusLink .ops-link-flow i{
-  position:relative!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:18px!important;
-  height:30px!important;
-  margin:0!important;
-  border:0!important;
-  color:#E7BF54!important;
-  font-style:normal!important;
-  opacity:.52!important;
-  transform:translateX(3px) scale(1)!important;
-  filter:none!important;
-  text-shadow:none!important;
-  animation:opsCrispLeftFlash .78s cubic-bezier(.2,.8,.2,1) infinite!important;
-  will-change:transform,opacity,color,filter;
-}
-/* Use the exact boss-page right-chevron glyph and mirror it, so the left chevron keeps the same visual character. */
-#opsStatusLink .ops-link-flow i::before{
-  content:"›"!important;
-  display:block!important;
-  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
-  font-size:34px!important;
-  line-height:28px!important;
-  font-weight:950!important;
-  color:currentColor!important;
-  transform:scaleX(-1)!important;
-  transform-origin:center!important;
-  text-shadow:none!important;
-}
-/* Visual order: RIGHT chevron flashes first, then LEFT chevron, so the cue flows toward the left. */
-#opsStatusLink .ops-link-flow i:first-child{
-  animation-delay:.13s!important;
-}
-#opsStatusLink .ops-link-flow i:last-child{
-  animation-delay:0s!important;
-}
-@keyframes opsCrispLeftFlash{
-  0%,10%,100%{
-    opacity:.46;
-    color:#D0A534;
-    transform:translateX(3px) scale(.96);
-    filter:brightness(.86) saturate(1.02);
-  }
-  20%{
-    opacity:1;
-    color:#FFF8C9;
-    transform:translateX(-1px) scale(1.16);
-    filter:brightness(2.45) saturate(1.32);
-  }
-  34%{
-    opacity:1;
-    color:#F6C945;
-    transform:translateX(-5px) scale(1.08);
-    filter:brightness(1.72) saturate(1.22);
-  }
-  52%{
-    opacity:.68;
-    color:#E7BF54;
-    transform:translateX(-7px) scale(1);
-    filter:brightness(1.06) saturate(1.05);
-  }
-  72%{
-    opacity:.46;
-    color:#D0A534;
-    transform:translateX(3px) scale(.96);
-    filter:brightness(.86) saturate(1.02);
-  }
-}
-/* The card itself never moves. */
+<style id="v1612-ops-record-management-card">
+/* V1.6.12 — management card refinement
+   - clipboard icon + text centered as one group
+   - icon closer to the copy
+   - stronger gold running-light on the whole border, including the left side */
 #opsStatusLink{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  min-height:62px!important;
+  padding:0 18px!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  text-align:center!important;
+}
+#opsStatusLink::before{
+  content:"";
+  position:absolute!important;
+  inset:-3px!important;
+  border-radius:14px!important;
+  padding:3px!important;
+  background:
+    linear-gradient(90deg,
+      rgba(214,166,47,0) 0%,
+      rgba(214,166,47,.05) 8%,
+      rgba(255,245,190,.9) 16%,
+      rgba(255,214,84,1) 20%,
+      rgba(255,255,255,1) 23%,
+      rgba(255,214,84,1) 26%,
+      rgba(214,166,47,.1) 34%,
+      rgba(214,166,47,0) 44%,
+      rgba(214,166,47,0) 100%),
+    linear-gradient(180deg,
+      rgba(214,166,47,0) 0%,
+      rgba(214,166,47,.04) 18%,
+      rgba(255,245,190,.9) 30%,
+      rgba(255,214,84,1) 37%,
+      rgba(255,255,255,1) 41%,
+      rgba(255,214,84,1) 45%,
+      rgba(214,166,47,.16) 53%,
+      rgba(214,166,47,0) 64%,
+      rgba(214,166,47,0) 100%),
+    linear-gradient(90deg,
+      rgba(214,166,47,0) 0%,
+      rgba(214,166,47,.12) 20%,
+      rgba(255,244,183,.85) 34%,
+      rgba(255,214,84,1) 40%,
+      rgba(255,255,255,1) 43%,
+      rgba(255,214,84,1) 46%,
+      rgba(214,166,47,.18) 54%,
+      rgba(214,166,47,0) 68%,
+      rgba(214,166,47,0) 100%);
+  background-size:240% 100%,100% 240%,240% 100%!important;
+  background-position:185% 0,-0% 185%,-185% 0!important;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0)!important;
+  -webkit-mask-composite:xor!important;
+  mask-composite:exclude!important;
+  pointer-events:none!important;
+  opacity:1!important;
+  animation:opsBorderSweepX 1.15s linear infinite,
+            opsBorderSweepY 1.15s linear infinite,
+            opsBorderSweepX2 1.15s linear infinite!important;
+  z-index:0!important;
+}
+#opsStatusLink .ops-link-flow{display:none!important;}
+#opsStatusLink .ops-link-icon{
+  position:relative!important;
+  left:auto!important;
+  top:auto!important;
+  width:26px!important;
+  height:26px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
   transform:none!important;
+  pointer-events:none!important;
+  z-index:2!important;
+  flex:0 0 auto!important;
+}
+#opsStatusLink .ops-link-icon svg{width:26px!important;height:26px!important;display:block!important;}
+#opsStatusLink .ops-link-icon rect,
+#opsStatusLink .ops-link-icon line{
+  fill:none!important;
+  stroke:#E7BF54!important;
+  stroke-width:2.15!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+#opsStatusLink .ops-link-copy{
+  position:relative!important;
+  z-index:2!important;
+  display:inline-block!important;
+  white-space:nowrap!important;
+}
+@keyframes opsBorderSweepX{0%{background-position:185% 0,-0% 185%,-185% 0;}100%{background-position:-35% 0,-0% 185%,185% 0;}}
+@keyframes opsBorderSweepY{0%{background-position:-35% 0,-0% 185%,185% 0;}100%{background-position:-35% 0,-0% -35%,185% 0;}}
+@keyframes opsBorderSweepX2{0%{opacity:1;}50%{opacity:.95;}100%{opacity:1;}}
+@media (max-width:390px){
+  #opsStatusLink{gap:9px!important;padding-left:14px!important;padding-right:14px!important;}
+  #opsStatusLink .ops-link-icon{width:24px!important;height:24px!important;}
+  #opsStatusLink .ops-link-icon svg{width:24px!important;height:24px!important;}
 }
 @media (prefers-reduced-motion:reduce){
-  #opsStatusLink .ops-link-flow i{
-    animation:none!important;
-    opacity:1!important;
-    color:#E7BF54!important;
-    transform:none!important;
-    filter:none!important;
-  }
+  #opsStatusLink::before{animation:none!important;background-position:50% 50%,50% 50%,50% 50%!important;opacity:.7!important;}
 }
 </style>
 
@@ -6900,10 +6906,18 @@ html,body,button,input,select,textarea{
     </div>
 
   </section>
-<div id="opsStatusLinkWrap" class="ops-status-link-wrap" aria-label="균열 은하 격전지 참여현황 기록 페이지 이동">
-  <a id="opsStatusLink" class="ops-status-link" href="https://seungbeomcat.github.io/cat-hero-ops/" aria-label="균열 은하 격전지 참여현황 기록 페이지로 이동">
-    <span class="ops-link-flow" aria-hidden="true"><i></i><i></i></span>
-    <span class="ops-link-copy">균열(은하) 격전지 참여현황 기록</span>
+<div id="opsStatusLinkWrap" class="ops-status-link-wrap" aria-label="균열 은하 격전지 참여현황 기록 관리 페이지 이동">
+  <a id="opsStatusLink" class="ops-status-link" href="https://seungbeomcat.github.io/cat-hero-ops/" aria-label="균열 은하 격전지 참여현황 기록 관리 페이지로 이동">
+    <span class="ops-link-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <rect x="6.3" y="4.6" width="11.4" height="15" rx="2.2" ry="2.2"></rect>
+        <rect x="8.8" y="2.8" width="6.4" height="3.6" rx="1.4" ry="1.4"></rect>
+        <line x1="9.2" y1="9.1" x2="14.8" y2="9.1"></line>
+        <line x1="9.2" y1="12.2" x2="14.8" y2="12.2"></line>
+        <line x1="9.2" y1="15.3" x2="13.4" y2="15.3"></line>
+      </svg>
+    </span>
+    <span class="ops-link-copy">균열(은하) 격전지 참여현황 기록 관리</span>
   </a>
 </div>
 
@@ -7076,8 +7090,8 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.6.10</div>
-    <div class="build-credit">2026.10.02</div>
+    <div class="creator-credit">Created by 돗돔 · V1.6.12</div>
+    <div class="build-credit">2026.10.03</div>
   </footer>
 
 
@@ -7757,7 +7771,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.6.10 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.6.12 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -8479,7 +8493,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.6.10 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.6.12 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
