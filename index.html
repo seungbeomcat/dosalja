@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.6.6</title>
+  <title>도살장 격전지 계산기 V1.6.7</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.6.6">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.6">
+<meta property="og:title" content="도살장 격전지 계산기 V1.6.7">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.7">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.6">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.6">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.7">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.7">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6970,7 +6970,7 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.6.6</div>
+    <div class="creator-credit">Created by 돗돔 · V1.6.7</div>
     <div class="build-credit">2026.10.02</div>
   </footer>
 
@@ -7651,7 +7651,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.6.6 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.6.7 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -7862,27 +7862,50 @@ document.querySelectorAll('[data-raid-server]').forEach(b=>b.addEventListener('c
   document.querySelectorAll('[data-raid-server]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));updateRaid();
 }));
 document.getElementById('raidReset').addEventListener('click',()=>{closeRaidMinuteMenu();raidMembers.forEach((_,i)=>{document.getElementById('raidTime'+i).value='';syncRaidMinuteButton(i);});updateRaid();});
-let raidReturnScrollY=0;
+function v167StablePageScroll(targetY,focusEl=null){
+  const y=Math.max(0,Math.round(Number(targetY)||0));
+  const apply=()=>{
+    window.scrollTo({top:y,left:0,behavior:'auto'});
+    const se=document.scrollingElement;
+    if(se)se.scrollTop=y;
+    document.documentElement.scrollTop=y;
+    if(document.body)document.body.scrollTop=y;
+  };
+  if(document.activeElement&&typeof document.activeElement.blur==='function'){
+    try{document.activeElement.blur();}catch(_){}
+  }
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    apply();
+    if(focusEl&&typeof focusEl.focus==='function'){
+      try{focusEl.focus({preventScroll:true});}catch(_){}
+    }
+    /* iOS Safari may recalculate the visual viewport after a large panel collapses. */
+    setTimeout(apply,60);
+    setTimeout(apply,160);
+    setTimeout(apply,280);
+  }));
+}
+function v167ScrollPanelIntoView(panel){
+  if(!panel)return;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const y=Math.max(0,Math.round(panel.getBoundingClientRect().top+(window.scrollY||0)-12));
+    window.scrollTo({top:y,left:0,behavior:'smooth'});
+  }));
+}
 function showRaidScreen(open,moveFocus=false){
   const panel=document.getElementById('raidPanel');
   const openBtn=document.getElementById('raidOpenBtn');
   if(open){
-    raidReturnScrollY=Math.max(0,window.scrollY||document.documentElement.scrollTop||0);
     panel.hidden=false;
     openBtn.setAttribute('aria-expanded','true');
-    requestAnimationFrame(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}));
+    v167ScrollPanelIntoView(panel);
     return;
   }
   panel.hidden=true;
   openBtn.setAttribute('aria-expanded','false');
   if(moveFocus){
-    if(document.activeElement&&typeof document.activeElement.blur==='function')document.activeElement.blur();
-    const y=raidReturnScrollY;
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      window.scrollTo({top:y,left:0,behavior:'auto'});
-      openBtn.focus({preventScroll:true});
-      setTimeout(()=>window.scrollTo({top:y,left:0,behavior:'auto'}),90);
-    }));
+    /* Returning from raid calculation always restores the normal calculator first view. */
+    v167StablePageScroll(0,openBtn);
   }
 }
 document.getElementById('raidOpenBtn').addEventListener('click',()=>{
@@ -8350,7 +8373,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.6.6 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.6.7 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -8406,6 +8429,7 @@ function resetZ1PlanUi(){
   const rosterServerButtons=[...document.querySelectorAll('[data-roster-server]')];
   let selectedRosterMember=null;
   let rosterServer=null; // 상세정보 전용 서버격추. 메인 계산기의 selectedServer와 완전히 분리.
+  let rosterReturnScrollY=0;
 
   function fmtPctValue(v){
     if(v===null||v===undefined||!Number.isFinite(Number(v)))return '—';
@@ -8490,6 +8514,7 @@ function resetZ1PlanUi(){
   function closeServerMenu(){serverMenu.hidden=true;serverSelectBtn.setAttribute('aria-expanded','false');}
   function toggleServerMenu(){if(serverMenu.hidden)openServerMenu();else closeServerMenu();}
   function setOpen(open){
+    if(open)rosterReturnScrollY=Math.max(0,window.scrollY||document.documentElement.scrollTop||0);
     panel.hidden=!open;
     openBtn.setAttribute('aria-expanded',String(open));
     closeServerMenu();
@@ -8499,7 +8524,12 @@ function resetZ1PlanUi(){
       renderDetail();
       if(scroller)scroller.scrollTop=0;
       requestAnimationFrame(syncScrollThumb);
+      /* Newly expanded detail is brought into view automatically. */
+      v167ScrollPanelIntoView(panel);
+      return;
     }
+    /* Closing the detail returns to the exact position from which it was opened. */
+    v167StablePageScroll(rosterReturnScrollY,openBtn);
   }
 
   openBtn.addEventListener('click',()=>setOpen(panel.hidden));
