@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.6.15</title>
+  <title>도살장 격전지 계산기 V1.6.16</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.6.15">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.15">
+<meta property="og:title" content="도살장 격전지 계산기 V1.6.16">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.16">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.15">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.15">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.16">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.16">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6741,7 +6741,7 @@ html,body,button,input,select,textarea{
 </style>
 
 <style id="v1612-ops-record-management-card">
-/* V1.6.15 — management card refinement
+/* V1.6.16 — management card refinement
    - clipboard icon + text centered as one group
    - icon closer to the copy
    - stronger gold running-light on the whole border, including the left side */
@@ -6853,7 +6853,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1614-individual-time-settings-final">
-/* V1.6.15 — 2구역 개별 시간설정 UI.
+/* V1.6.16 — 2구역 개별 시간설정 UI.
    Existing typography remains fixed px; no mobile font shrinking. */
 #calculatorCard .individual-time-settings[hidden]{display:none!important;}
 #calculatorCard .individual-time-settings{
@@ -6959,7 +6959,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1615-individual-time-layout-polish">
-/* V1.6.15 — 개별 시간설정 설명/행 구성 정돈
+/* V1.6.16 — 개별 시간설정 설명/행 구성 정돈
    기존 Pretendard Variable + 고정 px 원칙 유지 */
 
 /* 안내문: 의미만 남긴 짧은 2줄 구조 */
@@ -7081,6 +7081,253 @@ html,body,button,input,select,textarea{
   #calculatorCard .individual-time-name{font-size:13.5px!important;}
   #calculatorCard .individual-time-input{font-size:16px!important;}
   #calculatorCard .individual-time-unit{font-size:13px!important;}
+}
+</style>
+
+
+<style id="v1616-roster-all-table-and-summary-final">
+/* V1.6.16 — roster all-kill popup + base/minimum-score summary.
+   Pretendard Variable and fixed-px typography remain unchanged on narrow screens. */
+
+/* Header becomes a compact 3-part row: title / whole-table button / server selector. */
+#rosterDetailPanel .roster-detail-head{
+  display:grid!important;
+  grid-template-columns:104px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+#rosterDetailPanel .roster-detail-head strong{
+  width:104px!important;min-width:104px!important;max-width:104px!important;
+  text-align:center!important;
+}
+#rosterDetailPanel .roster-detail-server-control{margin-left:0!important;justify-self:end!important;}
+#rosterDetailPanel .roster-all-table-btn{
+  min-width:0!important;
+  width:100%!important;
+  height:34px!important;
+  padding:0 7px!important;
+  border:1.7px solid #8b48d7!important;
+  border-radius:9px!important;
+  background:#f7f1ff!important;
+  color:#51258a!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+  font-size:11.2px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  letter-spacing:-.18px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  box-sizing:border-box!important;
+}
+#rosterDetailPanel .roster-all-table-btn:active{transform:scale(.985)!important;}
+
+/* Individual member summary: no box. One uninterrupted center divider spans labels + values. */
+#rosterDetailPanel .roster-base-strip.roster-base-min-strip{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  width:100%!important;
+  height:58px!important;
+  min-height:58px!important;
+  max-height:none!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  gap:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+#rosterDetailPanel .roster-base-strip.roster-base-min-strip::after{
+  content:""!important;
+  position:absolute!important;
+  top:3px!important;
+  bottom:3px!important;
+  left:50%!important;
+  width:1px!important;
+  transform:translateX(-.5px)!important;
+  background:#cbb7e7!important;
+}
+#rosterDetailPanel .roster-base-min-cell{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:0!important;
+  text-align:center!important;
+}
+#rosterDetailPanel .roster-base-title-block{
+  height:29px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+#rosterDetailPanel .roster-base-title-main{
+  color:#111827!important;
+  font-size:11.4px!important;
+  line-height:1.05!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+}
+#rosterDetailPanel .roster-base-title-sub{
+  margin-top:2px!important;
+  color:#766889!important;
+  font-size:8.9px!important;
+  line-height:1!important;
+  font-weight:800!important;
+  white-space:nowrap!important;
+}
+#rosterDetailPanel .roster-base-min-value{
+  margin-top:2px!important;
+  color:#145aa6!important;
+  font-size:16.4px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  font-variant-numeric:tabular-nums!important;
+  text-align:center!important;
+}
+#rosterDetailPanel .roster-base-min-cell:last-child .roster-base-min-value{color:#542398!important;}
+
+/* Long popup. */
+.guild-kill-table-overlay[hidden]{display:none!important;}
+.guild-kill-table-overlay{
+  position:fixed!important;
+  inset:0!important;
+  z-index:10040!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:14px!important;
+  background:rgba(26,12,48,.58)!important;
+  box-sizing:border-box!important;
+}
+.guild-kill-table-modal{
+  width:min(94vw,560px)!important;
+  max-height:88dvh!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  border:3px solid #8b35f2!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 18px 46px rgba(29,10,60,.28)!important;
+  box-sizing:border-box!important;
+}
+.guild-kill-table-head{
+  flex:0 0 auto!important;
+  min-height:52px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  padding:8px 10px 8px 14px!important;
+  border-bottom:1px solid #e1d4f4!important;
+  background:#fff!important;
+}
+.guild-kill-table-head strong{
+  color:#32155d!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+  font-size:16px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  letter-spacing:-.2px!important;
+}
+.guild-kill-table-close{
+  width:38px!important;height:38px!important;min-width:38px!important;
+  padding:0!important;border:1.5px solid #d4c4eb!important;border-radius:11px!important;
+  background:#fbf9fe!important;color:#6b4d91!important;
+  font-size:24px!important;line-height:1!important;font-weight:800!important;
+}
+.guild-kill-table-scroll{
+  width:100%!important;
+  max-height:calc(88dvh - 55px)!important;
+  overflow:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+  background:#fff!important;
+}
+.guild-kill-table{
+  width:788px!important;
+  min-width:788px!important;
+  table-layout:fixed!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  margin:0!important;
+  background:#fff!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+}
+.guild-kill-table col.col-name{width:92px!important;}
+.guild-kill-table col.col-base{width:72px!important;}
+.guild-kill-table col.col-min{width:80px!important;}
+.guild-kill-table col.col-region{width:68px!important;}
+.guild-kill-table col.col-upper{width:68px!important;}
+.guild-kill-table th,.guild-kill-table td{
+  height:36px!important;
+  padding:5px 4px!important;
+  border-right:1px solid #e1d8ee!important;
+  border-bottom:1px solid #e1d8ee!important;
+  box-sizing:border-box!important;
+  text-align:center!important;
+  vertical-align:middle!important;
+  white-space:nowrap!important;
+  font-variant-numeric:tabular-nums!important;
+}
+.guild-kill-table thead th{
+  position:sticky!important;
+  z-index:5!important;
+  background:#eadfff!important;
+  color:#32155d!important;
+  font-size:10.7px!important;
+  line-height:1.1!important;
+  font-weight:950!important;
+}
+.guild-kill-table thead tr:first-child th{top:0!important;height:34px!important;}
+.guild-kill-table thead tr:nth-child(2) th{top:34px!important;height:32px!important;background:#f2eaff!important;}
+.guild-kill-table tbody td{
+  background:#fff!important;
+  color:#2e2440!important;
+  font-size:11.4px!important;
+  line-height:1!important;
+  font-weight:820!important;
+}
+.guild-kill-table tbody tr:nth-child(even) td{background:#fcf9ff!important;}
+/* Only the nickname column stays fixed while the remaining columns scroll horizontally. */
+.guild-kill-table .sticky-name,
+.guild-kill-table tbody td:first-child{
+  position:sticky!important;
+  left:0!important;
+  z-index:6!important;
+  box-shadow:2px 0 0 #d7c5ed!important;
+}
+.guild-kill-table thead .sticky-name{
+  z-index:9!important;
+  background:#ddcdf6!important;
+}
+.guild-kill-table tbody td:first-child{
+  background:#fff!important;
+  color:#3d197d!important;
+  font-weight:950!important;
+}
+.guild-kill-table tbody tr:nth-child(even) td:first-child{background:#f8f2ff!important;}
+.guild-kill-table td:nth-child(2){color:#145aa6!important;font-weight:950!important;}
+.guild-kill-table td:nth-child(3){color:#542398!important;font-weight:950!important;}
+
+@media (max-width:390px){
+  #rosterDetailPanel .roster-detail-head{
+    grid-template-columns:104px minmax(0,1fr) auto!important;
+    gap:6px!important;
+  }
+  #rosterDetailPanel .roster-all-table-btn{font-size:11.2px!important;height:34px!important;}
+  #rosterDetailPanel .roster-base-title-main{font-size:11.4px!important;}
+  #rosterDetailPanel .roster-base-title-sub{font-size:8.9px!important;}
+  #rosterDetailPanel .roster-base-min-value{font-size:16.4px!important;}
+  .guild-kill-table-head strong{font-size:16px!important;}
+  .guild-kill-table thead th{font-size:10.7px!important;}
+  .guild-kill-table tbody td{font-size:11.4px!important;}
 }
 </style>
 
@@ -7258,6 +7505,7 @@ html,body,button,input,select,textarea{
 <section class="card roster-detail-card" id="rosterDetailPanel" hidden aria-label="길드원 격전지 추가점수 상세정보 선택">
     <div class="roster-detail-head">
       <strong>길드원 선택</strong>
+      <button id="rosterAllTableBtn" class="roster-all-table-btn" type="button" aria-haspopup="dialog" aria-controls="guildKillTableOverlay">길드원 전체 격추표</button>
       <div class="roster-detail-server-control" aria-label="상세정보 전용 서버격추 선택">
         <span class="roster-detail-server-label">서버격추</span>
         <div class="roster-server-dropdown">
@@ -7291,6 +7539,38 @@ html,body,button,input,select,textarea{
   </section>
   <aside id="rosterMemberPopover" class="roster-member-popover" hidden aria-hidden="true"></aside>
 
+  <div id="guildKillTableOverlay" class="guild-kill-table-overlay" hidden aria-hidden="true">
+    <section class="guild-kill-table-modal" role="dialog" aria-modal="true" aria-labelledby="guildKillTableTitle">
+      <div class="guild-kill-table-head">
+        <strong id="guildKillTableTitle">길드원 전체 격추표</strong>
+        <button id="guildKillTableClose" class="guild-kill-table-close" type="button" aria-label="닫기">×</button>
+      </div>
+      <div id="guildKillTableScroll" class="guild-kill-table-scroll">
+        <table class="guild-kill-table" aria-label="길드원 기본격추 최소점수 및 지역격추 전체표">
+          <colgroup>
+            <col class="col-name"><col class="col-base"><col class="col-min">
+            <col class="col-region"><col class="col-region"><col class="col-region"><col class="col-region"><col class="col-region">
+            <col class="col-upper"><col class="col-upper"><col class="col-upper">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="sticky-name" rowspan="2">닉네임</th>
+              <th rowspan="2">기본</th>
+              <th rowspan="2">최소점수</th>
+              <th colspan="5">일반지역</th>
+              <th colspan="3">상층</th>
+            </tr>
+            <tr>
+              <th>늑대</th><th>해적</th><th>고양이</th><th>음식</th><th>은하</th>
+              <th>1구역</th><th>2구역</th><th>3구역</th>
+            </tr>
+          </thead>
+          <tbody id="guildKillTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
 <section id="raidPanel" class="card inline-raid" aria-label="길드 초대형 계산" hidden>
 <button id="raidBackBtn" type="button" aria-controls="raidPanel">계산기로 돌아가기</button>
 <div class="card">
@@ -7323,8 +7603,8 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.6.15</div>
-    <div class="build-credit">2026.10.03</div>
+    <div class="creator-credit">Created by 돗돔 · V1.6.16</div>
+    <div class="build-credit">2026.10.04</div>
   </footer>
 
 
@@ -7367,7 +7647,7 @@ let timeLimitMode = false;
 
 const MEMBERS = {
   // minScore는 격전지 전투 1회 최종 스코어에 딱 한 번 가산되는 개인 고정값이다.
-  "돗돔":       {base:191.6, z1r:0, z2r:5, z3r:0, minScore:4000, field:{wolf:13,pirate:22,cat:22,food:6,galaxy:0}},
+  "돗돔":       {base:192.9, z1r:0, z2r:5, z3r:0, minScore:4500, field:{wolf:13,pirate:22,cat:22,food:6,galaxy:0}},
   "매콤갈비":   {base:159.5, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
   "사마엘":     {base:129.5,   z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:13,pirate:13,cat:13,food:13,galaxy:0}},
   "혀녕":       {base:93.8,  z1r:0, z2r:5, z3r:0, minScore:1500, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
@@ -7629,7 +7909,7 @@ function parseInput(raw){
   let rawNames=tokenize(right);
   if(rawNames.length===0)throw new Error(mode==="region" ? "닉네임을 입력해주세요." : "참여자를 한 명 이상 입력해주세요.");
 
-  // V1.6.15 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
+  // V1.6.16 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
   // 기존 파서는 과거 형식과의 호환성을 위해 유지한다.
   if(timeLimitMode){
     const merged=[];
@@ -8095,7 +8375,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.6.15 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.6.16 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -8820,7 +9100,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.6.15 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.6.16 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -8874,6 +9154,11 @@ function resetZ1PlanUi(){
   const serverSelectValue=document.getElementById('rosterServerSelectValue');
   const serverMenu=document.getElementById('rosterServerMenu');
   const rosterServerButtons=[...document.querySelectorAll('[data-roster-server]')];
+  const allTableBtn=document.getElementById('rosterAllTableBtn');
+  const allTableOverlay=document.getElementById('guildKillTableOverlay');
+  const allTableClose=document.getElementById('guildKillTableClose');
+  const allTableScroll=document.getElementById('guildKillTableScroll');
+  const allTableBody=document.getElementById('guildKillTableBody');
   let selectedRosterMember=null;
   let rosterServer=null; // 상세정보 전용 서버격추. 메인 계산기의 selectedServer와 완전히 분리.
   let rosterReturnScrollY=0;
@@ -8897,6 +9182,44 @@ function resetZ1PlanUi(){
   }
   function orderedMembers(){
     return Object.entries(MEMBERS).sort((a,b)=>b[1].base-a[1].base);
+  }
+  function fmtScoreValue(v){
+    return Number(v||0).toLocaleString('ko-KR');
+  }
+  function renderAllKillTable(){
+    if(!allTableBody)return;
+    allTableBody.innerHTML=orderedMembers().map(([name,m])=>`
+      <tr>
+        <td>${name}</td>
+        <td>${fmtPctValue(m.base)}</td>
+        <td>${fmtScoreValue(m.minScore||0)}</td>
+        <td>${fmtPctValue(m.field.wolf)}</td>
+        <td>${fmtPctValue(m.field.pirate)}</td>
+        <td>${fmtPctValue(m.field.cat)}</td>
+        <td>${fmtPctValue(m.field.food)}</td>
+        <td>${fmtPctValue(m.field.galaxy)}</td>
+        <td>${fmtPctValue(m.z1r)}</td>
+        <td>${fmtPctValue(m.z2r)}</td>
+        <td>${fmtPctValue(m.z3r)}</td>
+      </tr>`).join('');
+  }
+  let allTablePrevBodyOverflow='';
+  function openAllKillTable(){
+    if(!allTableOverlay)return;
+    renderAllKillTable();
+    allTablePrevBodyOverflow=document.body.style.overflow;
+    allTableOverlay.hidden=false;
+    allTableOverlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(allTableScroll){allTableScroll.scrollTop=0;allTableScroll.scrollLeft=0;}
+    requestAnimationFrame(()=>allTableClose&&allTableClose.focus({preventScroll:true}));
+  }
+  function closeAllKillTable(){
+    if(!allTableOverlay||allTableOverlay.hidden)return;
+    allTableOverlay.hidden=true;
+    allTableOverlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow=allTablePrevBodyOverflow;
+    requestAnimationFrame(()=>allTableBtn&&allTableBtn.focus({preventScroll:true}));
   }
   function syncScrollThumb(){
     if(!scroller||!scrollThumb)return;
@@ -8937,9 +9260,20 @@ function resetZ1PlanUi(){
       return `<tr class="roster-${group}-row${start?' roster-group-start':''}"><td>${label}</td><td>${fmtPctValue(bonus)}</td><td>${fmtPctValue(total)}</td></tr>`;
     }).join('');
     detailPane.innerHTML=`
-      <div class="roster-base-strip" aria-label="기본격추 탈것 포함">
-        <span class="roster-base-strip-label">기본(탈것포함) :</span>
-        <strong>${fmtPctValue(m.base)}</strong>
+      <div class="roster-base-strip roster-base-min-strip" aria-label="기본격추 및 최소점수">
+        <div class="roster-base-min-cell">
+          <div class="roster-base-title-block">
+            <span class="roster-base-title-main">기본</span>
+            <span class="roster-base-title-sub">(탈것포함)</span>
+          </div>
+          <strong class="roster-base-min-value">${fmtPctValue(m.base)}</strong>
+        </div>
+        <div class="roster-base-min-cell">
+          <div class="roster-base-title-block">
+            <span class="roster-base-title-main">최소점수</span>
+          </div>
+          <strong class="roster-base-min-value">${fmtScoreValue(m.minScore||0)}</strong>
+        </div>
       </div>
       <div class="roster-inline-table-wrap">
         <table class="roster-inline-table">
@@ -9050,10 +9384,18 @@ function resetZ1PlanUi(){
     });
   }
 
+  if(allTableBtn)allTableBtn.addEventListener('click',openAllKillTable);
+  if(allTableClose)allTableClose.addEventListener('click',closeAllKillTable);
+  if(allTableOverlay)allTableOverlay.addEventListener('pointerdown',e=>{if(e.target===allTableOverlay)closeAllKillTable();});
+
   document.addEventListener('pointerdown',e=>{
     if(!serverMenu.hidden&&!e.target.closest('.roster-server-dropdown'))closeServerMenu();
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!serverMenu.hidden)closeServerMenu();});
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape')return;
+    if(allTableOverlay&&!allTableOverlay.hidden){closeAllKillTable();return;}
+    if(!serverMenu.hidden)closeServerMenu();
+  });
   window.addEventListener('resize',()=>requestAnimationFrame(syncScrollThumb));
 
   syncRosterServerControl();
