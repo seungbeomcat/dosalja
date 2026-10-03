@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.6.14</title>
+  <title>도살장 격전지 계산기 V1.6.15</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.6.14">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.14">
+<meta property="og:title" content="도살장 격전지 계산기 V1.6.15">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.15">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.14">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.14">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.15">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.15">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6741,7 +6741,7 @@ html,body,button,input,select,textarea{
 </style>
 
 <style id="v1612-ops-record-management-card">
-/* V1.6.14 — management card refinement
+/* V1.6.15 — management card refinement
    - clipboard icon + text centered as one group
    - icon closer to the copy
    - stronger gold running-light on the whole border, including the left side */
@@ -6853,7 +6853,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1614-individual-time-settings-final">
-/* V1.6.14 — 2구역 개별 시간설정 UI.
+/* V1.6.15 — 2구역 개별 시간설정 UI.
    Existing typography remains fixed px; no mobile font shrinking. */
 #calculatorCard .individual-time-settings[hidden]{display:none!important;}
 #calculatorCard .individual-time-settings{
@@ -6950,6 +6950,133 @@ html,body,button,input,select,textarea{
     grid-template-columns:minmax(0,1fr) 104px!important;
     min-height:38px!important;
     gap:8px!important;
+  }
+  #calculatorCard .individual-time-name{font-size:13.5px!important;}
+  #calculatorCard .individual-time-input{font-size:16px!important;}
+  #calculatorCard .individual-time-unit{font-size:13px!important;}
+}
+</style>
+
+
+<style id="v1615-individual-time-layout-polish">
+/* V1.6.15 — 개별 시간설정 설명/행 구성 정돈
+   기존 Pretendard Variable + 고정 px 원칙 유지 */
+
+/* 안내문: 의미만 남긴 짧은 2줄 구조 */
+#calculatorCard #timeLimitHelp.time-limit-help{
+  margin:7px 0 7px!important;
+  padding:9px 12px!important;
+  border:1.5px solid #d1b9f8!important;
+  border-radius:12px!important;
+  background:#f5efff!important;
+  color:#3a246b!important;
+  line-height:1.38!important;
+}
+#calculatorCard #timeLimitHelp .time-limit-help-title{
+  margin:0 0 4px!important;
+  color:#7138b8!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:950!important;
+  letter-spacing:-.16px!important;
+}
+#calculatorCard #timeLimitHelp .time-limit-help-line{
+  margin:0!important;
+  color:#3a246b!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+  font-size:12.4px!important;
+  line-height:1.42!important;
+  font-weight:780!important;
+  letter-spacing:-.12px!important;
+}
+#calculatorCard #timeLimitHelp .time-limit-help-line + .time-limit-help-line{
+  margin-top:1px!important;
+}
+
+/* 시간 입력 목록: 모든 참여자가 정확히 같은 줄/열에 정렬 */
+#calculatorCard .individual-time-settings{
+  gap:0!important;
+  margin:6px 0 8px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:1.5px solid #d1b9f8!important;
+  border-radius:12px!important;
+  background:#fff!important;
+}
+#calculatorCard .individual-time-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 82px 20px!important;
+  align-items:center!important;
+  column-gap:6px!important;
+  min-height:44px!important;
+  padding:4px 10px!important;
+  border:0!important;
+  border-bottom:1px solid #eadff9!important;
+  background:#fff!important;
+  box-sizing:border-box!important;
+}
+#calculatorCard .individual-time-row:last-child{
+  border-bottom:0!important;
+}
+#calculatorCard .individual-time-name{
+  min-width:0!important;
+  padding:0!important;
+  color:#3d197d!important;
+  font-size:13.5px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#calculatorCard .individual-time-editor{
+  display:contents!important;
+}
+#calculatorCard .individual-time-input{
+  grid-column:2!important;
+  width:82px!important;
+  height:34px!important;
+  min-height:34px!important;
+  margin:0!important;
+  padding:0 6px!important;
+  border:1.8px solid #7b3fe4!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  color:#34234e!important;
+  box-sizing:border-box!important;
+  font-size:16px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  text-align:center!important;
+}
+#calculatorCard .individual-time-input::placeholder{
+  color:#9c95a8!important;
+  opacity:1!important;
+  font-size:11.5px!important;
+  font-weight:750!important;
+}
+#calculatorCard .individual-time-unit{
+  grid-column:3!important;
+  width:20px!important;
+  color:#4c3570!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+
+/* 좁은 화면에서도 글자 크기는 줄이지 않고 간격만 유지 */
+@media (max-width:390px){
+  #calculatorCard #timeLimitHelp .time-limit-help-title{font-size:13px!important;}
+  #calculatorCard #timeLimitHelp .time-limit-help-line{font-size:12.4px!important;}
+  #calculatorCard .individual-time-row{
+    grid-template-columns:minmax(0,1fr) 82px 20px!important;
+    min-height:44px!important;
+    padding:4px 9px!important;
+    column-gap:5px!important;
   }
   #calculatorCard .individual-time-name{font-size:13.5px!important;}
   #calculatorCard .individual-time-input{font-size:16px!important;}
@@ -7100,10 +7227,9 @@ html,body,button,input,select,textarea{
       <span class="time-limit-right"><span class="individual-time-label">개별 시간설정</span><input id="timeLimitToggle" class="time-switch" type="checkbox" role="switch" disabled aria-controls="timeLimitHelp" aria-expanded="false"><span id="timeLimitState" class="time-limit-state">OFF</span></span>
     </label>
     <div id="timeLimitHelp" class="time-limit-help" aria-hidden="true">
-      <div class="time-limit-help-title">[개별 시간설정 사용법]</div>
-      <div>특정 참여자의 공격 시간을 제한하려면 닉네임 옆에 초 단위 시간을 입력하세요.</div>
-      <div>입력하지 않으면 시간 제한 없이 참여합니다.</div>
-      <div>최소 1명은 시간 제한 없이 참여해야 합니다.</div>
+      <div class="time-limit-help-title">[개별 시간설정]</div>
+      <div class="time-limit-help-line">시간 제한이 필요한 참여자만 초를 입력하세요.</div>
+      <div class="time-limit-help-line">빈칸은 제한 없음 · 최소 1명은 제한 없이 참여</div>
     </div>
     <div id="individualTimeSettings" class="individual-time-settings" hidden aria-live="polite"></div>
     <div class="actions">
@@ -7197,7 +7323,7 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.6.14</div>
+    <div class="creator-credit">Created by 돗돔 · V1.6.15</div>
     <div class="build-credit">2026.10.03</div>
   </footer>
 
@@ -7503,7 +7629,7 @@ function parseInput(raw){
   let rawNames=tokenize(right);
   if(rawNames.length===0)throw new Error(mode==="region" ? "닉네임을 입력해주세요." : "참여자를 한 명 이상 입력해주세요.");
 
-  // V1.6.14 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
+  // V1.6.15 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
   // 기존 파서는 과거 형식과의 호환성을 위해 유지한다.
   if(timeLimitMode){
     const merged=[];
@@ -7969,7 +8095,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.6.14 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.6.15 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -8694,7 +8820,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.6.14 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.6.15 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
