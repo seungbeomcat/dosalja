@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.6.17</title>
+  <title>도살장 격전지 계산기 V1.7.0</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.6.17">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.17">
+<meta property="og:title" content="도살장 격전지 계산기 V1.7.0">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.7.0">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.17">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.17">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.7.0">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.7.0">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6741,7 +6741,7 @@ html,body,button,input,select,textarea{
 </style>
 
 <style id="v1612-ops-record-management-card">
-/* V1.6.17 — management card refinement
+/* V1.7.0 — management card refinement
    - clipboard icon + text centered as one group
    - icon closer to the copy
    - stronger gold running-light on the whole border, including the left side */
@@ -6853,7 +6853,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1614-individual-time-settings-final">
-/* V1.6.17 — 2구역 개별 시간설정 UI.
+/* V1.7.0 — 2구역 개별 시간설정 UI.
    Existing typography remains fixed px; no mobile font shrinking. */
 #calculatorCard .individual-time-settings[hidden]{display:none!important;}
 #calculatorCard .individual-time-settings{
@@ -6959,7 +6959,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1615-individual-time-layout-polish">
-/* V1.6.17 — 개별 시간설정 설명/행 구성 정돈
+/* V1.7.0 — 개별 시간설정 설명/행 구성 정돈
    기존 Pretendard Variable + 고정 px 원칙 유지 */
 
 /* 안내문: 의미만 남긴 짧은 2줄 구조 */
@@ -7086,7 +7086,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1616-roster-all-table-and-summary-final">
-/* V1.6.17 — roster all-kill popup + base/minimum-score summary.
+/* V1.7.0 — roster all-kill popup + base/minimum-score summary.
    Pretendard Variable and fixed-px typography remain unchanged on narrow screens. */
 
 /* Header becomes a compact 3-part row: title / whole-table button / server selector. */
@@ -7333,7 +7333,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1617-roster-bottom-table-entry-and-member16-final">
-/* V1.6.17 — 16 members + whole-table CTA moved to the bottom of the roster card. */
+/* V1.7.0 — 16 members + whole-table CTA moved to the bottom of the roster card. */
 #rosterDetailPanel .roster-detail-head{
   display:flex!important;
   align-items:center!important;
@@ -7404,6 +7404,152 @@ html,body,button,input,select,textarea{
 }
 </style>
 
+
+<style id="v170-final-ui-improvements">
+/* V1.7.0 — accumulated UI improvements.
+   Pretendard Variable + fixed-px typography remains the platform-wide rule. */
+
+/* ---------------------------------------------------------------
+   A. Main nickname selection popup: exactly 4 x 4 for 16 members.
+   Font size is not reduced; spacing/padding provides the extra room.
+   --------------------------------------------------------------- */
+#memberPicker .member-picker-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  justify-content:stretch!important;
+  column-gap:7px!important;
+  row-gap:7px!important;
+  padding-left:4px!important;
+  padding-right:4px!important;
+}
+#memberPicker .member-pick{
+  width:100%!important;
+  min-width:0!important;
+  min-height:43px!important;
+  height:43px!important;
+  padding-left:3px!important;
+  padding-right:3px!important;
+  font-size:13.5px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  letter-spacing:-.15px!important;
+}
+#memberPicker .member-pick[data-member-pick="아메리칸컬"]{
+  padding-left:1px!important;
+  padding-right:1px!important;
+  letter-spacing:-.62px!important;
+}
+
+/* ---------------------------------------------------------------
+   B. Roster detail card: make the actual content area taller.
+   58px base/minimum strip + full 212px detail table now fits cleanly.
+   --------------------------------------------------------------- */
+#rosterDetailPanel .roster-detail-body{
+  height:292px!important;
+  min-height:292px!important;
+  max-height:292px!important;
+}
+#rosterDetailPanel .roster-member-column,
+#rosterDetailPanel .roster-member-scroll-shell,
+#rosterDetailPanel .roster-member-scroller,
+#rosterDetailPanel .roster-scroll-rail{
+  height:292px!important;
+  min-height:292px!important;
+  max-height:292px!important;
+}
+#rosterDetailPanel .roster-member-detail-pane{
+  height:292px!important;
+  min-height:292px!important;
+  max-height:292px!important;
+  overflow:hidden!important;
+}
+/* The detail table itself stays at its approved row/typography size. */
+#rosterDetailPanel .roster-inline-table-wrap{
+  height:212px!important;
+}
+
+/* ---------------------------------------------------------------
+   C. OPS management navigation: icon removed; text alone is precisely
+   centered within the full Dark Teal / gold-border card.
+   --------------------------------------------------------------- */
+#opsStatusLink{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:0!important;
+  padding-left:14px!important;
+  padding-right:14px!important;
+  text-align:center!important;
+}
+#opsStatusLink .ops-link-icon{
+  display:none!important;
+}
+#opsStatusLink .ops-link-copy{
+  display:block!important;
+  width:100%!important;
+  margin:0!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+
+/* ---------------------------------------------------------------
+   D. Boss images: subtle "alive" motion only.
+   Cards, boss names and times stay perfectly fixed.
+   Original image assets are untouched.
+   --------------------------------------------------------------- */
+#bossPopupCard .boss-popup-img{
+  will-change:transform!important;
+  transform-origin:50% 52%!important;
+  backface-visibility:hidden!important;
+}
+#bossPopupCard .boss-popup-row:nth-child(1) .boss-popup-img{
+  animation:v170BossFloatLouis 4.15s ease-in-out infinite!important;
+}
+#bossPopupCard .boss-popup-row:nth-child(2) .boss-popup-img{
+  animation:v170BossFloatLooney 3.75s ease-in-out .38s infinite!important;
+}
+#bossPopupCard .boss-popup-row:nth-child(3) .boss-popup-img{
+  animation:v170BossFloatLuna 4.45s ease-in-out .72s infinite!important;
+}
+#bossPopupCard .boss-popup-row:nth-child(4) .boss-popup-img{
+  animation:v170BossFloatBananyang 3.95s ease-in-out .18s infinite!important;
+}
+@keyframes v170BossFloatLouis{
+  0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1.018);}
+  50%{transform:translate3d(0,-2.5px,0) rotate(-.38deg) scale(1.022);}
+}
+@keyframes v170BossFloatLooney{
+  0%,100%{transform:translate3d(-.8px,0,0) rotate(-.24deg) scale(1.018);}
+  50%{transform:translate3d(1.2px,-1.7px,0) rotate(.42deg) scale(1.022);}
+}
+@keyframes v170BossFloatLuna{
+  0%,100%{transform:translate3d(0,.4px,0) rotate(.18deg) scale(1.018);}
+  50%{transform:translate3d(0,-2.8px,0) rotate(-.22deg) scale(1.023);}
+}
+@keyframes v170BossFloatBananyang{
+  0%,100%{transform:translate3d(.6px,0,0) rotate(.28deg) scale(1.018);}
+  50%{transform:translate3d(-.7px,-2.1px,0) rotate(-.48deg) scale(1.022);}
+}
+
+@media (max-width:390px){
+  #memberPicker .member-picker-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    column-gap:6px!important;
+    row-gap:6px!important;
+  }
+  #memberPicker .member-pick{font-size:13.5px!important;}
+  #opsStatusLink .ops-link-copy{font-size:13.6px!important;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #bossPopupCard .boss-popup-img{
+    animation:none!important;
+    transform:none!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -7461,15 +7607,6 @@ html,body,button,input,select,textarea{
   </section>
 <div id="opsStatusLinkWrap" class="ops-status-link-wrap" aria-label="균열 은하 격전지 참여현황 기록 관리 페이지 이동">
   <a id="opsStatusLink" class="ops-status-link" href="https://seungbeomcat.github.io/cat-hero-ops/" aria-label="균열 은하 격전지 참여현황 기록 관리 페이지로 이동">
-    <span class="ops-link-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-        <rect x="6.3" y="4.6" width="11.4" height="15" rx="2.2" ry="2.2"></rect>
-        <rect x="8.8" y="2.8" width="6.4" height="3.6" rx="1.4" ry="1.4"></rect>
-        <line x1="9.2" y1="9.1" x2="14.8" y2="9.1"></line>
-        <line x1="9.2" y1="12.2" x2="14.8" y2="12.2"></line>
-        <line x1="9.2" y1="15.3" x2="13.4" y2="15.3"></line>
-      </svg>
-    </span>
     <span class="ops-link-copy">균열(은하) 격전지 참여현황 기록 관리</span>
   </a>
 </div>
@@ -7515,7 +7652,7 @@ html,body,button,input,select,textarea{
           <div class="z1-meta-tall z1-level-box">
             <span class="z1-meta-label">레벨</span>
             <div class="z1-level-picker">
-              <span class="z1-level-entry"><button id="z1LevelBtn" type="button" aria-haspopup="listbox" aria-expanded="false" disabled><span id="z1LevelBtnText">선택</span><span class="z1-level-chevron" aria-hidden="true">⌄</span></button><span id="z1LevelUnit" class="z1-level-unit" hidden>Lv</span></span>
+              <span class="z1-level-entry"><button id="z1LevelBtn" type="button" aria-haspopup="listbox" aria-expanded="false" disabled><span id="z1LevelBtnText">선택</span><span class="z1-level-chevron" aria-hidden="true">⌄</span></button></span>
               <div id="z1LevelMenu" class="z1-level-menu" role="listbox" hidden></div>
               <input id="z1LevelSelect" type="hidden" value="">
             </div>
@@ -7679,7 +7816,7 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.6.17</div>
+    <div class="creator-credit">Created by 돗돔 · V1.7.0</div>
     <div class="build-credit">2026.10.04</div>
   </footer>
 
@@ -7986,7 +8123,7 @@ function parseInput(raw){
   let rawNames=tokenize(right);
   if(rawNames.length===0)throw new Error(mode==="region" ? "닉네임을 입력해주세요." : "참여자를 한 명 이상 입력해주세요.");
 
-  // V1.6.17 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
+  // V1.7.0 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
   // 기존 파서는 과거 형식과의 호환성을 위해 유지한다.
   if(timeLimitMode){
     const merged=[];
@@ -8452,7 +8589,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.6.17 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.7.0 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -9106,10 +9243,10 @@ function closeZ1LevelMenu(){
   if(menu)menu.hidden=true;if(btn)btn.setAttribute('aria-expanded','false');
 }
 function setZ1Level(levelValue){
-  const hidden=document.getElementById('z1LevelSelect'),txt=document.getElementById('z1LevelBtnText'),unit=document.getElementById('z1LevelUnit');
+  const hidden=document.getElementById('z1LevelSelect'),txt=document.getElementById('z1LevelBtnText');
   const lv=Number(levelValue);
-  if(Number.isInteger(lv)&&lv>=20&&lv<=40){hidden.value=String(lv);txt.textContent=String(lv);unit.hidden=false;}
-  else{hidden.value="";txt.textContent="선택";unit.hidden=true;}
+  if(Number.isInteger(lv)&&lv>=20&&lv<=40){hidden.value=String(lv);txt.textContent=String(lv);}
+  else{hidden.value="";txt.textContent="선택";}
   document.querySelectorAll('#z1LevelMenu [data-z1-level]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.z1Level===hidden.value)));
   updateZ1Meta();invalidateZ1Result();
 }
@@ -9177,7 +9314,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.6.17 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.7.0 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
