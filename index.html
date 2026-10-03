@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.6.16</title>
+  <title>도살장 격전지 계산기 V1.6.17</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.6.16">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.16">
+<meta property="og:title" content="도살장 격전지 계산기 V1.6.17">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.17">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.16">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.16">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.6.17">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.6.17">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6741,7 +6741,7 @@ html,body,button,input,select,textarea{
 </style>
 
 <style id="v1612-ops-record-management-card">
-/* V1.6.16 — management card refinement
+/* V1.6.17 — management card refinement
    - clipboard icon + text centered as one group
    - icon closer to the copy
    - stronger gold running-light on the whole border, including the left side */
@@ -6853,7 +6853,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1614-individual-time-settings-final">
-/* V1.6.16 — 2구역 개별 시간설정 UI.
+/* V1.6.17 — 2구역 개별 시간설정 UI.
    Existing typography remains fixed px; no mobile font shrinking. */
 #calculatorCard .individual-time-settings[hidden]{display:none!important;}
 #calculatorCard .individual-time-settings{
@@ -6959,7 +6959,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1615-individual-time-layout-polish">
-/* V1.6.16 — 개별 시간설정 설명/행 구성 정돈
+/* V1.6.17 — 개별 시간설정 설명/행 구성 정돈
    기존 Pretendard Variable + 고정 px 원칙 유지 */
 
 /* 안내문: 의미만 남긴 짧은 2줄 구조 */
@@ -7086,7 +7086,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1616-roster-all-table-and-summary-final">
-/* V1.6.16 — roster all-kill popup + base/minimum-score summary.
+/* V1.6.17 — roster all-kill popup + base/minimum-score summary.
    Pretendard Variable and fixed-px typography remain unchanged on narrow screens. */
 
 /* Header becomes a compact 3-part row: title / whole-table button / server selector. */
@@ -7331,11 +7331,84 @@ html,body,button,input,select,textarea{
 }
 </style>
 
+
+<style id="v1617-roster-bottom-table-entry-and-member16-final">
+/* V1.6.17 — 16 members + whole-table CTA moved to the bottom of the roster card. */
+#rosterDetailPanel .roster-detail-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+}
+#rosterDetailPanel .roster-detail-head strong{
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  text-align:left!important;
+}
+#rosterDetailPanel .roster-detail-server-control{
+  margin-left:auto!important;
+  justify-self:auto!important;
+}
+#rosterDetailPanel .roster-all-table-btn-bottom{
+  width:calc(100% - 8px)!important;
+  min-height:48px!important;
+  height:auto!important;
+  margin:9px 4px 2px!important;
+  padding:8px 11px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:3px!important;
+  border:1.7px solid #8b48d7!important;
+  border-radius:11px!important;
+  background:#f8f3ff!important;
+  color:#51258a!important;
+  box-sizing:border-box!important;
+}
+#rosterDetailPanel .roster-all-table-main{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+  font-size:12.6px!important;
+  line-height:1.05!important;
+  font-weight:950!important;
+  letter-spacing:-.16px!important;
+  white-space:nowrap!important;
+}
+#rosterDetailPanel .roster-all-table-sub{
+  color:#77638e!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;
+  font-size:9.8px!important;
+  line-height:1.1!important;
+  font-weight:800!important;
+  letter-spacing:-.12px!important;
+  white-space:nowrap!important;
+}
+/* Keep the 5-character new nickname on one line without shrinking the normal typography. */
+.member-pick[data-member-pick="아메리칸컬"],
+.roster-member-btn[data-roster-member="아메리칸컬"]{
+  padding-left:2px!important;
+  padding-right:2px!important;
+  letter-spacing:-.55px!important;
+  white-space:nowrap!important;
+}
+.guild-kill-table tbody td:first-child{
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:nowrap!important;
+}
+@media (max-width:390px){
+  #rosterDetailPanel .roster-detail-head{display:flex!important;gap:8px!important;}
+  #rosterDetailPanel .roster-all-table-main{font-size:12.6px!important;}
+  #rosterDetailPanel .roster-all-table-sub{font-size:9.8px!important;}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="v152-boss-info-header" aria-label="길드 및 계산기 정보">
-  <div class="v152-boss-info-group v152-boss-info-left">서버879 <span>|</span> 도살자 <span>|</span> 길드원 15명</div>
+  <div class="v152-boss-info-group v152-boss-info-left">서버879 <span>|</span> 도살자 <span>|</span> 길드원 16명</div>
   <div class="v152-boss-info-group v152-boss-info-right">격전지 계산기</div>
 </div>
 
@@ -7505,7 +7578,6 @@ html,body,button,input,select,textarea{
 <section class="card roster-detail-card" id="rosterDetailPanel" hidden aria-label="길드원 격전지 추가점수 상세정보 선택">
     <div class="roster-detail-head">
       <strong>길드원 선택</strong>
-      <button id="rosterAllTableBtn" class="roster-all-table-btn" type="button" aria-haspopup="dialog" aria-controls="guildKillTableOverlay">길드원 전체 격추표</button>
       <div class="roster-detail-server-control" aria-label="상세정보 전용 서버격추 선택">
         <span class="roster-detail-server-label">서버격추</span>
         <div class="roster-server-dropdown">
@@ -7536,6 +7608,10 @@ html,body,button,input,select,textarea{
         <div class="roster-detail-placeholder">서버격추를 먼저 선택하세요</div>
       </div>
     </div>
+    <button id="rosterAllTableBtn" class="roster-all-table-btn roster-all-table-btn-bottom" type="button" aria-haspopup="dialog" aria-controls="guildKillTableOverlay">
+      <span class="roster-all-table-main">길드원 전체 격추표 보기</span>
+      <span class="roster-all-table-sub">16명 기본 · 최소점수 · 지역격추 한눈에 확인</span>
+    </button>
   </section>
   <aside id="rosterMemberPopover" class="roster-member-popover" hidden aria-hidden="true"></aside>
 
@@ -7603,7 +7679,7 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.6.16</div>
+    <div class="creator-credit">Created by 돗돔 · V1.6.17</div>
     <div class="build-credit">2026.10.04</div>
   </footer>
 
@@ -7654,6 +7730,7 @@ const MEMBERS = {
   "XIGN":       {base:87,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "뱅수띠":     {base:64,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "진니":       {base:69.2,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6,galaxy:0}},
+  "아메리칸컬": {base:68.6,  z1r:0, z2r:0, z3r:0, minScore:2500, field:{wolf:2,pirate:0,cat:0,food:0,galaxy:0}},
   "토시살":     {base:60,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "승부왕":     {base:60.8,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1,galaxy:0}},
@@ -7909,7 +7986,7 @@ function parseInput(raw){
   let rawNames=tokenize(right);
   if(rawNames.length===0)throw new Error(mode==="region" ? "닉네임을 입력해주세요." : "참여자를 한 명 이상 입력해주세요.");
 
-  // V1.6.16 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
+  // V1.6.17 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
   // 기존 파서는 과거 형식과의 호환성을 위해 유지한다.
   if(timeLimitMode){
     const merged=[];
@@ -8375,7 +8452,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.6.16 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.6.17 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -9100,7 +9177,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.6.16 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.6.17 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
