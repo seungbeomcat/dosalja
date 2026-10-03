@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.7.1</title>
+  <title>도살장 격전지 계산기 V1.7.2</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.7.1">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.7.1">
+<meta property="og:title" content="도살장 격전지 계산기 V1.7.2">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.7.2">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.7.1">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.7.1">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.7.2">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.7.2">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -6741,7 +6741,7 @@ html,body,button,input,select,textarea{
 </style>
 
 <style id="v1612-ops-record-management-card">
-/* V1.7.1 — management card refinement
+/* V1.7.2 — management card refinement
    - clipboard icon + text centered as one group
    - icon closer to the copy
    - stronger gold running-light on the whole border, including the left side */
@@ -6853,7 +6853,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1614-individual-time-settings-final">
-/* V1.7.1 — 2구역 개별 시간설정 UI.
+/* V1.7.2 — 2구역 개별 시간설정 UI.
    Existing typography remains fixed px; no mobile font shrinking. */
 #calculatorCard .individual-time-settings[hidden]{display:none!important;}
 #calculatorCard .individual-time-settings{
@@ -6959,7 +6959,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1615-individual-time-layout-polish">
-/* V1.7.1 — 개별 시간설정 설명/행 구성 정돈
+/* V1.7.2 — 개별 시간설정 설명/행 구성 정돈
    기존 Pretendard Variable + 고정 px 원칙 유지 */
 
 /* 안내문: 의미만 남긴 짧은 2줄 구조 */
@@ -7086,7 +7086,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1616-roster-all-table-and-summary-final">
-/* V1.7.1 — roster all-kill popup + base/minimum-score summary.
+/* V1.7.2 — roster all-kill popup + base/minimum-score summary.
    Pretendard Variable and fixed-px typography remain unchanged on narrow screens. */
 
 /* Header becomes a compact 3-part row: title / whole-table button / server selector. */
@@ -7333,7 +7333,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v1617-roster-bottom-table-entry-and-member16-final">
-/* V1.7.1 — 16 members + whole-table CTA moved to the bottom of the roster card. */
+/* V1.7.2 — 16 members + whole-table CTA moved to the bottom of the roster card. */
 #rosterDetailPanel .roster-detail-head{
   display:flex!important;
   align-items:center!important;
@@ -7406,7 +7406,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v170-final-ui-improvements">
-/* V1.7.1 — accumulated UI improvements.
+/* V1.7.2 — accumulated UI improvements.
    Pretendard Variable + fixed-px typography remains the platform-wide rule. */
 
 /* ---------------------------------------------------------------
@@ -7552,7 +7552,7 @@ html,body,button,input,select,textarea{
 
 
 <style id="v171-fixed-kill-table-frame-final">
-/* V1.7.1 — 전체 격추표 스크롤 구조 재설계.
+/* V1.7.2 — 전체 격추표 스크롤 구조 재설계.
    표 프레임은 절대 움직이지 않고, 오른쪽 데이터 영역만 스크롤한다. */
 
 .guild-kill-table-overlay{
@@ -7813,6 +7813,202 @@ html,body,button,input,select,textarea{
 
 @media (prefers-reduced-motion:reduce){
   .guild-kill-data-viewport{-webkit-overflow-scrolling:auto!important;}
+}
+</style>
+
+
+<style id="v172-kill-table-no-vertical-scroll-final">
+/* V1.7.2 — 전체 격추표 최종 세로 구조
+   헤더 + 16명 전체를 한 화면에 표시하고 세로 스크롤을 제거한다.
+   폰트 크기는 유지하고 행 높이/패딩만 컴팩트하게 조정한다. */
+
+.guild-kill-table-overlay{
+  padding:8px!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+
+.guild-kill-table-modal{
+  width:min(96vw,620px)!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+
+.guild-kill-table-head{
+  flex:0 0 52px!important;
+  min-height:52px!important;
+  max-height:52px!important;
+  padding-top:6px!important;
+  padding-bottom:6px!important;
+}
+
+/* 56px two-level header + 16 × 30px rows = 536px.
+   Combined with the 52px modal title bar, the full popup is ~588px tall. */
+.guild-kill-fixed-frame{
+  --name-col:96px;
+  --header-h:56px;
+  --row-h:30px;
+  --data-w:696px;
+
+  flex:0 0 536px!important;
+  height:536px!important;
+  min-height:536px!important;
+  max-height:536px!important;
+
+  grid-template-rows:var(--header-h) 480px!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+
+/* Fixed nickname column: all 16 rows always visible. */
+.guild-kill-name-viewport{
+  height:480px!important;
+  min-height:480px!important;
+  max-height:480px!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+
+.guild-kill-name-row{
+  height:var(--row-h)!important;
+  min-height:var(--row-h)!important;
+  max-height:var(--row-h)!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+
+/* The only scroll left is horizontal. */
+.guild-kill-data-viewport{
+  height:480px!important;
+  min-height:480px!important;
+  max-height:480px!important;
+
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  overscroll-behavior-x:contain!important;
+  overscroll-behavior-y:none!important;
+  touch-action:pan-x!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+
+.guild-kill-body-table{
+  height:480px!important;
+}
+
+.guild-kill-body-table tr{
+  height:var(--row-h)!important;
+  min-height:var(--row-h)!important;
+  max-height:var(--row-h)!important;
+}
+
+.guild-kill-body-table td{
+  height:var(--row-h)!important;
+  min-height:var(--row-h)!important;
+  max-height:var(--row-h)!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+
+/* Compact two-level header without reducing typography. */
+.guild-kill-header-table{
+  height:56px!important;
+}
+.guild-kill-header-table thead tr:first-child th{
+  height:29px!important;
+  min-height:29px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.guild-kill-header-table thead tr:nth-child(2) th{
+  height:27px!important;
+  min-height:27px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.guild-kill-name-head{
+  height:56px!important;
+  min-height:56px!important;
+  max-height:56px!important;
+}
+
+/* Numeric emphasis:
+   ONLY basic kill values remain blue.
+   Minimum score + all regional values use the normal dark text. */
+.guild-kill-body-table td{
+  color:#231d2d!important;
+  font-weight:820!important;
+}
+.guild-kill-body-table td:nth-child(1){
+  color:#145aa6!important;
+  font-weight:950!important;
+}
+.guild-kill-body-table td:nth-child(2){
+  color:#231d2d!important;
+  font-weight:900!important;
+}
+.guild-kill-body-table td:nth-child(n+3){
+  color:#231d2d!important;
+  font-weight:820!important;
+}
+
+/* No vertical scrollbar or vertical rubber-band should appear. */
+.guild-kill-name-viewport,
+.guild-kill-data-viewport,
+.guild-kill-fixed-frame{
+  scrollbar-width:none!important;
+}
+.guild-kill-name-viewport::-webkit-scrollbar{
+  display:none!important;
+  width:0!important;
+  height:0!important;
+}
+.guild-kill-data-viewport::-webkit-scrollbar{
+  height:5px!important;
+  width:0!important;
+}
+
+/* On very short screens, still keep all 16 rows visible by reducing row HEIGHT only.
+   Font sizes remain unchanged. */
+@media (max-height:700px){
+  .guild-kill-fixed-frame{
+    --header-h:54px;
+    --row-h:27px;
+    flex-basis:486px!important;
+    height:486px!important;
+    min-height:486px!important;
+    max-height:486px!important;
+    grid-template-rows:54px 432px!important;
+  }
+  .guild-kill-name-head{
+    height:54px!important;
+    min-height:54px!important;
+    max-height:54px!important;
+  }
+  .guild-kill-header-table{height:54px!important;}
+  .guild-kill-header-table thead tr:first-child th{
+    height:28px!important;
+    min-height:28px!important;
+  }
+  .guild-kill-header-table thead tr:nth-child(2) th{
+    height:26px!important;
+    min-height:26px!important;
+  }
+  .guild-kill-name-viewport,
+  .guild-kill-data-viewport,
+  .guild-kill-body-table{
+    height:432px!important;
+    min-height:432px!important;
+    max-height:432px!important;
+  }
+}
+
+/* Narrow width does NOT shrink typography. */
+@media (max-width:390px){
+  .guild-kill-fixed-frame{
+    --name-col:94px;
+  }
 }
 </style>
 
@@ -8099,7 +8295,7 @@ html,body,button,input,select,textarea{
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.7.1</div>
+    <div class="creator-credit">Created by 돗돔 · V1.7.2</div>
     <div class="build-credit">2026.10.04</div>
   </footer>
 
@@ -8406,7 +8602,7 @@ function parseInput(raw){
   let rawNames=tokenize(right);
   if(rawNames.length===0)throw new Error(mode==="region" ? "닉네임을 입력해주세요." : "참여자를 한 명 이상 입력해주세요.");
 
-  // V1.7.1 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
+  // V1.7.2 시간 제한 입력: 선택형 닉네임 UI에서 생성된 참여자별 초 입력값을 계산용 문자열로 직렬화한다.
   // 기존 파서는 과거 형식과의 호환성을 위해 유지한다.
   if(timeLimitMode){
     const merged=[];
@@ -8872,7 +9068,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.7.1 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.7.2 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -9597,7 +9793,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.7.1 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.7.2 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -9710,9 +9906,7 @@ function resetZ1PlanUi(){
 
   function syncAllKillTableScroll(){
     if(!allTableDataViewport)return;
-    const top=allTableDataViewport.scrollTop;
     const left=allTableDataViewport.scrollLeft;
-    if(allTableNameViewport&&allTableNameViewport.scrollTop!==top)allTableNameViewport.scrollTop=top;
     if(allTableHeaderViewport&&allTableHeaderViewport.scrollLeft!==left)allTableHeaderViewport.scrollLeft=left;
   }
 
@@ -9751,10 +9945,8 @@ function resetZ1PlanUi(){
     allTableOverlay.hidden=false;
     allTableOverlay.setAttribute('aria-hidden','false');
 
-    if(allTableNameViewport)allTableNameViewport.scrollTop=0;
     if(allTableHeaderViewport)allTableHeaderViewport.scrollLeft=0;
     if(allTableDataViewport){
-      allTableDataViewport.scrollTop=0;
       allTableDataViewport.scrollLeft=0;
     }
     syncAllKillTableScroll();
