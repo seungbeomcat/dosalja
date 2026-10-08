@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.8.7</title>
+  <title>도살장 격전지 계산기 V1.8.8</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.8.7">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.7">
+<meta property="og:title" content="도살장 격전지 계산기 V1.8.8">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.8">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.8.7">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.7">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.8.8">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.8">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -9090,7 +9090,7 @@ html,body{background:#000000!important;}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.8.7</div>
+    <div class="creator-credit">Created by 돗돔 · V1.8.8</div>
     <div class="build-credit">2026.10.08</div>
   </footer>
 
@@ -9872,7 +9872,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.8.7 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.8.8 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -10616,7 +10616,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.8.7 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.8.8 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -10984,8 +10984,8 @@ function resetZ1PlanUi(){
 
 
 <script id="v186-reward-history-inline">
-/* V1.8.7 — reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
-   Reward images remain external and lazy-loaded, preserving the V1.8.5 initial-load optimization. */
+/* V1.8.8 — reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
+   Reward images use the stable assets/rewards/*.png paths and remain lazy-loaded, so the main-page initial load stays light. */
 (function(){
   "use strict";
   const records=[
@@ -11037,18 +11037,18 @@ function resetZ1PlanUi(){
     "난투전":{filterBg:"#EA580C",filterBorder:"#C2410C",filterText:"#FFFFFF",filterActiveBg:"#C2410C",filterActiveBorder:"#F2C94C",filterActiveText:"#FFFFFF",cardBg:"#FFF9F5",cardBorder:"#EA580C",cardText:"#7B3212",rankBg:"#EA580C",rankBorder:"#C2410C",rankText:"#FFFFFF",titleText:"#C2410C",periodText:"#80665B",miniBg:"#FFFFFF",miniBorder:"#F2AD88",miniText:"#7A3C22",arrowColor:"#EA580C",detailBorder:"#EA580C",detailRankBg:"#EA580C",detailRankText:"#FFFFFF",detailTitleText:"#C2410C",detailPeriodText:"#80665B",detailItemBg:"#FFF2EB",detailItemBorder:"#F3B99A",detailItemText:"#763A22",chipBg:"#FFE7DA",chipBorder:"#F0B395",chipText:"#8A3E1C"}
   };
   const REWARD_IMAGE_MAP={
-    "신화 동료 외형 소환권":"./assets/rewards/display/myth-companion-ticket-display.webp",
-    "전설 동료 외형 소환권":"./assets/rewards/display/legendary-companion-ticket-display.webp",
-    "하늘빛 상의":"./assets/rewards/display/skyblue-top-display.webp",
-    "하늘빛 하의":"./assets/rewards/display/skyblue-bottom-display.webp",
-    "레드스컬":"./assets/rewards/display/red-skull-display.webp",
-    "길드난투전 코인":"./assets/rewards/display/guild-brawl-coin-display.webp",
-    "럭키펀치 장갑":"./assets/rewards/display/lucky-punch-gloves-display.webp",
-    "럭키펀치 모자":"./assets/rewards/display/lucky-punch-hat-display.webp",
-    "럭키펀치 목도리":"./assets/rewards/display/lucky-punch-scarf-display.webp",
-    "럭키펀치 신발":"./assets/rewards/display/lucky-punch-shoes-display.webp",
-    "길드 점령전 구슬":"./assets/rewards/display/guild-occupation-orb-display.webp",
-    "영웅 장비 제작법 소환권 조각":"./assets/rewards/display/hero-equipment-recipe-fragment-display.webp"
+    "신화 동료 외형 소환권":"assets/rewards/myth-companion-ticket.png?v=188",
+    "전설 동료 외형 소환권":"assets/rewards/legendary-companion-ticket.png?v=188",
+    "하늘빛 상의":"assets/rewards/skyblue-top.png?v=188",
+    "하늘빛 하의":"assets/rewards/skyblue-bottom.png?v=188",
+    "레드스컬":"assets/rewards/red-skull.png?v=188",
+    "길드난투전 코인":"assets/rewards/guild-brawl-coin.png?v=188",
+    "럭키펀치 장갑":"assets/rewards/lucky-punch-gloves.png?v=188",
+    "럭키펀치 모자":"assets/rewards/lucky-punch-hat.png?v=188",
+    "럭키펀치 목도리":"assets/rewards/lucky-punch-scarf.png?v=188",
+    "럭키펀치 신발":"assets/rewards/lucky-punch-shoes.png?v=188",
+    "길드 점령전 구슬":"assets/rewards/guild-occupation-orb.png?v=188",
+    "영웅 장비 제작법 소환권 조각":"assets/rewards/hero-equipment-recipe-fragment.png?v=188"
   };
 
   function getTheme(type){return REWARD_THEMES[type]||REWARD_THEMES["균열"]}
@@ -11074,7 +11074,7 @@ function resetZ1PlanUi(){
   }
   function miniItem(item,type){
     const imgSrc=resolveRewardImg(item);
-    return `<span class="reward-item-mini" style="${themeVars(type)}">${imgSrc?`<span class="reward-icon-frame"><img src="${imgSrc}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.closest('.reward-icon-frame').remove();"></span>`:''}<span>${qtyText(item)}</span></span>`;
+    return `<span class="reward-item-mini" style="${themeVars(type)}">${imgSrc?`<span class="reward-icon-frame"><img src="${imgSrc}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async" fetchpriority="low"></span>`:''}<span>${qtyText(item)}</span></span>`;
   }
   function render(){
     const visible=activeFilter?records.filter(r=>r.type===activeFilter):records;
@@ -11116,7 +11116,7 @@ function resetZ1PlanUi(){
       if(item.recipients&&item.recipients.length){chips=item.recipients.map(n=>`<span class="reward-recipient-chip">${n}</span>`).join('');}
       else if(item.status==='unallocated'){chips='<span class="reward-recipient-chip unallocated">미분배</span>';}
       else{chips='<span class="reward-recipient-chip pending">수령자 미입력</span>';}
-      return `<div class="reward-detail-item${imgSrc?'':' no-image'}" style="${themeVars(record.type)}">${imgSrc?`<span class="reward-detail-icon-frame"><img src="${imgSrc}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.closest('.reward-detail-icon-frame').remove();"></span>`:''}<div class="reward-detail-item-main"><div class="reward-detail-item-title">${qtyText(item)}</div><div class="reward-detail-item-recipients">${chips}</div></div></div>`;
+      return `<div class="reward-detail-item${imgSrc?'':' no-image'}" style="${themeVars(record.type)}">${imgSrc?`<span class="reward-detail-icon-frame"><img src="${imgSrc}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async" fetchpriority="low"></span>`:''}<div class="reward-detail-item-main"><div class="reward-detail-item-title">${qtyText(item)}</div><div class="reward-detail-item-recipients">${chips}</div></div></div>`;
     }).join('');
     detailOverlay.hidden=false;detailOverlay.setAttribute('aria-hidden','false');
   }
