@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.8.9</title>
+  <title>도살장 격전지 계산기 V1.8.10</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.8.9">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.9">
+<meta property="og:title" content="도살장 격전지 계산기 V1.8.10">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.10">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.8.9">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.9">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.8.10">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.10">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -9090,8 +9090,8 @@ html,body{background:#000000!important;}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.8.9</div>
-    <div class="build-credit">2026.10.08</div>
+    <div class="creator-credit">Created by 돗돔 · V1.8.10</div>
+    <div class="build-credit">2026.10.09</div>
   </footer>
 
 
@@ -9135,21 +9135,21 @@ let timeLimitMode = false;
 const MEMBERS = {
   // minScore는 격전지 전투 1회 최종 스코어에 딱 한 번 가산되는 개인 고정값이다.
   "돗돔":       {base:194.3, z1r:0, z2r:5, z3r:0, minScore:4500, field:{wolf:13,pirate:22,cat:22,food:6,galaxy:0}},
-  "매콤갈비":   {base:159.5, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
-  "사마엘":     {base:129.5,   z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:22,pirate:22,cat:22,food:22,galaxy:0}},
-  "혀녕":       {base:100.5, z1r:0, z2r:5, z3r:0, minScore:3000, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
-  "XIGN":       {base:87,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "뱅수띠":     {base:72,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "매콤갈비":   {base:165.2, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
+  "도살장":     {base:138.5, z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:23,pirate:23,cat:23,food:23,galaxy:0}},
+  "잎새주":     {base:107.9, z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:23,pirate:6,cat:6,food:6,galaxy:0}},
+  "차돌":       {base:100.5, z1r:0, z2r:5, z3r:0, minScore:3000, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
+  "애기다라":   {base:100,   z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "채끝살":     {base:89,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "대창":       {base:72,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "진니":       {base:69.2,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6,galaxy:0}},
   "아메리칸컬": {base:68.6,  z1r:0, z2r:0, z3r:0, minScore:2500, field:{wolf:2,pirate:0,cat:0,food:0,galaxy:0}},
+  "승부왕":     {base:60.8,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1,galaxy:0}},
   "토시살":     {base:60,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "승부왕":     {base:60.8,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1,galaxy:0}},
-  "데이다라":   {base:100,   z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "바포메트":   {base:35.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "옥돔":       {base:34.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "하니엘":     {base:45,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "벨제붑":     {base:42,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}}
+  "생갈비":     {base:45,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "벨제붑":     {base:42,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "바포메트":   {base:35.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}}
 };
 
 // Shared live member order for every current calculator/member UI.
@@ -9278,19 +9278,19 @@ function closeMemberPicker(){
   document.body.style.overflow="";
 }
 
-const ALIASES = {
+const ALIASES={
   "돚돔":"돗돔","돋돔":"돗돔","돝돔":"돗돔","돕돔":"돗돔",
   "매콤":"매콤갈비","갈비":"매콤갈비","메콤":"매콤갈비",
-  "사마앨":"사마엘","사무엘":"사마엘","사므엘":"사마엘","샤뮤엘":"사마엘","사마":"사마엘","마엘":"사마엘",
-  "혀넝":"혀녕","허녕":"혀녕","허넝":"혀녕",
-  "xign":"XIGN","사인":"XIGN","싸인":"XIGN",
-  "벵수띠":"뱅수띠","뱅수디":"뱅수띠","벵수디":"뱅수띠","뱅수":"뱅수띠","벵수":"뱅수띠","뱅수씨":"뱅수띠","벵수씨":"뱅수띠",
+  "사마엘":"도살장","사마앨":"도살장","사무엘":"도살장","사므엘":"도살장","샤뮤엘":"도살장","사마":"도살장","마엘":"도살장",
+  "혀녕":"차돌","혀넝":"차돌","허녕":"차돌","허넝":"차돌",
+  "XIGN":"채끝살","xign":"채끝살","사인":"채끝살","싸인":"채끝살",
+  "뱅수띠":"대창","벵수띠":"대창","뱅수디":"대창","벵수디":"대창","뱅수":"대창","벵수":"대창","뱅수씨":"대창","벵수씨":"대창",
   "토시":"토시살","토살":"토시살",
   "페르":"페르시안","패르시안":"페르시안","패르":"페르시안","시안":"페르시안",
   "승부":"승부왕","ㅅㅂ왕":"승부왕","슴부왕":"승부왕","슝브왕":"승부왕",
-  "데이":"데이다라","다라":"데이다라","대이":"데이다라","대이다라":"데이다라",
+  "데이다라":"애기다라","데이":"애기다라","다라":"애기다라","대이":"애기다라","대이다라":"애기다라",
   "바포":"바포메트","메트":"바포메트","바포매트":"바포메트","바메":"바포메트",
-  "하니":"하니엘","니엘":"하니엘",
+  "하니엘":"생갈비","하니":"생갈비","니엘":"생갈비",
   "벨제":"벨제붑","제붑":"벨제붑","밸제":"벨제붑","밸재붑":"벨제붑","밸제붑":"벨제붑","벨재붑":"벨제붑"
 };
 
@@ -9872,7 +9872,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.8.9 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.8.10 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -10616,7 +10616,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.8.9 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.8.10 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -10984,7 +10984,7 @@ function resetZ1PlanUi(){
 
 
 <script id="v186-reward-history-inline">
-/* V1.8.9 — reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
+/* V1.8.10 — reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
    Reward icons are embedded as compact 128px WebP data URIs (~45 KB total) so the reward page no longer depends on any asset path or extra image request. */
 (function(){
   "use strict";
