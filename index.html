@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.8.11</title>
+  <title>도살장 격전지 계산기 V1.8.12</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.8.11">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.11">
+<meta property="og:title" content="도살장 격전지 계산기 V1.8.12">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.12">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.8.11">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.11">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.8.12">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.12">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -8767,6 +8767,15 @@ html,body{background:#000000!important;}
 .reward-card-scroll.is-horizontal-dragging{cursor:grabbing!important;}
 .reward-card-track{pointer-events:auto!important;}
 </style>
+<style id="v1812-data-update-stamp">
+/* Readable but unobtrusive: placed below existing roster all-table CTA, inside the roster card. */
+#rosterDetailPanel .guild-data-update-stamp{
+  display:block;width:100%;margin:5px 0 0;padding:0 2px;
+  color:#837293;font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  font-size:11.5px;font-weight:650;line-height:1.4;letter-spacing:0;
+  font-variant-numeric:tabular-nums;text-align:center;white-space:nowrap;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -8873,6 +8882,7 @@ html,body{background:#000000!important;}
       <span class="roster-all-table-main">길드원 전체 격추표 보기</span>
       <span class="roster-all-table-sub">16명 기본 · 최소점수 · 지역격추 한눈에 확인</span>
     </button>
+    <div id="rosterDataUpdateStamp" class="guild-data-update-stamp" data-build-at="2026-10-10T06:07:21+09:00" aria-label="길드원 격추 정보 갱신 시각">update : 2026.10.10 06:07</div>
   </section>
 
 <section class="card" id="calculatorCard">
@@ -9090,7 +9100,7 @@ html,body{background:#000000!important;}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.8.11</div>
+    <div class="creator-credit">Created by 돗돔 · V1.8.12</div>
     <div class="build-credit">2026.10.10</div>
   </footer>
 
@@ -9872,7 +9882,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.8.11 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.8.12 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -10616,7 +10626,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.8.11 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.8.12 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -10984,7 +10994,7 @@ function resetZ1PlanUi(){
 
 
 <script id="v186-reward-history-inline">
-/* V1.8.11 — historical reward names remain unchanged; V1.8.11 reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
+/* V1.8.12 — historical reward names remain unchanged; V1.8.12 reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
    Reward icons are embedded as compact 128px WebP data URIs (~45 KB total) so the reward page no longer depends on any asset path or extra image request. */
 (function(){
   "use strict";
@@ -11205,6 +11215,33 @@ function resetZ1PlanUi(){
       setTimeout(apply,70);setTimeout(apply,180);setTimeout(apply,360);setTimeout(apply,620);
     }));
   };
+})();
+</script>
+<script id="v1812-deployment-update-time">
+(function(){
+  "use strict";
+  const label=document.getElementById("rosterDataUpdateStamp");
+  if(!label)return;
+  const buildMs=Date.parse(label.dataset.buildAt||"");
+  const formatter=new Intl.DateTimeFormat("en-GB",{
+    timeZone:"Asia/Seoul",hourCycle:"h23",year:"numeric",month:"2-digit",
+    day:"2-digit",hour:"2-digit",minute:"2-digit"
+  });
+  function formatKst(ms){
+    const fields=Object.fromEntries(formatter.formatToParts(new Date(ms)).map(p=>[p.type,p.value]));
+    return `${fields.year}.${fields.month}.${fields.day} ${fields.hour}:${fields.minute}`;
+  }
+  function show(ms){if(Number.isFinite(ms)&&ms>0)label.textContent="update : "+formatKst(ms);}
+  show(buildMs);
+  // Last-Modified comes from the actually served index.html, rather than a page visit/refresh.
+  // Some hosts do not expose it: in that case retain the embedded package build time.
+  if(location.protocol!=="https:"&&location.protocol!=="http:")return;
+  const indexUrl=new URL("./index.html",document.baseURI);
+  fetch(indexUrl.href,{method:"HEAD",cache:"no-store"}).then(response=>{
+    if(!response.ok)return;
+    const modifiedMs=Date.parse(response.headers.get("Last-Modified")||"");
+    if(Number.isFinite(modifiedMs)&&modifiedMs>=buildMs)show(modifiedMs);
+  }).catch(()=>{});
 })();
 </script>
 </body>
