@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.8.12</title>
+  <title>도살장 격전지 계산기 V1.9.0</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.8.12">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.12">
+<meta property="og:title" content="도살장 격전지 계산기 V1.9.0">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.9.0">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.8.12">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.8.12">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.9.0">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.9.0">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -9100,7 +9100,7 @@ html,body{background:#000000!important;}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.8.12</div>
+    <div class="creator-credit">Created by 돗돔 · V1.9.0</div>
     <div class="build-credit">2026.10.10</div>
   </footer>
 
@@ -9136,15 +9136,35 @@ html,body{background:#000000!important;}
   </div>
 </div>
 
+<script id="dosalja-central-loader">
+(function(){
+  "use strict";
+  var source=(location.protocol==="file:" && location.pathname.includes("/dosalja/")) ? "shared/guild-core.js" : "/dosalja/shared/guild-core.js";
+  document.write('<script src="'+source+'?rev='+Date.now()+'"><\/script>');
+})();
+</script>
+<script id="dosalja-central-fallback-warning">
+if(!window.DosaljaShared){
+  console.warn("공통 격추 데이터 연결 실패: 내장 이전 데이터를 임시로 사용합니다.");
+  document.addEventListener("DOMContentLoaded",function(){
+    var el=document.createElement("div");
+    el.textContent="공통 격추정보 연결 실패 · 임시 저장값 사용 중";
+    el.setAttribute("role","status");
+    el.style.cssText="position:relative;z-index:30;max-width:580px;margin:5px auto;padding:5px 8px;border:1px solid #dba1a1;border-radius:7px;text-align:center;font-size:11px;color:#873343;background:#fff0f0;";
+    document.body.insertBefore(el,document.body.firstChild);
+  });
+}
+</script>
+
 <script>
 "use strict";
 
 let selectedServer = null;
 let timeLimitMode = false;
 
-const MEMBERS = {
+const MEMBERS = window.DosaljaShared?.members || {
   // minScore는 격전지 전투 1회 최종 스코어에 딱 한 번 가산되는 개인 고정값이다.
-  "돗돔":       {base:180.9, z1r:0, z2r:5, z3r:0, minScore:5000, field:{wolf:23,pirate:22,cat:22,food:22,galaxy:0}},
+  "돗돔":       {base:182.9, z1r:0, z2r:5, z3r:0, minScore:5000, field:{wolf:23,pirate:22,cat:22,food:22,galaxy:0}},
   "매콤갈비":   {base:165.2, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
   "도살장":     {base:138.5, z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:23,pirate:23,cat:23,food:23,galaxy:0}},
   "잎새주":     {base:107.9, z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:23,pirate:6,cat:6,food:6,galaxy:0}},
@@ -9288,7 +9308,7 @@ function closeMemberPicker(){
   document.body.style.overflow="";
 }
 
-const ALIASES={
+const ALIASES=window.DosaljaShared?.aliases || {
   "돚돔":"돗돔","돋돔":"돗돔","돝돔":"돗돔","돕돔":"돗돔",
   "매콤":"매콤갈비","갈비":"매콤갈비","메콤":"매콤갈비",
   "사마엘":"도살장","사마앨":"도살장","사무엘":"도살장","사므엘":"도살장","샤뮤엘":"도살장","사마":"도살장","마엘":"도살장",
@@ -9304,7 +9324,7 @@ const ALIASES={
   "벨제":"벨제붑","제붑":"벨제붑","밸제":"벨제붑","밸재붑":"벨제붑","밸제붑":"벨제붑","벨재붑":"벨제붑"
 };
 
-const BOSSES = {
+const BOSSES = window.DosaljaShared?.bosses || {
   "루이": [[15,325000],[16,330000],[17,335000],[18,340000],[19,345000],[20,350000]],
   "루니": [[25,375000],[26,380000],[27,385000],[28,390000],[29,395000],[30,400000]],
   "루나": [[35,425000],[36,430000],[37,435000],[38,440000],[39,445000],[40,450000]],
@@ -9329,30 +9349,33 @@ const REGIONS = {
 };
 // 2026-09-15 실측 보정: 60초 부근 완료 63 WAVE를 대표값으로 사용.
 // 피해는 WAVE 단위로 뛰므로 내부 시간 검증에는 기존 안전범위 계산을 유지한다.
-const WAVES_PER_SEC = 63/60; // 1.05
-const SCORE_PER_WAVE = 1000;
-const SAFE_SEC = 1;
+const WAVES_PER_SEC = window.DosaljaShared?.rules?.wavesPerSecond ?? 63/60; // 1.05
+const SCORE_PER_WAVE = window.DosaljaShared?.rules?.scorePerWave ?? 1000;
+const SAFE_SEC = window.DosaljaShared?.rules?.safeSeconds ?? 1;
 const UPDATED_DATE = "2026-09-28";
 
 // 실측 보정 결과는 현재 계산 상수(WAVES_PER_SEC)에 반영되어 있습니다.
-function z1Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z1r}
-function z2Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z2r}
-function z3Total(name){const m=MEMBERS[name];return m.base+selectedServer+m.z3r}
+function z1Total(name){if(window.DosaljaShared)return window.DosaljaShared.zoneTotal(name,selectedServer,"z1");const m=MEMBERS[name];return m.base+selectedServer+m.z1r}
+function z2Total(name){if(window.DosaljaShared)return window.DosaljaShared.zoneTotal(name,selectedServer,"z2");const m=MEMBERS[name];return m.base+selectedServer+m.z2r}
+function z3Total(name){if(window.DosaljaShared)return window.DosaljaShared.zoneTotal(name,selectedServer,"z3");const m=MEMBERS[name];return m.base+selectedServer+m.z3r}
 function fieldBonus(name,key){const m=MEMBERS[name];return m.field ? m.field[key] : null}
 function fieldTotal(name,key){
+  if(window.DosaljaShared)return window.DosaljaShared.regionTotal(name,selectedServer,key);
   const b=fieldBonus(name,key);
   return b===null || b===undefined ? null : MEMBERS[name].base+selectedServer+b;
 }
 function minScore(name){return MEMBERS[name].minScore||0}
-function sustainedDpsFromG(G){return WAVES_PER_SEC*SCORE_PER_WAVE*(1+G/100)}
+function sustainedDpsFromG(G){return window.DosaljaShared?window.DosaljaShared.sustainedDpsFromG(G):WAVES_PER_SEC*SCORE_PER_WAVE*(1+G/100)}
 function scoreAtCompletedWaves(name,G,completedWaves){
-  return Math.round(completedWaves*SCORE_PER_WAVE*(1+G/100)+minScore(name));
+  return window.DosaljaShared?window.DosaljaShared.scoreAtCompletedWaves(name,G,completedWaves):Math.round(completedWaves*SCORE_PER_WAVE*(1+G/100)+minScore(name));
 }
 function safeSecRange(sec){
+  if(window.DosaljaShared)return window.DosaljaShared.safeSecRange(sec);
   const c=Math.max(0,Math.round(sec));
   return {center:c,low:Math.max(0,c-SAFE_SEC),high:c+SAFE_SEC};
 }
 function allocateHpExact(hp,items){
+  if(window.DosaljaShared)return window.DosaljaShared.allocateHpExact(hp,items);
   // 격전지 최소점수는 보스 HP/딜/분배/클리어시간을 바꾸지 않는다.
   // 기존 화력비 계산을 그대로 유지하고, 최소점수는 최종 스코어에만 전투당 1회 가산한다.
   const S=items.reduce((a,x)=>a+x.P,0);
@@ -9460,6 +9483,7 @@ function parseInput(raw){
 }
 
 function largestRemainder(raws,target,tieGs){
+  if(window.DosaljaShared)return window.DosaljaShared.largestRemainder(raws,target,tieGs);
   const floors=raws.map(Math.floor);
   let remaining=target-floors.reduce((a,b)=>a+b,0);
   const ranked=raws.map((r,i)=>({i,frac:r-Math.floor(r),G:tieGs[i]}))
@@ -9882,7 +9906,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.8.12 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.9.0 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -10626,7 +10650,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.8.12 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.9.0 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
@@ -10994,7 +11018,7 @@ function resetZ1PlanUi(){
 
 
 <script id="v186-reward-history-inline">
-/* V1.8.12 — historical reward names remain unchanged; V1.8.12 reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
+/* V1.9.0 — historical reward names remain unchanged; V1.9.0 reward history logic is kept inline (~15 KB) so opening the page does not depend on a second JavaScript network request.
    Reward icons are embedded as compact 128px WebP data URIs (~45 KB total) so the reward page no longer depends on any asset path or extra image request. */
 (function(){
   "use strict";
@@ -11232,16 +11256,20 @@ function resetZ1PlanUi(){
     return `${fields.year}.${fields.month}.${fields.day} ${fields.hour}:${fields.minute}`;
   }
   function show(ms){if(Number.isFinite(ms)&&ms>0)label.textContent="update : "+formatKst(ms);}
-  show(buildMs);
-  // Last-Modified comes from the actually served index.html, rather than a page visit/refresh.
-  // Some hosts do not expose it: in that case retain the embedded package build time.
+  let latestMs=Number.isFinite(buildMs)?buildMs:0;
+  show(latestMs);
+  // Both the main HTML and the shared guild data are part of the dosalja deployment.
+  // If only shared/guild-core.js changes, the visible update time must also advance.
+  // HEAD Last-Modified reflects served files, not the visitor's device clock.
   if(location.protocol!=="https:"&&location.protocol!=="http:")return;
-  const indexUrl=new URL("./index.html",document.baseURI);
-  fetch(indexUrl.href,{method:"HEAD",cache:"no-store"}).then(response=>{
-    if(!response.ok)return;
-    const modifiedMs=Date.parse(response.headers.get("Last-Modified")||"");
-    if(Number.isFinite(modifiedMs)&&modifiedMs>=buildMs)show(modifiedMs);
-  }).catch(()=>{});
+  for(const file of ["./index.html","./shared/guild-core.js"]){
+    const url=new URL(file,document.baseURI);
+    fetch(url.href,{method:"HEAD",cache:"no-store"}).then(response=>{
+      if(!response.ok)return;
+      const ms=Date.parse(response.headers.get("Last-Modified")||"");
+      if(Number.isFinite(ms)&&ms>latestMs){latestMs=ms;show(ms);}
+    }).catch(()=>{});
+  }
 })();
 </script>
 </body>
