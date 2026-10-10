@@ -3,6 +3,7 @@
  * 향후 격추/지역/최소점수/별칭/공통 계산 규칙 변경: 이 파일만 수정하고 도살자 저장소에 배포.
  * 과거 완료 회차/보상/처치 기록은 절대 소급 변경하지 않는다.
  * 2026-10-10 최초 전환; 기본격추 돗돔 182.9%.
+ * 2026-10-10 바포메트→항정살 (구 닉네임은 aliases/formerNames에 유지).
  */
 (function(global){
   "use strict";
@@ -23,7 +24,7 @@
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "생갈비":     {base:45,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "벨제붑":     {base:42,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "바포메트":   {base:35.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}}
+  "항정살":   {base:35.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}}
   };
   const aliases = {
   "돚돔":"돗돔","돋돔":"돗돔","돝돔":"돗돔","돕돔":"돗돔",
@@ -36,7 +37,7 @@
   "페르":"페르시안","패르시안":"페르시안","패르":"페르시안","시안":"페르시안",
   "승부":"승부왕","ㅅㅂ왕":"승부왕","슴부왕":"승부왕","슝브왕":"승부왕",
   "데이다라":"애기다라","데이":"애기다라","다라":"애기다라","대이":"애기다라","대이다라":"애기다라",
-  "바포":"바포메트","메트":"바포메트","바포매트":"바포메트","바메":"바포메트",
+  "바포메트":"항정살","바포":"항정살","메트":"항정살","바포매트":"항정살","바메":"항정살",
   "하니엘":"생갈비","하니":"생갈비","니엘":"생갈비",
   "벨제":"벨제붑","제붑":"벨제붑","밸제":"벨제붑","밸재붑":"벨제붑","밸제붑":"벨제붑","벨재붑":"벨제붑"
   };
@@ -46,7 +47,7 @@
   "루나": [[35,425000],[36,430000],[37,435000],[38,440000],[39,445000],[40,450000]],
   "바나냥": [[45,475000],[46,480000],[47,485000],[48,490000],[49,495000],[50,500000]]
   };
-  const formerNames = {"사마엘":"도살장","혀녕":"차돌","XIGN":"채끝살","뱅수띠":"대창","데이다라":"애기다라","하니엘":"생갈비"};
+  const formerNames = {"사마엘":"도살장","혀녕":"차돌","XIGN":"채끝살","뱅수띠":"대창","데이다라":"애기다라","하니엘":"생갈비","바포메트":"항정살"};
   const rules = {wavesPerSecond:63/60,scorePerWave:1000,safeSeconds:1,serverOptions:[0,1,2,3,4,6]};
   const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
   const canonical=n=>{const key=String(n??'').trim();return own(members,key)?key:(aliases[key]||formerNames[key]||key);};
@@ -71,7 +72,7 @@
     return {raws,out:alloc.out,totalMin:0,remain:hp,S};
   }
   const core=Object.freeze({
-    schemaVersion:1,version:'2026.10.10-1829',members,aliases,formerNames,bosses,rules,
+    schemaVersion:1,version:'2026.10.10-1829-hangjeongsal',members,aliases,formerNames,bosses,rules,
     canonical,memberOrder,zoneTotal,regionTotal,sustainedDpsFromG,
     scoreAtCompletedWaves,safeSecRange,largestRemainder,allocateHpExact
   });
