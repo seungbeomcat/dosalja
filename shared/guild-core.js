@@ -4,6 +4,7 @@
  * 과거 완료 회차/보상/처치 기록은 절대 소급 변경하지 않는다.
  * 2026-10-10 최초 전환; 기본격추 돗돔 182.9%.
  * 2026-10-10 바포메트→항정살 (구 닉네임은 aliases/formerNames에 유지).
+ * 2026-10-10 아메리칸컬 기본81.5%·늑대8%·음식6%; 차돌 기본128.8%.
  */
 (function(global){
   "use strict";
@@ -13,12 +14,12 @@
   "매콤갈비":   {base:165.2, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
   "도살장":     {base:138.5, z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:23,pirate:23,cat:23,food:23,galaxy:0}},
   "잎새주":     {base:107.9, z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:23,pirate:6,cat:6,food:6,galaxy:0}},
-  "차돌":       {base:123.8, z1r:0, z2r:5, z3r:0, minScore:3000, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
+  "차돌":       {base:128.8, z1r:0, z2r:5, z3r:0, minScore:3000, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
   "애기다라":   {base:100,   z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "채끝살":     {base:89,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "대창":       {base:72,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "진니":       {base:69.2,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6,galaxy:0}},
-  "아메리칸컬": {base:68.6,  z1r:0, z2r:0, z3r:0, minScore:2500, field:{wolf:2,pirate:0,cat:0,food:0,galaxy:0}},
+  "아메리칸컬": {base:81.5,  z1r:0, z2r:0, z3r:0, minScore:2500, field:{wolf:8,pirate:0,cat:0,food:6,galaxy:0}},
   "승부왕":     {base:62.8,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1,galaxy:0}},
   "토시살":     {base:81,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
@@ -72,7 +73,7 @@
     return {raws,out:alloc.out,totalMin:0,remain:hp,S};
   }
   const core=Object.freeze({
-    schemaVersion:1,version:'2026.10.10-1829-hangjeongsal',members,aliases,formerNames,bosses,rules,
+    schemaVersion:1,version:'2026.10.10-192-american81.5-chadol128.8',members,aliases,formerNames,bosses,rules,
     canonical,memberOrder,zoneTotal,regionTotal,sustainedDpsFromG,
     scoreAtCompletedWaves,safeSecRange,largestRemainder,allocateHpExact
   });
