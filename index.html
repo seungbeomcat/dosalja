@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="도살장 계산기" />
-  <title>도살장 격전지 계산기 V1.9.1</title>
+  <title>도살장 격전지 계산기 V1.9.2</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -164,14 +164,14 @@
 #calculatorCard{border:3px solid var(--section-violet)!important;}
 </style>
 
-<meta property="og:title" content="도살장 격전지 계산기 V1.9.1">
-<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.9.1">
+<meta property="og:title" content="도살장 격전지 계산기 V1.9.2">
+<meta property="og:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.9.2">
 <meta property="og:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 <meta property="og:url" content="https://seungbeomcat.github.io/dosalja/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="도살장 격전지 계산기 V1.9.1">
-<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.9.1">
+<meta name="twitter:title" content="도살장 격전지 계산기 V1.9.2">
+<meta name="twitter:description" content="도살장 길드 전용 1구역·2구역·초대형·격추 계산기 V1.9.2">
 <meta name="twitter:image" content="https://seungbeomcat.github.io/dosalja/dosaljang-share-v151.png">
 
 
@@ -9100,7 +9100,7 @@ html,body{background:#000000!important;}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 돗돔 · V1.9.1</div>
+    <div class="creator-credit">Created by 돗돔 · V1.9.2</div>
     <div class="build-credit">2026.10.10</div>
   </footer>
 
@@ -9168,12 +9168,12 @@ const MEMBERS = window.DosaljaShared?.members || {
   "매콤갈비":   {base:165.2, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
   "도살장":     {base:138.5, z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:23,pirate:23,cat:23,food:23,galaxy:0}},
   "잎새주":     {base:107.9, z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:23,pirate:6,cat:6,food:6,galaxy:0}},
-  "차돌":       {base:123.8, z1r:0, z2r:5, z3r:0, minScore:3000, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
+  "차돌":       {base:128.8, z1r:0, z2r:5, z3r:0, minScore:3000, field:{wolf:24,pirate:22,cat:22,food:22,galaxy:0}},
   "애기다라":   {base:100,   z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "채끝살":     {base:89,    z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "대창":       {base:72,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "진니":       {base:69.2,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6,galaxy:0}},
-  "아메리칸컬": {base:68.6,  z1r:0, z2r:0, z3r:0, minScore:2500, field:{wolf:2,pirate:0,cat:0,food:0,galaxy:0}},
+  "아메리칸컬": {base:81.5,  z1r:0, z2r:0, z3r:0, minScore:2500, field:{wolf:8,pirate:0,cat:0,food:6,galaxy:0}},
   "승부왕":     {base:62.8,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1,galaxy:0}},
   "토시살":     {base:81,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
@@ -9906,7 +9906,7 @@ document.getElementById("calcBtn").addEventListener("click",()=>{
     if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
     lastRaw=raw;
     render(r);
-    setStatus("계산 완료 · V1.9.1 · 실측 보정 적용 · 내부 검증 PASS","ok");
+    setStatus("계산 완료 · V1.9.2 · 실측 보정 적용 · 내부 검증 PASS","ok");
   }catch(e){
     document.getElementById("result").classList.remove("show");
     document.getElementById("shareOpenBtn").classList.remove("show");
@@ -10650,7 +10650,7 @@ function resetZ1PlanUi(){
       validateZ1AssignmentInputs();const r=calcZ1Plan(buildZ1PlanConfig());const v=validateZ1Plan(r);
       if(!v.pass)throw new Error("내부 검증 FAIL · "+v.problems.join(" / "));
       renderZ1Plan(r);lastRaw="";
-      setStatus(`계산 완료 · V1.9.1 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
+      setStatus(`계산 완료 · V1.9.2 · ${r.distributionMode==="equal"?"균등시간 분배":"직접 할당 분배"} · 내부 검증 PASS`,"ok");
     }catch(err){invalidateZ1Result();setStatus(err.message,"err");}
   },true);
   document.getElementById('verifyBtn').addEventListener('click',e=>{
