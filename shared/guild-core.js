@@ -5,6 +5,7 @@
  * 2026-10-10 최초 전환; 기본격추 돗돔 182.9%.
  * 2026-10-10 바포메트→항정살 (구 닉네임은 aliases/formerNames에 유지).
  * 2026-10-10 아메리칸컬 기본81.5%·늑대8%·음식6%; 차돌 기본128.8%.
+ * 2026-10-11 벨제붑 기본격추 42%→45%; 다른 설정 유지.
  */
 (function(global){
   "use strict";
@@ -24,7 +25,7 @@
   "토시살":     {base:81,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "생갈비":     {base:45,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
-  "벨제붑":     {base:42,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
+  "벨제붑":     {base:45,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "항정살":   {base:35.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}}
   };
   const aliases = {
@@ -73,7 +74,7 @@
     return {raws,out:alloc.out,totalMin:0,remain:hp,S};
   }
   const core=Object.freeze({
-    schemaVersion:1,version:'2026.10.10-192-american81.5-chadol128.8',members,aliases,formerNames,bosses,rules,
+    schemaVersion:1,version:'2026.10.11-193-belzebub45',members,aliases,formerNames,bosses,rules,
     canonical,memberOrder,zoneTotal,regionTotal,sustainedDpsFromG,
     scoreAtCompletedWaves,safeSecRange,largestRemainder,allocateHpExact
   });
