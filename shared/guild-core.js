@@ -1,4 +1,4 @@
-/* 도살자 길드 공통 데이터·계산 규칙 — 세 페이지 공통 원본
+/* 도살장 길드 공통 데이터·계산 규칙 — 세 페이지 공통 원본
  * 설치 위치: dosalja/shared/guild-core.js (절대 경로 /dosalja/shared/guild-core.js)
  * 향후 격추/지역/최소점수/별칭/공통 계산 규칙 변경: 이 파일만 수정하고 도살자 저장소에 배포.
  * 과거 완료 회차/보상/처치 기록은 절대 소급 변경하지 않는다.
@@ -6,12 +6,14 @@
  * 2026-10-10 바포메트→항정살 (구 닉네임은 aliases/formerNames에 유지).
  * 2026-10-10 아메리칸컬 기본81.5%·늑대8%·음식6%; 차돌 기본128.8%.
  * 2026-10-11 벨제붑 기본격추 42%→45%; 다른 설정 유지.
+ * 2026-10-11 돗돔→안창살; 이전 닉네임은 과거 기록 보존 및 현재 집계 연결용 별칭.
+ * 2026-10-11 승부왕→지리산; 기본235%, 일반 4지역33%, 은하·상층0%, 최소점수0.
  */
 (function(global){
   "use strict";
   const members = {
   // minScore는 격전지 전투 1회 최종 스코어에 딱 한 번 가산되는 개인 고정값이다.
-  "돗돔":       {base:182.9, z1r:0, z2r:5, z3r:0, minScore:5000, field:{wolf:23,pirate:22,cat:22,food:22,galaxy:0}},
+  "안창살":     {base:182.9, z1r:0, z2r:5, z3r:0, minScore:5000, field:{wolf:23,pirate:22,cat:22,food:22,galaxy:0}},
   "매콤갈비":   {base:165.2, z1r:5, z2r:5, z3r:0, minScore:0,    field:{wolf:8,pirate:8,cat:8,food:8,galaxy:0}},
   "도살장":     {base:138.5, z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:23,pirate:23,cat:23,food:23,galaxy:0}},
   "잎새주":     {base:107.9, z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:23,pirate:6,cat:6,food:6,galaxy:0}},
@@ -21,7 +23,7 @@
   "대창":       {base:72,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "진니":       {base:69.2,  z1r:0, z2r:5, z3r:0, minScore:0,    field:{wolf:7,pirate:6,cat:6,food:6,galaxy:0}},
   "아메리칸컬": {base:81.5,  z1r:0, z2r:0, z3r:0, minScore:2500, field:{wolf:8,pirate:0,cat:0,food:6,galaxy:0}},
-  "승부왕":     {base:62.8,  z1r:0, z2r:0, z3r:0, minScore:1000, field:{wolf:0,pirate:1,cat:0,food:1,galaxy:0}},
+  "지리산":     {base:235,   z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:33,pirate:33,cat:33,food:33,galaxy:0}},
   "토시살":     {base:81,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "페르시안":   {base:57,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
   "생갈비":     {base:45,    z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}},
@@ -29,7 +31,7 @@
   "항정살":   {base:35.5,  z1r:0, z2r:0, z3r:0, minScore:0,    field:{wolf:0,pirate:0,cat:0,food:0,galaxy:0}}
   };
   const aliases = {
-  "돚돔":"돗돔","돋돔":"돗돔","돝돔":"돗돔","돕돔":"돗돔",
+  "돗돔":"안창살","돚돔":"안창살","돋돔":"안창살","돝돔":"안창살","돕돔":"안창살",
   "매콤":"매콤갈비","갈비":"매콤갈비","메콤":"매콤갈비",
   "사마엘":"도살장","사마앨":"도살장","사무엘":"도살장","사므엘":"도살장","샤뮤엘":"도살장","사마":"도살장","마엘":"도살장",
   "혀녕":"차돌","혀넝":"차돌","허녕":"차돌","허넝":"차돌",
@@ -37,7 +39,7 @@
   "뱅수띠":"대창","벵수띠":"대창","뱅수디":"대창","벵수디":"대창","뱅수":"대창","벵수":"대창","뱅수씨":"대창","벵수씨":"대창",
   "토시":"토시살","토살":"토시살",
   "페르":"페르시안","패르시안":"페르시안","패르":"페르시안","시안":"페르시안",
-  "승부":"승부왕","ㅅㅂ왕":"승부왕","슴부왕":"승부왕","슝브왕":"승부왕",
+  "승부왕":"지리산","승부":"지리산","ㅅㅂ왕":"지리산","슴부왕":"지리산","슝브왕":"지리산",
   "데이다라":"애기다라","데이":"애기다라","다라":"애기다라","대이":"애기다라","대이다라":"애기다라",
   "바포메트":"항정살","바포":"항정살","메트":"항정살","바포매트":"항정살","바메":"항정살",
   "하니엘":"생갈비","하니":"생갈비","니엘":"생갈비",
@@ -49,7 +51,7 @@
   "루나": [[35,425000],[36,430000],[37,435000],[38,440000],[39,445000],[40,450000]],
   "바나냥": [[45,475000],[46,480000],[47,485000],[48,490000],[49,495000],[50,500000]]
   };
-  const formerNames = {"사마엘":"도살장","혀녕":"차돌","XIGN":"채끝살","뱅수띠":"대창","데이다라":"애기다라","하니엘":"생갈비","바포메트":"항정살"};
+  const formerNames = {"사마엘":"도살장","혀녕":"차돌","XIGN":"채끝살","뱅수띠":"대창","데이다라":"애기다라","하니엘":"생갈비","바포메트":"항정살","돗돔":"안창살","승부왕":"지리산"};
   const rules = {wavesPerSecond:63/60,scorePerWave:1000,safeSeconds:1,serverOptions:[0,1,2,3,4,6]};
   const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
   const canonical=n=>{const key=String(n??'').trim();return own(members,key)?key:(aliases[key]||formerNames[key]||key);};
@@ -74,7 +76,7 @@
     return {raws,out:alloc.out,totalMin:0,remain:hp,S};
   }
   const core=Object.freeze({
-    schemaVersion:1,version:'2026.10.11-193-belzebub45',members,aliases,formerNames,bosses,rules,
+    schemaVersion:1,version:'2026.10.11-197-jirisan',members,aliases,formerNames,bosses,rules,
     canonical,memberOrder,zoneTotal,regionTotal,sustainedDpsFromG,
     scoreAtCompletedWaves,safeSecRange,largestRemainder,allocateHpExact
   });
